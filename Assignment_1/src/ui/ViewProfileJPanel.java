@@ -218,8 +218,8 @@ public class ViewProfileJPanel extends javax.swing.JPanel {
                                             .addComponent(lblApplicationGuid))
                                         .addGap(0, 0, Short.MAX_VALUE)))
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(lblFullFace, javax.swing.GroupLayout.PREFERRED_SIZE, 144, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(99, 99, 99)))
+                                .addComponent(lblFullFace, javax.swing.GroupLayout.PREFERRED_SIZE, 156, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(97, 97, 97)))
                         .addContainerGap())
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
@@ -298,9 +298,6 @@ public class ViewProfileJPanel extends javax.swing.JPanel {
                                 .addComponent(txtVehicleIdentifierNumber)))
                         .addGap(416, 416, 416))))
         );
-
-        jPanel1Layout.linkSize(javax.swing.SwingConstants.HORIZONTAL, new java.awt.Component[] {lblBiometric, lblFullFace});
-
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
@@ -318,7 +315,7 @@ public class ViewProfileJPanel extends javax.swing.JPanel {
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                 .addComponent(txtName, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                .addComponent(lblFullFace, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(lblFullFace, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addComponent(lblApplicationGuid)
                                 .addComponent(txtApplicationGuid, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))))
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -410,7 +407,7 @@ public class ViewProfileJPanel extends javax.swing.JPanel {
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 1113, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 1154, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(0, 0, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
@@ -515,17 +512,16 @@ public class ViewProfileJPanel extends javax.swing.JPanel {
         lblFullFace.setIcon(ResizeFacePhotoImage(person.getFacePhotoUrl()));
         txtApplicationGuid.setText(person.getUniqueIdentifier().toString());
     }
-    catch(HeadlessException | NumberFormatException ex)
+    catch(Exception ex)
     {
-        JOptionPane.showMessageDialog(this,"Information Not Saved due to exception");
-        throw ex;
+        JOptionPane.showMessageDialog(this,"Please Enter the Values Before viewing");
     }
     }
      public ImageIcon ResizeBiometricImage(String ImagePath)
     {
         ImageIcon MyImage = new ImageIcon(ImagePath);
         Image img = MyImage.getImage();
-        Image newImg = img.getScaledInstance(lblBiometric.getWidth(), lblBiometric.getHeight(), Image.SCALE_SMOOTH);
+        Image newImg = img.getScaledInstance(154, 101, Image.SCALE_SMOOTH);
         ImageIcon image = new ImageIcon(newImg);
         return image;
     }
@@ -533,7 +529,7 @@ public class ViewProfileJPanel extends javax.swing.JPanel {
     {
         ImageIcon MyImage = new ImageIcon(ImagePath);
         Image img = MyImage.getImage();
-        Image newImg = img.getScaledInstance(lblFullFace.getWidth(), lblFullFace.getHeight(), Image.SCALE_SMOOTH);
+        Image newImg = img.getScaledInstance(156, 20, Image.SCALE_SMOOTH);
         ImageIcon image = new ImageIcon(newImg);
         return image;
     }

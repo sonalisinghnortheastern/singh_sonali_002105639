@@ -9,7 +9,13 @@ import java.awt.Color;
 import java.awt.HeadlessException;
 import java.awt.event.ItemEvent;
 import java.io.File;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.time.LocalDate;
+import java.util.Date;
 import java.util.UUID;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.BorderFactory;
 import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
@@ -721,9 +727,27 @@ public class CreateProfileJPanel extends javax.swing.JPanel {
             }
             catch(HeadlessException | NumberFormatException ex)
             {
-                JOptionPane.showMessageDialog(this,"Information Not Saved due to exception");
+                person.setName("");
+                person.setGeographicData("");
+                try {
+                    person.setDateOfBirthDate(new SimpleDateFormat("dd/MM/yyyy").parse(""));
+                } catch (ParseException ex1) {
+                    Logger.getLogger(CreateProfileJPanel.class.getName()).log(Level.SEVERE, null, ex1);
+                }
+                String[] empty=new String[10];
+                person.setTelephoneNumbers(empty);
+                person.setEmailAddresses(empty);
+                person.setSocialSecurityNumber("");
+                person.setMedicalRecordNumber("");
+                person.setHealthPlanBenificiaryNumber("");
+                person.setBankAccountNumbers(new int[10]);
+                person.setLicenseNumber("");
+                person.setVehicleIdentifierNumber(empty);
+                person.setDeviceIdentifiers(empty);
+                person.setLinkedinId("");
+                person.setIpAddress("");
+                JOptionPane.showMessageDialog(this,"Information Not Saved .");
                 value =0;
-                throw ex;
             }
     }//GEN-LAST:event_btnCreateActionPerformed
 

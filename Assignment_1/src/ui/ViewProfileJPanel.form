@@ -22,7 +22,7 @@
     <DimensionLayout dim="1">
       <Group type="103" groupAlignment="0" attributes="0">
           <Group type="102" alignment="0" attributes="0">
-              <Component id="jScrollPane1" min="-2" pref="1113" max="-2" attributes="0"/>
+              <Component id="jScrollPane1" min="-2" pref="1154" max="-2" attributes="0"/>
               <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
           </Group>
       </Group>
@@ -58,8 +58,8 @@
                                           </Group>
                                       </Group>
                                       <EmptySpace max="-2" attributes="0"/>
-                                      <Component id="lblFullFace" linkSize="5" min="-2" pref="144" max="-2" attributes="0"/>
-                                      <EmptySpace min="-2" pref="99" max="-2" attributes="0"/>
+                                      <Component id="lblFullFace" min="-2" pref="156" max="-2" attributes="0"/>
+                                      <EmptySpace min="-2" pref="97" max="-2" attributes="0"/>
                                   </Group>
                               </Group>
                               <EmptySpace max="-2" attributes="0"/>
@@ -85,7 +85,7 @@
                                   <Group type="102" alignment="0" attributes="0">
                                       <Component id="lblBio" min="-2" max="-2" attributes="0"/>
                                       <EmptySpace min="-2" pref="32" max="-2" attributes="0"/>
-                                      <Component id="lblBiometric" linkSize="5" min="-2" pref="154" max="-2" attributes="0"/>
+                                      <Component id="lblBiometric" min="-2" pref="154" max="-2" attributes="0"/>
                                   </Group>
                                   <Group type="102" alignment="0" attributes="0">
                                       <Component id="lblInternetProtocolNumber" min="-2" max="-2" attributes="0"/>
@@ -190,7 +190,7 @@
                                       <Component id="txtName" linkSize="2" min="-2" max="-2" attributes="0"/>
                                   </Group>
                                   <Group type="103" groupAlignment="3" attributes="0">
-                                      <Component id="lblFullFace" linkSize="6" alignment="3" min="-2" pref="120" max="-2" attributes="0"/>
+                                      <Component id="lblFullFace" linkSize="6" alignment="3" min="-2" pref="20" max="-2" attributes="0"/>
                                       <Component id="lblApplicationGuid" alignment="3" min="-2" max="-2" attributes="0"/>
                                       <Component id="txtApplicationGuid" alignment="3" min="-2" max="-2" attributes="0"/>
                                   </Group>
