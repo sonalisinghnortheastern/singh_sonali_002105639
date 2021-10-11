@@ -340,6 +340,7 @@ public class ViewCarDetailsPanel extends javax.swing.JPanel {
         displayInfo(cars);
         uberCar.setFleetCatalogueUpdate(new java.util.Date());
         txtLastUpdatedDate.setText("Last Updated Date is: "+uberCar.getFleetCatalogueUpdate().toString());
+        txtLastUpdatedDate.setVisible(true);
     }
     }//GEN-LAST:event_btnDeleteCarDetailsActionPerformed
 
