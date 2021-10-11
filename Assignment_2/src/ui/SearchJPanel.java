@@ -67,6 +67,7 @@ public class SearchJPanel extends javax.swing.JPanel {
         setPreferredSize(new java.awt.Dimension(50, 50));
 
         jLabel1.setFont(new java.awt.Font("Arial Black", 1, 24)); // NOI18N
+        jLabel1.setForeground(new java.awt.Color(153, 0, 51));
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel1.setText("Search");
         jLabel1.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
@@ -413,6 +414,7 @@ public class SearchJPanel extends javax.swing.JPanel {
     private void btnAdvanceFilterActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAdvanceFilterActionPerformed
        visiblity(true);
        jTextArea.setVisible(false);
+       txtTotalCount.setVisible(false);
     }//GEN-LAST:event_btnAdvanceFilterActionPerformed
 
     private void btnAdvanceManufacturerNameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAdvanceManufacturerNameActionPerformed

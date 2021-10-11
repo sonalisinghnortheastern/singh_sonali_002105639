@@ -313,7 +313,7 @@ public class CreateCarDetailsJPanel extends javax.swing.JPanel {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 894, Short.MAX_VALUE)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 990, Short.MAX_VALUE)
                 .addContainerGap())
         );
     }// </editor-fold>//GEN-END:initComponents
@@ -616,13 +616,13 @@ public class CreateCarDetailsJPanel extends javax.swing.JPanel {
         }
         return value;
     }
-    public void EmptyAfterUpload()
+public void EmptyAfterUpload()
 {
     txtCarName.setText("");
-    radiobtnYes.setText("");
-    radiobtnNo.setText("");
-    radiobtnAvailableYes.setText("");
-    radiobtnAvailableNo.setText("");
+    radiobtnYes.setSelected(false);
+    radiobtnNo.setSelected(false);
+    radiobtnAvailableYes.setSelected(false);
+    radiobtnAvailableNo.setSelected(false);
     cmbManufacturerName.setSelectedItem("Audi");
     sliderMinimumSeat.setValue(10);
     txtSerialNumber.setText("");
@@ -631,8 +631,6 @@ public class CreateCarDetailsJPanel extends javax.swing.JPanel {
     chckBoxCityDelhi.setSelected(false);
     chckBoxCityBangalore.setSelected(false);
     chckBoxCityMumbai.setSelected(false);
-    
+    datechooserCertificateDate.setCalendar(null);
 }
-
-    
 }

@@ -100,6 +100,7 @@ public class MainJFrame extends javax.swing.JFrame {
         splitPane.setLeftComponent(controlPanelArea);
 
         jLabel1.setFont(new java.awt.Font("Times New Roman", 1, 18)); // NOI18N
+        jLabel1.setForeground(new java.awt.Color(102, 0, 0));
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel1.setText("Welcome To Uber !!");
         jLabel1.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
