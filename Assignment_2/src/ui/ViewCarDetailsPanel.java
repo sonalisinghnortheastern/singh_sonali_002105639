@@ -336,7 +336,10 @@ public class ViewCarDetailsPanel extends javax.swing.JPanel {
     }
     else{
         cars.remove(rowIndex);
+        JOptionPane.showMessageDialog(this,"Record Delete Succefully");
         displayInfo(cars);
+        uberCar.setFleetCatalogueUpdate(new java.util.Date());
+        txtLastUpdatedDate.setText("Last Updated Date is: "+uberCar.getFleetCatalogueUpdate().toString());
     }
     }//GEN-LAST:event_btnDeleteCarDetailsActionPerformed
 
