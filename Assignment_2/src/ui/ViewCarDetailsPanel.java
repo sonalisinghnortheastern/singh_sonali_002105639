@@ -28,6 +28,8 @@ public class ViewCarDetailsPanel extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        buttonGroup1 = new javax.swing.ButtonGroup();
+        buttonGroup2 = new javax.swing.ButtonGroup();
         jScrollPane1 = new javax.swing.JScrollPane();
         jPanel1 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
@@ -62,6 +64,7 @@ public class ViewCarDetailsPanel extends javax.swing.JPanel {
         txtLastUpdatedDate = new javax.swing.JTextField();
         sliderMinimumSeat = new javax.swing.JSlider();
 
+        jPanel1.setBackground(new java.awt.Color(204, 204, 204));
         jPanel1.setFont(new java.awt.Font("Arial", 1, 10)); // NOI18N
 
         jLabel1.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
@@ -73,24 +76,12 @@ public class ViewCarDetailsPanel extends javax.swing.JPanel {
         jRegisteredCarsTable.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
         jRegisteredCarsTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null}
+
             },
             new String [] {
-                "Car Name", "Passenger Car", "Availablity", "Manufacturer Name", "Manufacturing Year", "Seats", "Serial Number", "Model Name", "City", "Maintainence Date"
-            }
-        ) {
-            //    boolean[] canEdit = new boolean [] {
-                //        true, true, true, true, true, true, false, true, true, true
-                //    };
 
-            public boolean isCellEditable(int row, int column) {
-                //return canEdit [columnIndex];
-                return false;
             }
-        });
+        ));
         jScrollPane2.setViewportView(jRegisteredCarsTable);
 
         btnViewCarDetails.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
@@ -142,10 +133,13 @@ public class ViewCarDetailsPanel extends javax.swing.JPanel {
         lblMaintenanceCertificateDate.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
         lblMaintenanceCertificateDate.setText("Maintainence Certificate Date :");
 
+        buttonGroup1.add(radiobtnYes);
         radiobtnYes.setText("Yes");
 
+        buttonGroup1.add(radiobtnNo);
         radiobtnNo.setText("No");
 
+        buttonGroup2.add(radiobtnAvailableYes);
         radiobtnAvailableYes.setText("Yes");
 
         radiobtnAvailableNo.setText("No");
@@ -437,6 +431,8 @@ public class ViewCarDetailsPanel extends javax.swing.JPanel {
     private javax.swing.JButton btnDeleteCarDetails;
     private javax.swing.JButton btnUpdateCarDetails;
     private javax.swing.JButton btnViewCarDetails;
+    private javax.swing.ButtonGroup buttonGroup1;
+    private javax.swing.ButtonGroup buttonGroup2;
     private javax.swing.JCheckBox chckBoxCityBangalore;
     private javax.swing.JCheckBox chckBoxCityDelhi;
     private javax.swing.JCheckBox chckBoxCityMumbai;

@@ -27,6 +27,9 @@ public class CreateCarDetailsJPanel extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        buttonGroup1 = new javax.swing.ButtonGroup();
+        buttonGroup2 = new javax.swing.ButtonGroup();
+        buttonGroup3 = new javax.swing.ButtonGroup();
         jScrollPane1 = new javax.swing.JScrollPane();
         jPanel1 = new javax.swing.JPanel();
         lblAddDetails = new javax.swing.JLabel();
@@ -60,7 +63,7 @@ public class CreateCarDetailsJPanel extends javax.swing.JPanel {
         btnUploadFile = new javax.swing.JButton();
         btnUploadUI = new javax.swing.JButton();
 
-        lblAddDetails.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
+        lblAddDetails.setFont(new java.awt.Font("Arial", 1, 36)); // NOI18N
         lblAddDetails.setForeground(new java.awt.Color(153, 0, 51));
         lblAddDetails.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         lblAddDetails.setText("Add Car Details");
@@ -96,12 +99,16 @@ public class CreateCarDetailsJPanel extends javax.swing.JPanel {
         lblMaintenanceCertificateDate.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
         lblMaintenanceCertificateDate.setText("Maintainence Certificate Date :");
 
+        buttonGroup1.add(radiobtnYes);
         radiobtnYes.setText("Yes");
 
+        buttonGroup1.add(radiobtnNo);
         radiobtnNo.setText("No");
 
+        buttonGroup2.add(radiobtnAvailableYes);
         radiobtnAvailableYes.setText("Yes");
 
+        buttonGroup2.add(radiobtnAvailableNo);
         radiobtnAvailableNo.setText("No");
 
         cmbManufacturerName.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Audi", "BMW", "Bentley", "Toyota" }));
@@ -130,9 +137,8 @@ public class CreateCarDetailsJPanel extends javax.swing.JPanel {
         });
 
         lblOr.setFont(new java.awt.Font("Times New Roman", 1, 24)); // NOI18N
-        lblOr.setForeground(new java.awt.Color(153, 0, 0));
         lblOr.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        lblOr.setText("Or");
+        lblOr.setText("OR");
         lblOr.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
 
         lblUploadFile.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
@@ -159,7 +165,6 @@ public class CreateCarDetailsJPanel extends javax.swing.JPanel {
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(lblAddDetails, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                 .addComponent(lblOr, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addContainerGap())
@@ -184,9 +189,6 @@ public class CreateCarDetailsJPanel extends javax.swing.JPanel {
                         .addGap(133, 133, 133)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addComponent(sliderMinimumSeat, javax.swing.GroupLayout.PREFERRED_SIZE, 151, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(0, 0, Short.MAX_VALUE))
-                            .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addGroup(jPanel1Layout.createSequentialGroup()
                                         .addComponent(chckBoxCityDelhi)
@@ -200,7 +202,6 @@ public class CreateCarDetailsJPanel extends javax.swing.JPanel {
                                             .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                                 .addComponent(btnSave)
                                                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                                    .addComponent(dateManufacturingYear, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                                     .addComponent(datechooserCertificateDate, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                                     .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel1Layout.createSequentialGroup()
                                                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -216,7 +217,15 @@ public class CreateCarDetailsJPanel extends javax.swing.JPanel {
                                                     .addComponent(comboModelName, javax.swing.GroupLayout.Alignment.LEADING, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
                                         .addGap(49, 49, 49)
                                         .addComponent(btnUploadUI)))
-                                .addContainerGap(138, Short.MAX_VALUE))))))
+                                .addContainerGap(138, Short.MAX_VALUE))
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(sliderMinimumSeat, javax.swing.GroupLayout.PREFERRED_SIZE, 151, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(dateManufacturingYear, javax.swing.GroupLayout.PREFERRED_SIZE, 143, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGap(0, 0, Short.MAX_VALUE))))))
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(lblAddDetails, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         jPanel1Layout.linkSize(javax.swing.SwingConstants.HORIZONTAL, new java.awt.Component[] {lblAvailableCity, lblCarAvailablity, lblCarName, lblMaintenanceCertificateDate, lblManufacturerName, lblMinimumNumberOfSeats, lblModelName, lblPassengerCar, lblSerialNumber, lbllManufacturingYear});
@@ -224,9 +233,9 @@ public class CreateCarDetailsJPanel extends javax.swing.JPanel {
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addContainerGap()
+                .addGap(41, 41, 41)
                 .addComponent(lblAddDetails)
-                .addGap(70, 70, 70)
+                .addGap(40, 40, 40)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lblCarName)
                     .addComponent(txtCarName, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -235,24 +244,20 @@ public class CreateCarDetailsJPanel extends javax.swing.JPanel {
                     .addComponent(lblPassengerCar)
                     .addComponent(radiobtnYes)
                     .addComponent(radiobtnNo))
-                .addGap(28, 28, 28)
+                .addGap(30, 30, 30)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lblCarAvailablity)
                     .addComponent(radiobtnAvailableYes)
                     .addComponent(radiobtnAvailableNo))
-                .addGap(28, 28, 28)
+                .addGap(30, 30, 30)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lblManufacturerName)
                     .addComponent(cmbManufacturerName, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(32, 32, 32)
-                        .addComponent(lbllManufacturingYear)
-                        .addGap(30, 30, 30))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(dateManufacturingYear, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)))
+                .addGap(30, 30, 30)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(lbllManufacturingYear)
+                    .addComponent(dateManufacturingYear, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(30, 30, 30)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(lblMinimumNumberOfSeats)
                     .addComponent(sliderMinimumSeat, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -299,11 +304,17 @@ public class CreateCarDetailsJPanel extends javax.swing.JPanel {
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 820, Short.MAX_VALUE)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 800, Short.MAX_VALUE)
+                .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 916, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 894, Short.MAX_VALUE)
+                .addContainerGap())
         );
     }// </editor-fold>//GEN-END:initComponents
 
@@ -430,6 +441,9 @@ public class CreateCarDetailsJPanel extends javax.swing.JPanel {
     private javax.swing.JButton btnSave;
     private javax.swing.JButton btnUploadFile;
     private javax.swing.JButton btnUploadUI;
+    private javax.swing.ButtonGroup buttonGroup1;
+    private javax.swing.ButtonGroup buttonGroup2;
+    private javax.swing.ButtonGroup buttonGroup3;
     private javax.swing.JCheckBox chckBoxCityBangalore;
     private javax.swing.JCheckBox chckBoxCityDelhi;
     private javax.swing.JCheckBox chckBoxCityMumbai;

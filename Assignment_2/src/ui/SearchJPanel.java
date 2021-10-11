@@ -610,7 +610,10 @@ private void displayInfo(List<Car> cars) {
         jRegisteredCarsTable.setModel(model);
     }
     else{
-         JOptionPane.showMessageDialog(this,"Please enter data before searching");
+        DefaultTableModel model1 = new DefaultTableModel(new Object[]{ "Car Name", "Passenger Car", "Availablity", "Manufacturer Name ",
+                    "Manufacturing Year", "Seat", "Serial Number", "Model Name" ,"City","Maintainence Date"}, 0);
+        jRegisteredCarsTable.setModel(model1);
+         JOptionPane.showMessageDialog(this,"No Data Available To Show");
     }
     }
     catch(Exception ex)
