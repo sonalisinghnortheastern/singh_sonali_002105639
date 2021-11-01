@@ -5,6 +5,7 @@
  */
 package ui;
 
+import javax.swing.ImageIcon;
 import model.PatientDirectory;
 import model.PersonDirectory;
 
@@ -19,10 +20,14 @@ public class MainJFrame extends javax.swing.JFrame {
      */
     PersonDirectory persons;
     PatientDirectory patientDirectory;
+    ImageIcon medical = new ImageIcon("BackgroundIcon.jfif");
+    
     public MainJFrame() {
         initComponents();
         persons=new PersonDirectory();
         patientDirectory=new PatientDirectory();
+        jLabel1.setIcon(medical);
+        
     }
 
     /**
@@ -43,11 +48,14 @@ public class MainJFrame extends javax.swing.JFrame {
         btnSearch = new javax.swing.JButton();
         btnPatientHistory = new javax.swing.JButton();
         jPanel2 = new javax.swing.JPanel();
+        jLabel1 = new javax.swing.JLabel();
+        jLabel2 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         jPanel1.setBackground(new java.awt.Color(102, 102, 102));
 
+        btnMakeAppointment.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         btnMakeAppointment.setText("Make An Appointment");
         btnMakeAppointment.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         btnMakeAppointment.addActionListener(new java.awt.event.ActionListener() {
@@ -56,6 +64,7 @@ public class MainJFrame extends javax.swing.JFrame {
             }
         });
 
+        btnRegistration.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         btnRegistration.setText("Register New Patient");
         btnRegistration.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -63,6 +72,7 @@ public class MainJFrame extends javax.swing.JFrame {
             }
         });
 
+        btnView.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         btnView.setText("View All Upcoming Appointments");
         btnView.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -70,6 +80,7 @@ public class MainJFrame extends javax.swing.JFrame {
             }
         });
 
+        btnUpdateProfile.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         btnUpdateProfile.setText("Update Patient Profile");
         btnUpdateProfile.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -77,6 +88,7 @@ public class MainJFrame extends javax.swing.JFrame {
             }
         });
 
+        btnSearch.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         btnSearch.setText("Search Abnormal Reports");
         btnSearch.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -84,6 +96,7 @@ public class MainJFrame extends javax.swing.JFrame {
             }
         });
 
+        btnPatientHistory.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         btnPatientHistory.setText("View Patient History");
         btnPatientHistory.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -108,32 +121,55 @@ public class MainJFrame extends javax.swing.JFrame {
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(62, 62, 62)
+                .addGap(80, 80, 80)
                 .addComponent(btnMakeAppointment)
-                .addGap(34, 34, 34)
+                .addGap(50, 50, 50)
                 .addComponent(btnRegistration)
-                .addGap(34, 34, 34)
+                .addGap(50, 50, 50)
                 .addComponent(btnView)
-                .addGap(34, 34, 34)
+                .addGap(50, 50, 50)
                 .addComponent(btnUpdateProfile)
-                .addGap(34, 34, 34)
+                .addGap(50, 50, 50)
                 .addComponent(btnSearch)
-                .addGap(34, 34, 34)
+                .addGap(50, 50, 50)
                 .addComponent(btnPatientHistory)
-                .addContainerGap(45, Short.MAX_VALUE))
+                .addContainerGap(163, Short.MAX_VALUE))
         );
 
         splitPane.setLeftComponent(jPanel1);
+
+        jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel1.setIcon(new javax.swing.ImageIcon("C:\\Users\\sonal\\OneDrive\\Desktop\\singh_sonali_002105639\\Assignment4_1\\BackgroundIcon.jfif")); // NOI18N
+        jLabel1.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        jLabel1.setOpaque(true);
+
+        jLabel2.setFont(new java.awt.Font("Arial Black", 1, 36)); // NOI18N
+        jLabel2.setForeground(new java.awt.Color(153, 0, 0));
+        jLabel2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel2.setText("Welcome  !!");
+        jLabel2.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 270, Short.MAX_VALUE)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
+                .addContainerGap(69, Short.MAX_VALUE)
+                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 507, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(48, 48, 48))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap())
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 415, Short.MAX_VALUE)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jLabel2)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 476, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(86, 86, 86))
         );
 
         splitPane.setRightComponent(jPanel2);
@@ -142,7 +178,7 @@ public class MainJFrame extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(splitPane, javax.swing.GroupLayout.DEFAULT_SIZE, 400, Short.MAX_VALUE)
+            .addComponent(splitPane, javax.swing.GroupLayout.DEFAULT_SIZE, 822, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -225,6 +261,8 @@ public class MainJFrame extends javax.swing.JFrame {
     private javax.swing.JButton btnSearch;
     private javax.swing.JButton btnUpdateProfile;
     private javax.swing.JButton btnView;
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JSplitPane splitPane;

@@ -17,6 +17,27 @@ import org.xml.sax.HandlerBase;
  */
 public class PersonDirectory {
      List<Person> persons=new ArrayList<>();
+
+    public PersonDirectory() {
+        Person person=new Person();
+        person.setAge(30);
+        person.setHeight((float) 5.4);
+        person.setWeight((float) 70);
+        person.setMobileNumber(9810408081L);
+        person.setName("Dummy Patient");
+        person.setPatientId(123);
+        House house=new House();
+        Community community=new  Community();
+        Map<String,String>communityMapping=new HashMap<>();
+        communityMapping.put("Boston", "Longwood Medical Area");
+        community.setCommunity(communityMapping);
+        house.setCommunity(community);
+        house.setHouseNumber("50");
+        house.setStreetName("Seemant Vihar");
+        person.setHouse(house);
+        persons.add(person);
+    }
+     
     public List<Person> getPersonDirectory() {
         return persons;
     }

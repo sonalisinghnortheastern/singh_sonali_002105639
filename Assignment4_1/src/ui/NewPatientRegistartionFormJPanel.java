@@ -268,10 +268,10 @@ public class NewPatientRegistartionFormJPanel extends javax.swing.JPanel {
 
         try
         {
-            emptyValidationStatus=NullOrEmptyValidation();
-            //validationStatus=validateField();
-            if(emptyValidationStatus && validationStatus)
+            if(NullOrEmptyValidation())
             {
+                if(validateField())
+                {
                 var person=persons.addNewPerson();
                 if(txtMiddleName.getText()!=null && txtMiddleName.getText().trim()!="")
                 {
@@ -302,6 +302,12 @@ public class NewPatientRegistartionFormJPanel extends javax.swing.JPanel {
 
                 JOptionPane.showMessageDialog(this,"Information Saved Successfully.Your New PatientId is:"+patientId+
                     ",please save this for furture appointments.");
+                }
+                 else
+                {
+                JOptionPane.showMessageDialog(this,"Field Validation Failed .Please hover over the red fields  to know more.");
+                validationStatus=true;
+                }
             }
             else{
                 JOptionPane.showMessageDialog(this,"Field Validation Failed .Please hover over the red fields  to know more.");
@@ -324,47 +330,77 @@ public class NewPatientRegistartionFormJPanel extends javax.swing.JPanel {
     }
     }//GEN-LAST:event_cmbCityItemStateChanged
     private boolean NullOrEmptyValidation() {
-        if(txtFirstName.getText()==null && txtFirstName.getText().trim()=="" )
+        if(txtFirstName.getText().equals(null) || txtFirstName.getText().trim().isEmpty() )
         {
             txtFirstName.setBorder(BorderFactory.createLineBorder(Color.RED, 1));
             txtFirstName.setToolTipText("Field Cannot be left empty");
             emptyValidationStatus= false;
         }
-        else if(txtLastName.getText()==null && txtLastName.getText().trim()=="" )
+        if(!txtFirstName.getText().equals(null) && !txtFirstName.getText().trim().isEmpty() )
+        {
+            txtFirstName.setBorder(BorderFactory.createLineBorder(Color.GRAY, 1));
+        }
+        if(txtLastName.getText().equals(null) || txtLastName.getText().trim().isEmpty() )
         {
             txtLastName.setBorder(BorderFactory.createLineBorder(Color.RED, 1));
             txtLastName.setToolTipText("Field Cannot be left empty");
             emptyValidationStatus= false;
         }
-        else if(txtAge.getText()==null && txtLastName.getText().trim()=="" )
+        if(!txtLastName.getText().equals(null) && !txtLastName.getText().trim().isEmpty() )
+        {
+            txtLastName.setBorder(BorderFactory.createLineBorder(Color.GRAY, 1));
+        }
+        if(txtAge.getText().equals(null) || txtLastName.getText().trim().isEmpty())
         {
             txtAge.setBorder(BorderFactory.createLineBorder(Color.RED, 1));
             txtAge.setToolTipText("Field Cannot be left empty");
             emptyValidationStatus= false;
         }
-        else if(txtHeight.getText()==null && txtHeight.getText().trim()=="" )
+        if(!txtAge.getText().equals(null) && !txtLastName.getText().trim().isEmpty())
+        {
+            txtAge.setBorder(BorderFactory.createLineBorder(Color.GRAY, 1));
+        }
+         if(txtHeight.getText().equals(null) || txtHeight.getText().trim().isEmpty())
         {
             txtHeight.setBorder(BorderFactory.createLineBorder(Color.RED, 1));
             txtHeight.setToolTipText("Field Cannot be left empty");
             emptyValidationStatus= false;
         }
-        else if(txtWeight.getText()==null && txtWeight.getText().trim()=="" )
+         if(!txtHeight.getText().equals(null) && !txtHeight.getText().trim().isEmpty())
+        {
+            txtHeight.setBorder(BorderFactory.createLineBorder(Color.GRAY, 1));
+        }
+        if(txtWeight.getText().equals(null) || txtWeight.getText().trim().isEmpty())
         {
             txtWeight.setBorder(BorderFactory.createLineBorder(Color.RED, 1));
             txtWeight.setToolTipText("Field Cannot be left empty");
             emptyValidationStatus= false;
         }
-        else if(txtAddressLine1.getText()==null && txtAddressLine1.getText().trim()=="" )
+         if(!txtWeight.getText().equals(null) && !txtWeight.getText().trim().isEmpty())
+        {
+            txtWeight.setBorder(BorderFactory.createLineBorder(Color.GRAY, 1));
+            
+        }
+        if(txtAddressLine1.getText().equals(null)|| txtAddressLine1.getText().trim().isEmpty())
         {
             txtAddressLine1.setBorder(BorderFactory.createLineBorder(Color.RED, 1));
             txtAddressLine1.setToolTipText("Field Cannot be left empty");
             emptyValidationStatus= false;
         }
-        else if(txtPhoneNumber.getText()==null && txtPhoneNumber.getText().trim()=="" )
+        if(!txtAddressLine1.getText().equals(null) && !txtAddressLine1.getText().trim().isEmpty())
+        {
+            txtAddressLine1.setBorder(BorderFactory.createLineBorder(Color.GRAY, 1));
+           
+        }
+        if(txtPhoneNumber.getText().equals(null) || txtPhoneNumber.getText().trim().isEmpty())
         {
             txtPhoneNumber.setBorder(BorderFactory.createLineBorder(Color.RED, 1));
             txtPhoneNumber.setToolTipText("Field Cannot be left empty");
             emptyValidationStatus=false;
+        }
+        if(!txtPhoneNumber.getText().equals(null) && !txtPhoneNumber.getText().trim().isEmpty())
+        {
+            txtPhoneNumber.setBorder(BorderFactory.createLineBorder(Color.GRAY, 1));
         }
         return emptyValidationStatus;
     }
@@ -388,6 +424,59 @@ public class NewPatientRegistartionFormJPanel extends javax.swing.JPanel {
         for (String communitie : communities) {
             cmbCommunity.addItem(communities[count++]);
         }
+    }
+    private boolean validateField() {
+        if(!txtFirstName.getText().matches("^\\pL+[\\pL\\pZ\\pP]{0,}$"))
+        {
+            txtFirstName.setBorder(BorderFactory.createLineBorder(Color.RED, 1));
+            txtFirstName.setToolTipText("Please enter only characters.");
+            validationStatus=false;
+        }
+        if(txtFirstName.getText().matches("^\\pL+[\\pL\\pZ\\pP]{0,}$"))
+        {
+            txtFirstName.setBorder(BorderFactory.createLineBorder(Color.GRAY, 0));
+        }
+        if(!txtAge.getText().matches("\\b\\d+\\b"))
+        {
+            txtAge.setBorder(BorderFactory.createLineBorder(Color.RED, 1));
+            txtAge.setToolTipText("Pleae enter only numbers");
+            validationStatus=false;
+        }
+        if(txtAge.getText().matches("\\b\\d+\\b"))
+        {
+            txtAge.setBorder(BorderFactory.createLineBorder(Color.GRAY, 1));
+        }
+        if(!txtHeight.getText().matches("([0-9]*[.]*[0-9])"))
+        {
+            txtHeight.setBorder(BorderFactory.createLineBorder(Color.RED, 1));
+            txtHeight.setToolTipText("Pleae enter only numbers/floating digits");
+            validationStatus=false;
+        }
+         if(txtHeight.getText().matches("([0-9]*[.]*[0-9])"))
+        {
+            txtHeight.setBorder(BorderFactory.createLineBorder(Color.GRAY, 1));
+        }
+        if(!txtWeight.getText().matches("([0-9]*[.]*[0-9])"))
+        {
+            txtWeight.setBorder(BorderFactory.createLineBorder(Color.RED, 1));
+            txtWeight.setToolTipText("Pleae enter only numbers/floating digits");
+            validationStatus=false;
+        }
+        if(txtWeight.getText().matches("([0-9]*[.]*[0-9])"))
+        {
+            txtWeight.setBorder(BorderFactory.createLineBorder(Color.GRAY, 1));
+        }
+        if(!txtPhoneNumber.getText().matches("\\b\\d+\\b"))
+        {
+            txtPhoneNumber.setBorder(BorderFactory.createLineBorder(Color.RED, 1));
+            txtPhoneNumber.setToolTipText("Pleae enter only numbers");
+            validationStatus=false;
+        }
+        if(txtPhoneNumber.getText().matches("\\b\\d+\\b"))
+        {
+            txtPhoneNumber.setBorder(BorderFactory.createLineBorder(Color.GRAY, 1));
+        }
+        return validationStatus;
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -418,37 +507,4 @@ public class NewPatientRegistartionFormJPanel extends javax.swing.JPanel {
     private javax.swing.JTextField txtWeight;
     // End of variables declaration//GEN-END:variables
 
-    private boolean validateField() {
-        if(!txtFirstName.getText().matches("^\\pL+[\\pL\\pZ\\pP]{0,}$"))
-        {
-            txtFirstName.setBorder(BorderFactory.createLineBorder(Color.RED, 1));
-            txtFirstName.setToolTipText("Please enter only characters.");
-            validationStatus=false;
-        }
-        if(!txtAge.getText().matches("\\b\\d+\\b"))
-        {
-            txtAge.setBorder(BorderFactory.createLineBorder(Color.RED, 1));
-            txtAge.setToolTipText("Pleae enter only numbers");
-            validationStatus=false;
-        }
-        if(!txtHeight.getText().matches("[+]?([0-9]*[.])?[0-9]+"))
-        {
-            txtHeight.setBorder(BorderFactory.createLineBorder(Color.RED, 1));
-            txtHeight.setToolTipText("Pleae enter only numbers/floating digits");
-            validationStatus=false;
-        }
-        if(!txtWeight.getText().matches("[+]?([0-9]*[.])?[0-9]+"))
-        {
-            txtWeight.setBorder(BorderFactory.createLineBorder(Color.RED, 1));
-            txtWeight.setToolTipText("Pleae enter only numbers/floating digits");
-            validationStatus=false;
-        }
-        if(!txtPhoneNumber.getText().matches("\\b\\d+\\b"))
-        {
-            txtPhoneNumber.setBorder(BorderFactory.createLineBorder(Color.RED, 1));
-            txtPhoneNumber.setToolTipText("Pleae enter only numbers");
-            validationStatus=false;
-        }
-        return validationStatus;
-    }
 }

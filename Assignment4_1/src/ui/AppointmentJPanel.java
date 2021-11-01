@@ -5,11 +5,15 @@
  */
 package ui;
 
+import java.awt.Color;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.UUID;
+import javax.swing.BorderFactory;
 import javax.swing.JOptionPane;
 import model.Encounter;
 import model.EncounterHistory;
@@ -30,6 +34,7 @@ public class AppointmentJPanel extends javax.swing.JPanel {
      */
     PersonDirectory persons;
     PatientDirectory patientDirectory;
+    boolean validationStatus=true;
     public AppointmentJPanel(PersonDirectory persons,PatientDirectory patientDirectory) {
         initComponents();
         visiblity(false);
@@ -187,58 +192,72 @@ public class AppointmentJPanel extends javax.swing.JPanel {
     }//GEN-LAST:event_btnSearchPatientActionPerformed
 
     private void btnSaveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSaveActionPerformed
-        try{
-        VitalSigns vitalSigns=new VitalSigns();
-        vitalSigns.setPulseRate(Integer.parseInt(txtPulseRate.getText()));
-        vitalSigns.setBloodPressure(Integer.parseInt(txtBloodPressure.getText()));
-        vitalSigns.setDateForTakingVitalSigns(new Date());
-        Encounter encounter=new Encounter();
-        Map<Date,VitalSigns> patientEncounter=new HashMap<>();
-        patientEncounter.put(appointmentDate.getDate(),vitalSigns);
-        encounter.setPatientEncounter(patientEncounter);
-        if(patientDirectory.getPatients().size()>0)
+        try
         {
-            boolean patientPresent=false;
-            for(Patient patient:patientDirectory.getPatients())
+            if(nullOrEmpty())
             {
-                if(patient.getPatient().containsKey(Integer.parseInt(txtPatientId.getText())))
+                if(validateField()){
+                VitalSigns vitalSigns=new VitalSigns();
+                vitalSigns.setPulseRate(Integer.parseInt(txtPulseRate.getText()));
+                vitalSigns.setBloodPressure(Integer.parseInt(txtBloodPressure.getText()));
+                vitalSigns.setDateForTakingVitalSigns(new Date());
+                Encounter encounter=new Encounter();
+                Map<Date,VitalSigns> patientEncounter=new HashMap<>();
+                patientEncounter.put(appointmentDate.getDate(),vitalSigns);
+                encounter.setPatientEncounter(patientEncounter);
+                if(patientDirectory.getPatients().size()>0)
                 {
-                  patientPresent=true;
-                  var a = patient.getPatient().get(Integer.parseInt(txtPatientId.getText()));
-                  a.setPatientEncounterHistory(encounter); 
-                  patientDirectory.getPatients().remove(a);
-                  patientDirectory.setPatients(patient);
+                    boolean patientPresent=false;
+                    for(Patient patient:patientDirectory.getPatients())
+                    {
+                        if(patient.getPatient().containsKey(Integer.parseInt(txtPatientId.getText())))
+                        {
+                          patientPresent=true;
+                          var a = patient.getPatient().get(Integer.parseInt(txtPatientId.getText()));
+                          a.setPatientEncounterHistory(encounter); 
+                          patientDirectory.getPatients().remove(a);
+                          patientDirectory.setPatients(patient);
+                        }
+                    }
+                    if(!patientPresent)
+                    {
+                        EncounterHistory patientHistory=new EncounterHistory();
+                        patientHistory.setPatientEncounterHistory(encounter);
+                        Map<Integer,EncounterHistory> newPatientHistory=new HashMap<>();
+                        newPatientHistory.put(Integer.parseInt(txtPatientId.getText()),patientHistory);
+                        Patient patient=new Patient();
+                        patient.setPatient(newPatientHistory);
+                        patientDirectory.setPatients(patient);
+                    }
+                }
+                else
+                {
+                        EncounterHistory patientHistory=new EncounterHistory();
+                        patientHistory.setPatientEncounterHistory(encounter);
+                        Map<Integer,EncounterHistory> newPatientHistory=new HashMap<>();
+                        newPatientHistory.put(Integer.parseInt(txtPatientId.getText()),patientHistory);
+                        Patient patient=new Patient();
+                        patient.setPatient(newPatientHistory);
+                        patientDirectory.setPatients(patient);
+                }
+                JOptionPane.showMessageDialog(this,"Appointment Made Successfully");
+                }
+                else{
+                    JOptionPane.showMessageDialog(this,"Validation Failed .Please hover over red field to know more");
+                    validationStatus=true;
                 }
             }
-            if(!patientPresent)
-            {
-                EncounterHistory patientHistory=new EncounterHistory();
-                patientHistory.setPatientEncounterHistory(encounter);
-                Map<Integer,EncounterHistory> newPatientHistory=new HashMap<>();
-                newPatientHistory.put(Integer.parseInt(txtPatientId.getText()),patientHistory);
-                Patient patient=new Patient();
-                patient.setPatient(newPatientHistory);
-                patientDirectory.setPatients(patient);
-            }
-        }
         else
-        {
-                EncounterHistory patientHistory=new EncounterHistory();
-                patientHistory.setPatientEncounterHistory(encounter);
-                Map<Integer,EncounterHistory> newPatientHistory=new HashMap<>();
-                newPatientHistory.put(Integer.parseInt(txtPatientId.getText()),patientHistory);
-                Patient patient=new Patient();
-                patient.setPatient(newPatientHistory);
-                patientDirectory.setPatients(patient);
-        }
-        JOptionPane.showMessageDialog(this,"Appointment Made Successfully");
+            {
+                JOptionPane.showMessageDialog(this,"Validation Failed .Please hover over red field to know more");
+                validationStatus=true;
+            }
         }
         catch(Exception ex)
         {
             JOptionPane.showMessageDialog(this,"Error Occured.Appointment Could not be made");
         }
     }//GEN-LAST:event_btnSaveActionPerformed
-
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private com.toedter.calendar.JDateChooser appointmentDate;
@@ -264,5 +283,75 @@ public class AppointmentJPanel extends javax.swing.JPanel {
         lblBloodPressure.setVisible(value);
         txtBloodPressure.setVisible(value);
         btnSave.setVisible(value);        
+    }
+    private boolean nullOrEmpty() {
+       if(appointmentDate.getDate()==(null))
+       {
+           appointmentDate.setBorder(BorderFactory.createLineBorder(Color.RED, 1));
+            appointmentDate.setToolTipText("Field Cannot be left empty");
+            validationStatus=false;
+       }
+       if(appointmentDate.getDate()!=(null))
+       {
+           appointmentDate.setBorder(BorderFactory.createLineBorder(Color.GRAY, 1));
+       }
+       if(txtPulseRate.getText().equals(null) || txtPulseRate.getText().isEmpty())
+       {
+           txtPulseRate.setBorder(BorderFactory.createLineBorder(Color.RED, 1));
+            txtPulseRate.setToolTipText("Field Cannot be left empty");
+            validationStatus=false;
+       }
+       if(!txtPulseRate.getText().equals(null) && !txtPulseRate.getText().isEmpty())
+       {
+           txtPulseRate.setBorder(BorderFactory.createLineBorder(Color.GRAY, 1));
+           
+       }
+       if(txtBloodPressure.getText().equals(null) || txtBloodPressure.getText().isEmpty())
+       {
+           txtBloodPressure.setBorder(BorderFactory.createLineBorder(Color.RED, 1));
+            txtBloodPressure.setToolTipText("Field Cannot be left empty");
+            validationStatus=false;
+       }
+       if(!txtBloodPressure.getText().equals(null) && !txtBloodPressure.getText().isEmpty())
+       {
+           txtBloodPressure.setBorder(BorderFactory.createLineBorder(Color.RED, 1));
+            
+       }
+       return validationStatus;
+       
+    }
+     private boolean validateField() throws ParseException {
+          SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+       if(!(sdf.parse(sdf.format(appointmentDate.getDate())).after(sdf.parse(sdf.format(new Date())))))
+        {
+            appointmentDate.setBorder(BorderFactory.createLineBorder(Color.RED, 1));
+            appointmentDate.setToolTipText("Please enter only future date");
+            validationStatus=false;
+        }
+        if((sdf.parse(sdf.format(appointmentDate.getDate())).after(sdf.parse(sdf.format(new Date())))))
+        {
+            appointmentDate.setBorder(BorderFactory.createLineBorder(Color.GRAY, 1));
+        }
+        if(!txtBloodPressure.getText().matches("\\b\\d+\\b"))
+        {
+            txtBloodPressure.setBorder(BorderFactory.createLineBorder(Color.RED, 1));
+            txtBloodPressure.setToolTipText("Pleae enter only numbers");
+            validationStatus=false;
+        }
+        if(txtBloodPressure.getText().matches("\\b\\d+\\b"))
+        {
+            txtBloodPressure.setBorder(BorderFactory.createLineBorder(Color.GRAY, 1));
+        }
+        if(!txtPulseRate.getText().matches("\\b\\d+\\b"))
+        {
+            txtPulseRate.setBorder(BorderFactory.createLineBorder(Color.RED, 1));
+            txtPulseRate.setToolTipText("Pleae enter only numbers");
+            validationStatus=false;
+        }
+        if(txtPulseRate.getText().matches("\\b\\d+\\b"))
+        {
+            txtPulseRate.setBorder(BorderFactory.createLineBorder(Color.GRAY, 1));
+        }
+        return validationStatus;
     }
 }
