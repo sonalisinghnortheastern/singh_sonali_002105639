@@ -73,14 +73,8 @@
       <SubComponents>
         <Component class="javax.swing.JTable" name="jRegisteredAppointmentTable">
           <Properties>
-            <Property name="model" type="javax.swing.table.TableModel" editor="org.netbeans.modules.form.editors2.TableModelEditor">
-              <Table columnCount="5" rowCount="0">
-                <Column editable="true" title="Patient Id" type="java.lang.Object"/>
-                <Column editable="true" title="Patient Name" type="java.lang.Object"/>
-                <Column editable="true" title="Appointment Date" type="java.lang.Object"/>
-                <Column editable="true" title="Recent VitalSigns" type="java.lang.Object"/>
-                <Column editable="true" title="Test Undertaken Date" type="java.lang.Object"/>
-              </Table>
+            <Property name="model" type="javax.swing.table.TableModel" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
+              <Connection code="new javax.swing.table.DefaultTableModel(&#xa;    new Object [][] {&#xa;&#xa;    },&#xa;    new String [] {&#xa;        &quot;Patient Id&quot;, &quot;Patient Name&quot;, &quot;Appointment Date&quot;, &quot;Recent VitalSigns&quot;, &quot;Test Undertaken Date&quot;&#xa;    }&#xa;)&#xa;{public boolean isCellEditable(int row, int column){return false;}}&#xa;" type="code"/>
             </Property>
             <Property name="columnModel" type="javax.swing.table.TableColumnModel" editor="org.netbeans.modules.form.editors2.TableColumnModelEditor">
               <TableColumnModel selectionModel="0">

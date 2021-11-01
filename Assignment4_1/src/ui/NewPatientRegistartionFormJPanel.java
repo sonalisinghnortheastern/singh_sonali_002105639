@@ -299,7 +299,6 @@ public class NewPatientRegistartionFormJPanel extends javax.swing.JPanel {
                 house.setCommunity(community);
                 person.setHouse(house);
                 person.setMobileNumber(Long.parseLong(txtPhoneNumber.getText()));
-
                 JOptionPane.showMessageDialog(this,"Information Saved Successfully.Your New PatientId is:"+patientId+
                     ",please save this for furture appointments.");
                 }
@@ -312,14 +311,13 @@ public class NewPatientRegistartionFormJPanel extends javax.swing.JPanel {
             else{
                 JOptionPane.showMessageDialog(this,"Field Validation Failed .Please hover over the red fields  to know more.");
                 emptyValidationStatus=true;
-                if(persons.getPersonDirectory().size()>0)
-                persons.getPersonDirectory().remove(persons.getPersonDirectory().size() - 1);
             }
         }
         catch(Exception ex)
         {
             JOptionPane.showMessageDialog(this,"Information Not Saved");
             emptyValidationStatus=true;
+            if(persons.getPersonDirectory().size()>0)
             persons.getPersonDirectory().remove(persons.getPersonDirectory().size() - 1);
         }
     }//GEN-LAST:event_btnCreateActionPerformed

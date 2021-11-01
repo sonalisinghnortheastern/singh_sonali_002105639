@@ -5,6 +5,7 @@
  */
 package ui;
 
+import com.toedter.calendar.JTextFieldDateEditor;
 import java.awt.Color;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -37,6 +38,8 @@ public class AppointmentJPanel extends javax.swing.JPanel {
     boolean validationStatus=true;
     public AppointmentJPanel(PersonDirectory persons,PatientDirectory patientDirectory) {
         initComponents();
+        JTextFieldDateEditor editor = (JTextFieldDateEditor)appointmentDate.getDateEditor();
+        editor.setEditable(false);
         visiblity(false);
         this.persons=persons;
         this.patientDirectory=patientDirectory;
