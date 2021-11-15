@@ -10,21 +10,18 @@ package Business.Employee;
  */
 public class Employee {
     
-    private String name;
+     private String name;
     private int id;
+    private static int count = 1;
+
+    public Employee() {
+        id = count;
+        count++;
+    }
 
     public int getId() {
         return id;
     }
-
-    public void setId(int id) {
-        this.id = id;
-    }
-
-    public Employee() {
-    }
-
-
 
     public void setName(String name) {
         this.name = name;
@@ -39,6 +36,5 @@ public class Employee {
     public String toString() {
         return name;
     }
-    
     
 }
