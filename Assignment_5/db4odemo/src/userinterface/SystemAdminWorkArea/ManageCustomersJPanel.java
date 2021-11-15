@@ -54,12 +54,12 @@ public final class ManageCustomersJPanel extends javax.swing.JPanel {
         lblUsername = new javax.swing.JLabel();
         txtUserName = new javax.swing.JTextField();
         btnCreateCustomer = new javax.swing.JButton();
-        btnModify = new javax.swing.JButton();
         btnDelete = new javax.swing.JButton();
         lblPassword = new javax.swing.JLabel();
         txtPassword = new javax.swing.JTextField();
         jScrollPane1 = new javax.swing.JScrollPane();
         jManageCustomerTable = new javax.swing.JTable();
+        btnModify1 = new javax.swing.JButton();
 
         setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
@@ -96,17 +96,7 @@ public final class ManageCustomersJPanel extends javax.swing.JPanel {
                 btnCreateCustomerActionPerformed(evt);
             }
         });
-        add(btnCreateCustomer, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 260, -1, -1));
-
-        btnModify.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
-        btnModify.setText("Modify Customer");
-        btnModify.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        btnModify.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnModifyActionPerformed(evt);
-            }
-        });
-        add(btnModify, new org.netbeans.lib.awtextra.AbsoluteConstraints(510, 260, 170, -1));
+        add(btnCreateCustomer, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 550, -1, -1));
 
         btnDelete.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
         btnDelete.setText("Delete Customer");
@@ -136,10 +126,21 @@ public final class ManageCustomersJPanel extends javax.swing.JPanel {
     jScrollPane1.setViewportView(jManageCustomerTable);
 
     add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 70, 840, 180));
+
+    btnModify1.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
+    btnModify1.setText("Modify Customer");
+    btnModify1.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+    btnModify1.addActionListener(new java.awt.event.ActionListener() {
+        public void actionPerformed(java.awt.event.ActionEvent evt) {
+            btnModify1ActionPerformed(evt);
+        }
+    });
+    add(btnModify1, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 550, 170, -1));
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnCreateCustomerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCreateCustomerActionPerformed
-       if(!system.getUserAccountDirectory().checkIfUsernameIsUnique(txtUserName.getText()))
+       try{
+        if(!system.getUserAccountDirectory().checkIfUsernameIsUnique(txtUserName.getText()))
        {
            JOptionPane.showMessageDialog(this,"User with this username exist.Try a diffrent one");
        }
@@ -161,14 +162,15 @@ public final class ManageCustomersJPanel extends javax.swing.JPanel {
            system.getUserAccountDirectory().createUserAccount(txtUserName.getText(), txtPassword.getText(), employee, new CustomerRole());
            system.getCustomerDirectory().setCustomers(customer);
            populateTable(system.getCustomerDirectory().getCustomers());
+           JOptionPane.showMessageDialog(this,"User created succesfully");
            
        }
+       }
+       catch(Exception ex)
+       {
+           throw ex;
+       }
     }//GEN-LAST:event_btnCreateCustomerActionPerformed
-
-    private void btnModifyActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnModifyActionPerformed
-        
-        
-    }//GEN-LAST:event_btnModifyActionPerformed
 
     private void btnDeleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDeleteActionPerformed
        try{
@@ -185,8 +187,11 @@ public final class ManageCustomersJPanel extends javax.swing.JPanel {
                 if(userAccount.getUsername() == customer.getUserAccount().getUsername())
                 {
                     system.getUserAccountDirectory().getUserAccountList().remove(userAccount);
+                    JOptionPane.showMessageDialog(this,"User deleted succesfully");
                 }
             }
+            populateTable(system.getCustomerDirectory().getCustomers());
+            
        }
        }
        catch(Exception ex)
@@ -195,7 +200,58 @@ public final class ManageCustomersJPanel extends javax.swing.JPanel {
        }
     }//GEN-LAST:event_btnDeleteActionPerformed
 
- public void populateTable(ArrayList<Customer> customers)
+    private void btnModify1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnModify1ActionPerformed
+        try {
+            int rowIndex=jManageCustomerTable.getSelectedRow();
+            if(rowIndex<0)
+            {
+                JOptionPane.showMessageDialog(this,"Please select the entry you wish to modify");
+            }
+            else{
+                int userNameIndex=0;
+                for(Customer customer : system.getCustomerDirectory().getCustomers())
+                {
+                    if(customer.getUserAccount().getUsername()== txtUserName.getText() && rowIndex !=userNameIndex)
+                    {
+                        JOptionPane.showMessageDialog(this,"Please select a diffrent username.User with this username already exist");
+                    }
+                    else{
+                        userNameIndex++;
+                    }
+                }
+                Customer selectedCustomer = (Customer) jManageCustomerTable.getValueAt(rowIndex, 0);
+                int index=0;
+                for (UserAccount userAccount : system.getUserAccountDirectory().getUserAccountList()) {
+                    if(userAccount.getUsername() == selectedCustomer.getUserAccount().getUsername())
+                    {
+                        system.getUserAccountDirectory().getUserAccountList().set(index, userAccount);
+                    }
+                    else{
+                        index++;
+                    }
+                }
+                Employee employee=new Employee();
+                employee.setName(txtName.getText());
+                UserAccount userAccount = new UserAccount();
+                userAccount.setUsername(txtUserName.getText());
+                userAccount.setPassword(txtPassword.getText());
+                userAccount.setEmployee(employee);
+                Customer customer =new Customer();
+                customer.setName(txtName.getText());
+                customer.setAddress(txtAddress.getText());
+                customer.setAddress(txtAddress.getText());
+                customer.setMobileNumber(Long.parseLong(txtPhoneNumber.getText()));
+                customer.setUserAccount(userAccount);
+                system.getCustomerDirectory().getCustomers().set(rowIndex, customer);
+                JOptionPane.showMessageDialog(this,"User Modified succesfully");
+                populateTable(system.getCustomerDirectory().getCustomers());
+            }
+        } catch (Exception e) {
+            throw e;
+        }
+    }//GEN-LAST:event_btnModify1ActionPerformed
+
+    public void populateTable(ArrayList<Customer> customers)
  {
      try{
          DefaultTableModel model =(DefaultTableModel) jManageCustomerTable.getModel();
@@ -220,10 +276,11 @@ public final class ManageCustomersJPanel extends javax.swing.JPanel {
      }
  }
 
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnCreateCustomer;
     private javax.swing.JButton btnDelete;
-    private javax.swing.JButton btnModify;
+    private javax.swing.JButton btnModify1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JTable jManageCustomerTable;
     private javax.swing.JScrollPane jScrollPane1;
