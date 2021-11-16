@@ -24,9 +24,10 @@ public class DeliveryMan extends UserAccount{
     public void setAddress(String address) {
         this.address = address;
     }
- public DeliveryMan(String name,  long mobileNumber,String address,String userName, String password) {
+ public DeliveryMan(String name,  long mobileNumber,String address,String userName, String password,int uniqueId) {
         setUsername(userName);
         setPassword(password);
+        setUniqueId(uniqueId);
         setRole(new DeliverManRole());
         this.name = name;
         this.mobileNumber = mobileNumber;

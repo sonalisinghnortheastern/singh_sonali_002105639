@@ -9,6 +9,8 @@ import Business.DB4OUtil.DB4OUtil;
 import Business.DeliveryMan.DeliveryMan;
 import Business.DeliveryMan.DeliveryManDirectory;
 import Business.EcoSystem;
+import Business.UserAccount.UserAccount;
+import java.util.Random;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
@@ -52,7 +54,8 @@ public class ManageDeliveryManJPanel extends javax.swing.JPanel {
         jLabel6 = new javax.swing.JLabel();
         txtAddress = new javax.swing.JTextField();
 
-        jRegisterTable.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
+        jRegisterTable.setBorder(javax.swing.BorderFactory.createEtchedBorder());
+        jRegisterTable.setFont(new java.awt.Font("Arial Black", 1, 14)); // NOI18N
         jRegisterTable.setForeground(new java.awt.Color(56, 90, 174));
         jRegisterTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -230,7 +233,9 @@ try {
             JOptionPane.showMessageDialog(this, "User with this username already exist.Try a diffrent username");
         }
         else{
-          DeliveryMan deliveryMan=new DeliveryMan(txtName.getText(),Long.parseLong(txtMobileNumber.getText()),txtAddress.getText(),txtUsername.getText(),txtPassword.getText());
+          Random random=new Random();
+          int uniqueId=random.nextInt((9999 - 100) + 1) + 10;
+          DeliveryMan deliveryMan=new DeliveryMan(txtName.getText(),Long.parseLong(txtMobileNumber.getText()),txtAddress.getText(),txtUsername.getText(),txtPassword.getText(),uniqueId);
           system.getDeliveryManDirectory().setDeliveryMens(deliveryMan);
           system.getUserAccountDirectory().addUserAccountToAccounts(deliveryMan);
           populateTable();
@@ -244,8 +249,20 @@ try {
 
     private void btnModifyActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnModifyActionPerformed
     try{
-        DeliveryMan deliveryMan=new DeliveryMan(txtName.getText(),Long.parseLong(txtMobileNumber.getText()),txtAddress.getText(),txtUsername.getText(),txtPassword.getText());
         int selectedRowIndex=jRegisterTable.getSelectedRow();
+        int uniqueId=system.getCustomerDirectory().getCustomers().get(selectedRowIndex).getUniqueId();
+        DeliveryMan deliveryMan=new DeliveryMan(txtName.getText(),Long.parseLong(txtMobileNumber.getText()),txtAddress.getText(),txtUsername.getText(),txtPassword.getText(),uniqueId);
+        for(UserAccount userAccount:system.getUserAccountDirectory().getUserAccountList())
+        {
+            if(txtUsername.getText().equals(userAccount.getUsername()))
+            {
+                if(uniqueId != userAccount.getUniqueId())
+                {
+                    JOptionPane.showMessageDialog(this, "Username already taken.Please take a diffrent username");
+                    return;
+                }
+            }
+        }
         system.getDeliveryManDirectory().getDeliveryMens().set(selectedRowIndex, deliveryMan);
         populateTable();
         JOptionPane.showMessageDialog(null, "User Updated Succesfully");
