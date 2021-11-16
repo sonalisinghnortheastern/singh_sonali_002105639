@@ -4,20 +4,25 @@
  * and open the template in the editor.
  */
 package userinterface.SystemAdminWorkArea;
+
+import Business.DB4OUtil.DB4OUtil;
+import Business.EcoSystem;
+import Business.Restaurant.Restaurant;
+import Business.Restaurant.RestaurantDirectory;
+import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
+
 /**
  *
  * @author sonal
  */
 public class ManageRestaurantJPanel extends javax.swing.JPanel {
-
-    /**
-     * Creates new form ManageRestaurantJPanel
-     */
-
-
+    private final EcoSystem system;
+    private final DB4OUtil dB4OUtil = DB4OUtil.getInstance();
     public ManageRestaurantJPanel() {
         initComponents();
-
+        system = dB4OUtil.retrieveSystem();
+        populateTable();
     }
 
     /**
@@ -30,7 +35,7 @@ public class ManageRestaurantJPanel extends javax.swing.JPanel {
     private void initComponents() {
 
         jScrollPane1 = new javax.swing.JScrollPane();
-        tblRestaurantAdmin = new javax.swing.JTable();
+        jRegisterTable = new javax.swing.JTable();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
@@ -46,7 +51,7 @@ public class ManageRestaurantJPanel extends javax.swing.JPanel {
         jLabel6 = new javax.swing.JLabel();
         txtPassword = new javax.swing.JTextField();
 
-        tblRestaurantAdmin.setModel(new javax.swing.table.DefaultTableModel(
+        jRegisterTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
             },
@@ -62,7 +67,12 @@ public class ManageRestaurantJPanel extends javax.swing.JPanel {
                 return canEdit [columnIndex];
             }
         });
-        jScrollPane1.setViewportView(tblRestaurantAdmin);
+        jRegisterTable.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jRegisterTableMouseClicked(evt);
+            }
+        });
+        jScrollPane1.setViewportView(jRegisterTable);
 
         jLabel1.setFont(new java.awt.Font("Lucida Grande", 1, 18)); // NOI18N
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
@@ -107,12 +117,6 @@ public class ManageRestaurantJPanel extends javax.swing.JPanel {
         btnDelete.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnDeleteActionPerformed(evt);
-            }
-        });
-
-        txtName.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtNameActionPerformed(evt);
             }
         });
 
@@ -213,30 +217,99 @@ public class ManageRestaurantJPanel extends javax.swing.JPanel {
         );
     }// </editor-fold>//GEN-END:initComponents
 
-    private void txtNameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtNameActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txtNameActionPerformed
-
     private void btnCreateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCreateActionPerformed
-        
+        try {
+        if(!system.getUserAccountDirectory().checkIfUsernameIsUnique((txtUsername.getText())))
+        {
+            JOptionPane.showMessageDialog(this, "User with this username already exist.Try a diffrent username");
+        }
+        else{
+          Restaurant restaurant=new Restaurant(txtName.getText(),txtLocation.getText(),Long.parseLong(txtContact.getText()),txtUsername.getText(),txtPassword.getText());
+          system.getRestaurantDirectory().setRestaurants(restaurant);
+          system.getUserAccountDirectory().addUserAccountToAccounts(restaurant);
+          populateTable();
+          reset();
+          JOptionPane.showMessageDialog(this, "User Registered Succesfully");
+        }
+    } catch (Exception e) {
+        throw e;
+    }
     }//GEN-LAST:event_btnCreateActionPerformed
 
     private void btnModifyActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnModifyActionPerformed
-      
+      try{
+        Restaurant restaurant=new Restaurant(txtName.getText(),txtLocation.getText(),Long.parseLong(txtContact.getText()),txtUsername.getText(),txtPassword.getText());
+        int selectedRowIndex=jRegisterTable.getSelectedRow();
+        system.getRestaurantDirectory().getRestaurants().set(selectedRowIndex, restaurant);
+        populateTable();
+        JOptionPane.showMessageDialog(null, "User Updated Succesfully");
+        reset();
+    }
+    catch(Exception e)
+    {
+        throw e;
+    }
     }//GEN-LAST:event_btnModifyActionPerformed
 
     private void btnDeleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDeleteActionPerformed
            
-      
+      try{
+        int selectedRowIndex=jRegisterTable.getSelectedRow();
+        if(selectedRowIndex<0)
+        {
+            JOptionPane.showMessageDialog(null, "Please select a row");
+        }
+        else{
+            Restaurant restaurant=(Restaurant) jRegisterTable.getValueAt(selectedRowIndex, 0);
+            system.getRestaurantDirectory().getRestaurants().remove(restaurant);
+            populateTable();
+            JOptionPane.showMessageDialog(null, "User Deleted Succesfully");
+            reset();
+        }
+    }
+    catch(Exception e)
+    {
+        throw e;
+    }
     }//GEN-LAST:event_btnDeleteActionPerformed
-    private void populateTable() {
-       
-    }
 
-   
-    private void initListners() {
-       
+    private void jRegisterTableMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jRegisterTableMouseClicked
+         try{
+           int rowNumber=jRegisterTable.getSelectedRow();
+            txtName.setText(jRegisterTable.getModel().getValueAt(rowNumber, 0).toString());
+            txtContact.setText(jRegisterTable.getModel().getValueAt(rowNumber, 1).toString());
+            txtLocation.setText(jRegisterTable.getModel().getValueAt(rowNumber, 2).toString());
+            txtUsername.setText(jRegisterTable.getModel().getValueAt(rowNumber, 3).toString());
+            txtPassword.setText(jRegisterTable.getModel().getValueAt(rowNumber, 4).toString());
+            
+       }
+      catch(Exception e)
+      {
+          throw  e;
+      }
+    }//GEN-LAST:event_jRegisterTableMouseClicked
+    private void populateTable() {
+       RestaurantDirectory restaurantDirectory = system.getRestaurantDirectory();
+        DefaultTableModel model = (DefaultTableModel) jRegisterTable.getModel();
+        model.setRowCount(0);
+        for (Restaurant restaurant : restaurantDirectory.getRestaurants()) {
+                    Object[] row = new Object[5];
+                    row[0] = restaurant;
+                    row[1] = restaurant.getMobileNumber();
+                    row[2] = restaurant.getAddress();
+                    row[3] = restaurant.getUsername();
+                    row[4] = restaurant.getPassword();
+                    model.addRow(row);
+                
+            }
     }
+    private void reset() {
+            txtName.setText("");
+            txtLocation.setText("");
+            txtContact.setText("");
+            txtUsername.setText("");
+            txtPassword.setText("");
+        }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnCreate;
@@ -248,8 +321,8 @@ public class ManageRestaurantJPanel extends javax.swing.JPanel {
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
+    private javax.swing.JTable jRegisterTable;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTable tblRestaurantAdmin;
     private javax.swing.JTextField txtContact;
     private javax.swing.JTextField txtLocation;
     private javax.swing.JTextField txtName;

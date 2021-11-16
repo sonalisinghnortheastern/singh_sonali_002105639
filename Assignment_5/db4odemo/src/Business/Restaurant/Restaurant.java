@@ -5,12 +5,41 @@
  */
 package Business.Restaurant;
 
+import Business.Role.AdminRole;
+import Business.UserAccount.UserAccount;
+
 /**
  *
  * @author harold
  */
-public class Restaurant {
+public class Restaurant extends UserAccount{
+    private String name;
+    private String address;
+    private long  mobileNumber;
+    private Menu menu;
 
+    public Restaurant(String name, String address, long mobileNumber,String userName, String password) {
+        setUsername(userName);
+        setPassword(password);
+        setRole(new AdminRole());
+        this.name = name;
+        this.address = address;
+        this.mobileNumber = mobileNumber;
+        this.menu = new Menu();
+    }
+
+    public Restaurant(){
+    
+    }
+
+    public long getMobileNumber() {
+        return mobileNumber;
+    }
+
+    public void setMobileNumber(long mobileNumber) {
+        this.mobileNumber = mobileNumber;
+    }
+    
     public String getName() {
         return name;
     }
@@ -27,14 +56,6 @@ public class Restaurant {
         this.address = address;
     }
 
-    public long getMobileNumber() {
-        return mobileNumber;
-    }
-
-    public void setMobileNumber(long mobileNumber) {
-        this.mobileNumber = mobileNumber;
-    }
-
     public Menu getMenu() {
         return menu;
     }
@@ -42,8 +63,10 @@ public class Restaurant {
     public void setMenu(Menu menu) {
         this.menu = menu;
     }
-    private String name;
-    private String address;
-    private long  mobileNumber;
-    private Menu  menu;
+    
+    @Override
+    public String toString() {
+        return this.name;
+    }
+    
 }
