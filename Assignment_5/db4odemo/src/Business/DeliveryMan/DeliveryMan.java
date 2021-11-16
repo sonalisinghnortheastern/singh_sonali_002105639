@@ -5,19 +5,17 @@
  */
 package Business.DeliveryMan;
 
+import Business.Role.DeliverManRole;
+import Business.UserAccount.UserAccount;
+
 /**
  *
  * @author harold
  */
-public class DeliveryMan {
-  
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
+public class DeliveryMan extends UserAccount{
+    private String name;
+    private long mobileNumber;
+    private String address;
 
     public String getAddress() {
         return address;
@@ -25,6 +23,21 @@ public class DeliveryMan {
 
     public void setAddress(String address) {
         this.address = address;
+    }
+ public DeliveryMan(String name,  long mobileNumber,String address,String userName, String password) {
+        setUsername(userName);
+        setPassword(password);
+        setRole(new DeliverManRole());
+        this.name = name;
+        this.mobileNumber = mobileNumber;
+        this.address=address;
+    }
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
     }
 
     public long getMobileNumber() {
@@ -34,16 +47,13 @@ public class DeliveryMan {
     public void setMobileNumber(long mobileNumber) {
         this.mobileNumber = mobileNumber;
     }
-
-    public String getDrivingLicenseNumber() {
-        return drivingLicenseNumber;
+    
+    @Override
+    public String toString() {
+        if(name == null){
+            return "";
+        }
+        return this.name;
     }
-
-    public void setDrivingLicenseNumber(String drivingLicenseNumber) {
-        this.drivingLicenseNumber = drivingLicenseNumber;
-    }
-    private String name;
-    private String address;
-    private long mobileNumber;
-    private String drivingLicenseNumber;
+    
 }

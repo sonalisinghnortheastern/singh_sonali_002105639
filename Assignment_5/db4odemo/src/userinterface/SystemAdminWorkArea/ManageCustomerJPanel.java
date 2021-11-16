@@ -184,9 +184,7 @@ public class ManageCustomerJPanel extends javax.swing.JPanel {
     try{
         Customer customer=new Customer(txtName.getText(),txtAddress.getText(),Long.parseLong(txtMobileNumber.getText()),txtUsername.getText(),txtPassword.getText());
         int selectedRowIndex=jRegisterTable.getSelectedRow();
-        Customer oldCustomer=(Customer) jRegisterTable.getValueAt(selectedRowIndex, 0);
         system.getCustomerDirectory().getCustomers().set(selectedRowIndex, customer);
-        var p=system.getCustomerDirectory().getCustomers();
         populateTable();
         JOptionPane.showMessageDialog(null, "User Updated Succesfully");
         reset();

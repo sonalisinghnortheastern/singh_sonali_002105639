@@ -56,7 +56,7 @@ public class ManageRestaurantJPanel extends javax.swing.JPanel {
 
             },
             new String [] {
-                "Restaurant name", "Restaurant Conatct", "Restaurant Location", "Username", "Password"
+                "Restaurant name", "Restaurant Contact", "Restaurant Location", "Username", "Password"
             }
         ) {
             boolean[] canEdit = new boolean [] {
