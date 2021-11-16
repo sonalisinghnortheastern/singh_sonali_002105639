@@ -22,7 +22,6 @@ public class MainJFrame extends javax.swing.JFrame {
     
 
     public MainJFrame() {
-        this.setUndecorated(true);
         initComponents();
         system = dB4OUtil.retrieveSystem();
         loginJPanel.setVisible(true);

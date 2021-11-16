@@ -16,7 +16,7 @@ public class Customer extends UserAccount {
     private String name;
     private String address;
     private long mobileNumber;
-    public Customer(String userName, String password, String name, String address, long mobileNumber) {
+    public Customer(String name, String address, long mobileNumber,String userName, String password) {
         setUsername(userName);
         setPassword(password);
         setRole(new CustomerRole());

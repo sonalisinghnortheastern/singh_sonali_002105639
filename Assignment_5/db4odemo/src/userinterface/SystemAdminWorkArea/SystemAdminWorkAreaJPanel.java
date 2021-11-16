@@ -42,6 +42,9 @@ public class SystemAdminWorkAreaJPanel extends javax.swing.JPanel {
 
         setLayout(new java.awt.CardLayout());
 
+        jPanel1.setBackground(new java.awt.Color(240, 178, 62));
+
+        btnManageCustomers.setFont(new java.awt.Font("Comic Sans MS", 1, 14)); // NOI18N
         btnManageCustomers.setText("Manage Customers");
         btnManageCustomers.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -49,6 +52,7 @@ public class SystemAdminWorkAreaJPanel extends javax.swing.JPanel {
             }
         });
 
+        btnManageRestaurant.setFont(new java.awt.Font("Comic Sans MS", 1, 14)); // NOI18N
         btnManageRestaurant.setText("Manage Restaurants");
         btnManageRestaurant.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -56,7 +60,8 @@ public class SystemAdminWorkAreaJPanel extends javax.swing.JPanel {
             }
         });
 
-        btnManageDeliveryMen.setText("Manage DeliverPerson");
+        btnManageDeliveryMen.setFont(new java.awt.Font("Comic Sans MS", 1, 14)); // NOI18N
+        btnManageDeliveryMen.setText("Manage Deliver Person");
         btnManageDeliveryMen.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnManageDeliveryMenActionPerformed(evt);
@@ -67,22 +72,22 @@ public class SystemAdminWorkAreaJPanel extends javax.swing.JPanel {
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(btnManageCustomers, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addComponent(btnManageRestaurant, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addGroup(jPanel1Layout.createSequentialGroup()
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                 .addComponent(btnManageDeliveryMen)
                 .addGap(0, 0, Short.MAX_VALUE))
+            .addComponent(btnManageCustomers, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(74, 74, 74)
+                .addGap(113, 113, 113)
                 .addComponent(btnManageCustomers)
-                .addGap(74, 74, 74)
+                .addGap(102, 102, 102)
                 .addComponent(btnManageRestaurant)
-                .addGap(71, 71, 71)
+                .addGap(94, 94, 94)
                 .addComponent(btnManageDeliveryMen)
-                .addContainerGap(107, Short.MAX_VALUE))
+                .addContainerGap(128, Short.MAX_VALUE))
         );
 
         jSplitPane.setLeftComponent(jPanel1);
@@ -91,11 +96,11 @@ public class SystemAdminWorkAreaJPanel extends javax.swing.JPanel {
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 545, Short.MAX_VALUE)
+            .addGap(0, 709, Short.MAX_VALUE)
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 395, Short.MAX_VALUE)
+            .addGap(0, 524, Short.MAX_VALUE)
         );
 
         jSplitPane.setRightComponent(jPanel2);

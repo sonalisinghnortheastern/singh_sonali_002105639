@@ -49,30 +49,20 @@
                       <Group type="102" alignment="0" attributes="0">
                           <EmptySpace min="-2" pref="232" max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="0" attributes="0">
-                              <Group type="102" attributes="0">
-                                  <Component id="userNamePanel" min="-2" pref="304" max="-2" attributes="0"/>
-                                  <EmptySpace min="253" max="32767" attributes="0"/>
-                              </Group>
-                              <Group type="102" attributes="0">
-                                  <Component id="passwordPanel" min="-2" pref="304" max="-2" attributes="0"/>
-                                  <EmptySpace max="32767" attributes="0"/>
-                              </Group>
+                              <Component id="userNamePanel" min="-2" pref="304" max="-2" attributes="0"/>
+                              <Component id="passwordPanel" min="-2" pref="304" max="-2" attributes="0"/>
                           </Group>
                       </Group>
                       <Group type="102" attributes="0">
-                          <Group type="103" groupAlignment="0" attributes="0">
-                              <Group type="102" attributes="0">
-                                  <EmptySpace min="-2" pref="205" max="-2" attributes="0"/>
-                                  <Component id="loginButton" min="-2" pref="342" max="-2" attributes="0"/>
-                              </Group>
-                              <Group type="102" alignment="0" attributes="0">
-                                  <EmptySpace min="-2" pref="247" max="-2" attributes="0"/>
-                                  <Component id="loginIconPanel" min="-2" pref="268" max="-2" attributes="0"/>
-                              </Group>
-                          </Group>
-                          <EmptySpace pref="234" max="32767" attributes="0"/>
+                          <EmptySpace min="-2" pref="205" max="-2" attributes="0"/>
+                          <Component id="loginButton" min="-2" pref="342" max="-2" attributes="0"/>
+                      </Group>
+                      <Group type="102" alignment="0" attributes="0">
+                          <EmptySpace min="-2" pref="247" max="-2" attributes="0"/>
+                          <Component id="loginIconPanel" min="-2" pref="268" max="-2" attributes="0"/>
                       </Group>
                   </Group>
+                  <EmptySpace max="32767" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
