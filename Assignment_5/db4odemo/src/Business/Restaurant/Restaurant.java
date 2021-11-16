@@ -5,7 +5,7 @@
  */
 package Business.Restaurant;
 
-import Business.Role.AdminRole;
+import Business.Role.RestaurantRole;
 import Business.UserAccount.UserAccount;
 
 /**
@@ -21,7 +21,7 @@ public class Restaurant extends UserAccount{
     public Restaurant(String name, String address, long mobileNumber,String userName, String password,int uniqueId) {
         setUsername(userName);
         setPassword(password);
-        setRole(new AdminRole());
+        setRole(new RestaurantRole());
         setUniqueId(uniqueId);
         this.name = name;
         this.address = address;

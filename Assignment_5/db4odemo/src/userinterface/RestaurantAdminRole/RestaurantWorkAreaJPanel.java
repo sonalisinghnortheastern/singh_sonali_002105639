@@ -3,23 +3,24 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package userinterface.SystemAdminWorkArea;
+package userinterface.RestaurantAdminRole;
 
 import Business.EcoSystem;
 import javax.swing.JPanel;
+import userinterface.SystemAdminWorkArea.*;
 
 /**
  *
  * @author MyPC1
  */
-public class SystemAdminWorkAreaJPanel extends javax.swing.JPanel {
+public class RestaurantWorkAreaJPanel extends javax.swing.JPanel {
 
     /**
-     * Creates new form SystemAdminWorkAreaJPanel
+     * Creates new form RestaurantWorkAreaJPanel
      */
     JPanel userProcessContainer;
     EcoSystem ecosystem;
-    public SystemAdminWorkAreaJPanel(JPanel userProcessContainer,EcoSystem ecosystem) {
+    public RestaurantWorkAreaJPanel(JPanel userProcessContainer,EcoSystem ecosystem) {
         initComponents();
         this.userProcessContainer=userProcessContainer;
         this.ecosystem=ecosystem;
@@ -38,7 +39,6 @@ public class SystemAdminWorkAreaJPanel extends javax.swing.JPanel {
         btnManageCustomers = new javax.swing.JButton();
         btnManageRestaurant = new javax.swing.JButton();
         btnManageDeliveryMen = new javax.swing.JButton();
-        jLabel1 = new javax.swing.JLabel();
         jPanel2 = new javax.swing.JPanel();
 
         setLayout(new java.awt.CardLayout());
@@ -46,7 +46,7 @@ public class SystemAdminWorkAreaJPanel extends javax.swing.JPanel {
         jPanel1.setBackground(new java.awt.Color(240, 178, 62));
 
         btnManageCustomers.setFont(new java.awt.Font("Comic Sans MS", 1, 14)); // NOI18N
-        btnManageCustomers.setText("Manage Customers");
+        btnManageCustomers.setText("PROFILE");
         btnManageCustomers.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnManageCustomersActionPerformed(evt);
@@ -54,7 +54,7 @@ public class SystemAdminWorkAreaJPanel extends javax.swing.JPanel {
         });
 
         btnManageRestaurant.setFont(new java.awt.Font("Comic Sans MS", 1, 14)); // NOI18N
-        btnManageRestaurant.setText("Manage Restaurants");
+        btnManageRestaurant.setText("MANAGE MENU");
         btnManageRestaurant.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnManageRestaurantActionPerformed(evt);
@@ -62,18 +62,10 @@ public class SystemAdminWorkAreaJPanel extends javax.swing.JPanel {
         });
 
         btnManageDeliveryMen.setFont(new java.awt.Font("Comic Sans MS", 1, 14)); // NOI18N
-        btnManageDeliveryMen.setText("Manage Deliver Person");
+        btnManageDeliveryMen.setText("MANAGE ORDERS");
         btnManageDeliveryMen.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnManageDeliveryMenActionPerformed(evt);
-            }
-        });
-
-        jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Icons/LogoutIcon.png"))); // NOI18N
-        jLabel1.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jLabel1MouseClicked(evt);
             }
         });
 
@@ -81,28 +73,20 @@ public class SystemAdminWorkAreaJPanel extends javax.swing.JPanel {
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(btnManageRestaurant, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addComponent(btnManageDeliveryMen)
-                .addGap(0, 0, Short.MAX_VALUE))
+            .addComponent(btnManageRestaurant, javax.swing.GroupLayout.DEFAULT_SIZE, 191, Short.MAX_VALUE)
             .addComponent(btnManageCustomers, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jLabel1)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addComponent(btnManageDeliveryMen, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jLabel1)
-                .addGap(63, 63, 63)
+                .addGap(113, 113, 113)
                 .addComponent(btnManageCustomers)
-                .addGap(69, 69, 69)
+                .addGap(102, 102, 102)
                 .addComponent(btnManageRestaurant)
-                .addGap(63, 63, 63)
+                .addGap(94, 94, 94)
                 .addComponent(btnManageDeliveryMen)
-                .addContainerGap(203, Short.MAX_VALUE))
+                .addContainerGap(128, Short.MAX_VALUE))
         );
 
         jSplitPane.setLeftComponent(jPanel1);
@@ -115,7 +99,7 @@ public class SystemAdminWorkAreaJPanel extends javax.swing.JPanel {
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 543, Short.MAX_VALUE)
+            .addGap(0, 524, Short.MAX_VALUE)
         );
 
         jSplitPane.setRightComponent(jPanel2);
@@ -137,17 +121,12 @@ public class SystemAdminWorkAreaJPanel extends javax.swing.JPanel {
         ManageDeliveryManJPanel manageDeliveryManJPanel=new ManageDeliveryManJPanel();
         jSplitPane.setRightComponent(manageDeliveryManJPanel);
     }//GEN-LAST:event_btnManageDeliveryMenActionPerformed
-
-    private void jLabel1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel1MouseClicked
-        
-    }//GEN-LAST:event_jLabel1MouseClicked
    
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnManageCustomers;
     private javax.swing.JButton btnManageDeliveryMen;
     private javax.swing.JButton btnManageRestaurant;
-    private javax.swing.JLabel jLabel1;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JSplitPane jSplitPane;
