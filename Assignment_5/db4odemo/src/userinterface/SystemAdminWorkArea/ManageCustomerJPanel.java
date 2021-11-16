@@ -59,6 +59,7 @@ public class ManageCustomerJPanel extends javax.swing.JPanel {
         setPreferredSize(new java.awt.Dimension(920, 708));
         setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
+        jRegisterTable.setFont(new java.awt.Font("Arial Black", 1, 12)); // NOI18N
         jRegisterTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
@@ -96,49 +97,68 @@ public class ManageCustomerJPanel extends javax.swing.JPanel {
         jLabel1.setText("Manage Customers");
         add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(86, 36, 643, -1));
 
-        jLabel2.setText("Username");
-        add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 510, -1, -1));
+        jLabel2.setFont(new java.awt.Font("Comic Sans MS", 1, 14)); // NOI18N
+        jLabel2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel2.setText("Username :");
+        jLabel2.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 500, -1, -1));
         add(txtUsername, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 500, 259, -1));
 
-        jLabel3.setText("Password");
-        add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 560, -1, -1));
+        jLabel3.setFont(new java.awt.Font("Comic Sans MS", 1, 14)); // NOI18N
+        jLabel3.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel3.setText("Password :");
+        jLabel3.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 550, -1, -1));
         add(txtPassword, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 550, 259, -1));
 
-        jLabel4.setText("Name");
-        add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 350, -1, -1));
+        jLabel4.setFont(new java.awt.Font("Comic Sans MS", 1, 14)); // NOI18N
+        jLabel4.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel4.setText("Name :");
+        add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 340, 60, -1));
         add(txtName, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 340, 259, -1));
 
-        jLabel5.setText("Address");
-        add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 410, -1, -1));
+        jLabel5.setFont(new java.awt.Font("Comic Sans MS", 1, 14)); // NOI18N
+        jLabel5.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel5.setText("Address :");
+        jLabel5.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 400, -1, -1));
         add(txtAddress, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 400, 259, -1));
 
-        btnCreateCustomer.setText("Create");
+        btnCreateCustomer.setFont(new java.awt.Font("Comic Sans MS", 1, 12)); // NOI18N
+        btnCreateCustomer.setText("Create Customer");
+        btnCreateCustomer.setToolTipText("");
         btnCreateCustomer.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnCreateCustomerActionPerformed(evt);
             }
         });
-        add(btnCreateCustomer, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 610, -1, -1));
+        add(btnCreateCustomer, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 620, -1, -1));
 
-        btnModify.setText("Modify");
+        btnModify.setFont(new java.awt.Font("Comic Sans MS", 1, 12)); // NOI18N
+        btnModify.setText("Update Customer");
         btnModify.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnModifyActionPerformed(evt);
             }
         });
-        add(btnModify, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 610, 82, -1));
+        add(btnModify, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 620, 160, -1));
 
-        btnDelete.setText("delete");
+        btnDelete.setFont(new java.awt.Font("Comic Sans MS", 1, 12)); // NOI18N
+        btnDelete.setText("Delete Customer");
+        btnDelete.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         btnDelete.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnDeleteActionPerformed(evt);
             }
         });
-        add(btnDelete, new org.netbeans.lib.awtextra.AbsoluteConstraints(820, 270, 73, -1));
+        add(btnDelete, new org.netbeans.lib.awtextra.AbsoluteConstraints(743, 270, 150, -1));
 
-        jLabel6.setText("Phone");
-        add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 470, -1, -1));
-        add(txtMobileNumber, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 460, 259, -1));
+        jLabel6.setFont(new java.awt.Font("Comic Sans MS", 1, 14)); // NOI18N
+        jLabel6.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel6.setText("Mobile Number :");
+        jLabel6.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 450, -1, -1));
+        add(txtMobileNumber, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 450, 259, -1));
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnCreateCustomerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCreateCustomerActionPerformed
