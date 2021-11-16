@@ -109,7 +109,7 @@ public class SystemAdminWorkAreaJPanel extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnManageCustomersActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnManageCustomersActionPerformed
-    ManageCustomersJPanel manageCustomersJPanel =new ManageCustomersJPanel();
+    ManageCustomerJPanel manageCustomersJPanel =new ManageCustomerJPanel();
     jSplitPane.setRightComponent(manageCustomersJPanel); 
     }//GEN-LAST:event_btnManageCustomersActionPerformed
 
