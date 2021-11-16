@@ -5,13 +5,25 @@
  */
 package Business.Customer;
 
+import Business.Role.CustomerRole;
 import Business.UserAccount.UserAccount;
 
 /**
  *
  * @author harold
  */
-public class Customer {
+public class Customer extends UserAccount {
+    private String name;
+    private String address;
+    private long mobileNumber;
+    public Customer(String userName, String password, String name, String address, long mobileNumber) {
+        setUsername(userName);
+        setPassword(password);
+        setRole(new CustomerRole());
+        this.name = name;
+        this.address = address;
+        this.mobileNumber = mobileNumber;
+    }
     public String getName() {
         return name;
     }
@@ -35,22 +47,5 @@ public class Customer {
     public void setMobileNumber(long mobileNumber) {
         this.mobileNumber = mobileNumber;
     }
-    public int getId() {
-        return id;
-    }
-    public void setId(int id) {
-        this.id = id;
-    }
-    public UserAccount getUserAccount() {
-        return userAccount;
-    }
-
-    public void setUserAccount(UserAccount userAccount) {
-        this.userAccount = userAccount;
-    }
-    private String name;
-    private String address;
-    private long mobileNumber;
-    private int id;
-    private UserAccount userAccount;
+    
 }

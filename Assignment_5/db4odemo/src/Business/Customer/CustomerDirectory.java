@@ -20,8 +20,10 @@ public class CustomerDirectory {
     public ArrayList<Customer> getCustomers() {
         return customers;
     }
-
-    public void setCustomers(Customer customer) {
+    public void addcustomer(Customer customer) {
         this.customers.add(customer);
+    }
+    public void removeCustomer(Customer customer){
+        this.customers.remove(customer);
     }
 }
