@@ -18,6 +18,15 @@ public class UserAccount {
     private String password;
     private Employee employee;
     private Role role;
+    private int uniqueId;
+
+    public int getUniqueId() {
+        return uniqueId;
+    }
+
+    public void setUniqueId(int uniqueId) {
+        this.uniqueId = uniqueId;
+    }
     private WorkQueue workQueue;
 
     public UserAccount() {

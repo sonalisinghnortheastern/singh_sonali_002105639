@@ -294,7 +294,7 @@ public class ManageRestaurantJPanel extends javax.swing.JPanel {
         model.setRowCount(0);
         for (Restaurant restaurant : restaurantDirectory.getRestaurants()) {
                     Object[] row = new Object[5];
-                    row[0] = restaurant;
+                    row[0] = restaurant.getName();
                     row[1] = restaurant.getMobileNumber();
                     row[2] = restaurant.getAddress();
                     row[3] = restaurant.getUsername();

@@ -16,9 +16,10 @@ public class Customer extends UserAccount {
     private String name;
     private String address;
     private long mobileNumber;
-    public Customer(String name, String address, long mobileNumber,String userName, String password) {
+    public Customer(String name, String address, long mobileNumber,String userName, String password,int uniqueId) {
         setUsername(userName);
         setPassword(password);
+        setUniqueId(uniqueId);
         setRole(new CustomerRole());
         this.name = name;
         this.address = address;

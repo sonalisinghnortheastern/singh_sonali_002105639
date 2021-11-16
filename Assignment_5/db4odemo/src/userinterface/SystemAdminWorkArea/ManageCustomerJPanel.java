@@ -9,6 +9,8 @@ import Business.Customer.Customer;
 import Business.Customer.CustomerDirectory;
 import Business.DB4OUtil.DB4OUtil;
 import Business.EcoSystem;
+import Business.UserAccount.UserAccount;
+import java.util.Random;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
@@ -168,7 +170,9 @@ public class ManageCustomerJPanel extends javax.swing.JPanel {
             JOptionPane.showMessageDialog(this, "User with this username already exist.Try a diffrent username");
         }
         else{
-          Customer customer=new Customer(txtName.getText(),txtAddress.getText(),Long.parseLong(txtMobileNumber.getText()),txtUsername.getText(),txtPassword.getText());
+             Random random=new Random();
+            int uniqueId=random.nextInt((9999 - 100) + 1) + 10;
+          Customer customer=new Customer(txtName.getText(),txtAddress.getText(),Long.parseLong(txtMobileNumber.getText()),txtUsername.getText(),txtPassword.getText(),uniqueId);
           system.getCustomerDirectory().addcustomer(customer);
           system.getUserAccountDirectory().addUserAccountToAccounts(customer);
           populateTable();
@@ -182,8 +186,20 @@ public class ManageCustomerJPanel extends javax.swing.JPanel {
 
     private void btnModifyActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnModifyActionPerformed
     try{
-        Customer customer=new Customer(txtName.getText(),txtAddress.getText(),Long.parseLong(txtMobileNumber.getText()),txtUsername.getText(),txtPassword.getText());
         int selectedRowIndex=jRegisterTable.getSelectedRow();
+        int uniqueId=system.getCustomerDirectory().getCustomers().get(selectedRowIndex).getUniqueId();
+        Customer customer=new Customer(txtName.getText(),txtAddress.getText(),Long.parseLong(txtMobileNumber.getText()),txtUsername.getText(),txtPassword.getText(),uniqueId);
+        for(UserAccount userAccount:system.getUserAccountDirectory().getUserAccountList())
+        {
+            if(txtUsername.getText().equals(userAccount.getUsername()))
+            {
+                if(uniqueId != userAccount.getUniqueId())
+                {
+                    JOptionPane.showMessageDialog(this, "Username already taken.Please take a diffrent username");
+                    return;
+                }
+            }
+        }
         system.getCustomerDirectory().getCustomers().set(selectedRowIndex, customer);
         populateTable();
         JOptionPane.showMessageDialog(null, "User Updated Succesfully");
@@ -237,7 +253,7 @@ public class ManageCustomerJPanel extends javax.swing.JPanel {
         model.setRowCount(0);
         for (Customer customer : customerDirectory.getCustomers()) {
                     Object[] row = new Object[5];
-                    row[0] = customer;
+                    row[0] = customer.getName();
                     row[1] = customer.getAddress();
                     row[2] = customer.getMobileNumber();
                     row[3] = customer.getUsername();
