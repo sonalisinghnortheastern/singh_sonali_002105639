@@ -63,6 +63,7 @@ public class ManageCustomerJPanel extends javax.swing.JPanel {
 
         jRegisterTable.setBorder(javax.swing.BorderFactory.createEtchedBorder());
         jRegisterTable.setFont(new java.awt.Font("Arial Black", 1, 12)); // NOI18N
+        jRegisterTable.setForeground(new java.awt.Color(56, 90, 174));
         jRegisterTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
@@ -86,6 +87,8 @@ public class ManageCustomerJPanel extends javax.swing.JPanel {
                 return canEdit [columnIndex];
             }
         });
+        jRegisterTable.setGridColor(new java.awt.Color(56, 90, 174));
+        jRegisterTable.setSelectionBackground(new java.awt.Color(240, 178, 62));
         jRegisterTable.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 jRegisterTableMouseClicked(evt);

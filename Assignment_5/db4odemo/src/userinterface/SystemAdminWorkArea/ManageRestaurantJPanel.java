@@ -53,6 +53,7 @@ public class ManageRestaurantJPanel extends javax.swing.JPanel {
         jLabel6 = new javax.swing.JLabel();
         txtPassword = new javax.swing.JTextField();
 
+        jRegisterTable.setForeground(new java.awt.Color(56, 90, 174));
         jRegisterTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
@@ -69,6 +70,8 @@ public class ManageRestaurantJPanel extends javax.swing.JPanel {
                 return canEdit [columnIndex];
             }
         });
+        jRegisterTable.setGridColor(new java.awt.Color(56, 90, 174));
+        jRegisterTable.setSelectionBackground(new java.awt.Color(240, 178, 62));
         jRegisterTable.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 jRegisterTableMouseClicked(evt);
