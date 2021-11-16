@@ -171,8 +171,8 @@ public class ManageCustomerJPanel extends javax.swing.JPanel {
             JOptionPane.showMessageDialog(this, "User with this username already exist.Try a diffrent username");
         }
         else{
-             Random random=new Random();
-            int uniqueId=random.nextInt((9999 - 100) + 1) + 10;
+          Random random=new Random();
+          int uniqueId=random.nextInt((9999 - 100) + 1) + 10;
           Customer customer=new Customer(txtName.getText(),txtAddress.getText(),Long.parseLong(txtMobileNumber.getText()),txtUsername.getText(),txtPassword.getText(),uniqueId);
           system.getCustomerDirectory().addcustomer(customer);
           system.getUserAccountDirectory().addUserAccountToAccounts(customer);

@@ -250,7 +250,7 @@ try {
     private void btnModifyActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnModifyActionPerformed
     try{
         int selectedRowIndex=jRegisterTable.getSelectedRow();
-        int uniqueId=system.getCustomerDirectory().getCustomers().get(selectedRowIndex).getUniqueId();
+        int uniqueId=system.getDeliveryManDirectory().getDeliveryMens().get(selectedRowIndex).getUniqueId();
         DeliveryMan deliveryMan=new DeliveryMan(txtName.getText(),Long.parseLong(txtMobileNumber.getText()),txtAddress.getText(),txtUsername.getText(),txtPassword.getText(),uniqueId);
         for(UserAccount userAccount:system.getUserAccountDirectory().getUserAccountList())
         {

@@ -9,6 +9,8 @@ import Business.DB4OUtil.DB4OUtil;
 import Business.EcoSystem;
 import Business.Restaurant.Restaurant;
 import Business.Restaurant.RestaurantDirectory;
+import Business.UserAccount.UserAccount;
+import java.util.Random;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
@@ -224,7 +226,9 @@ public class ManageRestaurantJPanel extends javax.swing.JPanel {
             JOptionPane.showMessageDialog(this, "User with this username already exist.Try a diffrent username");
         }
         else{
-          Restaurant restaurant=new Restaurant(txtName.getText(),txtLocation.getText(),Long.parseLong(txtContact.getText()),txtUsername.getText(),txtPassword.getText());
+          Random random=new Random();
+          int uniqueId=random.nextInt((9999 - 100) + 1) + 10;
+          Restaurant restaurant=new Restaurant(txtName.getText(),txtLocation.getText(),Long.parseLong(txtContact.getText()),txtUsername.getText(),txtPassword.getText(),uniqueId);
           system.getRestaurantDirectory().setRestaurants(restaurant);
           system.getUserAccountDirectory().addUserAccountToAccounts(restaurant);
           populateTable();
@@ -238,8 +242,20 @@ public class ManageRestaurantJPanel extends javax.swing.JPanel {
 
     private void btnModifyActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnModifyActionPerformed
       try{
-        Restaurant restaurant=new Restaurant(txtName.getText(),txtLocation.getText(),Long.parseLong(txtContact.getText()),txtUsername.getText(),txtPassword.getText());
         int selectedRowIndex=jRegisterTable.getSelectedRow();
+        int uniqueId=system.getRestaurantDirectory().getRestaurants().get(selectedRowIndex).getUniqueId();
+        Restaurant restaurant=new Restaurant(txtName.getText(),txtLocation.getText(),Long.parseLong(txtContact.getText()),txtUsername.getText(),txtPassword.getText(),uniqueId);
+        for(UserAccount userAccount:system.getUserAccountDirectory().getUserAccountList())
+        {
+            if(txtUsername.getText().equals(userAccount.getUsername()))
+            {
+                if(uniqueId != userAccount.getUniqueId())
+                {
+                    JOptionPane.showMessageDialog(this, "Username already taken.Please take a diffrent username");
+                    return;
+                }
+            }
+        }
         system.getRestaurantDirectory().getRestaurants().set(selectedRowIndex, restaurant);
         populateTable();
         JOptionPane.showMessageDialog(null, "User Updated Succesfully");

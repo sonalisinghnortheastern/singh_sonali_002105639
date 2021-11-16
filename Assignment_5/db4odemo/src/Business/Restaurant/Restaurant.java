@@ -18,10 +18,11 @@ public class Restaurant extends UserAccount{
     private long  mobileNumber;
     private Menu menu;
 
-    public Restaurant(String name, String address, long mobileNumber,String userName, String password) {
+    public Restaurant(String name, String address, long mobileNumber,String userName, String password,int uniqueId) {
         setUsername(userName);
         setPassword(password);
         setRole(new AdminRole());
+        setUniqueId(uniqueId);
         this.name = name;
         this.address = address;
         this.mobileNumber = mobileNumber;
