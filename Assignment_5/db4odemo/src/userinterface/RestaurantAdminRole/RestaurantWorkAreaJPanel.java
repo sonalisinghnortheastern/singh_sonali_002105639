@@ -120,8 +120,8 @@ public class RestaurantWorkAreaJPanel extends javax.swing.JPanel {
     }//GEN-LAST:event_btnManageCustomersActionPerformed
 
     private void btnManageMenuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnManageMenuActionPerformed
-    ProfileUpdateJPanel profileUpdateJPanel =new ProfileUpdateJPanel(ecosystem);
-    jSplitPane.setRightComponent(profileUpdateJPanel); 
+    ManageMenuJPanel manageMenuJPanel =new ManageMenuJPanel(ecosystem);
+    jSplitPane.setRightComponent(manageMenuJPanel); 
     }//GEN-LAST:event_btnManageMenuActionPerformed
 
     private void btnManageDeliveryMenActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnManageDeliveryMenActionPerformed
