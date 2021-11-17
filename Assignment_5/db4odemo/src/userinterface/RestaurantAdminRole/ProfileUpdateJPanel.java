@@ -43,11 +43,14 @@ public class ProfileUpdateJPanel extends javax.swing.JPanel {
         btnUpdateRestaurantProfile = new javax.swing.JButton();
         txtPassword = new javax.swing.JTextField();
 
+        setBackground(new java.awt.Color(0, 102, 102));
+
+        jPanel1.setBackground(new java.awt.Color(0, 102, 102));
         jPanel1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
 
-        jLabel1.setBackground(new java.awt.Color(153, 0, 0));
+        jLabel1.setBackground(new java.awt.Color(240, 178, 62));
         jLabel1.setFont(new java.awt.Font("Comic Sans MS", 1, 18)); // NOI18N
-        jLabel1.setForeground(new java.awt.Color(0, 51, 102));
+        jLabel1.setForeground(new java.awt.Color(255, 255, 255));
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel1.setText("PROFILE");
         jLabel1.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
@@ -62,27 +65,32 @@ public class ProfileUpdateJPanel extends javax.swing.JPanel {
         txtUsername.setHorizontalAlignment(javax.swing.JTextField.CENTER);
 
         lblName.setFont(new java.awt.Font("Comic Sans MS", 1, 14)); // NOI18N
+        lblName.setForeground(new java.awt.Color(255, 255, 255));
         lblName.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         lblName.setText("NAME :");
         lblName.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
 
         lblMobileNumber.setFont(new java.awt.Font("Comic Sans MS", 1, 14)); // NOI18N
+        lblMobileNumber.setForeground(new java.awt.Color(255, 255, 255));
         lblMobileNumber.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         lblMobileNumber.setText("MOBILE NUMBER :");
         lblMobileNumber.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
 
         lblUsername.setFont(new java.awt.Font("Comic Sans MS", 1, 14)); // NOI18N
+        lblUsername.setForeground(new java.awt.Color(255, 255, 255));
         lblUsername.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         lblUsername.setText("USERNAME :");
         lblUsername.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
 
         lblAddress.setFont(new java.awt.Font("Comic Sans MS", 1, 14)); // NOI18N
+        lblAddress.setForeground(new java.awt.Color(255, 255, 255));
         lblAddress.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         lblAddress.setText("ADDRESS :");
         lblAddress.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
 
-        btnUpdateRestaurantProfile.setBackground(new java.awt.Color(0, 102, 102));
+        btnUpdateRestaurantProfile.setBackground(new java.awt.Color(240, 178, 62));
         btnUpdateRestaurantProfile.setFont(new java.awt.Font("Arial Black", 1, 12)); // NOI18N
+        btnUpdateRestaurantProfile.setForeground(new java.awt.Color(255, 255, 255));
         btnUpdateRestaurantProfile.setText("UPDATE PROFILE");
         btnUpdateRestaurantProfile.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         btnUpdateRestaurantProfile.addActionListener(new java.awt.event.ActionListener() {

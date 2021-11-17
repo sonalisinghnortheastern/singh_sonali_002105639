@@ -46,6 +46,8 @@ public class ManageOrdeJPanel extends javax.swing.JPanel {
         btnUpdateRestaurantProfile1 = new javax.swing.JButton();
         chckBoxCompleted = new javax.swing.JCheckBox();
 
+        setBackground(new java.awt.Color(0, 102, 102));
+
         jLabel1.setBackground(new java.awt.Color(153, 0, 0));
         jLabel1.setFont(new java.awt.Font("Comic Sans MS", 1, 18)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(0, 51, 102));
@@ -82,20 +84,22 @@ public class ManageOrdeJPanel extends javax.swing.JPanel {
         });
         jScrollPane1.setViewportView(JMenu);
 
+        jOrderPanel.setBackground(new java.awt.Color(0, 102, 102));
+
         jLabel2.setFont(new java.awt.Font("Comic Sans MS", 1, 14)); // NOI18N
-        jLabel2.setForeground(new java.awt.Color(0, 0, 102));
+        jLabel2.setForeground(new java.awt.Color(255, 255, 255));
         jLabel2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel2.setText("ITEM NAME :");
         jLabel2.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
 
         jLabel3.setFont(new java.awt.Font("Comic Sans MS", 1, 14)); // NOI18N
-        jLabel3.setForeground(new java.awt.Color(0, 0, 102));
+        jLabel3.setForeground(new java.awt.Color(255, 255, 255));
         jLabel3.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel3.setText("QUANTITY :");
         jLabel3.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
 
         jLabel4.setFont(new java.awt.Font("Comic Sans MS", 1, 14)); // NOI18N
-        jLabel4.setForeground(new java.awt.Color(0, 0, 102));
+        jLabel4.setForeground(new java.awt.Color(255, 255, 255));
         jLabel4.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel4.setText("AMOUNT :");
         jLabel4.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
