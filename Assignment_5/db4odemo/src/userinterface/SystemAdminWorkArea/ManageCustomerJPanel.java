@@ -55,8 +55,8 @@ public class ManageCustomerJPanel extends javax.swing.JPanel {
         jLabel6 = new javax.swing.JLabel();
         txtMobileNumber = new javax.swing.JTextField();
 
+        setBackground(new java.awt.Color(0, 102, 102));
         setPreferredSize(new java.awt.Dimension(920, 708));
-        setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jRegisterTable.setBorder(javax.swing.BorderFactory.createEtchedBorder());
         jRegisterTable.setFont(new java.awt.Font("Arial Black", 1, 12)); // NOI18N
@@ -93,39 +93,29 @@ public class ManageCustomerJPanel extends javax.swing.JPanel {
         });
         jScrollPane1.setViewportView(jRegisterTable);
 
-        add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 90, 920, 165));
-
         jLabel1.setFont(new java.awt.Font("Lucida Grande", 1, 18)); // NOI18N
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel1.setText("Manage Customers");
-        add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(86, 36, 643, -1));
+        jLabel1.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
 
         jLabel2.setFont(new java.awt.Font("Comic Sans MS", 1, 14)); // NOI18N
         jLabel2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel2.setText("Username :");
         jLabel2.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 500, -1, -1));
-        add(txtUsername, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 500, 259, -1));
 
         jLabel3.setFont(new java.awt.Font("Comic Sans MS", 1, 14)); // NOI18N
         jLabel3.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel3.setText("Password :");
         jLabel3.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 550, -1, -1));
-        add(txtPassword, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 550, 259, -1));
 
         jLabel4.setFont(new java.awt.Font("Comic Sans MS", 1, 14)); // NOI18N
         jLabel4.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel4.setText("Name :");
-        add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 340, 60, -1));
-        add(txtName, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 340, 259, -1));
 
         jLabel5.setFont(new java.awt.Font("Comic Sans MS", 1, 14)); // NOI18N
         jLabel5.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel5.setText("Address :");
         jLabel5.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 400, -1, -1));
-        add(txtAddress, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 400, 259, -1));
 
         btnCreateCustomer.setFont(new java.awt.Font("Comic Sans MS", 1, 12)); // NOI18N
         btnCreateCustomer.setText("Create Customer");
@@ -135,7 +125,6 @@ public class ManageCustomerJPanel extends javax.swing.JPanel {
                 btnCreateCustomerActionPerformed(evt);
             }
         });
-        add(btnCreateCustomer, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 620, -1, -1));
 
         btnModify.setFont(new java.awt.Font("Comic Sans MS", 1, 12)); // NOI18N
         btnModify.setText("Update Customer");
@@ -144,7 +133,6 @@ public class ManageCustomerJPanel extends javax.swing.JPanel {
                 btnModifyActionPerformed(evt);
             }
         });
-        add(btnModify, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 620, 160, -1));
 
         btnDelete.setFont(new java.awt.Font("Comic Sans MS", 1, 12)); // NOI18N
         btnDelete.setText("Delete Customer");
@@ -154,14 +142,88 @@ public class ManageCustomerJPanel extends javax.swing.JPanel {
                 btnDeleteActionPerformed(evt);
             }
         });
-        add(btnDelete, new org.netbeans.lib.awtextra.AbsoluteConstraints(743, 270, 150, -1));
 
         jLabel6.setFont(new java.awt.Font("Comic Sans MS", 1, 14)); // NOI18N
         jLabel6.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel6.setText("Mobile Number :");
         jLabel6.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 450, -1, -1));
-        add(txtMobileNumber, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 450, 259, -1));
+
+        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
+        this.setLayout(layout);
+        layout.setHorizontalGroup(
+            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(layout.createSequentialGroup()
+                .addGap(86, 86, 86)
+                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 643, javax.swing.GroupLayout.PREFERRED_SIZE))
+            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 920, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addGroup(layout.createSequentialGroup()
+                .addGap(743, 743, 743)
+                .addComponent(btnDelete, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE))
+            .addGroup(layout.createSequentialGroup()
+                .addGap(240, 240, 240)
+                .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(60, 60, 60)
+                .addComponent(txtName, javax.swing.GroupLayout.PREFERRED_SIZE, 259, javax.swing.GroupLayout.PREFERRED_SIZE))
+            .addGroup(layout.createSequentialGroup()
+                .addGap(240, 240, 240)
+                .addComponent(jLabel5)
+                .addGap(50, 50, 50)
+                .addComponent(txtAddress, javax.swing.GroupLayout.PREFERRED_SIZE, 259, javax.swing.GroupLayout.PREFERRED_SIZE))
+            .addGroup(layout.createSequentialGroup()
+                .addGap(220, 220, 220)
+                .addComponent(jLabel6)
+                .addGap(22, 22, 22)
+                .addComponent(txtMobileNumber, javax.swing.GroupLayout.PREFERRED_SIZE, 259, javax.swing.GroupLayout.PREFERRED_SIZE))
+            .addGroup(layout.createSequentialGroup()
+                .addGap(240, 240, 240)
+                .addComponent(jLabel2)
+                .addGap(40, 40, 40)
+                .addComponent(txtUsername, javax.swing.GroupLayout.PREFERRED_SIZE, 259, javax.swing.GroupLayout.PREFERRED_SIZE))
+            .addGroup(layout.createSequentialGroup()
+                .addGap(240, 240, 240)
+                .addComponent(jLabel3)
+                .addGap(44, 44, 44)
+                .addComponent(txtPassword, javax.swing.GroupLayout.PREFERRED_SIZE, 259, javax.swing.GroupLayout.PREFERRED_SIZE))
+            .addGroup(layout.createSequentialGroup()
+                .addGap(310, 310, 310)
+                .addComponent(btnCreateCustomer)
+                .addGap(21, 21, 21)
+                .addComponent(btnModify, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE))
+        );
+        layout.setVerticalGroup(
+            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(layout.createSequentialGroup()
+                .addGap(36, 36, 36)
+                .addComponent(jLabel1)
+                .addGap(30, 30, 30)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 165, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(15, 15, 15)
+                .addComponent(btnDelete)
+                .addGap(43, 43, 43)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel4)
+                    .addComponent(txtName, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(39, 39, 39)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel5)
+                    .addComponent(txtAddress, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(29, 29, 29)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel6)
+                    .addComponent(txtMobileNumber, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(29, 29, 29)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel2)
+                    .addComponent(txtUsername, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(29, 29, 29)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel3)
+                    .addComponent(txtPassword, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(49, 49, 49)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(btnCreateCustomer)
+                    .addComponent(btnModify)))
+        );
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnCreateCustomerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCreateCustomerActionPerformed

@@ -54,6 +54,9 @@ public class ManageDeliveryManJPanel extends javax.swing.JPanel {
         jLabel6 = new javax.swing.JLabel();
         txtAddress = new javax.swing.JTextField();
 
+        setBackground(new java.awt.Color(0, 102, 102));
+        setForeground(new java.awt.Color(255, 255, 255));
+
         jRegisterTable.setBorder(javax.swing.BorderFactory.createEtchedBorder());
         jRegisterTable.setFont(new java.awt.Font("Arial Black", 1, 14)); // NOI18N
         jRegisterTable.setForeground(new java.awt.Color(56, 90, 174));
@@ -97,6 +100,7 @@ public class ManageDeliveryManJPanel extends javax.swing.JPanel {
         jLabel1.setFont(new java.awt.Font("Lucida Grande", 1, 18)); // NOI18N
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel1.setText("Manage Delivery Man");
+        jLabel1.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
 
         jLabel2.setFont(new java.awt.Font("Comic Sans MS", 1, 14)); // NOI18N
         jLabel2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
