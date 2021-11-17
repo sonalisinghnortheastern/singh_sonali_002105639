@@ -36,7 +36,7 @@ public class RestaurantWorkAreaJPanel extends javax.swing.JPanel {
         jSplitPane = new javax.swing.JSplitPane();
         jPanel1 = new javax.swing.JPanel();
         btnManageCustomers = new javax.swing.JButton();
-        btnManageRestaurant = new javax.swing.JButton();
+        btnManageMenu = new javax.swing.JButton();
         btnManageDeliveryMen = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
         jPanel2 = new javax.swing.JPanel();
@@ -53,11 +53,11 @@ public class RestaurantWorkAreaJPanel extends javax.swing.JPanel {
             }
         });
 
-        btnManageRestaurant.setFont(new java.awt.Font("Comic Sans MS", 1, 14)); // NOI18N
-        btnManageRestaurant.setText("MANAGE MENU");
-        btnManageRestaurant.addActionListener(new java.awt.event.ActionListener() {
+        btnManageMenu.setFont(new java.awt.Font("Comic Sans MS", 1, 14)); // NOI18N
+        btnManageMenu.setText("MANAGE MENU");
+        btnManageMenu.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnManageRestaurantActionPerformed(evt);
+                btnManageMenuActionPerformed(evt);
             }
         });
 
@@ -76,7 +76,7 @@ public class RestaurantWorkAreaJPanel extends javax.swing.JPanel {
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(btnManageRestaurant, javax.swing.GroupLayout.DEFAULT_SIZE, 191, Short.MAX_VALUE)
+            .addComponent(btnManageMenu, javax.swing.GroupLayout.DEFAULT_SIZE, 191, Short.MAX_VALUE)
             .addComponent(btnManageCustomers, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addComponent(btnManageDeliveryMen, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addGroup(jPanel1Layout.createSequentialGroup()
@@ -90,7 +90,7 @@ public class RestaurantWorkAreaJPanel extends javax.swing.JPanel {
                 .addGap(66, 66, 66)
                 .addComponent(btnManageCustomers)
                 .addGap(70, 70, 70)
-                .addComponent(btnManageRestaurant)
+                .addComponent(btnManageMenu)
                 .addGap(70, 70, 70)
                 .addComponent(btnManageDeliveryMen)
                 .addContainerGap(184, Short.MAX_VALUE))
@@ -119,9 +119,10 @@ public class RestaurantWorkAreaJPanel extends javax.swing.JPanel {
     jSplitPane.setRightComponent(profileUpdateJPanel); 
     }//GEN-LAST:event_btnManageCustomersActionPerformed
 
-    private void btnManageRestaurantActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnManageRestaurantActionPerformed
-        
-    }//GEN-LAST:event_btnManageRestaurantActionPerformed
+    private void btnManageMenuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnManageMenuActionPerformed
+    ProfileUpdateJPanel profileUpdateJPanel =new ProfileUpdateJPanel(ecosystem);
+    jSplitPane.setRightComponent(profileUpdateJPanel); 
+    }//GEN-LAST:event_btnManageMenuActionPerformed
 
     private void btnManageDeliveryMenActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnManageDeliveryMenActionPerformed
     
@@ -131,7 +132,7 @@ public class RestaurantWorkAreaJPanel extends javax.swing.JPanel {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnManageCustomers;
     private javax.swing.JButton btnManageDeliveryMen;
-    private javax.swing.JButton btnManageRestaurant;
+    private javax.swing.JButton btnManageMenu;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;

@@ -27,13 +27,13 @@ public class FoodItem {
     }
     private String name;
     private int price;
-    private boolean inStock;
+    private String inStock;
 
-    public boolean isInStock() {
+    public String isInStock() {
         return inStock;
     }
 
-    public void setInStock(boolean inStock) {
+    public void setInStock(String inStock) {
         this.inStock = inStock;
     }
     

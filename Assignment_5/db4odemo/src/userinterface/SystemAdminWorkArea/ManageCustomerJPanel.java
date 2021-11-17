@@ -248,7 +248,7 @@ public class ManageCustomerJPanel extends javax.swing.JPanel {
           throw  e;
       }
     }//GEN-LAST:event_jRegisterTableMouseClicked
-     private void populateTable() {
+    private void populateTable() {
         CustomerDirectory customerDirectory = system.getCustomerDirectory();
         DefaultTableModel model = (DefaultTableModel) jRegisterTable.getModel();
         model.setRowCount(0);

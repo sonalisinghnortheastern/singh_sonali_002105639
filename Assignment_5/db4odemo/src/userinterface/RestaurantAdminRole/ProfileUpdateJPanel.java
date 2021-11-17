@@ -155,7 +155,7 @@ public class ProfileUpdateJPanel extends javax.swing.JPanel {
                 .addGap(30, 30, 30))
         );
 
-        add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 140, 440, 400));
+        add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 120, 440, 400));
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnUpdateRestaurantProfileActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnUpdateRestaurantProfileActionPerformed
@@ -200,6 +200,7 @@ public class ProfileUpdateJPanel extends javax.swing.JPanel {
             
                 }
         } catch (Exception e) {
+            throw e;
         }
        
     }
