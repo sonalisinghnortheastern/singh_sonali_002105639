@@ -93,11 +93,11 @@ public class SystemAdminWorkAreaJPanel extends javax.swing.JPanel {
                 .addComponent(jLabel1)
                 .addGap(63, 63, 63)
                 .addComponent(btnManageCustomers)
-                .addGap(69, 69, 69)
+                .addGap(70, 70, 70)
                 .addComponent(btnManageRestaurant)
-                .addGap(63, 63, 63)
+                .addGap(70, 70, 70)
                 .addComponent(btnManageDeliveryMen)
-                .addContainerGap(203, Short.MAX_VALUE))
+                .addContainerGap(195, Short.MAX_VALUE))
         );
 
         jSplitPane.setLeftComponent(jPanel1);
