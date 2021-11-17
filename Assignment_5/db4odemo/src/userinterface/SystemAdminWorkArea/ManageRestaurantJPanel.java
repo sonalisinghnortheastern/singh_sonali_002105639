@@ -262,6 +262,17 @@ public class ManageRestaurantJPanel extends javax.swing.JPanel {
         }
         system.getRestaurantDirectory().getRestaurants().set(selectedRowIndex, restaurant);
         populateTable();
+        int index=0;
+        for(UserAccount userAccount:system.getUserAccountDirectory().getUserAccountList())
+        {
+                if(uniqueId == userAccount.getUniqueId())
+                {
+                    system.getUserAccountDirectory().getUserAccountList().set(index, restaurant);
+                }
+                else{
+                    index++;
+                }
+        }
         JOptionPane.showMessageDialog(null, "User Updated Succesfully");
         reset();
     }

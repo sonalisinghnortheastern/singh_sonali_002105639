@@ -1,9 +1,9 @@
 
 
-package userinterface.RestaurantAdminRole;
+package userinterface.CustomerRole;
 
+import Business.Customer.Customer;
 import Business.EcoSystem;
-import Business.Restaurant.Restaurant;
 import Business.UserAccount.UserAccount;
 import javax.swing.JOptionPane;
 
@@ -11,11 +11,11 @@ import javax.swing.JOptionPane;
  *
  * @author  raunak
  */
-public class ProfileUpdateJPanel extends javax.swing.JPanel {
+public class CustomerProfileUpdateJPanel extends javax.swing.JPanel {
 
     
    private final EcoSystem system;
-    public ProfileUpdateJPanel(EcoSystem system) {
+    public CustomerProfileUpdateJPanel(EcoSystem system) {
         initComponents();
         txtPassword.setVisible(false);
         this.system = system;
@@ -182,8 +182,8 @@ public class ProfileUpdateJPanel extends javax.swing.JPanel {
         try{
            int uniqueId=system.getLogInUser().getLogInId();
            int selectedRowIndex=0;
-           selectedRowIndex = system.getRestaurantDirectory().getRestaurants().stream().filter(restaurant -> (restaurant.getUniqueId()!=uniqueId)).map(_item -> 1).reduce(selectedRowIndex, Integer::sum);
-            Restaurant restaurant=new Restaurant(txtName.getText(),txtAddress.getText(),Long.parseLong(txtMobileNumber.getText()),txtUsername.getText(),txtPassword.getText(),uniqueId);
+           selectedRowIndex = system.getCustomerDirectory().getCustomers().stream().filter(customer -> (customer.getUniqueId()!=uniqueId)).map(_item -> 1).reduce(selectedRowIndex, Integer::sum);
+            Customer customer=new Customer(txtName.getText(),txtAddress.getText(),Long.parseLong(txtMobileNumber.getText()),txtUsername.getText(),txtPassword.getText(),uniqueId);
             for(UserAccount userAccount:system.getUserAccountDirectory().getUserAccountList())
             {
                 if(txtUsername.getText().equals(userAccount.getUsername()))
@@ -195,7 +195,7 @@ public class ProfileUpdateJPanel extends javax.swing.JPanel {
                     }
                 }
             }
-            system.getRestaurantDirectory().getRestaurants().set(selectedRowIndex, restaurant);
+            system.getCustomerDirectory().getCustomers().set(selectedRowIndex, customer);
             JOptionPane.showMessageDialog(null, "User Updated Succesfully");
     }
     catch(Exception e)
@@ -207,14 +207,14 @@ public class ProfileUpdateJPanel extends javax.swing.JPanel {
     {
         try {
               int uniqueId=system.getLogInUser().getLogInId();
-                for (Restaurant restaurant : system.getRestaurantDirectory().getRestaurants()) {
-                   if(restaurant.getUniqueId()==uniqueId)
+                for (Customer customer : system.getCustomerDirectory().getCustomers()) {
+                   if(customer.getUniqueId()==uniqueId)
                    {
-                       txtName.setText(restaurant.getName());
-                       txtAddress.setText(restaurant.getAddress());
-                       txtMobileNumber.setText(String.valueOf(restaurant.getMobileNumber()));
-                       txtUsername.setText(restaurant.getUsername());
-                       txtPassword.setText(restaurant.getPassword());
+                       txtName.setText(customer.getName());
+                       txtAddress.setText(customer.getAddress());
+                       txtMobileNumber.setText(String.valueOf(customer.getMobileNumber()));
+                       txtUsername.setText(customer.getUsername());
+                       txtPassword.setText(customer.getPassword());
 
                    }
             

@@ -265,6 +265,17 @@ public class ManageCustomerJPanel extends javax.swing.JPanel {
         }
         system.getCustomerDirectory().getCustomers().set(selectedRowIndex, customer);
         populateTable();
+        int index=0;
+        for(UserAccount userAccount:system.getUserAccountDirectory().getUserAccountList())
+        {
+                if(uniqueId == userAccount.getUniqueId())
+                {
+                    system.getUserAccountDirectory().getUserAccountList().set(index, customer);
+                }
+                else{
+                    index++;
+                }
+        }
         JOptionPane.showMessageDialog(null, "User Updated Succesfully");
         reset();
     }

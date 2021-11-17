@@ -269,6 +269,17 @@ try {
         }
         system.getDeliveryManDirectory().getDeliveryMens().set(selectedRowIndex, deliveryMan);
         populateTable();
+         int index=0;
+        for(UserAccount userAccount:system.getUserAccountDirectory().getUserAccountList())
+        {
+                if(uniqueId == userAccount.getUniqueId())
+                {
+                    system.getUserAccountDirectory().getUserAccountList().set(index, deliveryMan);
+                }
+                else{
+                    index++;
+                }
+        }
         JOptionPane.showMessageDialog(null, "User Updated Succesfully");
         reset();
     }
