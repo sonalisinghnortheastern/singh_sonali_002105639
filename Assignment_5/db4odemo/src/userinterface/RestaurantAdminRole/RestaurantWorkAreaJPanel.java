@@ -125,7 +125,8 @@ public class RestaurantWorkAreaJPanel extends javax.swing.JPanel {
     }//GEN-LAST:event_btnManageMenuActionPerformed
 
     private void btnManageDeliveryMenActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnManageDeliveryMenActionPerformed
-    
+    ManageOrdeJPanel manageOrdeJPanel=new ManageOrdeJPanel(ecosystem);
+    jSplitPane.setRightComponent(manageOrdeJPanel); 
     }//GEN-LAST:event_btnManageDeliveryMenActionPerformed
    
 
