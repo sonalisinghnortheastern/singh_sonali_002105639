@@ -5,11 +5,14 @@
  */
 package userinterface.CustomerRole;
 
+import Business.Customer.Customer;
 import Business.EcoSystem;
-import Business.WorkQueue.Cart;
 import Business.Restaurant.FoodItem;
 import Business.Restaurant.Restaurant;
+import Business.WorkQueue.Cart;
+import Business.WorkQueue.PlaceOrderWorkRequest;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.JOptionPane;
@@ -263,7 +266,41 @@ public class PlaceOrdeJPanel extends javax.swing.JPanel {
     }//GEN-LAST:event_btnRemoveItemActionPerformed
 
     private void btnPlaceOrderActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPlaceOrderActionPerformed
-        // TODO add your handling code here:
+        try{
+        if(orderItems!=null)
+        {
+            JOptionPane.showMessageDialog(null, "Please add items to cart, it cannot be empty");
+        }
+        else{
+            PlaceOrderWorkRequest placeOrderWorkRequest = new PlaceOrderWorkRequest();
+            placeOrderWorkRequest.setItemsWithQuatityList(orderItems);
+            placeOrderWorkRequest.setMessage("");
+            int uniqueId=system.getLogInUser().getLogInId();
+            for(Customer customer:system.getCustomerDirectory().getCustomers())
+            {
+                if(customer.getUniqueId()==uniqueId)
+                {
+                    placeOrderWorkRequest.setCustomer(customer);
+                }
+            }
+            for (Restaurant restaurant : system.getRestaurantDirectory().getRestaurants()) {
+            if(restaurant.getName() == jComboBox1.getSelectedItem())
+            {
+                placeOrderWorkRequest.setRestaurant(restaurant);
+            }
+            }
+            placeOrderWorkRequest.setRequestDate(new Date());
+            placeOrderWorkRequest.setStatus("Ordered");
+            system.getWorkQueue().setWorkRequestList(placeOrderWorkRequest);
+            JOptionPane.showMessageDialog(null, "Ordered Placed Successfully");
+            orderItems.removeAll(orderItems);
+            populateTableCart();
+        }
+        }
+        catch(Exception ex)
+        {
+            throw ex;
+        }
     }//GEN-LAST:event_btnPlaceOrderActionPerformed
     private  void populateComboBox(){
         try {
