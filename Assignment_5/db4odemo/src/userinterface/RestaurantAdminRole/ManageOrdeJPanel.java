@@ -48,9 +48,9 @@ public class ManageOrdeJPanel extends javax.swing.JPanel {
 
         setBackground(new java.awt.Color(0, 102, 102));
 
-        jLabel1.setBackground(new java.awt.Color(153, 0, 0));
+        jLabel1.setBackground(new java.awt.Color(240, 178, 62));
         jLabel1.setFont(new java.awt.Font("Comic Sans MS", 1, 18)); // NOI18N
-        jLabel1.setForeground(new java.awt.Color(0, 51, 102));
+        jLabel1.setForeground(new java.awt.Color(255, 255, 255));
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel1.setText("MANAGE ORDERS");
         jLabel1.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
@@ -110,13 +110,15 @@ public class ManageOrdeJPanel extends javax.swing.JPanel {
             }
         });
 
-        btnUpdateRestaurantProfile.setBackground(new java.awt.Color(0, 102, 102));
+        btnUpdateRestaurantProfile.setBackground(new java.awt.Color(240, 178, 62));
         btnUpdateRestaurantProfile.setFont(new java.awt.Font("Arial Black", 1, 12)); // NOI18N
+        btnUpdateRestaurantProfile.setForeground(new java.awt.Color(255, 255, 255));
         btnUpdateRestaurantProfile.setText("DECLINE ORDER");
         btnUpdateRestaurantProfile.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
 
-        btnUpdateRestaurantProfile1.setBackground(new java.awt.Color(0, 102, 102));
+        btnUpdateRestaurantProfile1.setBackground(new java.awt.Color(240, 178, 62));
         btnUpdateRestaurantProfile1.setFont(new java.awt.Font("Arial Black", 1, 12)); // NOI18N
+        btnUpdateRestaurantProfile1.setForeground(new java.awt.Color(255, 255, 255));
         btnUpdateRestaurantProfile1.setText("ACCEPT ORDER");
         btnUpdateRestaurantProfile1.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
 

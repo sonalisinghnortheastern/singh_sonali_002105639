@@ -50,9 +50,9 @@ public class ManageMenuJPanel extends javax.swing.JPanel {
 
         setBackground(new java.awt.Color(0, 102, 102));
 
-        jLabel1.setBackground(new java.awt.Color(153, 0, 0));
+        jLabel1.setBackground(new java.awt.Color(240, 178, 62));
         jLabel1.setFont(new java.awt.Font("Comic Sans MS", 1, 18)); // NOI18N
-        jLabel1.setForeground(new java.awt.Color(0, 0, 102));
+        jLabel1.setForeground(new java.awt.Color(255, 255, 255));
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel1.setText("MENU");
         jLabel1.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
@@ -86,27 +86,30 @@ public class ManageMenuJPanel extends javax.swing.JPanel {
         });
         jScrollPane1.setViewportView(JMenu);
 
+        jPanel1.setBackground(new java.awt.Color(0, 102, 102));
+
         lblItem.setFont(new java.awt.Font("Comic Sans MS", 1, 14)); // NOI18N
-        lblItem.setForeground(new java.awt.Color(0, 0, 102));
+        lblItem.setForeground(new java.awt.Color(255, 255, 255));
         lblItem.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         lblItem.setText("ITEM NAME  :");
         lblItem.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
 
         lblAvailablity.setFont(new java.awt.Font("Comic Sans MS", 1, 14)); // NOI18N
-        lblAvailablity.setForeground(new java.awt.Color(0, 0, 102));
+        lblAvailablity.setForeground(new java.awt.Color(255, 255, 255));
         lblAvailablity.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         lblAvailablity.setText("AVAILABLITY :");
         lblAvailablity.setFocusable(false);
         lblAvailablity.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
 
         lblPrice.setFont(new java.awt.Font("Comic Sans MS", 1, 14)); // NOI18N
-        lblPrice.setForeground(new java.awt.Color(0, 0, 102));
+        lblPrice.setForeground(new java.awt.Color(255, 255, 255));
         lblPrice.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        lblPrice.setText("ITEM PRICE :");
+        lblPrice.setText("ITEM PRICE    :");
         lblPrice.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
 
-        btnAddItem.setBackground(new java.awt.Color(0, 102, 102));
+        btnAddItem.setBackground(new java.awt.Color(240, 178, 62));
         btnAddItem.setFont(new java.awt.Font("Arial Black", 1, 12)); // NOI18N
+        btnAddItem.setForeground(new java.awt.Color(255, 255, 255));
         btnAddItem.setText("ADD ITEM");
         btnAddItem.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         btnAddItem.addActionListener(new java.awt.event.ActionListener() {
@@ -115,8 +118,9 @@ public class ManageMenuJPanel extends javax.swing.JPanel {
             }
         });
 
-        btnUpdateItem.setBackground(new java.awt.Color(0, 102, 102));
+        btnUpdateItem.setBackground(new java.awt.Color(240, 178, 62));
         btnUpdateItem.setFont(new java.awt.Font("Arial Black", 1, 12)); // NOI18N
+        btnUpdateItem.setForeground(new java.awt.Color(255, 255, 255));
         btnUpdateItem.setText("UPDATE ITEM");
         btnUpdateItem.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         btnUpdateItem.addActionListener(new java.awt.event.ActionListener() {
@@ -125,6 +129,7 @@ public class ManageMenuJPanel extends javax.swing.JPanel {
             }
         });
 
+        cmbAvailablity.setForeground(new java.awt.Color(255, 255, 255));
         cmbAvailablity.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "In Stock ", "Out Of Stock" }));
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
@@ -132,19 +137,27 @@ public class ManageMenuJPanel extends javax.swing.JPanel {
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(31, 31, 31)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                    .addComponent(btnAddItem, javax.swing.GroupLayout.PREFERRED_SIZE, 134, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(50, 50, 50)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(lblPrice, javax.swing.GroupLayout.PREFERRED_SIZE, 134, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(lblItem)
-                    .addComponent(lblAvailablity, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(lblPrice, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 164, Short.MAX_VALUE)
+                    .addComponent(lblAvailablity, javax.swing.GroupLayout.PREFERRED_SIZE, 134, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(btnUpdateItem, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 142, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(cmbAvailablity, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 142, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(txtItemName, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 142, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(txtPrice, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 142, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap())
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                        .addComponent(cmbAvailablity, javax.swing.GroupLayout.PREFERRED_SIZE, 142, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(31, 31, 31))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(txtPrice, javax.swing.GroupLayout.PREFERRED_SIZE, 142, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(txtItemName, javax.swing.GroupLayout.PREFERRED_SIZE, 142, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addContainerGap())))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                .addContainerGap(108, Short.MAX_VALUE)
+                .addComponent(btnAddItem, javax.swing.GroupLayout.PREFERRED_SIZE, 134, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(41, 41, 41)
+                .addComponent(btnUpdateItem, javax.swing.GroupLayout.PREFERRED_SIZE, 142, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(56, 56, 56))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -154,14 +167,14 @@ public class ManageMenuJPanel extends javax.swing.JPanel {
                     .addComponent(lblItem, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(txtItemName, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(0, 50, Short.MAX_VALUE)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(txtPrice)
-                    .addComponent(lblPrice, javax.swing.GroupLayout.DEFAULT_SIZE, 31, Short.MAX_VALUE))
-                .addGap(50, 50, 50)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(cmbAvailablity)
-                    .addComponent(lblAvailablity, javax.swing.GroupLayout.DEFAULT_SIZE, 34, Short.MAX_VALUE))
-                .addGap(51, 51, 51)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(lblPrice, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txtPrice, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(48, 48, 48)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(lblAvailablity, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(cmbAvailablity, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(49, 49, 49)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnAddItem)
                     .addComponent(btnUpdateItem))
