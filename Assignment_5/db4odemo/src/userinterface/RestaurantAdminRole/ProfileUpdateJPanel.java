@@ -2,6 +2,10 @@
 
 package userinterface.RestaurantAdminRole;
 
+import Business.Customer.Customer;
+import Business.DB4OUtil.DB4OUtil;
+import Business.EcoSystem;
+
 /**
  *
  * @author  raunak
@@ -9,9 +13,12 @@ package userinterface.RestaurantAdminRole;
 public class ProfileUpdateJPanel extends javax.swing.JPanel {
 
     
-    /** Creates new form AdminWorkAreaJPanel */
+   private final EcoSystem system;
+    private final DB4OUtil dB4OUtil = DB4OUtil.getInstance();
     public ProfileUpdateJPanel() {
         initComponents();
+        system = dB4OUtil.retrieveSystem();
+        onload();
     }
     
        /** This method is called from within the constructor to
@@ -132,7 +139,20 @@ public class ProfileUpdateJPanel extends javax.swing.JPanel {
 
         add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 60, 440, 400));
     }// </editor-fold>//GEN-END:initComponents
-    
+    private void onload()
+    {
+        int uniqueId=system.getLogInUser().getLogInId();
+        for (Customer customer : system.getCustomerDirectory().getCustomers()) {
+           if(customer.getUniqueId()==uniqueId)
+           {
+               txtName.setText(customer.getName());
+               txtAddress.setText(customer.getAddress());
+               txtMobileNumber.setText(String.valueOf(customer.getMobileNumber()));
+               txtUsername.setText(customer.getUsername());
+           }
+            
+        }
+    }
     
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton1;

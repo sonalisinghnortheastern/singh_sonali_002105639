@@ -5,7 +5,6 @@
  */
 package userinterface.SystemAdminWorkArea;
 
-import Business.DB4OUtil.DB4OUtil;
 import Business.EcoSystem;
 import Business.Restaurant.Restaurant;
 import Business.Restaurant.RestaurantDirectory;
@@ -20,10 +19,9 @@ import javax.swing.table.DefaultTableModel;
  */
 public class ManageRestaurantJPanel extends javax.swing.JPanel {
     private final EcoSystem system;
-    private final DB4OUtil dB4OUtil = DB4OUtil.getInstance();
-    public ManageRestaurantJPanel() {
+    public ManageRestaurantJPanel(EcoSystem system) {
         initComponents();
-        system = dB4OUtil.retrieveSystem();
+        this.system = system;
         populateTable();
     }
 

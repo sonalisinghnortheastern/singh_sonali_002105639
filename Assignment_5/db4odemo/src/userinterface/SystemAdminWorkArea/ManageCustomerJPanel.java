@@ -7,7 +7,6 @@ package userinterface.SystemAdminWorkArea;
 
 import Business.Customer.Customer;
 import Business.Customer.CustomerDirectory;
-import Business.DB4OUtil.DB4OUtil;
 import Business.EcoSystem;
 import Business.UserAccount.UserAccount;
 import java.util.Random;
@@ -23,12 +22,10 @@ public class ManageCustomerJPanel extends javax.swing.JPanel {
     /**
      * Creates new form ManageCustomersJPanel
      */
-    private final EcoSystem system;
-    private final DB4OUtil dB4OUtil = DB4OUtil.getInstance();
-   
-    public ManageCustomerJPanel() {
+    private final EcoSystem system;   
+    public ManageCustomerJPanel(EcoSystem system) {
         initComponents();
-        system = dB4OUtil.retrieveSystem();
+       this.system = system;
         populateTable();
     }
 

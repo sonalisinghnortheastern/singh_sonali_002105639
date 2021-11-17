@@ -11,6 +11,7 @@ import Business.DeliveryMan.DeliveryManDirectory;
 import Business.Restaurant.RestaurantDirectory;
 import Business.Role.Role;
 import Business.Role.SystemAdminRole;
+import Business.UserAccount.loggedInUser;
 import java.util.ArrayList;
 
 /**
@@ -23,6 +24,7 @@ public class EcoSystem extends Organization{
     private RestaurantDirectory restaurantDirectory;
     private CustomerDirectory customerDirectory;
     private DeliveryManDirectory deliveryManDirectory;
+    private loggedInUser logInUser;
     public static EcoSystem getInstance(){
         if(business==null){
             business=new EcoSystem();
@@ -41,6 +43,23 @@ public class EcoSystem extends Organization{
         customerDirectory  = new CustomerDirectory();
         deliveryManDirectory = new DeliveryManDirectory();
         restaurantDirectory = new RestaurantDirectory();
+        logInUser=new loggedInUser();
+    }
+
+    public static EcoSystem getBusiness() {
+        return business;
+    }
+
+    public static void setBusiness(EcoSystem business) {
+        EcoSystem.business = business;
+    }
+
+    public loggedInUser getLogInUser() {
+        return logInUser;
+    }
+
+    public void setLogInUser(loggedInUser logInUser) {
+        this.logInUser = logInUser;
     }
     public CustomerDirectory getCustomerDirectory() {
         return customerDirectory;

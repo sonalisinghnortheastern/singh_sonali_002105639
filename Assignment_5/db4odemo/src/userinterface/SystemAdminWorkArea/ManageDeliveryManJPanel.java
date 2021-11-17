@@ -22,9 +22,9 @@ public class ManageDeliveryManJPanel extends javax.swing.JPanel {
 
     private final EcoSystem system;
     private final DB4OUtil dB4OUtil = DB4OUtil.getInstance();
-    public ManageDeliveryManJPanel() {
+    public ManageDeliveryManJPanel(EcoSystem system) {
         initComponents();
-        system = dB4OUtil.retrieveSystem();
+        this.system = system;
         populateTable();
     }
 

@@ -71,11 +71,6 @@ public class SystemAdminWorkAreaJPanel extends javax.swing.JPanel {
 
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Icons/LogoutIcon.png"))); // NOI18N
-        jLabel1.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jLabel1MouseClicked(evt);
-            }
-        });
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -124,23 +119,19 @@ public class SystemAdminWorkAreaJPanel extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnManageCustomersActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnManageCustomersActionPerformed
-    ManageCustomerJPanel manageCustomersJPanel =new ManageCustomerJPanel();
+    ManageCustomerJPanel manageCustomersJPanel =new ManageCustomerJPanel(ecosystem);
     jSplitPane.setRightComponent(manageCustomersJPanel); 
     }//GEN-LAST:event_btnManageCustomersActionPerformed
 
     private void btnManageRestaurantActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnManageRestaurantActionPerformed
-        ManageRestaurantJPanel manageRestaurantJPanel=new ManageRestaurantJPanel();
+        ManageRestaurantJPanel manageRestaurantJPanel=new ManageRestaurantJPanel(ecosystem);
         jSplitPane.setRightComponent(manageRestaurantJPanel);
     }//GEN-LAST:event_btnManageRestaurantActionPerformed
 
     private void btnManageDeliveryMenActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnManageDeliveryMenActionPerformed
-        ManageDeliveryManJPanel manageDeliveryManJPanel=new ManageDeliveryManJPanel();
+        ManageDeliveryManJPanel manageDeliveryManJPanel=new ManageDeliveryManJPanel(ecosystem);
         jSplitPane.setRightComponent(manageDeliveryManJPanel);
     }//GEN-LAST:event_btnManageDeliveryMenActionPerformed
-
-    private void jLabel1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel1MouseClicked
-        
-    }//GEN-LAST:event_jLabel1MouseClicked
    
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

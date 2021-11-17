@@ -8,6 +8,7 @@ import Business.DB4OUtil.DB4OUtil;
 import Business.EcoSystem;
 import Business.Role.Role.RoleType;
 import Business.UserAccount.UserAccount;
+import Business.UserAccount.loggedInUser;
 import java.awt.CardLayout;
 import javax.swing.JOptionPane;
 
@@ -254,7 +255,16 @@ public class MainJFrame extends javax.swing.JFrame {
             txtuserName.setText("");
             txtPassword.setText("");
             leftPanel.setVisible(true);
+            for (UserAccount userAccount : system.getUserAccountDirectory().getUserAccountList()) {
+               if(userAccount.getUsername().equals(userName))
+               {
+                   loggedInUser logInUser=new loggedInUser();
+                   logInUser.setLogInId(userAccount.getUniqueId());
+                   system.setLogInUser(logInUser);
+               }
+            }
             switchJPanel(userAccount);
+            
         }
 
     }//GEN-LAST:event_loginButtonMousePressed
