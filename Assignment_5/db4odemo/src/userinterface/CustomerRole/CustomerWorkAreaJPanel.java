@@ -7,7 +7,6 @@ package userinterface.CustomerRole;
 
 import Business.EcoSystem;
 import javax.swing.JPanel;
-import userinterface.RestaurantAdminRole.*;
 
 /**
  *
@@ -109,8 +108,8 @@ public class CustomerWorkAreaJPanel extends javax.swing.JPanel {
     }//GEN-LAST:event_btnManageCustomersActionPerformed
 
     private void btnPlaceOrderActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPlaceOrderActionPerformed
-    ManageMenuJPanel manageMenuJPanel =new ManageMenuJPanel(ecosystem);
-    jSplitPane.setRightComponent(manageMenuJPanel); 
+    PlaceOrdeJPanel placeOrdeJPanel =new PlaceOrdeJPanel(ecosystem);
+    jSplitPane.setRightComponent(placeOrdeJPanel); 
     }//GEN-LAST:event_btnPlaceOrderActionPerformed
    
 
