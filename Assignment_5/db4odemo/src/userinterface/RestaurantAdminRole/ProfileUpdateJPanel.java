@@ -196,6 +196,17 @@ public class ProfileUpdateJPanel extends javax.swing.JPanel {
                 }
             }
             system.getRestaurantDirectory().getRestaurants().set(selectedRowIndex, restaurant);
+            int index=0;
+            for(UserAccount userAccount:system.getUserAccountDirectory().getUserAccountList())
+            {
+                    if(uniqueId == userAccount.getUniqueId())
+                    {
+                        system.getUserAccountDirectory().getUserAccountList().set(index, restaurant);
+                    }
+                    else{
+                        index++;
+                    }
+            }
             JOptionPane.showMessageDialog(null, "User Updated Succesfully");
     }
     catch(Exception e)
