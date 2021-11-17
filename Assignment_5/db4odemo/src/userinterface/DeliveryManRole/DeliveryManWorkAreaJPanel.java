@@ -5,12 +5,9 @@
 package userinterface.DeliveryManRole;
 
 import Business.EcoSystem;
-
 import Business.UserAccount.UserAccount;
 import Business.WorkQueue.WorkRequest;
-import java.awt.CardLayout;
 import javax.swing.JPanel;
-import javax.swing.table.DefaultTableModel;
 
 /**
  *
@@ -128,7 +125,7 @@ public class DeliveryManWorkAreaJPanel extends javax.swing.JPanel {
         }
         
         WorkRequest request = (WorkRequest)workRequestJTable.getValueAt(selectedRow, 0);
-        request.setReceiver(userAccount);
+        //request.setReceiver(userAccount);
         request.setStatus("Pending");
         populateTable();
         

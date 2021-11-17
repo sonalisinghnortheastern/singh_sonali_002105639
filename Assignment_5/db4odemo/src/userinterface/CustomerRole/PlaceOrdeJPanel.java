@@ -6,7 +6,7 @@
 package userinterface.CustomerRole;
 
 import Business.EcoSystem;
-import Business.Restaurant.Cart;
+import Business.WorkQueue.Cart;
 import Business.Restaurant.FoodItem;
 import Business.Restaurant.Restaurant;
 import java.util.ArrayList;
