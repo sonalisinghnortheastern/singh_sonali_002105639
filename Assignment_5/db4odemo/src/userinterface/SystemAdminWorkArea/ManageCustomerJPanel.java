@@ -66,14 +66,14 @@ public class ManageCustomerJPanel extends javax.swing.JPanel {
 
             },
             new String [] {
-                "Name", "Address", "Phone", "Username", "Password"
+                "Default", "Name", "Address", "Phone", "Username", "Password"
             }
         ) {
             Class[] types = new Class [] {
-                java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class
+                java.lang.Object.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class
             };
             boolean[] canEdit = new boolean [] {
-                false, false, false, false, false
+                true, false, false, false, false, false
             };
 
             public Class getColumnClass(int columnIndex) {
@@ -309,11 +309,11 @@ public class ManageCustomerJPanel extends javax.swing.JPanel {
     private void jRegisterTableMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jRegisterTableMouseClicked
        try{
            int rowNumber=jRegisterTable.getSelectedRow();
-            txtName.setText(jRegisterTable.getModel().getValueAt(rowNumber, 0).toString());
-            txtAddress.setText(jRegisterTable.getModel().getValueAt(rowNumber, 1).toString());
-            txtMobileNumber.setText(jRegisterTable.getModel().getValueAt(rowNumber, 2).toString());
-            txtUsername.setText(jRegisterTable.getModel().getValueAt(rowNumber, 3).toString());
-            txtPassword.setText(jRegisterTable.getModel().getValueAt(rowNumber, 4).toString());
+            txtName.setText(jRegisterTable.getModel().getValueAt(rowNumber, 1).toString());
+            txtAddress.setText(jRegisterTable.getModel().getValueAt(rowNumber, 2).toString());
+            txtMobileNumber.setText(jRegisterTable.getModel().getValueAt(rowNumber, 3).toString());
+            txtUsername.setText(jRegisterTable.getModel().getValueAt(rowNumber, 4).toString());
+            txtPassword.setText(jRegisterTable.getModel().getValueAt(rowNumber, 5).toString());
             
        }
       catch(Exception e)
@@ -325,16 +325,20 @@ public class ManageCustomerJPanel extends javax.swing.JPanel {
         CustomerDirectory customerDirectory = system.getCustomerDirectory();
         DefaultTableModel model = (DefaultTableModel) jRegisterTable.getModel();
         model.setRowCount(0);
+        jRegisterTable.getColumnModel().getColumn(0).setMinWidth(0);
+        jRegisterTable.getColumnModel().getColumn(0).setMaxWidth(0);
         for (Customer customer : customerDirectory.getCustomers()) {
-                    Object[] row = new Object[5];
-                    row[0] = customer.getName();
-                    row[1] = customer.getAddress();
-                    row[2] = customer.getMobileNumber();
-                    row[3] = customer.getUsername();
-                    row[4] = customer.getPassword();
+                    Object[] row = new Object[6];
+                    row[0]=customer;
+                    row[1] = customer.getName();
+                    row[2] = customer.getAddress();
+                    row[3] = customer.getMobileNumber();
+                    row[4] = customer.getUsername();
+                    row[5] = customer.getPassword();
                     model.addRow(row);
                 
             }
+        
     }
     private void reset() {
             txtName.setText("");

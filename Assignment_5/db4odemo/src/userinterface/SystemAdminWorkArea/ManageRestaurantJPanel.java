@@ -59,11 +59,11 @@ public class ManageRestaurantJPanel extends javax.swing.JPanel {
 
             },
             new String [] {
-                "Restaurant name", "Restaurant Contact", "Restaurant Location", "Username", "Password"
+                "Default", "Restaurant name", "Restaurant Contact", "Restaurant Location", "Username", "Password"
             }
         ) {
             boolean[] canEdit = new boolean [] {
-                false, false, false, false, false
+                false, false, false, false, false, false
             };
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
@@ -307,11 +307,11 @@ public class ManageRestaurantJPanel extends javax.swing.JPanel {
     private void jRegisterTableMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jRegisterTableMouseClicked
          try{
            int rowNumber=jRegisterTable.getSelectedRow();
-            txtName.setText(jRegisterTable.getModel().getValueAt(rowNumber, 0).toString());
-            txtContact.setText(jRegisterTable.getModel().getValueAt(rowNumber, 1).toString());
-            txtLocation.setText(jRegisterTable.getModel().getValueAt(rowNumber, 2).toString());
-            txtUsername.setText(jRegisterTable.getModel().getValueAt(rowNumber, 3).toString());
-            txtPassword.setText(jRegisterTable.getModel().getValueAt(rowNumber, 4).toString());
+            txtName.setText(jRegisterTable.getModel().getValueAt(rowNumber, 1).toString());
+            txtContact.setText(jRegisterTable.getModel().getValueAt(rowNumber, 2).toString());
+            txtLocation.setText(jRegisterTable.getModel().getValueAt(rowNumber, 3).toString());
+            txtUsername.setText(jRegisterTable.getModel().getValueAt(rowNumber, 4).toString());
+            txtPassword.setText(jRegisterTable.getModel().getValueAt(rowNumber, 5).toString());
             
        }
       catch(Exception e)
@@ -323,13 +323,16 @@ public class ManageRestaurantJPanel extends javax.swing.JPanel {
        RestaurantDirectory restaurantDirectory = system.getRestaurantDirectory();
         DefaultTableModel model = (DefaultTableModel) jRegisterTable.getModel();
         model.setRowCount(0);
+          jRegisterTable.getColumnModel().getColumn(0).setMinWidth(0);
+        jRegisterTable.getColumnModel().getColumn(0).setMaxWidth(0);
         for (Restaurant restaurant : restaurantDirectory.getRestaurants()) {
-                    Object[] row = new Object[5];
-                    row[0] = restaurant.getName();
-                    row[1] = restaurant.getMobileNumber();
-                    row[2] = restaurant.getAddress();
-                    row[3] = restaurant.getUsername();
-                    row[4] = restaurant.getPassword();
+                    Object[] row = new Object[6];
+                    row[0] = restaurant;
+                    row[1] = restaurant.getName();
+                    row[2] = restaurant.getMobileNumber();
+                    row[3] = restaurant.getAddress();
+                    row[4] = restaurant.getUsername();
+                    row[5] = restaurant.getPassword();
                     model.addRow(row);
                 
             }
