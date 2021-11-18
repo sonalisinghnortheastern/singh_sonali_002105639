@@ -28,8 +28,8 @@ public class PlaceOrderWorkRequest extends WorkRequest {
         return itemsWithQuatityList;
     }
 
-    public void setItemsWithQuatityList(List<Cart> itemsWithQuatityList) {
-        this.itemsWithQuatityList = itemsWithQuatityList;
+    public void setItemsWithQuatityList(Cart itemsWithQuatityList) {
+        this.itemsWithQuatityList.add(itemsWithQuatityList);
     }
     
     private List<Cart> itemsWithQuatityList = new ArrayList<Cart>();

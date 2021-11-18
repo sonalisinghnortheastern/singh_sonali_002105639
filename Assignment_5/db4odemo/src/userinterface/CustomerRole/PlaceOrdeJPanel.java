@@ -267,13 +267,16 @@ public class PlaceOrdeJPanel extends javax.swing.JPanel {
 
     private void btnPlaceOrderActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPlaceOrderActionPerformed
         try{
-        if(orderItems!=null)
+        if(orderItems.size()<=0)
         {
             JOptionPane.showMessageDialog(null, "Please add items to cart, it cannot be empty");
         }
         else{
             PlaceOrderWorkRequest placeOrderWorkRequest = new PlaceOrderWorkRequest();
-            placeOrderWorkRequest.setItemsWithQuatityList(orderItems);
+            for(Cart cart :orderItems)
+            {
+                placeOrderWorkRequest.setItemsWithQuatityList(cart);
+            }
             placeOrderWorkRequest.setMessage("");
             int uniqueId=system.getLogInUser().getLogInId();
             for(Customer customer:system.getCustomerDirectory().getCustomers())
@@ -291,6 +294,7 @@ public class PlaceOrdeJPanel extends javax.swing.JPanel {
             }
             placeOrderWorkRequest.setRequestDate(new Date());
             placeOrderWorkRequest.setStatus("Ordered");
+            
             system.getWorkQueue().setWorkRequestList(placeOrderWorkRequest);
             JOptionPane.showMessageDialog(null, "Ordered Placed Successfully");
             orderItems.removeAll(orderItems);
