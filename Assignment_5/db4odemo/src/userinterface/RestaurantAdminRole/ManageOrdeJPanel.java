@@ -328,12 +328,16 @@ public class ManageOrdeJPanel extends javax.swing.JPanel {
                 {
                     if(workRequest.getRestaurant().getUniqueId() == uniqueId)
                     {
-                        Object[] row = new Object[4];
-                        row[0]=workRequest.getId();
-                        row[1] = workRequest.getCustomer().getName();
-                        row[2] = workRequest.getStatus();
-                        row[3] = workRequest.getRequestDate();
-                        model.addRow(row);
+                        if(!workRequest.getStatus().equals("Delivered")&& !workRequest.getStatus().equals("DECLINE"))
+                        {
+                            Object[] row = new Object[4];
+                            row[0]=workRequest.getId();
+                            row[1] = workRequest.getCustomer().getName();
+                            row[2] = workRequest.getStatus();
+                            row[3] = workRequest.getRequestDate();
+                            model.addRow(row);
+                        }
+                       
                     }
                 }
             }
