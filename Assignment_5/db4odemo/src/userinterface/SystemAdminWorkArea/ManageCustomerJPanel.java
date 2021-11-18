@@ -9,8 +9,11 @@ import Business.Customer.Customer;
 import Business.Customer.CustomerDirectory;
 import Business.EcoSystem;
 import Business.UserAccount.UserAccount;
+import java.awt.Color;
 import java.util.Random;
+import javax.swing.BorderFactory;
 import javax.swing.JOptionPane;
+import javax.swing.UIManager;
 import javax.swing.table.DefaultTableModel;
 
 /**
@@ -22,7 +25,9 @@ public class ManageCustomerJPanel extends javax.swing.JPanel {
     /**
      * Creates new form ManageCustomersJPanel
      */
-    private final EcoSystem system;   
+    private final EcoSystem system; 
+    boolean validateNullOrEmpty=true;
+    boolean validateRegex=true;
     public ManageCustomerJPanel(EcoSystem system) {
         initComponents();
        this.system = system;
@@ -347,6 +352,75 @@ public class ManageCustomerJPanel extends javax.swing.JPanel {
             txtUsername.setText("");
             txtPassword.setText("");
         }
+    private  boolean validateNullOrEmpty()
+    {
+        if(txtName.getText().trim().isEmpty() || txtName.getText()==null)
+        {
+            validateNullOrEmpty=false;
+            txtName.setToolTipText("Please Enter a Name");
+            txtName.setBorder(BorderFactory.createLineBorder(Color.red,1));
+        }
+        if(!txtName.getText().trim().isEmpty() && txtName.getText()!=null)
+        {
+            txtName.setBorder(UIManager.getLookAndFeel().getDefaults().getBorder("TextField.border"));
+        }
+        if(txtAddress.getText().trim().isEmpty() || txtAddress.getText()==null)
+        {
+            txtAddress.setToolTipText("Please Enter a Location");
+            validateNullOrEmpty=false;
+            txtAddress.setBorder(BorderFactory.createLineBorder (Color.red));
+        }
+        if(!txtAddress.getText().trim().isEmpty() && txtAddress.getText()!=null)
+        {
+            txtAddress.setBorder(UIManager.getLookAndFeel().getDefaults().getBorder("TextField.border"));
+        }
+        if(txtMobileNumber.getText().trim().isEmpty() || txtMobileNumber.getText()==null)
+        {
+            txtMobileNumber.setToolTipText("Please Enter a Contact");
+            validateNullOrEmpty=false;
+            txtMobileNumber.setBorder(BorderFactory.createLineBorder (Color.red));
+        }
+        if(!txtMobileNumber.getText().trim().isEmpty() && txtMobileNumber.getText()!=null)
+        {
+            txtMobileNumber.setBorder(UIManager.getLookAndFeel().getDefaults().getBorder("TextField.border"));
+        }
+        if(txtUsername.getText().trim().isEmpty() || txtUsername.getText()==null)
+        {
+            txtUsername.setToolTipText("Please Enter a Username");
+            validateNullOrEmpty=false;
+            txtUsername.setBorder(BorderFactory.createLineBorder (Color.red));
+        }
+        if(!txtUsername.getText().trim().isEmpty() && txtUsername.getText()!=null)
+        {
+            txtUsername.setBorder(UIManager.getLookAndFeel().getDefaults().getBorder("TextField.border"));
+        }
+        if(txtPassword.getText().trim().isEmpty() || txtPassword.getText()==null)
+        {
+            txtPassword.setToolTipText("Please Enter a Password");
+            validateNullOrEmpty=false;
+            txtPassword.setBorder(BorderFactory.createLineBorder (Color.red));
+        }
+        if(!txtPassword.getText().trim().isEmpty() && txtPassword.getText()!=null)
+        {
+            txtPassword.setBorder(UIManager.getLookAndFeel().getDefaults().getBorder("TextField.border"));
+        }
+        return  validateNullOrEmpty;
+    }
+    private  boolean  validateFields()
+    {
+        if(!txtMobileNumber.getText().matches("\\b\\d+\\b"))
+        {
+            validateRegex=false;
+            txtMobileNumber.setToolTipText("Please Enter Only Numbers");
+            txtName.setBorder(UIManager.getLookAndFeel().getDefaults().getBorder("TextField.border"));
+            txtMobileNumber.setBorder(BorderFactory.createLineBorder (Color.red));
+        }
+        if(txtMobileNumber.getText().matches("\\b\\d+\\b"))
+        {
+            txtMobileNumber.setBorder(UIManager.getLookAndFeel().getDefaults().getBorder("TextField.border"));
+        }
+        return validateRegex;
+    }
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnCreateCustomer;
     private javax.swing.JButton btnDelete;
