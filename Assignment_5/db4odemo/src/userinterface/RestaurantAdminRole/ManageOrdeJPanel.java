@@ -74,7 +74,7 @@ public class ManageOrdeJPanel extends javax.swing.JPanel {
             new Object [][] {
             },
             new String [] {
-                "Id", "CUSTOMER NAME", "STATUS", "ORDER DATE"
+                "Id", "CUSTOMER NAME", "STATUS", "ORDER DATE" ,"MESSAGE"
             }
         ) {
             boolean[] canEdit = new boolean [] {
@@ -353,11 +353,12 @@ public class ManageOrdeJPanel extends javax.swing.JPanel {
                     {
                         if(!workRequest.getStatus().equals("Delivered")&& !workRequest.getStatus().equals("DECLINE") &&!workRequest.getStatus().equals("ASSIGNED") )
                         {
-                            Object[] row = new Object[4];
+                            Object[] row = new Object[5];
                             row[0]=workRequest.getId();
                             row[1] = workRequest.getCustomer().getName();
                             row[2] = workRequest.getStatus();
                             row[3] = workRequest.getRequestDate();
+                            row[4] = workRequest.getMessage();
                             model.addRow(row);
                         }
                        

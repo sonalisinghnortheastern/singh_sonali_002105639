@@ -9,8 +9,11 @@ import Business.EcoSystem;
 import Business.Restaurant.Restaurant;
 import Business.Restaurant.RestaurantDirectory;
 import Business.UserAccount.UserAccount;
+import java.awt.Color;
 import java.util.Random;
+import javax.swing.BorderFactory;
 import javax.swing.JOptionPane;
+import javax.swing.UIManager;
 import javax.swing.table.DefaultTableModel;
 
 /**
@@ -19,6 +22,8 @@ import javax.swing.table.DefaultTableModel;
  */
 public class ManageRestaurantJPanel extends javax.swing.JPanel {
     private final EcoSystem system;
+    boolean validateNullOrEmpty=true;
+    boolean validateRegex=true;
     public ManageRestaurantJPanel(EcoSystem system) {
         initComponents();
         this.system = system;
@@ -224,60 +229,87 @@ public class ManageRestaurantJPanel extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnCreateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCreateActionPerformed
-        try {
-        if(!system.getUserAccountDirectory().checkIfUsernameIsUnique((txtUsername.getText())))
+    try {
+        if(validateNullOrEmpty())
         {
-            JOptionPane.showMessageDialog(this, "User with this username already exist.Try a diffrent username");
+            if(validateFields()){
+                if(!system.getUserAccountDirectory().checkIfUsernameIsUnique((txtUsername.getText())))
+                {
+                    JOptionPane.showMessageDialog(this, "User with this username already exist.Try a diffrent username");
+                }
+                else{
+                  Random random=new Random();
+                  int uniqueId=random.nextInt((9999 - 100) + 1) + 10;
+                  Restaurant restaurant=new Restaurant(txtName.getText(),txtLocation.getText(),Long.parseLong(txtContact.getText()),txtUsername.getText(),txtPassword.getText(),uniqueId);
+                  system.getRestaurantDirectory().setRestaurants(restaurant);
+                  system.getUserAccountDirectory().addUserAccountToAccounts(restaurant);
+                  populateTable();
+                  reset();
+                  JOptionPane.showMessageDialog(this, "User Registered Succesfully");
+                }
+            }
+            else{
+                JOptionPane.showMessageDialog(this, "Validation Failed .Please check the red boxes");
+                validateNullOrEmpty=true;
+                validateRegex=true;
+            }
         }
         else{
-          Random random=new Random();
-          int uniqueId=random.nextInt((9999 - 100) + 1) + 10;
-          Restaurant restaurant=new Restaurant(txtName.getText(),txtLocation.getText(),Long.parseLong(txtContact.getText()),txtUsername.getText(),txtPassword.getText(),uniqueId);
-          system.getRestaurantDirectory().setRestaurants(restaurant);
-          system.getUserAccountDirectory().addUserAccountToAccounts(restaurant);
-          populateTable();
-          reset();
-          JOptionPane.showMessageDialog(this, "User Registered Succesfully");
+            JOptionPane.showMessageDialog(this, "Validation Failed .Please check the red boxes");
+            validateNullOrEmpty=true;
+            validateRegex=true;
         }
     } catch (Exception e) {
+        validateNullOrEmpty=true;
+        validateRegex=true;
         throw e;
     }
     }//GEN-LAST:event_btnCreateActionPerformed
 
     private void btnModifyActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnModifyActionPerformed
       try{
-        int selectedRowIndex=jRegisterTable.getSelectedRow();
-        int uniqueId=system.getRestaurantDirectory().getRestaurants().get(selectedRowIndex).getUniqueId();
-        Restaurant restaurant=new Restaurant(txtName.getText(),txtLocation.getText(),Long.parseLong(txtContact.getText()),txtUsername.getText(),txtPassword.getText(),uniqueId);
-        for(UserAccount userAccount:system.getUserAccountDirectory().getUserAccountList())
+        if(validateNullOrEmpty() && validateFields())
         {
-            if(txtUsername.getText().equals(userAccount.getUsername()))
+            int selectedRowIndex=jRegisterTable.getSelectedRow();
+            int uniqueId=system.getRestaurantDirectory().getRestaurants().get(selectedRowIndex).getUniqueId();
+            Restaurant restaurant=new Restaurant(txtName.getText(),txtLocation.getText(),Long.parseLong(txtContact.getText()),txtUsername.getText(),txtPassword.getText(),uniqueId);
+            for(UserAccount userAccount:system.getUserAccountDirectory().getUserAccountList())
             {
-                if(uniqueId != userAccount.getUniqueId())
+                if(txtUsername.getText().equals(userAccount.getUsername()))
                 {
-                    JOptionPane.showMessageDialog(this, "Username already taken.Please take a diffrent username");
-                    return;
+                    if(uniqueId != userAccount.getUniqueId())
+                    {
+                        JOptionPane.showMessageDialog(this, "Username already taken.Please take a diffrent username");
+                        return;
+                    }
                 }
             }
+            system.getRestaurantDirectory().getRestaurants().set(selectedRowIndex, restaurant);
+            populateTable();
+            int index=0;
+            for(UserAccount userAccount:system.getUserAccountDirectory().getUserAccountList())
+            {
+                    if(uniqueId == userAccount.getUniqueId())
+                    {
+                        system.getUserAccountDirectory().getUserAccountList().set(index, restaurant);
+                    }
+                    else{
+                        index++;
+                    }
+            }
+            JOptionPane.showMessageDialog(null, "User Updated Succesfully");
+            reset();
         }
-        system.getRestaurantDirectory().getRestaurants().set(selectedRowIndex, restaurant);
-        populateTable();
-        int index=0;
-        for(UserAccount userAccount:system.getUserAccountDirectory().getUserAccountList())
-        {
-                if(uniqueId == userAccount.getUniqueId())
-                {
-                    system.getUserAccountDirectory().getUserAccountList().set(index, restaurant);
-                }
-                else{
-                    index++;
-                }
+        else{
+            JOptionPane.showMessageDialog(this, "Validation Failed .Please check the red boxes");
+            validateNullOrEmpty=true;
+            validateRegex=true;
         }
-        JOptionPane.showMessageDialog(null, "User Updated Succesfully");
-        reset();
     }
     catch(Exception e)
     {
+        validateNullOrEmpty=true;
+        validateRegex=true;
         throw e;
     }
     }//GEN-LAST:event_btnModifyActionPerformed
@@ -320,22 +352,28 @@ public class ManageRestaurantJPanel extends javax.swing.JPanel {
       }
     }//GEN-LAST:event_jRegisterTableMouseClicked
     private void populateTable() {
-       RestaurantDirectory restaurantDirectory = system.getRestaurantDirectory();
-        DefaultTableModel model = (DefaultTableModel) jRegisterTable.getModel();
-        model.setRowCount(0);
-          jRegisterTable.getColumnModel().getColumn(0).setMinWidth(0);
-        jRegisterTable.getColumnModel().getColumn(0).setMaxWidth(0);
-        for (Restaurant restaurant : restaurantDirectory.getRestaurants()) {
-                    Object[] row = new Object[6];
-                    row[0] = restaurant;
-                    row[1] = restaurant.getName();
-                    row[2] = restaurant.getMobileNumber();
-                    row[3] = restaurant.getAddress();
-                    row[4] = restaurant.getUsername();
-                    row[5] = restaurant.getPassword();
-                    model.addRow(row);
-                
-            }
+        try{
+            RestaurantDirectory restaurantDirectory = system.getRestaurantDirectory();
+             DefaultTableModel model = (DefaultTableModel) jRegisterTable.getModel();
+             model.setRowCount(0);
+             jRegisterTable.getColumnModel().getColumn(0).setMinWidth(0);
+             jRegisterTable.getColumnModel().getColumn(0).setMaxWidth(0);
+             for (Restaurant restaurant : restaurantDirectory.getRestaurants()) {
+                         Object[] row = new Object[6];
+                         row[0] = restaurant;
+                         row[1] = restaurant.getName();
+                         row[2] = restaurant.getMobileNumber();
+                         row[3] = restaurant.getAddress();
+                         row[4] = restaurant.getUsername();
+                         row[5] = restaurant.getPassword();
+                         model.addRow(row);
+
+                 }
+        }
+        catch(Exception ex)
+        {
+            throw ex;
+        }
     }
     private void reset() {
             txtName.setText("");
@@ -344,7 +382,75 @@ public class ManageRestaurantJPanel extends javax.swing.JPanel {
             txtUsername.setText("");
             txtPassword.setText("");
         }
-
+    private  boolean validateNullOrEmpty()
+    {
+        if(txtName.getText().trim().isEmpty() || txtName.getText()==null)
+        {
+            validateNullOrEmpty=false;
+            txtName.setToolTipText("Please Enter a Name");
+            txtName.setBorder(BorderFactory.createLineBorder(Color.red,1));
+        }
+        if(!txtName.getText().trim().isEmpty() && txtName.getText()!=null)
+        {
+            txtName.setBorder(UIManager.getLookAndFeel().getDefaults().getBorder("TextField.border"));
+        }
+        if(txtLocation.getText().trim().isEmpty() || txtLocation.getText()==null)
+        {
+            txtLocation.setToolTipText("Please Enter a Location");
+            validateNullOrEmpty=false;
+            txtLocation.setBorder(BorderFactory.createLineBorder (Color.red));
+        }
+        if(!txtLocation.getText().trim().isEmpty() && txtLocation.getText()!=null)
+        {
+            txtLocation.setBorder(UIManager.getLookAndFeel().getDefaults().getBorder("TextField.border"));
+        }
+        if(txtContact.getText().trim().isEmpty() || txtContact.getText()==null)
+        {
+            txtContact.setToolTipText("Please Enter a Contact");
+            validateNullOrEmpty=false;
+            txtContact.setBorder(BorderFactory.createLineBorder (Color.red));
+        }
+        if(!txtContact.getText().trim().isEmpty() && txtContact.getText()!=null)
+        {
+            txtContact.setBorder(UIManager.getLookAndFeel().getDefaults().getBorder("TextField.border"));
+        }
+        if(txtUsername.getText().trim().isEmpty() || txtUsername.getText()==null)
+        {
+            txtUsername.setToolTipText("Please Enter a Username");
+            validateNullOrEmpty=false;
+            txtUsername.setBorder(BorderFactory.createLineBorder (Color.red));
+        }
+        if(!txtUsername.getText().trim().isEmpty() && txtUsername.getText()!=null)
+        {
+            txtUsername.setBorder(UIManager.getLookAndFeel().getDefaults().getBorder("TextField.border"));
+        }
+        if(txtPassword.getText().trim().isEmpty() || txtPassword.getText()==null)
+        {
+            txtPassword.setToolTipText("Please Enter a Password");
+            validateNullOrEmpty=false;
+            txtPassword.setBorder(BorderFactory.createLineBorder (Color.red));
+        }
+        if(!txtPassword.getText().trim().isEmpty() && txtPassword.getText()!=null)
+        {
+            txtPassword.setBorder(UIManager.getLookAndFeel().getDefaults().getBorder("TextField.border"));
+        }
+        return  validateNullOrEmpty;
+    }
+    private  boolean  validateFields()
+    {
+        if(!txtContact.getText().matches("\\b\\d+\\b"))
+        {
+            validateRegex=false;
+            txtContact.setToolTipText("Please Enter Only Numbers");
+            txtName.setBorder(UIManager.getLookAndFeel().getDefaults().getBorder("TextField.border"));
+            txtContact.setBorder(BorderFactory.createLineBorder (Color.red));
+        }
+        if(txtContact.getText().matches("\\b\\d+\\b"))
+        {
+            txtContact.setBorder(UIManager.getLookAndFeel().getDefaults().getBorder("TextField.border"));
+        }
+        return validateRegex;
+    }
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnCreate;
     private javax.swing.JButton btnDelete;
