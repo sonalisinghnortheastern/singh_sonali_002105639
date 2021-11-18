@@ -39,6 +39,7 @@ public class RestaurantWorkAreaJPanel extends javax.swing.JPanel {
         btnManageMenu = new javax.swing.JButton();
         btnManageDeliveryMen = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
+        btnOrderHistory = new javax.swing.JButton();
         jPanel2 = new javax.swing.JPanel();
 
         setLayout(new java.awt.CardLayout());
@@ -72,6 +73,14 @@ public class RestaurantWorkAreaJPanel extends javax.swing.JPanel {
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Icons/LogoutIcon.png"))); // NOI18N
 
+        btnOrderHistory.setFont(new java.awt.Font("Comic Sans MS", 1, 14)); // NOI18N
+        btnOrderHistory.setText("ORDER HISTORY");
+        btnOrderHistory.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnOrderHistoryActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -82,6 +91,7 @@ public class RestaurantWorkAreaJPanel extends javax.swing.JPanel {
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addComponent(jLabel1)
                 .addGap(0, 0, Short.MAX_VALUE))
+            .addComponent(btnOrderHistory, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -93,7 +103,9 @@ public class RestaurantWorkAreaJPanel extends javax.swing.JPanel {
                 .addComponent(btnManageMenu)
                 .addGap(70, 70, 70)
                 .addComponent(btnManageDeliveryMen)
-                .addContainerGap(184, Short.MAX_VALUE))
+                .addGap(70, 70, 70)
+                .addComponent(btnOrderHistory)
+                .addContainerGap(85, Short.MAX_VALUE))
         );
 
         jSplitPane.setLeftComponent(jPanel1);
@@ -128,12 +140,18 @@ public class RestaurantWorkAreaJPanel extends javax.swing.JPanel {
     ManageOrdeJPanel manageOrdeJPanel=new ManageOrdeJPanel(ecosystem);
     jSplitPane.setRightComponent(manageOrdeJPanel); 
     }//GEN-LAST:event_btnManageDeliveryMenActionPerformed
+
+    private void btnOrderHistoryActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnOrderHistoryActionPerformed
+    RestaurantOrderHistoryJPanel restaurantOrderHistoryJPanel=new RestaurantOrderHistoryJPanel(ecosystem);
+    jSplitPane.setRightComponent(restaurantOrderHistoryJPanel); 
+    }//GEN-LAST:event_btnOrderHistoryActionPerformed
    
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnManageCustomers;
     private javax.swing.JButton btnManageDeliveryMen;
     private javax.swing.JButton btnManageMenu;
+    private javax.swing.JButton btnOrderHistory;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
