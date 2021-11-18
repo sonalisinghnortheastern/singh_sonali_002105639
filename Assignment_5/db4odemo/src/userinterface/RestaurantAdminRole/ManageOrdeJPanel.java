@@ -24,6 +24,7 @@ public class ManageOrdeJPanel extends javax.swing.JPanel {
      * Creates new form ManageOrdeJPanel
      */
     private final EcoSystem system;
+    private DeliveryMan deliveryMan;
     public ManageOrdeJPanel(EcoSystem system) {
         initComponents();
         this.system=system;
@@ -252,15 +253,28 @@ public class ManageOrdeJPanel extends javax.swing.JPanel {
             int rowNumber=JManageIncomingOrder.getSelectedRow();
             String orderId= (String) JManageIncomingOrder.getModel().getValueAt(rowNumber, 0);
             String status=(String) cmbStatus.getSelectedItem();
-            for(PlaceOrderWorkRequest workRequest:system.getWorkQueue().getWorkRequestList())
+            int deliveryPersonNumber=Integer.parseInt(cmbDeliveryPerson.getSelectedItem().toString().split(",")[1].trim());
+            for(DeliveryMan deliveryManNew:system.getDeliveryManDirectory().getDeliveryMens())
+            {
+                if(deliveryManNew.getUniqueId()==deliveryPersonNumber)
                 {
-                    if(workRequest.getId().equals(orderId))
-                    {
-                        workRequest.setStatus(status);
-                        populateManageIncomingOrderTable();
-                        orderDetailsJPanel.setVisible(false);
-                    }
+                    deliveryMan=deliveryManNew;
                 }
+            }
+            for(PlaceOrderWorkRequest workRequest:system.getWorkQueue().getWorkRequestList())
+            {
+                if(workRequest.getId().equals(orderId))
+                {
+                    workRequest.setStatus(status);
+                    populateManageIncomingOrderTable();
+                    orderDetailsJPanel.setVisible(false);
+                    if(status.equals("Assigned"))
+                    {
+                        workRequest.setDeliverMan(deliveryMan);
+                    }
+
+                }
+            }
         }
         catch(Exception ex)
         {
@@ -286,7 +300,7 @@ public class ManageOrdeJPanel extends javax.swing.JPanel {
         {
             if(deliveryMan.isIsDeliveryPersonAvailable())
             {
-                model.addElement(deliveryMan.getName());
+                model.addElement(deliveryMan.getName()+","+deliveryMan.getUniqueId());
             }
         }
     }
