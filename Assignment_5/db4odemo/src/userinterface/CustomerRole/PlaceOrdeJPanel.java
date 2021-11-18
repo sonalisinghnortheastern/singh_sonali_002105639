@@ -118,7 +118,7 @@ public class PlaceOrdeJPanel extends javax.swing.JPanel {
             }
         ) {
             boolean[] canEdit = new boolean [] {
-                false, false, false
+                false, false, true
             };
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
@@ -271,16 +271,25 @@ public class PlaceOrdeJPanel extends javax.swing.JPanel {
 
     private void btnPlaceOrderActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPlaceOrderActionPerformed
         try{
+            int total=0;
         if(orderItems.size()<=0)
         {
             JOptionPane.showMessageDialog(null, "Please add items to cart, it cannot be empty");
         }
         else{
             PlaceOrderWorkRequest placeOrderWorkRequest = new PlaceOrderWorkRequest();
-            for(Cart cart :orderItems)
-            {
-                placeOrderWorkRequest.setItemsWithQuatityList(cart);
-            }
+             Object[] rowData = new Object [JCart.getRowCount()];
+             for(int i=0;i<orderItems.size();i++)
+             {
+                 if(!String.valueOf(orderItems.get(i).getQuantity()).equals(String.valueOf(JCart.getValueAt(i, 2))))
+                {
+                    orderItems.get(i).setQuantity(Integer.parseInt(JCart.getValueAt(i, 2).toString()));
+                }
+                 total=total+(orderItems.get(i).getPrice() * orderItems.get(i).getQuantity());
+                 txtTotal.setText(String.valueOf(total));
+                 placeOrderWorkRequest.setItemsWithQuatityList(orderItems.get(i));
+             }
+         
             placeOrderWorkRequest.setMessage("");
             int uniqueId=system.getLogInUser().getLogInId();
             for(Customer customer:system.getCustomerDirectory().getCustomers())
@@ -301,6 +310,7 @@ public class PlaceOrdeJPanel extends javax.swing.JPanel {
             
             system.getWorkQueue().setWorkRequestList(placeOrderWorkRequest);
             JOptionPane.showMessageDialog(null, "Ordered Placed Successfully");
+            txtTotal.setText("");
             orderItems.removeAll(orderItems);
             populateTableCart();
         }
@@ -349,17 +359,17 @@ public class PlaceOrdeJPanel extends javax.swing.JPanel {
          try{
          DefaultTableModel model = (DefaultTableModel) JCart.getModel();
          model.setRowCount(0);
-         int total=0;
+         
          for(Cart item:orderItems)
          {
             Object[] row = new Object[3];
             row[0] = item.getItemName();
             row[1] = item.getPrice();
             row[2] = item.getQuantity();
-            total=total+(item.getPrice());
+            
             model.addRow(row);
          }
-         txtTotal.setText(String.valueOf(total));
+         
          }
          catch(Exception ex)
          {
