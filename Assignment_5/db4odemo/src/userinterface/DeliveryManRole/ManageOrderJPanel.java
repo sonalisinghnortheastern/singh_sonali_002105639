@@ -3,6 +3,7 @@
 package userinterface.DeliveryManRole;
 
 import Business.EcoSystem;
+import Business.WorkQueue.PlaceOrderWorkRequest;
 
 /**
  *
@@ -15,6 +16,8 @@ public class ManageOrderJPanel extends javax.swing.JPanel {
     public ManageOrderJPanel(EcoSystem system) {
         initComponents();
         this.system=system;
+        populateOrder();
+        
     }
     
        /** This method is called from within the constructor to
@@ -98,7 +101,7 @@ public class ManageOrderJPanel extends javax.swing.JPanel {
         lblUsername1.setFont(new java.awt.Font("Comic Sans MS", 1, 14)); // NOI18N
         lblUsername1.setForeground(new java.awt.Color(255, 255, 255));
         lblUsername1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        lblUsername1.setText("CUSTOMER ADDRESS :");
+        lblUsername1.setText("STATUS");
         lblUsername1.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
 
         cmbStatus.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Assigned", "Delivered" }));
@@ -188,6 +191,21 @@ public class ManageOrderJPanel extends javax.swing.JPanel {
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
+
+   private void populateOrder(){
+        int uniqueId=system.getLogInUser().getLogInId();
+       for(PlaceOrderWorkRequest workRequest:system.getWorkQueue().getWorkRequestList())
+       {
+           if(workRequest.getDeliverMan().getUniqueId()==uniqueId)
+           {
+               txtRestaurantName.setText(workRequest.getRestaurant().getName());
+               txtRestaurantAddress.setText(workRequest.getRestaurant().getAddress());
+               txtCustomerName.setText(workRequest.getCustomer().getName());
+               txtCustomerAddress.setText(workRequest.getCustomer().getAddress());
+               cmbStatus.setSelectedItem(workRequest.getStatus());
+           }
+       }
+   }
 
     private void btnUpdateRestaurantProfileActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnUpdateRestaurantProfileActionPerformed
         

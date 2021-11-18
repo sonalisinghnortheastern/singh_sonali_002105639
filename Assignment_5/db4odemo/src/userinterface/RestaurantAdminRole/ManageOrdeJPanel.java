@@ -24,7 +24,6 @@ public class ManageOrdeJPanel extends javax.swing.JPanel {
      * Creates new form ManageOrdeJPanel
      */
     private final EcoSystem system;
-    private DeliveryMan deliveryMan;
     public ManageOrdeJPanel(EcoSystem system) {
         initComponents();
         this.system=system;
@@ -253,14 +252,7 @@ public class ManageOrdeJPanel extends javax.swing.JPanel {
             int rowNumber=JManageIncomingOrder.getSelectedRow();
             String orderId= (String) JManageIncomingOrder.getModel().getValueAt(rowNumber, 0);
             String status=(String) cmbStatus.getSelectedItem();
-            int deliveryPersonNumber=Integer.parseInt(cmbDeliveryPerson.getSelectedItem().toString().split(",")[1].trim());
-            for(DeliveryMan deliveryManNew:system.getDeliveryManDirectory().getDeliveryMens())
-            {
-                if(deliveryManNew.getUniqueId()==deliveryPersonNumber)
-                {
-                    deliveryMan=deliveryManNew;
-                }
-            }
+            
             for(PlaceOrderWorkRequest workRequest:system.getWorkQueue().getWorkRequestList())
             {
                 if(workRequest.getId().equals(orderId))
@@ -270,15 +262,23 @@ public class ManageOrdeJPanel extends javax.swing.JPanel {
                     orderDetailsJPanel.setVisible(false);
                     if(status.equals("Assigned"))
                     {
-                        workRequest.setDeliverMan(deliveryMan);
+                        int deliveryPersonNumber=Integer.parseInt(cmbDeliveryPerson.getSelectedItem().toString().split(",")[1].trim());
+                        for(DeliveryMan deliveryMan:system.getDeliveryManDirectory().getDeliveryMens())
+                        {
+                            if(deliveryMan.getUniqueId()==deliveryPersonNumber)
+                            {
+                                deliveryMan.setIsDeliveryPersonAvailable(false);
+                                workRequest.setDeliverMan(deliveryMan);
+                            }
+                        }
+                        
                     }
-
                 }
             }
         }
         catch(Exception ex)
         {
-            
+            throw  ex;
         }
     }//GEN-LAST:event_btnSaveActionPerformed
 
