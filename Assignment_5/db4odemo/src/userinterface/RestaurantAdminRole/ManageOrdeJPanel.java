@@ -124,7 +124,6 @@ public class ManageOrdeJPanel extends javax.swing.JPanel {
         jScrollPane3.setViewportView(JDetailOrder1);
 
         cmbStatus.setFont(new java.awt.Font("Arial Black", 1, 12)); // NOI18N
-        cmbStatus.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "ACCEPT", "DECLINE", "ASSIGNED" }));
         cmbStatus.addItemListener(new java.awt.event.ItemListener() {
             public void itemStateChanged(java.awt.event.ItemEvent evt) {
                 cmbStatusItemStateChanged(evt);
@@ -175,7 +174,7 @@ public class ManageOrdeJPanel extends javax.swing.JPanel {
                 .addGap(18, 18, 18)
                 .addGroup(orderDetailsJPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(orderDetailsJPanelLayout.createSequentialGroup()
-                        .addComponent(btnSave, javax.swing.GroupLayout.DEFAULT_SIZE, 25, Short.MAX_VALUE)
+                        .addComponent(btnSave, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addGap(1, 1, 1))
                     .addGroup(orderDetailsJPanelLayout.createSequentialGroup()
                         .addComponent(cmbStatus, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -207,6 +206,7 @@ public class ManageOrdeJPanel extends javax.swing.JPanel {
 
     private void JManageIncomingOrderMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_JManageIncomingOrderMouseClicked
         try{
+            populateStatusComboBox();
             orderDetailsJPanel.setVisible(true);
             DefaultTableModel model = (DefaultTableModel) JDetailOrder.getModel();
             model.setRowCount(0);
@@ -219,7 +219,7 @@ public class ManageOrdeJPanel extends javax.swing.JPanel {
                 
            String orderId= (String) JManageIncomingOrder.getModel().getValueAt(rowNumber, 0);
            String status=(String) JManageIncomingOrder.getModel().getValueAt(rowNumber, 2);
-            if(status.equals("Ordered") )
+            if(status.equals("Ordered") ||  status.equals("ACCEPT"))
             {
                 for(PlaceOrderWorkRequest workRequest:system.getWorkQueue().getWorkRequestList())
                 {
@@ -291,7 +291,7 @@ public class ManageOrdeJPanel extends javax.swing.JPanel {
         if(cmbStatus.getSelectedItem().equals("ASSIGNED"))
         {
             cmbDeliveryPerson.setVisible(true);
-            populateStatusComboBox();
+            populateDeliveryPersonComboBox();
         }
         else{
             
@@ -303,7 +303,7 @@ public class ManageOrdeJPanel extends javax.swing.JPanel {
             throw e;
         }
     }//GEN-LAST:event_cmbStatusItemStateChanged
-    private void populateStatusComboBox()
+    private void populateDeliveryPersonComboBox()
     {
         try {
          DefaultComboBoxModel model = (DefaultComboBoxModel) cmbDeliveryPerson.getModel();
@@ -317,7 +317,25 @@ public class ManageOrdeJPanel extends javax.swing.JPanel {
         }
         } catch (Exception e) {
         }
-       
+    }
+     private void populateStatusComboBox()
+    {
+        try {
+         DefaultComboBoxModel model = (DefaultComboBoxModel) cmbStatus.getModel();
+         model.removeAllElements();
+         int rowNumber=JManageIncomingOrder.getSelectedRow();
+         String status=(String) JManageIncomingOrder.getModel().getValueAt(rowNumber, 2);
+         if(status.equals("Ordered"))
+         {
+             model.addElement("ACCEPT");
+             model.addElement("DECLINE");
+         }
+         else if(status.equals("ACCEPT"))
+         {
+             model.addElement("ASSIGNED");
+         }
+        } catch (Exception e) {
+        }
     }
     private void populateManageIncomingOrderTable()
     {
@@ -333,7 +351,7 @@ public class ManageOrdeJPanel extends javax.swing.JPanel {
                 {
                     if(workRequest.getRestaurant().getUniqueId() == uniqueId)
                     {
-                        if(!workRequest.getStatus().equals("Delivered")&& !workRequest.getStatus().equals("DECLINE"))
+                        if(!workRequest.getStatus().equals("Delivered")&& !workRequest.getStatus().equals("DECLINE") &&!workRequest.getStatus().equals("ASSIGNED") )
                         {
                             Object[] row = new Object[4];
                             row[0]=workRequest.getId();

@@ -6,6 +6,7 @@ import Business.DeliveryMan.DeliveryMan;
 import Business.EcoSystem;
 import Business.WorkQueue.PlaceOrderWorkRequest;
 import java.util.Date;
+import javax.swing.DefaultComboBoxModel;
 import javax.swing.JOptionPane;
 
 /**
@@ -197,13 +198,15 @@ public class ManageDeliveryOrderJPanel extends javax.swing.JPanel {
 
    private void populateOrder(){
        try{
+           populateStatusComboBox();
         int uniqueId=system.getLogInUser().getLogInId();
        for(PlaceOrderWorkRequest workRequest:system.getWorkQueue().getWorkRequestList())
        {
            if(!workRequest.getStatus().equals("ASSIGNED"))
            {
-               return;
+               
            }
+           else{
            if(workRequest.getDeliverMan().getUniqueId()==uniqueId)
            {
                txtRestaurantName.setText(workRequest.getRestaurant().getName());
@@ -211,6 +214,7 @@ public class ManageDeliveryOrderJPanel extends javax.swing.JPanel {
                txtCustomerName.setText(workRequest.getCustomer().getName());
                txtCustomerAddress.setText(workRequest.getCustomer().getAddress());
                cmbStatus.setSelectedItem(workRequest.getStatus());
+           }
            }
        }
        }
@@ -248,7 +252,15 @@ public class ManageDeliveryOrderJPanel extends javax.swing.JPanel {
         }
 
     }//GEN-LAST:event_btnUpdateRestaurantProfileActionPerformed
-
+private void populateStatusComboBox()
+    {
+        try {
+         DefaultComboBoxModel model = (DefaultComboBoxModel) cmbStatus.getModel();
+         model.removeAllElements();
+         model.addElement("Delivered");
+        } catch (Exception e) {
+        }
+    }
      private void reset() {
             txtRestaurantName.setText("");
             txtRestaurantAddress.setText("");

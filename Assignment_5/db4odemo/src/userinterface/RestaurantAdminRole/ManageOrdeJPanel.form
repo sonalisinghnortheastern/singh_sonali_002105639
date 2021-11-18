@@ -149,7 +149,7 @@
                   <EmptySpace type="separate" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="0" attributes="0">
                       <Group type="102" attributes="0">
-                          <Component id="btnSave" pref="25" max="32767" attributes="0"/>
+                          <Component id="btnSave" max="32767" attributes="0"/>
                           <EmptySpace min="1" pref="1" max="-2" attributes="0"/>
                       </Group>
                       <Group type="102" attributes="0">
@@ -254,11 +254,7 @@
               <Font name="Arial Black" size="12" style="1"/>
             </Property>
             <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
-              <StringArray count="3">
-                <StringItem index="0" value="ACCEPT"/>
-                <StringItem index="1" value="DECLINE"/>
-                <StringItem index="2" value="ASSIGNED"/>
-              </StringArray>
+              <StringArray count="0"/>
             </Property>
           </Properties>
           <Events>
