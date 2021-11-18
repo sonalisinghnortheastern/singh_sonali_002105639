@@ -16,6 +16,15 @@ public class DeliveryMan extends UserAccount{
     private String name;
     private long mobileNumber;
     private String address;
+    private boolean isDeliveryPersonAvailable;
+
+    public boolean isIsDeliveryPersonAvailable() {
+        return isDeliveryPersonAvailable;
+    }
+
+    public void setIsDeliveryPersonAvailable(boolean isDeliveryPersonAvailable) {
+        this.isDeliveryPersonAvailable = isDeliveryPersonAvailable;
+    }
 
     public String getAddress() {
         return address;
