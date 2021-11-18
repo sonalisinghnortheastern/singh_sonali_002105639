@@ -237,7 +237,8 @@ public class ManageMenuJPanel extends javax.swing.JPanel {
     }//GEN-LAST:event_JMenuMouseClicked
 
     private void btnUpdateItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnUpdateItemActionPerformed
-       int selectedRowIndex=JMenu.getSelectedRow();
+       
+        int selectedRowIndex=JMenu.getSelectedRow();
         FoodItem foodItem=new FoodItem();
        foodItem.setName(txtItemName.getText());
        foodItem.setPrice(Integer.parseInt(txtPrice.getText()));
@@ -257,26 +258,30 @@ public class ManageMenuJPanel extends javax.swing.JPanel {
         }
     }//GEN-LAST:event_btnUpdateItemActionPerformed
 private void populateTable() {
-    DefaultTableModel model = (DefaultTableModel) JMenu.getModel();
-     model.setRowCount(0);
-    int uniqueId=system.getLogInUser().getLogInId();
-    for (Restaurant restaurant : system.getRestaurantDirectory().getRestaurants()) {
-       if(restaurant.getUniqueId()==uniqueId)
-       {
-           for (FoodItem foodItem : restaurant.getMenu().getMenu()) {
-                Object[] row = new Object[3];
-                row[0] = foodItem.getName();
-                row[1] = foodItem.getPrice();
-                row[2] = foodItem.isInStock();
-                model.addRow(row);
-           }
+    try {
+        DefaultTableModel model = (DefaultTableModel) JMenu.getModel();
+        model.setRowCount(0);
+       int uniqueId=system.getLogInUser().getLogInId();
+       for (Restaurant restaurant : system.getRestaurantDirectory().getRestaurants()) {
+          if(restaurant.getUniqueId()==uniqueId)
+          {
+              for (FoodItem foodItem : restaurant.getMenu().getMenu()) {
+                   Object[] row = new Object[3];
+                   row[0] = foodItem.getName();
+                   row[1] = foodItem.getPrice();
+                   row[2] = foodItem.isInStock();
+                   model.addRow(row);
+              }
+          }
        }
-    }   
+    } catch (Exception e) {
+    }
+       
             }
     private void reset() {
             txtItemName.setText("");
             txtPrice.setText("");
-            cmbAvailablity.setSelectedIndex(1);
+            cmbAvailablity.setSelectedIndex(0);
         }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

@@ -9,11 +9,11 @@ import Business.WorkQueue.PlaceOrderWorkRequest;
  *
  * @author  raunak
  */
-public class ManageOrderJPanel extends javax.swing.JPanel {
+public class ManageDeliveryOrderJPanel extends javax.swing.JPanel {
 
     
    private final EcoSystem system;
-    public ManageOrderJPanel(EcoSystem system) {
+    public ManageDeliveryOrderJPanel(EcoSystem system) {
         initComponents();
         this.system=system;
         populateOrder();
@@ -193,9 +193,14 @@ public class ManageOrderJPanel extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
    private void populateOrder(){
+       try{
         int uniqueId=system.getLogInUser().getLogInId();
        for(PlaceOrderWorkRequest workRequest:system.getWorkQueue().getWorkRequestList())
        {
+           if(!workRequest.getStatus().equals("ASSIGNED"))
+           {
+               return;
+           }
            if(workRequest.getDeliverMan().getUniqueId()==uniqueId)
            {
                txtRestaurantName.setText(workRequest.getRestaurant().getName());
@@ -205,10 +210,36 @@ public class ManageOrderJPanel extends javax.swing.JPanel {
                cmbStatus.setSelectedItem(workRequest.getStatus());
            }
        }
+       }
+       catch(Exception ex)
+       {
+           throw ex;
+       }
    }
 
     private void btnUpdateRestaurantProfileActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnUpdateRestaurantProfileActionPerformed
-        
+        try {
+            if(cmbStatus.getSelectedItem().equals("Delivered"))
+            {
+                int uniqueId=system.getLogInUser().getLogInId();
+                for(PlaceOrderWorkRequest workRequest:system.getWorkQueue().getWorkRequestList())
+               {
+                   if(workRequest.getDeliverMan()==null)
+                   {
+                       return;
+                   }
+                   if(workRequest.getDeliverMan().getUniqueId()==uniqueId)
+                   {
+                       workRequest.setStatus("Delivered");
+                   }
+
+                }
+
+            }
+        } catch (Exception e) {
+            throw  e;
+        }
+
     }//GEN-LAST:event_btnUpdateRestaurantProfileActionPerformed
 
     

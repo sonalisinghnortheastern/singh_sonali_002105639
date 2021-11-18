@@ -241,10 +241,14 @@ public class PlaceOrdeJPanel extends javax.swing.JPanel {
     }//GEN-LAST:event_JMenuMouseClicked
 
     private void jComboBox1ItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_jComboBox1ItemStateChanged
-       populateTable();
-       orderItems.removeAll(orderItems);
-       populateTableCart();
-       
+        try {
+            populateTable();
+            orderItems.removeAll(orderItems);
+            populateTableCart();
+
+        } catch (Exception e) {
+        }
+               
     }//GEN-LAST:event_jComboBox1ItemStateChanged
 
     private void btnRemoveItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRemoveItemActionPerformed

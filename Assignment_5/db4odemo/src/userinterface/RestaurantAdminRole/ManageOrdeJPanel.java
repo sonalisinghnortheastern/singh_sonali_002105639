@@ -218,7 +218,7 @@ public class ManageOrdeJPanel extends javax.swing.JPanel {
                 
            String orderId= (String) JManageIncomingOrder.getModel().getValueAt(rowNumber, 0);
            String status=(String) JManageIncomingOrder.getModel().getValueAt(rowNumber, 2);
-            if(status.equals("Ordered") || status .equals("Preparing"))
+            if(status.equals("Ordered") )
             {
                 for(PlaceOrderWorkRequest workRequest:system.getWorkQueue().getWorkRequestList())
                 {
@@ -236,10 +236,10 @@ public class ManageOrdeJPanel extends javax.swing.JPanel {
                     }
                 }
             }
-            else{
+            else if(status.equals("ASSIGNED")){
                 JOptionPane.showMessageDialog(null, "Ordered Picked Up By Delivery Person");
+                orderDetailsJPanel.setVisible(false);
             }
-
         }
         catch(Exception e)
         {
@@ -260,7 +260,7 @@ public class ManageOrdeJPanel extends javax.swing.JPanel {
                     workRequest.setStatus(status);
                     populateManageIncomingOrderTable();
                     orderDetailsJPanel.setVisible(false);
-                    if(status.equals("Assigned"))
+                    if(status.equals("ASSIGNED"))
                     {
                         int deliveryPersonNumber=Integer.parseInt(cmbDeliveryPerson.getSelectedItem().toString().split(",")[1].trim());
                         for(DeliveryMan deliveryMan:system.getDeliveryManDirectory().getDeliveryMens())
@@ -283,7 +283,8 @@ public class ManageOrdeJPanel extends javax.swing.JPanel {
     }//GEN-LAST:event_btnSaveActionPerformed
 
     private void cmbStatusItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_cmbStatusItemStateChanged
-        if(cmbStatus.getSelectedItem().equals("Assigned"))
+        try{
+        if(cmbStatus.getSelectedItem().equals("ASSIGNED"))
         {
             cmbDeliveryPerson.setVisible(true);
             populateStatusComboBox();
@@ -291,10 +292,16 @@ public class ManageOrdeJPanel extends javax.swing.JPanel {
         else{
             cmbDeliveryPerson.setVisible(false);
         }
+        }
+        catch(Exception e)
+        {
+            throw e;
+        }
     }//GEN-LAST:event_cmbStatusItemStateChanged
     private void populateStatusComboBox()
     {
-         DefaultComboBoxModel model = (DefaultComboBoxModel) cmbStatus.getModel();
+        try {
+         DefaultComboBoxModel model = (DefaultComboBoxModel) cmbDeliveryPerson.getModel();
          model.removeAllElements();
         for(DeliveryMan deliveryMan:system.getDeliveryManDirectory().getDeliveryMens())
         {
@@ -303,9 +310,13 @@ public class ManageOrdeJPanel extends javax.swing.JPanel {
                 model.addElement(deliveryMan.getName()+","+deliveryMan.getUniqueId());
             }
         }
+        } catch (Exception e) {
+        }
+       
     }
     private void populateManageIncomingOrderTable()
     {
+        try{
         DefaultTableModel model = (DefaultTableModel) JManageIncomingOrder.getModel();
         model.setRowCount(0);
         int uniqueId=system.getLogInUser().getLogInId();
@@ -326,6 +337,11 @@ public class ManageOrdeJPanel extends javax.swing.JPanel {
                     }
                 }
             }
+        }
+        }
+        catch(Exception ex)
+        {
+            throw ex;
         }
     }
     // Variables declaration - do not modify//GEN-BEGIN:variables
