@@ -2,8 +2,11 @@
 
 package userinterface.DeliveryManRole;
 
+import Business.DeliveryMan.DeliveryMan;
 import Business.EcoSystem;
 import Business.WorkQueue.PlaceOrderWorkRequest;
+import java.util.Date;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -231,10 +234,14 @@ public class ManageDeliveryOrderJPanel extends javax.swing.JPanel {
                    if(workRequest.getDeliverMan().getUniqueId()==uniqueId)
                    {
                        workRequest.setStatus("Delivered");
+                       workRequest.setResolveDate(new Date());
+                       DeliveryMan deliveryMan=workRequest.getDeliverMan();
+                       deliveryMan.setIsDeliveryPersonAvailable(true);
+                       workRequest.setDeliverMan(deliveryMan);
                    }
-
                 }
-
+                JOptionPane.showMessageDialog(null, "Order Status Updated");
+                reset();
             }
         } catch (Exception e) {
             throw  e;
@@ -242,7 +249,13 @@ public class ManageDeliveryOrderJPanel extends javax.swing.JPanel {
 
     }//GEN-LAST:event_btnUpdateRestaurantProfileActionPerformed
 
-    
+     private void reset() {
+            txtRestaurantName.setText("");
+            txtRestaurantAddress.setText("");
+            txtCustomerName.setText("");
+            txtCustomerAddress.setText("");
+            cmbStatus.setSelectedIndex(0);
+        }
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnUpdateRestaurantProfile;
     private javax.swing.JComboBox<String> cmbStatus;

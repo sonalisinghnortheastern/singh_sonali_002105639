@@ -10,6 +10,7 @@ import Business.EcoSystem;
 import Business.Restaurant.Restaurant;
 import Business.WorkQueue.Cart;
 import Business.WorkQueue.PlaceOrderWorkRequest;
+import java.util.Date;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
@@ -271,7 +272,10 @@ public class ManageOrdeJPanel extends javax.swing.JPanel {
                                 workRequest.setDeliverMan(deliveryMan);
                             }
                         }
-                        
+                    }
+                    if(status.equals("DECLINE"))
+                    {
+                        workRequest.setResolveDate(new Date());
                     }
                 }
             }
@@ -290,6 +294,7 @@ public class ManageOrdeJPanel extends javax.swing.JPanel {
             populateStatusComboBox();
         }
         else{
+            
             cmbDeliveryPerson.setVisible(false);
         }
         }
