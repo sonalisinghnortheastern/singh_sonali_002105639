@@ -29,6 +29,7 @@ public class ManageOrdeJPanel extends javax.swing.JPanel {
         JManageIncomingOrder.getColumnModel().getColumn(0).setMaxWidth(0);
         populateManageIncomingOrderTable();
         orderDetailsJPanel.setVisible(false);
+        cmbDeliveryPerson.setVisible(false);
     }
 
     /**
@@ -46,12 +47,13 @@ public class ManageOrdeJPanel extends javax.swing.JPanel {
         orderDetailsJPanel = new javax.swing.JPanel();
         jScrollPane2 = new javax.swing.JScrollPane();
         JDetailOrder = new javax.swing.JTable();
-        jScrollPane2 = new javax.swing.JScrollPane();
-        JDetailOrder = new javax.swing.JTable();
+        jScrollPane3 = new javax.swing.JScrollPane();
+        JDetailOrder1 = new javax.swing.JTable();
         cmbStatus = new javax.swing.JComboBox<>();
         btnSave = new javax.swing.JButton();
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
+        cmbDeliveryPerson = new javax.swing.JComboBox<>();
 
         setBackground(new java.awt.Color(0, 102, 102));
 
@@ -105,7 +107,7 @@ public class ManageOrdeJPanel extends javax.swing.JPanel {
         ));
         jScrollPane2.setViewportView(JDetailOrder);
 
-        JDetailOrder.setModel(new javax.swing.table.DefaultTableModel(
+        JDetailOrder1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null},
                 {null, null, null},
@@ -116,10 +118,15 @@ public class ManageOrdeJPanel extends javax.swing.JPanel {
                 "ITEM NAME", "PRICE", "QUANTITY"
             }
         ));
-        jScrollPane2.setViewportView(JDetailOrder);
+        jScrollPane3.setViewportView(JDetailOrder1);
 
         cmbStatus.setFont(new java.awt.Font("Arial Black", 1, 12)); // NOI18N
         cmbStatus.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "ACCEPT", "DECLINE", "ASSIGNED" }));
+        cmbStatus.addItemListener(new java.awt.event.ItemListener() {
+            public void itemStateChanged(java.awt.event.ItemEvent evt) {
+                cmbStatusItemStateChanged(evt);
+            }
+        });
 
         btnSave.setFont(new java.awt.Font("Arial Black", 1, 10)); // NOI18N
         btnSave.setText("SAVE");
@@ -144,10 +151,12 @@ public class ManageOrdeJPanel extends javax.swing.JPanel {
             .addComponent(jLabel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addGroup(orderDetailsJPanelLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jScrollPane2)
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 915, Short.MAX_VALUE)
                 .addContainerGap())
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, orderDetailsJPanelLayout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(cmbDeliveryPerson, javax.swing.GroupLayout.PREFERRED_SIZE, 138, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(52, 52, 52)
                 .addComponent(cmbStatus, javax.swing.GroupLayout.PREFERRED_SIZE, 159, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(btnSave, javax.swing.GroupLayout.PREFERRED_SIZE, 128, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -165,7 +174,10 @@ public class ManageOrdeJPanel extends javax.swing.JPanel {
                     .addGroup(orderDetailsJPanelLayout.createSequentialGroup()
                         .addComponent(btnSave, javax.swing.GroupLayout.DEFAULT_SIZE, 25, Short.MAX_VALUE)
                         .addGap(1, 1, 1))
-                    .addComponent(cmbStatus, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(orderDetailsJPanelLayout.createSequentialGroup()
+                        .addComponent(cmbStatus, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(0, 0, Short.MAX_VALUE))
+                    .addComponent(cmbDeliveryPerson, javax.swing.GroupLayout.Alignment.TRAILING))
                 .addGap(78, 78, 78))
         );
 
@@ -254,6 +266,16 @@ public class ManageOrdeJPanel extends javax.swing.JPanel {
         }
     }//GEN-LAST:event_btnSaveActionPerformed
 
+    private void cmbStatusItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_cmbStatusItemStateChanged
+        if(cmbStatus.getSelectedItem().equals("Assigned"))
+        {
+            cmbDeliveryPerson.setVisible(true);
+        }
+        else{
+            cmbDeliveryPerson.setVisible(false);
+        }
+    }//GEN-LAST:event_cmbStatusItemStateChanged
+
     private void populateManageIncomingOrderTable()
     {
         DefaultTableModel model = (DefaultTableModel) JManageIncomingOrder.getModel();
@@ -280,14 +302,17 @@ public class ManageOrdeJPanel extends javax.swing.JPanel {
     }
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JTable JDetailOrder;
+    private javax.swing.JTable JDetailOrder1;
     private javax.swing.JTable JManageIncomingOrder;
     private javax.swing.JButton btnSave;
+    private javax.swing.JComboBox<String> cmbDeliveryPerson;
     private javax.swing.JComboBox<String> cmbStatus;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
+    private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JPanel orderDetailsJPanel;
     // End of variables declaration//GEN-END:variables
 }

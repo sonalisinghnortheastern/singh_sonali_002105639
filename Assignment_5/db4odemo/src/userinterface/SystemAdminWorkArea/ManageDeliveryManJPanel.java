@@ -240,6 +240,7 @@ try {
           Random random=new Random();
           int uniqueId=random.nextInt((9999 - 100) + 1) + 10;
           DeliveryMan deliveryMan=new DeliveryMan(txtName.getText(),Long.parseLong(txtMobileNumber.getText()),txtAddress.getText(),txtUsername.getText(),txtPassword.getText(),uniqueId);
+          deliveryMan.setIsDeliveryPersonAvailable(true);
           system.getDeliveryManDirectory().setDeliveryMens(deliveryMan);
           system.getUserAccountDirectory().addUserAccountToAccounts(deliveryMan);
           populateTable();
