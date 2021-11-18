@@ -7,7 +7,6 @@ package userinterface.DeliveryManRole;
 
 import Business.EcoSystem;
 import javax.swing.JPanel;
-import userinterface.RestaurantAdminRole.*;
 
 /**
  *
@@ -36,7 +35,7 @@ public class DeliveryManWorkAreaJPanel extends javax.swing.JPanel {
         jSplitPane = new javax.swing.JSplitPane();
         jPanel1 = new javax.swing.JPanel();
         btnManageCustomers = new javax.swing.JButton();
-        btnManageMenu = new javax.swing.JButton();
+        btnOrderHistory = new javax.swing.JButton();
         btnManageDeliveryMen = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
         jPanel2 = new javax.swing.JPanel();
@@ -53,11 +52,11 @@ public class DeliveryManWorkAreaJPanel extends javax.swing.JPanel {
             }
         });
 
-        btnManageMenu.setFont(new java.awt.Font("Comic Sans MS", 1, 14)); // NOI18N
-        btnManageMenu.setText("ORDERS COMPLETED");
-        btnManageMenu.addActionListener(new java.awt.event.ActionListener() {
+        btnOrderHistory.setFont(new java.awt.Font("Comic Sans MS", 1, 14)); // NOI18N
+        btnOrderHistory.setText("ORDERS COMPLETED");
+        btnOrderHistory.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnManageMenuActionPerformed(evt);
+                btnOrderHistoryActionPerformed(evt);
             }
         });
 
@@ -76,7 +75,7 @@ public class DeliveryManWorkAreaJPanel extends javax.swing.JPanel {
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(btnManageMenu, javax.swing.GroupLayout.DEFAULT_SIZE, 191, Short.MAX_VALUE)
+            .addComponent(btnOrderHistory, javax.swing.GroupLayout.DEFAULT_SIZE, 191, Short.MAX_VALUE)
             .addComponent(btnManageCustomers, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addComponent(btnManageDeliveryMen, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addGroup(jPanel1Layout.createSequentialGroup()
@@ -92,7 +91,7 @@ public class DeliveryManWorkAreaJPanel extends javax.swing.JPanel {
                 .addGap(70, 70, 70)
                 .addComponent(btnManageDeliveryMen)
                 .addGap(65, 65, 65)
-                .addComponent(btnManageMenu)
+                .addComponent(btnOrderHistory)
                 .addContainerGap(189, Short.MAX_VALUE))
         );
 
@@ -119,10 +118,10 @@ public class DeliveryManWorkAreaJPanel extends javax.swing.JPanel {
     jSplitPane.setRightComponent(profileUpdateJPanel); 
     }//GEN-LAST:event_btnManageCustomersActionPerformed
 
-    private void btnManageMenuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnManageMenuActionPerformed
-    ManageMenuJPanel manageMenuJPanel =new ManageMenuJPanel(ecosystem);
-    jSplitPane.setRightComponent(manageMenuJPanel); 
-    }//GEN-LAST:event_btnManageMenuActionPerformed
+    private void btnOrderHistoryActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnOrderHistoryActionPerformed
+    DeliveryOrderHistoryJPanel orderHistoryJPanel =new DeliveryOrderHistoryJPanel(ecosystem);
+    jSplitPane.setRightComponent(orderHistoryJPanel); 
+    }//GEN-LAST:event_btnOrderHistoryActionPerformed
 
     private void btnManageDeliveryMenActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnManageDeliveryMenActionPerformed
     ManageDeliveryOrderJPanel manageOrdeJPanel=new ManageDeliveryOrderJPanel(ecosystem);
@@ -133,7 +132,7 @@ public class DeliveryManWorkAreaJPanel extends javax.swing.JPanel {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnManageCustomers;
     private javax.swing.JButton btnManageDeliveryMen;
-    private javax.swing.JButton btnManageMenu;
+    private javax.swing.JButton btnOrderHistory;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;

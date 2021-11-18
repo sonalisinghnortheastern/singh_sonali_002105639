@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package userinterface.RestaurantAdminRole;
+package userinterface.DeliveryManRole;
 
 import Business.EcoSystem;
 import Business.WorkQueue.PlaceOrderWorkRequest;
@@ -13,13 +13,13 @@ import javax.swing.table.DefaultTableModel;
  *
  * @author sonal
  */
-public class RestaurantOrderHistoryJPanel extends javax.swing.JPanel {
+public class DeliveryOrderHistoryJPanel extends javax.swing.JPanel {
 
     /**
      * Creates new form CustomerOrderHistoryJPanel
      */
     private final EcoSystem system;
-    public RestaurantOrderHistoryJPanel(EcoSystem system) {
+    public DeliveryOrderHistoryJPanel(EcoSystem system) {
         initComponents();
         this.system=system;
         populateOrderHistory();
@@ -54,7 +54,7 @@ public class RestaurantOrderHistoryJPanel extends javax.swing.JPanel {
             new Object [][] {
             },
             new String [] {
-                "ORDER ID", "ORDER DATE", "STATUS", "DELIVERY DATE","DELIVERY PERSON"
+                "ORDER ID","RESTAURANT NAME", "ORDER DATE", "STATUS", "DELIVERY DATE"
             }
         ) {
             boolean[] canEdit = new boolean [] {
@@ -89,25 +89,19 @@ public class RestaurantOrderHistoryJPanel extends javax.swing.JPanel {
             int uniqueId=system.getLogInUser().getLogInId();
             for(PlaceOrderWorkRequest workRequest:system.getWorkQueue().getWorkRequestList())
             {
-                if(workRequest.getRestaurant().getUniqueId()==uniqueId)
+                if(workRequest.getDeliverMan().getUniqueId()==uniqueId)
                 {
                      Object[] row = new Object[5];
                     row[0] = workRequest.getId();
-                    row[1] = workRequest.getRequestDate();
-                    row[2] = workRequest.getStatus();
+                    row[1] = workRequest.getRestaurant().getName();
+                    row[2] = workRequest.getRequestDate();
+                    row[3] = workRequest.getStatus();
                     if(workRequest.getResolveDate()==null)
                     {
-                        row[3]="Not yet Delivered";
+                        row[4]="Not yet Delivered";
                     }
                     else{
-                        row[3] = workRequest.getResolveDate();
-                    }
-                    if(workRequest.getDeliverMan()==null)
-                    {
-                        row[4]="Delivery Person Not  Assigned Yet";
-                    }
-                    else{
-                        row[4] = workRequest.getDeliverMan().getName();
+                        row[4] = workRequest.getResolveDate();
                     }
                     model.addRow(row);
                 }
