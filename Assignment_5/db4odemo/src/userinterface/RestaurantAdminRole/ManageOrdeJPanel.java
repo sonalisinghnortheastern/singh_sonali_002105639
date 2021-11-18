@@ -5,10 +5,12 @@
  */
 package userinterface.RestaurantAdminRole;
 
+import Business.DeliveryMan.DeliveryMan;
 import Business.EcoSystem;
 import Business.Restaurant.Restaurant;
 import Business.WorkQueue.Cart;
 import Business.WorkQueue.PlaceOrderWorkRequest;
+import javax.swing.DefaultComboBoxModel;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
@@ -270,12 +272,24 @@ public class ManageOrdeJPanel extends javax.swing.JPanel {
         if(cmbStatus.getSelectedItem().equals("Assigned"))
         {
             cmbDeliveryPerson.setVisible(true);
+            populateStatusComboBox();
         }
         else{
             cmbDeliveryPerson.setVisible(false);
         }
     }//GEN-LAST:event_cmbStatusItemStateChanged
-
+    private void populateStatusComboBox()
+    {
+         DefaultComboBoxModel model = (DefaultComboBoxModel) cmbStatus.getModel();
+         model.removeAllElements();
+        for(DeliveryMan deliveryMan:system.getDeliveryManDirectory().getDeliveryMens())
+        {
+            if(deliveryMan.isIsDeliveryPersonAvailable())
+            {
+                model.addElement(deliveryMan.getName());
+            }
+        }
+    }
     private void populateManageIncomingOrderTable()
     {
         DefaultTableModel model = (DefaultTableModel) JManageIncomingOrder.getModel();
