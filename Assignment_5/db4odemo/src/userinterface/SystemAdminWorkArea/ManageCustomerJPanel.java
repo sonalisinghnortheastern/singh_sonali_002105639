@@ -233,27 +233,45 @@ public class ManageCustomerJPanel extends javax.swing.JPanel {
 
     private void btnCreateCustomerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCreateCustomerActionPerformed
     try {
-        if(!system.getUserAccountDirectory().checkIfUsernameIsUnique((txtUsername.getText())))
-        {
-            JOptionPane.showMessageDialog(this, "User with this username already exist.Try a diffrent username");
+        if(validateNullOrEmpty){
+            if(validateFields()){
+            if(!system.getUserAccountDirectory().checkIfUsernameIsUnique((txtUsername.getText())))
+            {
+                JOptionPane.showMessageDialog(this, "User with this username already exist.Try a diffrent username");
+            }
+            else{
+              Random random=new Random();
+              int uniqueId=random.nextInt((9999 - 100) + 1) + 10;
+              Customer customer=new Customer(txtName.getText(),txtAddress.getText(),Long.parseLong(txtMobileNumber.getText()),txtUsername.getText(),txtPassword.getText(),uniqueId);
+              system.getCustomerDirectory().addcustomer(customer);
+              system.getUserAccountDirectory().addUserAccountToAccounts(customer);
+              populateTable();
+              reset();
+              JOptionPane.showMessageDialog(this, "User Registered Succesfully");
+            }
+            }
+            else{
+                JOptionPane.showMessageDialog(this, "Validation Failed .Please check the red boxes");
+                validateNullOrEmpty=true;
+                validateRegex=true;
+            }
         }
         else{
-          Random random=new Random();
-          int uniqueId=random.nextInt((9999 - 100) + 1) + 10;
-          Customer customer=new Customer(txtName.getText(),txtAddress.getText(),Long.parseLong(txtMobileNumber.getText()),txtUsername.getText(),txtPassword.getText(),uniqueId);
-          system.getCustomerDirectory().addcustomer(customer);
-          system.getUserAccountDirectory().addUserAccountToAccounts(customer);
-          populateTable();
-          reset();
-          JOptionPane.showMessageDialog(this, "User Registered Succesfully");
+            JOptionPane.showMessageDialog(this, "Validation Failed .Please check the red boxes");
+            validateNullOrEmpty=true;
+            validateRegex=true;
         }
     } catch (Exception e) {
+        validateNullOrEmpty=true;
+        validateRegex=true;
         throw e;
     }
     }//GEN-LAST:event_btnCreateCustomerActionPerformed
 
     private void btnModifyActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnModifyActionPerformed
     try{
+        if(validateNullOrEmpty()){
+            if(validateFields()){
         int selectedRowIndex=jRegisterTable.getSelectedRow();
         int uniqueId=system.getCustomerDirectory().getCustomers().get(selectedRowIndex).getUniqueId();
         Customer customer=new Customer(txtName.getText(),txtAddress.getText(),Long.parseLong(txtMobileNumber.getText()),txtUsername.getText(),txtPassword.getText(),uniqueId);
@@ -283,9 +301,23 @@ public class ManageCustomerJPanel extends javax.swing.JPanel {
         }
         JOptionPane.showMessageDialog(null, "User Updated Succesfully");
         reset();
+            }
+            else{
+                JOptionPane.showMessageDialog(this, "Validation Failed .Please check the red boxes");
+                validateNullOrEmpty=true;
+                validateRegex=true;
+            }
+        }
+        else{
+            JOptionPane.showMessageDialog(this, "Validation Failed .Please check the red boxes");
+            validateNullOrEmpty=true;
+            validateRegex=true;
+        }
     }
     catch(Exception e)
     {
+        validateNullOrEmpty=true;
+        validateRegex=true;
         throw e;
     }
     }//GEN-LAST:event_btnModifyActionPerformed
