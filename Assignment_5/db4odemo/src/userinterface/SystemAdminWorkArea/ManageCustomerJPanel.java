@@ -233,7 +233,7 @@ public class ManageCustomerJPanel extends javax.swing.JPanel {
 
     private void btnCreateCustomerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCreateCustomerActionPerformed
     try {
-        if(validateNullOrEmpty){
+        if(validateNullOrEmpty()){
             if(validateFields()){
             if(!system.getUserAccountDirectory().checkIfUsernameIsUnique((txtUsername.getText())))
             {
@@ -386,6 +386,7 @@ public class ManageCustomerJPanel extends javax.swing.JPanel {
         }
     private  boolean validateNullOrEmpty()
     {
+        validateNullOrEmpty=true;
         if(txtName.getText().trim().isEmpty() || txtName.getText()==null)
         {
             validateNullOrEmpty=false;
@@ -440,6 +441,7 @@ public class ManageCustomerJPanel extends javax.swing.JPanel {
     }
     private  boolean  validateFields()
     {
+        validateRegex=true;
         if(!txtMobileNumber.getText().matches("\\b\\d+\\b"))
         {
             validateRegex=false;

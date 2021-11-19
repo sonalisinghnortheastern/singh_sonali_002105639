@@ -268,8 +268,9 @@ public class ManageRestaurantJPanel extends javax.swing.JPanel {
 
     private void btnModifyActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnModifyActionPerformed
       try{
-        if(validateNullOrEmpty() && validateFields())
+        if(validateNullOrEmpty())
         {
+            if(validateFields()){
             int selectedRowIndex=jRegisterTable.getSelectedRow();
             int uniqueId=system.getRestaurantDirectory().getRestaurants().get(selectedRowIndex).getUniqueId();
             Restaurant restaurant=new Restaurant(txtName.getText(),txtLocation.getText(),Long.parseLong(txtContact.getText()),txtUsername.getText(),txtPassword.getText(),uniqueId);
@@ -299,6 +300,12 @@ public class ManageRestaurantJPanel extends javax.swing.JPanel {
             }
             JOptionPane.showMessageDialog(null, "User Updated Succesfully");
             reset();
+            }
+            else{
+                JOptionPane.showMessageDialog(this, "Validation Failed .Please check the red boxes");
+                validateNullOrEmpty=true;
+                validateRegex=true;
+            }
         }
         else{
             JOptionPane.showMessageDialog(this, "Validation Failed .Please check the red boxes");
