@@ -8,6 +8,10 @@ package userinterface.RestaurantAdminRole;
 import Business.EcoSystem;
 import Business.Restaurant.FoodItem;
 import Business.Restaurant.Restaurant;
+import java.awt.Color;
+import javax.swing.BorderFactory;
+import javax.swing.JOptionPane;
+import javax.swing.UIManager;
 import javax.swing.table.DefaultTableModel;
 
 /**
@@ -20,6 +24,8 @@ public class ManageMenuJPanel extends javax.swing.JPanel {
      * Creates new form ManageMenuJPanel
      */
     private final EcoSystem system;  
+    boolean validateNullOrEmpty=true;
+    boolean validateRegex=true;
     public ManageMenuJPanel(EcoSystem system) {
         initComponents();
         this.system=system;
@@ -204,23 +210,38 @@ public class ManageMenuJPanel extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnAddItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAddItemActionPerformed
-       FoodItem foodItem=new FoodItem();
-       foodItem.setName(txtItemName.getText());
-       foodItem.setPrice(Integer.parseInt(txtPrice.getText()));
-       foodItem.setInStock((String) cmbAvailablity.getSelectedItem());
-        try {
-              int uniqueId=system.getLogInUser().getLogInId();
-                for (Restaurant restaurant : system.getRestaurantDirectory().getRestaurants()) {
-                   if(restaurant.getUniqueId()==uniqueId)
-                   {
-                       restaurant.getMenu().setMenu(foodItem);
-                       populateTable();
-                       reset();
-                   }
+       if(validateNullOrEmpty())
+       {
+           if(validateFields()){
+               FoodItem foodItem=new FoodItem();
+               foodItem.setName(txtItemName.getText());
+               foodItem.setPrice(Integer.parseInt(txtPrice.getText()));
+               foodItem.setInStock((String) cmbAvailablity.getSelectedItem());
+                try {
+                      int uniqueId=system.getLogInUser().getLogInId();
+                        for (Restaurant restaurant : system.getRestaurantDirectory().getRestaurants()) {
+                           if(restaurant.getUniqueId()==uniqueId)
+                           {
+                               restaurant.getMenu().setMenu(foodItem);
+                               populateTable();
+                               reset();
+                           }
+                        }
+                } catch (Exception e) {
+                    throw e;
                 }
-        } catch (Exception e) {
-            throw e;
-        }
+           }
+           else{
+               JOptionPane.showMessageDialog(this, "Validation Failed .Please check the red boxes");
+                validateNullOrEmpty=true;
+                validateRegex=true;
+           }
+       }
+       else{
+           JOptionPane.showMessageDialog(this, "Validation Failed .Please check the red boxes");
+            validateNullOrEmpty=true;
+            validateRegex=true;
+       }
     }//GEN-LAST:event_btnAddItemActionPerformed
 
     private void JMenuMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_JMenuMouseClicked
@@ -283,7 +304,48 @@ private void populateTable() {
             txtPrice.setText("");
             cmbAvailablity.setSelectedIndex(0);
         }
-
+    private  boolean validateNullOrEmpty()
+    {
+        validateNullOrEmpty=true;
+        if(txtItemName.getText().trim().isEmpty() || txtItemName.getText()==null)
+        {
+            validateNullOrEmpty=false;
+            txtItemName.setToolTipText("Please Enter Item Name");
+            txtItemName.setBorder(BorderFactory.createLineBorder(Color.red,1));
+        }
+        if(!txtItemName.getText().trim().isEmpty() && txtItemName.getText()!=null)
+        {
+            txtItemName.setBorder(UIManager.getLookAndFeel().getDefaults().getBorder("TextField.border"));
+        }
+        if(txtPrice.getText().trim().isEmpty() || txtPrice.getText()==null)
+        {
+            txtPrice.setToolTipText("Please Enter a Price");
+            validateNullOrEmpty=false;
+            txtPrice.setBorder(BorderFactory.createLineBorder (Color.red));
+        }
+        if(!txtPrice.getText().trim().isEmpty() && txtPrice.getText()!=null)
+        {
+            txtPrice.setBorder(UIManager.getLookAndFeel().getDefaults().getBorder("TextField.border"));
+        }
+        
+        return  validateNullOrEmpty;
+    }
+    private  boolean  validateFields()
+    {
+        validateRegex=true;
+        if(!txtPrice.getText().matches("\\b\\d+\\b"))
+        {
+            validateRegex=false;
+            txtPrice.setToolTipText("Please Enter Only Numbers");
+            txtPrice.setBorder(UIManager.getLookAndFeel().getDefaults().getBorder("TextField.border"));
+            txtPrice.setBorder(BorderFactory.createLineBorder (Color.red));
+        }
+        if(txtPrice.getText().matches("\\b\\d+\\b"))
+        {
+            txtPrice.setBorder(UIManager.getLookAndFeel().getDefaults().getBorder("TextField.border"));
+        }
+        return validateRegex;
+    }
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JTable JMenu;
     private javax.swing.JButton btnAddItem;

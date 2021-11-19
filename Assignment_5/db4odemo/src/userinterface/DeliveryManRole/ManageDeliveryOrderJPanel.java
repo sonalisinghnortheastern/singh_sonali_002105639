@@ -61,12 +61,16 @@ public class ManageDeliveryOrderJPanel extends javax.swing.JPanel {
         jLabel1.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         jLabel1.setOpaque(true);
 
+        txtRestaurantName.setEditable(false);
         txtRestaurantName.setHorizontalAlignment(javax.swing.JTextField.CENTER);
 
+        txtRestaurantAddress.setEditable(false);
         txtRestaurantAddress.setHorizontalAlignment(javax.swing.JTextField.CENTER);
 
+        txtCustomerName.setEditable(false);
         txtCustomerName.setHorizontalAlignment(javax.swing.JTextField.CENTER);
 
+        txtCustomerAddress.setEditable(false);
         txtCustomerAddress.setHorizontalAlignment(javax.swing.JTextField.CENTER);
 
         lblName.setFont(new java.awt.Font("Comic Sans MS", 1, 14)); // NOI18N
@@ -118,6 +122,7 @@ public class ManageDeliveryOrderJPanel extends javax.swing.JPanel {
         lblUsername2.setText("CUSTOMER MESSAGE :");
         lblUsername2.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
 
+        txtCustomerMessage.setEditable(false);
         txtCustomerMessage.setHorizontalAlignment(javax.swing.JTextField.CENTER);
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
