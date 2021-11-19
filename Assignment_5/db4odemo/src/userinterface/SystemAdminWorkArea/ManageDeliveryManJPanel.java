@@ -5,6 +5,7 @@
  */
 package userinterface.SystemAdminWorkArea;
 
+import Business.DB4OUtil.DB4OUtil;
 import Business.DeliveryMan.DeliveryMan;
 import Business.DeliveryMan.DeliveryManDirectory;
 import Business.EcoSystem;
@@ -25,6 +26,7 @@ public class ManageDeliveryManJPanel extends javax.swing.JPanel {
     private final EcoSystem system;
     boolean validateNullOrEmpty=true;
     boolean validateRegex=true;
+    private DB4OUtil dB4OUtil = DB4OUtil.getInstance();
     public ManageDeliveryManJPanel(EcoSystem system) {
         initComponents();
         this.system = system;
@@ -252,6 +254,7 @@ try {
               system.getUserAccountDirectory().addUserAccountToAccounts(deliveryMan);
               populateTable();
               reset();
+              dB4OUtil.storeSystem(system);
               JOptionPane.showMessageDialog(this, "User Registered Succesfully");
             }
         }
@@ -304,6 +307,7 @@ try {
                         index++;
                     }
             }
+            dB4OUtil.storeSystem(system);
             JOptionPane.showMessageDialog(null, "User Updated Succesfully");
             reset();
         }
@@ -339,6 +343,7 @@ try {
         DeliveryMan deliveryMan=(DeliveryMan) jRegisterTable.getValueAt(selectedRowIndex, 0);
         system.getDeliveryManDirectory().getDeliveryMens().remove(deliveryMan);
         populateTable();
+        dB4OUtil.storeSystem(system);
         JOptionPane.showMessageDialog(null, "User Deleted Succesfully");
         reset();
     }

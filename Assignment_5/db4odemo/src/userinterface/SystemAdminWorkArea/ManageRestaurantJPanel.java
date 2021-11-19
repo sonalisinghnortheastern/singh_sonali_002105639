@@ -5,6 +5,7 @@
  */
 package userinterface.SystemAdminWorkArea;
 
+import Business.DB4OUtil.DB4OUtil;
 import Business.EcoSystem;
 import Business.Restaurant.Restaurant;
 import Business.Restaurant.RestaurantDirectory;
@@ -24,6 +25,7 @@ public class ManageRestaurantJPanel extends javax.swing.JPanel {
     private final EcoSystem system;
     boolean validateNullOrEmpty=true;
     boolean validateRegex=true;
+    private DB4OUtil dB4OUtil = DB4OUtil.getInstance();
     public ManageRestaurantJPanel(EcoSystem system) {
         initComponents();
         this.system = system;
@@ -245,6 +247,7 @@ public class ManageRestaurantJPanel extends javax.swing.JPanel {
                   system.getUserAccountDirectory().addUserAccountToAccounts(restaurant);
                   populateTable();
                   reset();
+                  dB4OUtil.storeSystem(system);
                   JOptionPane.showMessageDialog(this, "User Registered Succesfully");
                 }
             }
@@ -298,6 +301,7 @@ public class ManageRestaurantJPanel extends javax.swing.JPanel {
                         index++;
                     }
             }
+            dB4OUtil.storeSystem(system);
             JOptionPane.showMessageDialog(null, "User Updated Succesfully");
             reset();
             }
@@ -333,6 +337,7 @@ public class ManageRestaurantJPanel extends javax.swing.JPanel {
             Restaurant restaurant=(Restaurant) jRegisterTable.getValueAt(selectedRowIndex, 0);
             system.getRestaurantDirectory().getRestaurants().remove(restaurant);
             populateTable();
+            dB4OUtil.storeSystem(system);
             JOptionPane.showMessageDialog(null, "User Deleted Succesfully");
             reset();
         }

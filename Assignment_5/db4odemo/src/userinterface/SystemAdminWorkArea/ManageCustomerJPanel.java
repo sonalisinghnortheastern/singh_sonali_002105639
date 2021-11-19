@@ -7,6 +7,7 @@ package userinterface.SystemAdminWorkArea;
 
 import Business.Customer.Customer;
 import Business.Customer.CustomerDirectory;
+import Business.DB4OUtil.DB4OUtil;
 import Business.EcoSystem;
 import Business.UserAccount.UserAccount;
 import java.awt.Color;
@@ -28,6 +29,7 @@ public class ManageCustomerJPanel extends javax.swing.JPanel {
     private final EcoSystem system; 
     boolean validateNullOrEmpty=true;
     boolean validateRegex=true;
+    private DB4OUtil dB4OUtil = DB4OUtil.getInstance();
     public ManageCustomerJPanel(EcoSystem system) {
         initComponents();
        this.system = system;
@@ -247,6 +249,7 @@ public class ManageCustomerJPanel extends javax.swing.JPanel {
               system.getUserAccountDirectory().addUserAccountToAccounts(customer);
               populateTable();
               reset();
+              dB4OUtil.storeSystem(system);
               JOptionPane.showMessageDialog(this, "User Registered Succesfully");
             }
             }
@@ -299,6 +302,7 @@ public class ManageCustomerJPanel extends javax.swing.JPanel {
                     index++;
                 }
         }
+        dB4OUtil.storeSystem(system);
         JOptionPane.showMessageDialog(null, "User Updated Succesfully");
         reset();
             }
@@ -333,6 +337,7 @@ public class ManageCustomerJPanel extends javax.swing.JPanel {
             Customer customer=(Customer) jRegisterTable.getValueAt(selectedRowIndex, 0);
             system.getCustomerDirectory().getCustomers().remove(customer);
             populateTable();
+            dB4OUtil.storeSystem(system);
             JOptionPane.showMessageDialog(null, "User Deleted Succesfully");
             reset();
         }
