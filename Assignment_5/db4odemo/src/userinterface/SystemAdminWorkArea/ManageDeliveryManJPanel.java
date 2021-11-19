@@ -5,13 +5,15 @@
  */
 package userinterface.SystemAdminWorkArea;
 
-import Business.DB4OUtil.DB4OUtil;
 import Business.DeliveryMan.DeliveryMan;
 import Business.DeliveryMan.DeliveryManDirectory;
 import Business.EcoSystem;
 import Business.UserAccount.UserAccount;
+import java.awt.Color;
 import java.util.Random;
+import javax.swing.BorderFactory;
 import javax.swing.JOptionPane;
+import javax.swing.UIManager;
 import javax.swing.table.DefaultTableModel;
 
 /**
@@ -21,7 +23,8 @@ import javax.swing.table.DefaultTableModel;
 public class ManageDeliveryManJPanel extends javax.swing.JPanel {
 
     private final EcoSystem system;
-    private final DB4OUtil dB4OUtil = DB4OUtil.getInstance();
+    boolean validateNullOrEmpty=true;
+    boolean validateRegex=true;
     public ManageDeliveryManJPanel(EcoSystem system) {
         initComponents();
         this.system = system;
@@ -232,60 +235,95 @@ public class ManageDeliveryManJPanel extends javax.swing.JPanel {
 
     private void btnCreateDeliveryManActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCreateDeliveryManActionPerformed
 try {
-        if(!system.getUserAccountDirectory().checkIfUsernameIsUnique((txtUsername.getText())))
+    if(validateNullOrEmpty())
+    {
+        if(validateFields())
         {
-            JOptionPane.showMessageDialog(this, "User with this username already exist.Try a diffrent username");
+            if(!system.getUserAccountDirectory().checkIfUsernameIsUnique((txtUsername.getText())))
+            {
+                JOptionPane.showMessageDialog(this, "User with this username already exist.Try a diffrent username");
+            }
+            else{
+              Random random=new Random();
+              int uniqueId=random.nextInt((9999 - 100) + 1) + 10;
+              DeliveryMan deliveryMan=new DeliveryMan(txtName.getText(),Long.parseLong(txtMobileNumber.getText()),txtAddress.getText(),txtUsername.getText(),txtPassword.getText(),uniqueId);
+              deliveryMan.setIsDeliveryPersonAvailable(true);
+              system.getDeliveryManDirectory().setDeliveryMens(deliveryMan);
+              system.getUserAccountDirectory().addUserAccountToAccounts(deliveryMan);
+              populateTable();
+              reset();
+              JOptionPane.showMessageDialog(this, "User Registered Succesfully");
+            }
         }
         else{
-          Random random=new Random();
-          int uniqueId=random.nextInt((9999 - 100) + 1) + 10;
-          DeliveryMan deliveryMan=new DeliveryMan(txtName.getText(),Long.parseLong(txtMobileNumber.getText()),txtAddress.getText(),txtUsername.getText(),txtPassword.getText(),uniqueId);
-          deliveryMan.setIsDeliveryPersonAvailable(true);
-          system.getDeliveryManDirectory().setDeliveryMens(deliveryMan);
-          system.getUserAccountDirectory().addUserAccountToAccounts(deliveryMan);
-          populateTable();
-          reset();
-          JOptionPane.showMessageDialog(this, "User Registered Succesfully");
+             JOptionPane.showMessageDialog(this, "Validation Failed .Please check the red boxes");
+            validateNullOrEmpty=true;
+            validateRegex=true;
         }
+    }
+    else{
+         JOptionPane.showMessageDialog(this, "Validation Failed .Please check the red boxes");
+        validateNullOrEmpty=true;
+        validateRegex=true;
+    }
     } catch (Exception e) {
+        validateNullOrEmpty=true;
+        validateRegex=true;
         throw e;
     }        
     }//GEN-LAST:event_btnCreateDeliveryManActionPerformed
 
     private void btnModifyActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnModifyActionPerformed
     try{
-        int selectedRowIndex=jRegisterTable.getSelectedRow();
-        int uniqueId=system.getDeliveryManDirectory().getDeliveryMens().get(selectedRowIndex).getUniqueId();
-        DeliveryMan deliveryMan=new DeliveryMan(txtName.getText(),Long.parseLong(txtMobileNumber.getText()),txtAddress.getText(),txtUsername.getText(),txtPassword.getText(),uniqueId);
-        for(UserAccount userAccount:system.getUserAccountDirectory().getUserAccountList())
-        {
-            if(txtUsername.getText().equals(userAccount.getUsername()))
+        if(validateNullOrEmpty()){
+            if(validateFields()){
+            int selectedRowIndex=jRegisterTable.getSelectedRow();
+            int uniqueId=system.getDeliveryManDirectory().getDeliveryMens().get(selectedRowIndex).getUniqueId();
+            DeliveryMan deliveryMan=new DeliveryMan(txtName.getText(),Long.parseLong(txtMobileNumber.getText()),txtAddress.getText(),txtUsername.getText(),txtPassword.getText(),uniqueId);
+            for(UserAccount userAccount:system.getUserAccountDirectory().getUserAccountList())
             {
-                if(uniqueId != userAccount.getUniqueId())
+                if(txtUsername.getText().equals(userAccount.getUsername()))
                 {
-                    JOptionPane.showMessageDialog(this, "Username already taken.Please take a diffrent username");
-                    return;
+                    if(uniqueId != userAccount.getUniqueId())
+                    {
+                        JOptionPane.showMessageDialog(this, "Username already taken.Please take a diffrent username");
+                        return;
+                    }
                 }
             }
+            system.getDeliveryManDirectory().getDeliveryMens().set(selectedRowIndex, deliveryMan);
+            populateTable();
+             int index=0;
+            for(UserAccount userAccount:system.getUserAccountDirectory().getUserAccountList())
+            {
+                    if(uniqueId == userAccount.getUniqueId())
+                    {
+                        system.getUserAccountDirectory().getUserAccountList().set(index, deliveryMan);
+                    }
+                    else{
+                        index++;
+                    }
+            }
+            JOptionPane.showMessageDialog(null, "User Updated Succesfully");
+            reset();
         }
-        system.getDeliveryManDirectory().getDeliveryMens().set(selectedRowIndex, deliveryMan);
-        populateTable();
-         int index=0;
-        for(UserAccount userAccount:system.getUserAccountDirectory().getUserAccountList())
-        {
-                if(uniqueId == userAccount.getUniqueId())
-                {
-                    system.getUserAccountDirectory().getUserAccountList().set(index, deliveryMan);
-                }
-                else{
-                    index++;
-                }
+        
+        else{
+            JOptionPane.showMessageDialog(this, "Validation Failed .Please check the red boxes");
+            validateNullOrEmpty=true;
+            validateRegex=true;
         }
-        JOptionPane.showMessageDialog(null, "User Updated Succesfully");
-        reset();
+        }
+        else{
+            JOptionPane.showMessageDialog(this, "Validation Failed .Please check the red boxes");
+            validateNullOrEmpty=true;
+            validateRegex=true;
+        }
     }
     catch(Exception e)
     {
+        validateNullOrEmpty=true;
+        validateRegex=true;
         throw e;
     }
     }//GEN-LAST:event_btnModifyActionPerformed
@@ -352,7 +390,77 @@ try {
             txtUsername.setText("");
             txtPassword.setText("");
         }
-
+ private  boolean validateNullOrEmpty()
+    {
+        validateNullOrEmpty=true;
+        if(txtName.getText().trim().isEmpty() || txtName.getText()==null)
+        {
+            validateNullOrEmpty=false;
+            txtName.setToolTipText("Please Enter a Name");
+            txtName.setBorder(BorderFactory.createLineBorder(Color.red,1));
+        }
+        if(!txtName.getText().trim().isEmpty() && txtName.getText()!=null)
+        {
+            txtName.setBorder(UIManager.getLookAndFeel().getDefaults().getBorder("TextField.border"));
+        }
+        if(txtAddress.getText().trim().isEmpty() || txtAddress.getText()==null)
+        {
+            txtAddress.setToolTipText("Please Enter a Location");
+            validateNullOrEmpty=false;
+            txtAddress.setBorder(BorderFactory.createLineBorder (Color.red));
+        }
+        if(!txtAddress.getText().trim().isEmpty() && txtAddress.getText()!=null)
+        {
+            txtAddress.setBorder(UIManager.getLookAndFeel().getDefaults().getBorder("TextField.border"));
+        }
+        if(txtMobileNumber.getText().trim().isEmpty() || txtMobileNumber.getText()==null)
+        {
+            txtMobileNumber.setToolTipText("Please Enter a Contact");
+            validateNullOrEmpty=false;
+            txtMobileNumber.setBorder(BorderFactory.createLineBorder (Color.red));
+        }
+        if(!txtMobileNumber.getText().trim().isEmpty() && txtMobileNumber.getText()!=null)
+        {
+            txtMobileNumber.setBorder(UIManager.getLookAndFeel().getDefaults().getBorder("TextField.border"));
+        }
+        if(txtUsername.getText().trim().isEmpty() || txtUsername.getText()==null)
+        {
+            txtUsername.setToolTipText("Please Enter a Username");
+            validateNullOrEmpty=false;
+            txtUsername.setBorder(BorderFactory.createLineBorder (Color.red));
+        }
+        if(!txtUsername.getText().trim().isEmpty() && txtUsername.getText()!=null)
+        {
+            txtUsername.setBorder(UIManager.getLookAndFeel().getDefaults().getBorder("TextField.border"));
+        }
+        if(txtPassword.getText().trim().isEmpty() || txtPassword.getText()==null)
+        {
+            txtPassword.setToolTipText("Please Enter a Password");
+            validateNullOrEmpty=false;
+            txtPassword.setBorder(BorderFactory.createLineBorder (Color.red));
+        }
+        if(!txtPassword.getText().trim().isEmpty() && txtPassword.getText()!=null)
+        {
+            txtPassword.setBorder(UIManager.getLookAndFeel().getDefaults().getBorder("TextField.border"));
+        }
+        return  validateNullOrEmpty;
+    }
+    private  boolean  validateFields()
+    {
+        validateRegex=true;
+        if(!txtMobileNumber.getText().matches("\\b\\d+\\b"))
+        {
+            validateRegex=false;
+            txtMobileNumber.setToolTipText("Please Enter Only Numbers");
+            txtName.setBorder(UIManager.getLookAndFeel().getDefaults().getBorder("TextField.border"));
+            txtMobileNumber.setBorder(BorderFactory.createLineBorder (Color.red));
+        }
+        if(txtMobileNumber.getText().matches("\\b\\d+\\b"))
+        {
+            txtMobileNumber.setBorder(UIManager.getLookAndFeel().getDefaults().getBorder("TextField.border"));
+        }
+        return validateRegex;
+    }
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnCreateDeliveryMan;
     private javax.swing.JButton btnDelete;
