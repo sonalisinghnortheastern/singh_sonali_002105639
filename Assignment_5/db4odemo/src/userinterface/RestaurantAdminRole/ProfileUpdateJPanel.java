@@ -5,16 +5,19 @@ package userinterface.RestaurantAdminRole;
 import Business.EcoSystem;
 import Business.Restaurant.Restaurant;
 import Business.UserAccount.UserAccount;
+import java.awt.Color;
+import javax.swing.BorderFactory;
 import javax.swing.JOptionPane;
+import javax.swing.UIManager;
 
 /**
  *
  * @author  raunak
  */
 public class ProfileUpdateJPanel extends javax.swing.JPanel {
-
-    
    private final EcoSystem system;
+   boolean validateNullOrEmpty=true;
+    boolean validateRegex=true;
     public ProfileUpdateJPanel(EcoSystem system) {
         initComponents();
         txtPassword.setVisible(false);
@@ -180,37 +183,55 @@ public class ProfileUpdateJPanel extends javax.swing.JPanel {
 
     private void btnUpdateRestaurantProfileActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnUpdateRestaurantProfileActionPerformed
         try{
-           int uniqueId=system.getLogInUser().getLogInId();
-           int selectedRowIndex=0;
-           selectedRowIndex = system.getRestaurantDirectory().getRestaurants().stream().filter(restaurant -> (restaurant.getUniqueId()!=uniqueId)).map(_item -> 1).reduce(selectedRowIndex, Integer::sum);
-            Restaurant restaurant=new Restaurant(txtName.getText(),txtAddress.getText(),Long.parseLong(txtMobileNumber.getText()),txtUsername.getText(),txtPassword.getText(),uniqueId);
-            for(UserAccount userAccount:system.getUserAccountDirectory().getUserAccountList())
+            if(validateNullOrEmpty())
             {
-                if(txtUsername.getText().equals(userAccount.getUsername()))
+                if(validateFields())
                 {
-                    if(uniqueId != userAccount.getUniqueId())
-                    {
-                        JOptionPane.showMessageDialog(this, "Username already taken.Please take a diffrent username");
-                        return;
-                    }
+                    int uniqueId=system.getLogInUser().getLogInId();
+                    int selectedRowIndex=0;
+                    selectedRowIndex = system.getRestaurantDirectory().getRestaurants().stream().filter(restaurant -> (restaurant.getUniqueId()!=uniqueId)).map(_item -> 1).reduce(selectedRowIndex, Integer::sum);
+                     Restaurant restaurant=new Restaurant(txtName.getText(),txtAddress.getText(),Long.parseLong(txtMobileNumber.getText()),txtUsername.getText(),txtPassword.getText(),uniqueId);
+                     for(UserAccount userAccount:system.getUserAccountDirectory().getUserAccountList())
+                     {
+                         if(txtUsername.getText().equals(userAccount.getUsername()))
+                         {
+                             if(uniqueId != userAccount.getUniqueId())
+                             {
+                                 JOptionPane.showMessageDialog(this, "Username already taken.Please take a diffrent username");
+                                 return;
+                             }
+                         }
+                     }
+                     system.getRestaurantDirectory().getRestaurants().set(selectedRowIndex, restaurant);
+                     int index=0;
+                     for(UserAccount userAccount:system.getUserAccountDirectory().getUserAccountList())
+                     {
+                             if(uniqueId == userAccount.getUniqueId())
+                             {
+                                 system.getUserAccountDirectory().getUserAccountList().set(index, restaurant);
+                             }
+                             else{
+                                 index++;
+                             }
+                     }
+                     JOptionPane.showMessageDialog(null, "User Updated Succesfully");
+            }
+                else{
+                    JOptionPane.showMessageDialog(this, "Validation Failed .Please check the red boxes");
+                    validateNullOrEmpty=true;
+                    validateRegex=true;
                 }
             }
-            system.getRestaurantDirectory().getRestaurants().set(selectedRowIndex, restaurant);
-            int index=0;
-            for(UserAccount userAccount:system.getUserAccountDirectory().getUserAccountList())
-            {
-                    if(uniqueId == userAccount.getUniqueId())
-                    {
-                        system.getUserAccountDirectory().getUserAccountList().set(index, restaurant);
-                    }
-                    else{
-                        index++;
-                    }
+            else{
+                JOptionPane.showMessageDialog(this, "Validation Failed .Please check the red boxes");
+                validateNullOrEmpty=true;
+                validateRegex=true;
             }
-            JOptionPane.showMessageDialog(null, "User Updated Succesfully");
     }
     catch(Exception e)
     {
+        validateNullOrEmpty=true;
+        validateRegex=true;
         throw e;
     }
     }//GEN-LAST:event_btnUpdateRestaurantProfileActionPerformed
@@ -235,7 +256,67 @@ public class ProfileUpdateJPanel extends javax.swing.JPanel {
         }
        
     }
-    
+     private  boolean validateNullOrEmpty()
+    {
+        validateNullOrEmpty=true;
+        if(txtName.getText().trim().isEmpty() || txtName.getText()==null)
+        {
+            validateNullOrEmpty=false;
+            txtName.setToolTipText("Please Enter a Name");
+            txtName.setBorder(BorderFactory.createLineBorder(Color.red,1));
+        }
+        if(!txtName.getText().trim().isEmpty() && txtName.getText()!=null)
+        {
+            txtName.setBorder(UIManager.getLookAndFeel().getDefaults().getBorder("TextField.border"));
+        }
+        if(txtAddress.getText().trim().isEmpty() || txtAddress.getText()==null)
+        {
+            txtAddress.setToolTipText("Please Enter a Location");
+            validateNullOrEmpty=false;
+            txtAddress.setBorder(BorderFactory.createLineBorder (Color.red));
+        }
+        if(!txtAddress.getText().trim().isEmpty() && txtAddress.getText()!=null)
+        {
+            txtAddress.setBorder(UIManager.getLookAndFeel().getDefaults().getBorder("TextField.border"));
+        }
+        if(txtMobileNumber.getText().trim().isEmpty() || txtMobileNumber.getText()==null)
+        {
+            txtMobileNumber.setToolTipText("Please Enter a Contact");
+            validateNullOrEmpty=false;
+            txtMobileNumber.setBorder(BorderFactory.createLineBorder (Color.red));
+        }
+        if(!txtMobileNumber.getText().trim().isEmpty() && txtMobileNumber.getText()!=null)
+        {
+            txtMobileNumber.setBorder(UIManager.getLookAndFeel().getDefaults().getBorder("TextField.border"));
+        }
+        if(txtUsername.getText().trim().isEmpty() || txtUsername.getText()==null)
+        {
+            txtUsername.setToolTipText("Please Enter a Username");
+            validateNullOrEmpty=false;
+            txtUsername.setBorder(BorderFactory.createLineBorder (Color.red));
+        }
+        if(!txtUsername.getText().trim().isEmpty() && txtUsername.getText()!=null)
+        {
+            txtUsername.setBorder(UIManager.getLookAndFeel().getDefaults().getBorder("TextField.border"));
+        }
+        return  validateNullOrEmpty;
+    }
+    private  boolean  validateFields()
+    {
+        validateRegex=true;
+        if(!txtMobileNumber.getText().matches("\\b\\d+\\b"))
+        {
+            validateRegex=false;
+            txtMobileNumber.setToolTipText("Please Enter Only Numbers");
+            txtName.setBorder(UIManager.getLookAndFeel().getDefaults().getBorder("TextField.border"));
+            txtMobileNumber.setBorder(BorderFactory.createLineBorder (Color.red));
+        }
+        if(txtMobileNumber.getText().matches("\\b\\d+\\b"))
+        {
+            txtMobileNumber.setBorder(UIManager.getLookAndFeel().getDefaults().getBorder("TextField.border"));
+        }
+        return validateRegex;
+    }
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnUpdateRestaurantProfile;
     private javax.swing.JLabel jLabel1;
