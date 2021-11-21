@@ -342,6 +342,7 @@ try {
     if(selectedRowIndex<0)
     {
         JOptionPane.showMessageDialog(null, "Please select a row");
+        return;
     }
     else{
         DeliveryMan deliveryMan=(DeliveryMan) jRegisterTable.getValueAt(selectedRowIndex, 0);

@@ -264,6 +264,11 @@ public class ManageMenuJPanel extends javax.swing.JPanel {
     private void btnUpdateItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnUpdateItemActionPerformed
        
         int selectedRowIndex=JMenu.getSelectedRow();
+        if(selectedRowIndex<0)
+        {
+            JOptionPane.showMessageDialog(this, "Select a row before updating");
+                    return;
+        }
         FoodItem foodItem=new FoodItem();
        foodItem.setName(txtItemName.getText());
        foodItem.setPrice(Integer.parseInt(txtPrice.getText()));
