@@ -280,6 +280,11 @@ try {
         if(validateNullOrEmpty()){
             if(validateFields()){
             int selectedRowIndex=jRegisterTable.getSelectedRow();
+            if(selectedRowIndex<0)
+            {
+                JOptionPane.showMessageDialog(this, "Select a row before updating");
+                        return;
+            }
             int uniqueId=system.getDeliveryManDirectory().getDeliveryMens().get(selectedRowIndex).getUniqueId();
             DeliveryMan deliveryMan=new DeliveryMan(txtName.getText(),Long.parseLong(txtMobileNumber.getText()),txtAddress.getText(),txtUsername.getText(),txtPassword.getText(),uniqueId);
             for(UserAccount userAccount:system.getUserAccountDirectory().getUserAccountList())

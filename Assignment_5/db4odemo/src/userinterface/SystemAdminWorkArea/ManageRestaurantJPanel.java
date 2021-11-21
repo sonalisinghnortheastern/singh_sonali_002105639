@@ -267,6 +267,11 @@ public class ManageRestaurantJPanel extends javax.swing.JPanel {
         {
             if(validateFields()){
             int selectedRowIndex=jRegisterTable.getSelectedRow();
+            if(selectedRowIndex<0)
+            {
+                JOptionPane.showMessageDialog(this, "Select a row before updating");
+                        return;
+            }
             int uniqueId=system.getRestaurantDirectory().getRestaurants().get(selectedRowIndex).getUniqueId();
             Restaurant restaurant=new Restaurant(txtName.getText(),txtLocation.getText(),Long.parseLong(txtContact.getText()),txtUsername.getText(),txtPassword.getText(),uniqueId);
             for(UserAccount userAccount:system.getUserAccountDirectory().getUserAccountList())
@@ -324,6 +329,8 @@ public class ManageRestaurantJPanel extends javax.swing.JPanel {
         if(selectedRowIndex<0)
         {
             JOptionPane.showMessageDialog(null, "Please select a row");
+                                    return;
+
         }
         else{
             Restaurant restaurant=(Restaurant) jRegisterTable.getValueAt(selectedRowIndex, 0);

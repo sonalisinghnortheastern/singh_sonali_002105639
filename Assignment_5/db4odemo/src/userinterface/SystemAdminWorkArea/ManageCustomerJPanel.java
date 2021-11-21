@@ -276,6 +276,11 @@ public class ManageCustomerJPanel extends javax.swing.JPanel {
         if(validateNullOrEmpty()){
             if(validateFields()){
         int selectedRowIndex=jRegisterTable.getSelectedRow();
+        if(selectedRowIndex<0)
+        {
+            JOptionPane.showMessageDialog(this, "Select a row before updating");
+                    return;
+        }
         int uniqueId=system.getCustomerDirectory().getCustomers().get(selectedRowIndex).getUniqueId();
         Customer customer=new Customer(txtName.getText(),txtAddress.getText(),Long.parseLong(txtMobileNumber.getText()),txtUsername.getText(),txtPassword.getText(),uniqueId);
         for(UserAccount userAccount:system.getUserAccountDirectory().getUserAccountList())
@@ -332,6 +337,7 @@ public class ManageCustomerJPanel extends javax.swing.JPanel {
         if(selectedRowIndex<0)
         {
             JOptionPane.showMessageDialog(null, "Please select a row");
+            return;
         }
         else{
             Customer customer=(Customer) jRegisterTable.getValueAt(selectedRowIndex, 0);
