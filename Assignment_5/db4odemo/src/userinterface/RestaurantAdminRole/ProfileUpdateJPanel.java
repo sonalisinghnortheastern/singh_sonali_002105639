@@ -2,6 +2,7 @@
 
 package userinterface.RestaurantAdminRole;
 
+import Business.DB4OUtil.DB4OUtil;
 import Business.EcoSystem;
 import Business.Restaurant.Restaurant;
 import Business.UserAccount.UserAccount;
@@ -18,6 +19,7 @@ public class ProfileUpdateJPanel extends javax.swing.JPanel {
    private final EcoSystem system;
    boolean validateNullOrEmpty=true;
     boolean validateRegex=true;
+    private DB4OUtil dB4OUtil = DB4OUtil.getInstance();
     public ProfileUpdateJPanel(EcoSystem system) {
         initComponents();
         txtPassword.setVisible(false);
@@ -214,6 +216,7 @@ public class ProfileUpdateJPanel extends javax.swing.JPanel {
                                  index++;
                              }
                      }
+                     dB4OUtil.storeSystem(system);
                      JOptionPane.showMessageDialog(null, "User Updated Succesfully");
             }
                 else{

@@ -5,6 +5,7 @@
  */
 package userinterface.RestaurantAdminRole;
 
+import Business.DB4OUtil.DB4OUtil;
 import Business.EcoSystem;
 import Business.Restaurant.FoodItem;
 import Business.Restaurant.Restaurant;
@@ -26,6 +27,7 @@ public class ManageMenuJPanel extends javax.swing.JPanel {
     private final EcoSystem system;  
     boolean validateNullOrEmpty=true;
     boolean validateRegex=true;
+    private DB4OUtil dB4OUtil = DB4OUtil.getInstance();
     public ManageMenuJPanel(EcoSystem system) {
         initComponents();
         this.system=system;
@@ -227,6 +229,8 @@ public class ManageMenuJPanel extends javax.swing.JPanel {
                                reset();
                            }
                         }
+                        dB4OUtil.storeSystem(system);
+                        JOptionPane.showMessageDialog(null, "Item Added to the menu successfully");
                 } catch (Exception e) {
                     throw e;
                 }
@@ -274,6 +278,8 @@ public class ManageMenuJPanel extends javax.swing.JPanel {
                        reset();
                    }
                 }
+                dB4OUtil.storeSystem(system);
+                JOptionPane.showMessageDialog(null, "Item Updated to the Menu Successfully");
         } catch (Exception e) {
             throw e;
         }

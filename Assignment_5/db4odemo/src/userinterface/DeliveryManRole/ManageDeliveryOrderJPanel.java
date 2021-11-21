@@ -2,6 +2,7 @@
 
 package userinterface.DeliveryManRole;
 
+import Business.DB4OUtil.DB4OUtil;
 import Business.DeliveryMan.DeliveryMan;
 import Business.EcoSystem;
 import Business.WorkQueue.PlaceOrderWorkRequest;
@@ -17,6 +18,7 @@ public class ManageDeliveryOrderJPanel extends javax.swing.JPanel {
 
     
    private final EcoSystem system;
+   private DB4OUtil dB4OUtil = DB4OUtil.getInstance();
     public ManageDeliveryOrderJPanel(EcoSystem system) {
         initComponents();
         this.system=system;
@@ -266,6 +268,7 @@ public class ManageDeliveryOrderJPanel extends javax.swing.JPanel {
                        workRequest.setDeliverMan(deliveryMan);
                    }
                 }
+                dB4OUtil.storeSystem(system);
                 JOptionPane.showMessageDialog(null, "Order Status Updated");
                 reset();
             }

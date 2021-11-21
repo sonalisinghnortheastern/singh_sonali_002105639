@@ -3,6 +3,7 @@
 package userinterface.CustomerRole;
 
 import Business.Customer.Customer;
+import Business.DB4OUtil.DB4OUtil;
 import Business.EcoSystem;
 import Business.UserAccount.UserAccount;
 import java.awt.Color;
@@ -20,6 +21,7 @@ public class CustomerProfileUpdateJPanel extends javax.swing.JPanel {
    private final EcoSystem system;
    boolean validateNullOrEmpty=true;
     boolean validateRegex=true;
+    private DB4OUtil dB4OUtil = DB4OUtil.getInstance();
     public CustomerProfileUpdateJPanel(EcoSystem system) {
         initComponents();
         txtPassword.setVisible(false);
@@ -214,6 +216,7 @@ public class CustomerProfileUpdateJPanel extends javax.swing.JPanel {
                         index++;
                     }
             }
+            dB4OUtil.storeSystem(system);
             JOptionPane.showMessageDialog(null, "User Updated Succesfully");
                 }
                 else{

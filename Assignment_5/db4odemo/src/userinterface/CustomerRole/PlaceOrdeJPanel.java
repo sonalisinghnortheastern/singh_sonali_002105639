@@ -6,6 +6,7 @@
 package userinterface.CustomerRole;
 
 import Business.Customer.Customer;
+import Business.DB4OUtil.DB4OUtil;
 import Business.EcoSystem;
 import Business.Restaurant.FoodItem;
 import Business.Restaurant.Restaurant;
@@ -29,6 +30,7 @@ public class PlaceOrdeJPanel extends javax.swing.JPanel {
      */
     private final EcoSystem system;
     private List<Cart> orderItems;
+    private DB4OUtil dB4OUtil = DB4OUtil.getInstance();
     public PlaceOrdeJPanel(EcoSystem system) {
        orderItems = new ArrayList<Cart>();
         initComponents();
@@ -269,7 +271,7 @@ public class PlaceOrdeJPanel extends javax.swing.JPanel {
 
     private void btnRemoveItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRemoveItemActionPerformed
        try{
-        int rowNumber=JMenu.getSelectedRow();
+        int rowNumber=JCart.getSelectedRow();
         if(rowNumber<0)
         {
             JOptionPane.showMessageDialog(null, "Please select item in cart");
@@ -277,6 +279,7 @@ public class PlaceOrdeJPanel extends javax.swing.JPanel {
         else{
         orderItems.remove(rowNumber);
         populateTableCart();
+        JOptionPane.showMessageDialog(null, "User Deleted Succesfully");
        }
        }
        catch(Exception ex)
@@ -294,7 +297,6 @@ public class PlaceOrdeJPanel extends javax.swing.JPanel {
         }
         else{
             PlaceOrderWorkRequest placeOrderWorkRequest = new PlaceOrderWorkRequest();
-             Object[] rowData = new Object [JCart.getRowCount()];
              for(int i=0;i<orderItems.size();i++)
              {
                  if(!String.valueOf(orderItems.get(i).getQuantity()).equals(String.valueOf(JCart.getValueAt(i, 2))))
@@ -325,6 +327,7 @@ public class PlaceOrdeJPanel extends javax.swing.JPanel {
             placeOrderWorkRequest.setStatus("Ordered");
             
             system.getWorkQueue().setWorkRequestList(placeOrderWorkRequest);
+            dB4OUtil.storeSystem(system);
             JOptionPane.showMessageDialog(null, "Ordered Placed Successfully");
             txtTotal.setText("");
             orderItems.removeAll(orderItems);

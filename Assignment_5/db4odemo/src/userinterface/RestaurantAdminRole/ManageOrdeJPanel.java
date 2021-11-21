@@ -5,6 +5,7 @@
  */
 package userinterface.RestaurantAdminRole;
 
+import Business.DB4OUtil.DB4OUtil;
 import Business.DeliveryMan.DeliveryMan;
 import Business.EcoSystem;
 import Business.Restaurant.Restaurant;
@@ -25,6 +26,7 @@ public class ManageOrdeJPanel extends javax.swing.JPanel {
      * Creates new form ManageOrdeJPanel
      */
     private final EcoSystem system;
+    private DB4OUtil dB4OUtil = DB4OUtil.getInstance();
     public ManageOrdeJPanel(EcoSystem system) {
         initComponents();
         this.system=system;
@@ -216,9 +218,9 @@ public class ManageOrdeJPanel extends javax.swing.JPanel {
                 JOptionPane.showMessageDialog(null, "Please select a row ");
                 return;
             }
-                
            String orderId= (String) JManageIncomingOrder.getModel().getValueAt(rowNumber, 0);
            String status=(String) JManageIncomingOrder.getModel().getValueAt(rowNumber, 2);
+           
             if(status.equals("Ordered") ||  status.equals("ACCEPT"))
             {
                 for(PlaceOrderWorkRequest workRequest:system.getWorkQueue().getWorkRequestList())
@@ -272,6 +274,7 @@ public class ManageOrdeJPanel extends javax.swing.JPanel {
                                 workRequest.setDeliverMan(deliveryMan);
                             }
                         }
+                        
                     }
                     if(status.equals("DECLINE"))
                     {
@@ -279,6 +282,7 @@ public class ManageOrdeJPanel extends javax.swing.JPanel {
                     }
                 }
             }
+            dB4OUtil.storeSystem(system);
         }
         catch(Exception ex)
         {
@@ -332,9 +336,10 @@ public class ManageOrdeJPanel extends javax.swing.JPanel {
          }
          else if(status.equals("ACCEPT"))
          {
-             model.addElement("ASSIGNED");
+            model.addElement("ASSIGNED");   
          }
         } catch (Exception e) {
+            throw e;
         }
     }
     private void populateManageIncomingOrderTable()
