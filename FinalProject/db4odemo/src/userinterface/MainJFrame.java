@@ -6,6 +6,8 @@ package userinterface;
 
 import Business.DB4OUtil.DB4OUtil;
 import Business.EcoSystem;
+import Business.Enterprise.Enterprise;
+import Business.Network.Network;
 import Business.Role.Role.RoleType;
 import Business.UserAccount.UserAccount;
 import Business.UserAccount.loggedInUser;
@@ -242,7 +244,24 @@ public class MainJFrame extends javax.swing.JFrame {
         String userName = txtuserName.getText();
         String password = String.valueOf(txtPassword.getPassword());
         userAccount=system.getUserAccountDirectory().authenticateUser(userName, password);
-
+        if(userAccount==null)
+                {
+                    for(Network networks:system.getNetworks())
+                    {
+                        for(Enterprise enterprises:networks.getEnterpriseDirectory().getEnterprises())
+                        {
+                            userAccount=enterprises.getUserAccountDirectory().authenticateUser(userName, password);
+                            if(userAccount!=null)
+                            {
+                                break;
+                            }
+                        }
+                        if(userAccount!=null)
+                        {
+                            break;
+                        }
+                    }
+                }
         if(userAccount==null){
             JOptionPane.showMessageDialog(null, "Please enter valid login credentials");
             return;
@@ -260,6 +279,20 @@ public class MainJFrame extends javax.swing.JFrame {
                    //system.setLogInUser(logInUser);
                }
             }
+             for(Network networks:system.getNetworks())
+            {
+                for(Enterprise enterprises:networks.getEnterpriseDirectory().getEnterprises())
+                {
+                    for(UserAccount userAccount:enterprises.getUserAccountDirectory().getUserAccountList())
+                    {
+                        if(userAccount.getUsername().equals(userName))
+                        {
+                            loggedInUser logInUser=new loggedInUser();
+                            logInUser.setLogInId(userAccount.getUniqueId());
+                        }
+                    }
+                }
+            }
             switchJPanel(userAccount);
             
         }
@@ -276,6 +309,10 @@ public class MainJFrame extends javax.swing.JFrame {
     }//GEN-LAST:event_jLabel1MouseClicked
     private void switchJPanel(UserAccount loggedInUser) {
         if (loggedInUser != null) {
+            if(loggedInUser.getRole().equals(RoleType.OrganizationAdmin.toString()))
+            {
+                container.add("workArea", loggedInUser.getRole().createWorkArea(container,loggedInUser,system));
+            }
             if(loggedInUser.getRole().equals(RoleType.RestaurantAdmin.toString())){
                 container.add("workArea", loggedInUser.getRole().createWorkArea(container,loggedInUser,system));
             }
