@@ -14,7 +14,6 @@ import Business.Enterprise.EnterpriseDirectory;
 public class Network {
     private String networkName;
     private EnterpriseDirectory enterpriseDirectory;
-
     public Network() {
         enterpriseDirectory=new EnterpriseDirectory();
     }

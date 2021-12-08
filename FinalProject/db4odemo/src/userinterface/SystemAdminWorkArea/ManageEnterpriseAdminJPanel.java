@@ -7,7 +7,14 @@ package userinterface.SystemAdminWorkArea;
 
 import Business.DB4OUtil.DB4OUtil;
 import Business.EcoSystem;
+import Business.Employee.Employee;
+import Business.Enterprise.Enterprise;
 import Business.Network.Network;
+import Business.Role.OrganizationAdminRole;
+import Business.UserAccount.UserAccount;
+import java.util.Random;
+import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
 
 /**
  *
@@ -20,7 +27,6 @@ public class ManageEnterpriseAdminJPanel extends javax.swing.JPanel {
     public ManageEnterpriseAdminJPanel(EcoSystem system) {
         initComponents();
         this.system = system;
-        //populateTable();
         populateNetworkComboBox();
     }
 
@@ -235,95 +241,47 @@ public class ManageEnterpriseAdminJPanel extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnCreateDeliveryManActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCreateDeliveryManActionPerformed
-//try {
-//            if(!system.getUserAccountDirectory().checkIfUsernameIsUnique((txtUsername.getText())))
-//            {
-//                JOptionPane.showMessageDialog(this, "User with this username already exists. Try a diffrent username");
-//            }
-//            else{
-//                String name = txtName.getText();
-//                String password = txtPassword.getText();
-//                if (name.isEmpty()|| password.isEmpty()|| txtUsername.getText().isEmpty()) {
-//                    JOptionPane.showMessageDialog(this, "Fields cannot be empty, kindly re-enter");
-//                    return;
-//                }
-//                
-//                else{
-//                    Enterprise enterprise = (Enterprise) enterpriseJComboBox.getSelectedItem();
-//                 
-//                    Employee employee = enterprise.getEmployeeDirectory().createEmployee(name);
-//                    
-//                    //Business.EcoSystem.getBusiness()
-//                }
-//             // Random random=new Random();
-//              //int uniqueId=random.nextInt((9999 - 100) + 1) + 10;
-////              DeliveryMan deliveryMan=new DeliveryMan(txtName.getText(),Long.parseLong(txtMobileNumber.getText()),txtAddress.getText(),txtUsername.getText(),txtPassword.getText(),uniqueId);
-////              deliveryMan.setIsDeliveryPersonAvailable(true);
-//              //system.getDeliveryManDirectory().setDeliveryMens(deliveryMan);
-////              system.getUserAccountDirectory().addUserAccountToAccounts(deliveryMan);
-//              
-//              populateTable();
-//              reset();
-//              dB4OUtil.storeSystem(system);
-//              JOptionPane.showMessageDialog(this, "User Registered Succesfully");
-//            }
-//    } catch (Exception e) {
-//        throw e;
-//    }        
+    String name= txtName.getText();
+    String username=txtUsername.getText();
+    String password =txtPassword.getText();
+    Enterprise enterprise = (Enterprise) enterpriseJComboBox.getSelectedItem();
+    if(system.getUserAccountDirectory().checkIfUsernameIsUnique(username))
+    {
+        Random random=new Random();
+        int uniqueId=random.nextInt((9999 - 100) + 1) + 10;
+        Employee employee = enterprise.getEmployeeDirectory().createEmployee(name);
+        enterprise.getUserAccountDirectory().createUserAccount(username, password, employee, new OrganizationAdminRole(),uniqueId);
+        populateTable();
+        JOptionPane.showMessageDialog(null, "Organisation Admin Created");
+        reset();
+    
+    }
+    else{
+        JOptionPane.showMessageDialog(null, "Username already exist");
+        return;
+    }
     }//GEN-LAST:event_btnCreateDeliveryManActionPerformed
 
     private void btnModifyActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnModifyActionPerformed
-    try{/*
-        if(validateNullOrEmpty()){
-            if(validateFields()){
-            int selectedRowIndex=jRegisterTable.getSelectedRow();
-            if(selectedRowIndex<0)
-            {
-                JOptionPane.showMessageDialog(this, "Select a row before updating");
-                        return;
-            }
-           // int uniqueId=system.getDeliveryManDirectory().getDeliveryMens().get(selectedRowIndex).getUniqueId();
-            DeliveryMan deliveryMan=new DeliveryMan(txtName.getText(),Long.parseLong(txtMobileNumber.getText()),txtAddress.getText(),txtUsername.getText(),txtPassword.getText(),uniqueId);
-            for(UserAccount userAccount:system.getUserAccountDirectory().getUserAccountList())
-            {
-                if(txtUsername.getText().equals(userAccount.getUsername()))
-                {
-                    if(uniqueId != userAccount.getUniqueId())
-                    {
-                        JOptionPane.showMessageDialog(this, "Username already taken.Please take a diffrent username");
-                        return;
-                    }
-                }
-            }
-            system.getDeliveryManDirectory().getDeliveryMens().set(selectedRowIndex, deliveryMan);
-            populateTable();
-             int index=0;
-            for(UserAccount userAccount:system.getUserAccountDirectory().getUserAccountList())
-            {
-                    if(uniqueId == userAccount.getUniqueId())
-                    {
-                        system.getUserAccountDirectory().getUserAccountList().set(index, deliveryMan);
-                    }
-                    else{
-                        index++;
-                    }
-            }
-            dB4OUtil.storeSystem(system);
-            JOptionPane.showMessageDialog(null, "User Updated Succesfully");
-            reset();
-        }
+    try{
+        int rowNumber=jRegisterTable.getSelectedRow();
+        String name= txtName.getText();
+        String username=txtUsername.getText();
+        String password =txtPassword.getText();
+        Enterprise enterprise = (Enterprise) enterpriseJComboBox.getSelectedItem();
+         UserAccount userAccount = (UserAccount) enterpriseJComboBox.getSelectedItem();
+//        for(Network network : system.getNetworks())
+//        {
+//            for(Enterprise enterprise1 : network.getEnterpriseDirectory().getEnterprises())
+//            {
+//               for(UserAccount userAccount : enterprise1.getUserAccountDirectory().getUserAccountList())
+//               {
+//                   if(userAccount.equals(userAccount))
+//               }
+//            }
+//        }
         
-        else{
-            JOptionPane.showMessageDialog(this, "Validation Failed .Please check the red boxes");
-            validateNullOrEmpty=true;
-            validateRegex=true;
-        }
-        }
-        else{
-            JOptionPane.showMessageDialog(this, "Validation Failed .Please check the red boxes");
-            validateNullOrEmpty=true;
-            validateRegex=true;
-        }*/
+        
     }
     catch(Exception e)
     {
@@ -332,21 +290,38 @@ public class ManageEnterpriseAdminJPanel extends javax.swing.JPanel {
     }//GEN-LAST:event_btnModifyActionPerformed
 
     private void btnDeleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDeleteActionPerformed
-    try{/*
-    int selectedRowIndex=jRegisterTable.getSelectedRow();
-    if(selectedRowIndex<0)
-    {
-        JOptionPane.showMessageDialog(null, "Please select a row");
-        return;
-    }
-    else{
-        DeliveryMan deliveryMan=(DeliveryMan) jRegisterTable.getValueAt(selectedRowIndex, 0);
-        system.getDeliveryManDirectory().getDeliveryMens().remove(deliveryMan);
-        populateTable();
-        dB4OUtil.storeSystem(system);
-        JOptionPane.showMessageDialog(null, "User Deleted Succesfully");
-        reset();
-    }*/
+    try{
+        int selectedRowIndex=jRegisterTable.getSelectedRow();
+        if(selectedRowIndex<0)
+        {
+            JOptionPane.showMessageDialog(null, "Please select a row");
+            return;
+        }
+        else{
+            String userName=(String) jRegisterTable.getValueAt(selectedRowIndex, 4);
+            int index=0;
+            for(Network network : system.getNetworks())
+            {
+                for(Enterprise enterprise : network.getEnterpriseDirectory().getEnterprises())
+                {
+                    for(UserAccount userAccount : enterprise.getUserAccountDirectory().getUserAccountList())
+                    {
+                        if(!userAccount.getUsername().equals(userName))
+                        {
+                            index++;
+                        }
+                        else{
+                            break;
+                        }
+                    }
+                    enterprise.getUserAccountDirectory().getUserAccountList().remove(index);
+                }
+            }
+            populateTable();
+            reset();
+            JOptionPane.showMessageDialog(null, "Admin Deleted Successfully");
+            
+        }
     }
     catch(Exception e)
     {
@@ -358,10 +333,18 @@ public class ManageEnterpriseAdminJPanel extends javax.swing.JPanel {
     private void jRegisterTableMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jRegisterTableMouseClicked
         try{
            int rowNumber=jRegisterTable.getSelectedRow();
+           Enterprise type=(Enterprise) jRegisterTable.getModel().getValueAt(rowNumber, 2);
+            enterpriseJComboBox.setSelectedItem(type);
             txtName.setText(jRegisterTable.getModel().getValueAt(rowNumber, 3).toString());
             txtUsername.setText(jRegisterTable.getModel().getValueAt(rowNumber, 4).toString());
             txtPassword.setText(jRegisterTable.getModel().getValueAt(rowNumber, 5).toString());
-            
+             for(Network networks:system.getNetworks())
+            {
+                if(networks.getNetworkName().equals(jRegisterTable.getModel().getValueAt(rowNumber, 1).toString()))
+                {
+                    networkJComboBox.setSelectedItem(networks.getNetworkName());
+                }
+            }
        }
       catch(Exception e)
       {
@@ -370,51 +353,59 @@ public class ManageEnterpriseAdminJPanel extends javax.swing.JPanel {
     }//GEN-LAST:event_jRegisterTableMouseClicked
 
     private void networkJComboBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_networkJComboBoxActionPerformed
-//       Network network = (Network) networkJComboBox.getSelectedItem();
-//        for (Enterprise enterprise : network.getEnterpriseDirectory().getEnterpriseList()) {
-//            enterpriseJComboBox.addItem(enterprise);
-//        }
+        enterpriseJComboBox.removeAllItems();
+        Network network1=null;
+        for (Network network : system.getNetworks()) {
+            if(network.getNetworkName().equals((networkJComboBox.getSelectedItem())))
+            {
+              network1=network;
+            }
+        }
+        if(network1!=null)
+        {
+            for(Enterprise enterprise:network1.getEnterpriseDirectory().getEnterprises())
+        {
+            enterpriseJComboBox.addItem(enterprise);
+        }
+        }
     }//GEN-LAST:event_networkJComboBoxActionPerformed
     private void populateTable() {
-//       DeliveryManDirectory deliveryManDirectory = system.getDeliveryManDirectory();
-//       DefaultTableModel model = (DefaultTableModel) jRegisterTable.getModel();
-//        model.setRowCount(0);
-//        for (Network network : system.getNetworks()) {
-//        for (Enterprise enterprise : network.getEnterpriseDirectory().getEnterpriseList()) {
-//                 for (UserAccount userAccount : enterprise.getUserAccountDirectory().getUserAccountList()) {
-//                    Object[] row = new Object[3];
-//                    row[0] = enterprise.getName();
-//                    row[1] = network.getNetworkName();
-//                    row[2] = userAccount.getUsername();
-//
-//                    model.addRow(row);
-//                }            
-//        }
-//       }
-//        jRegisterTable.getColumnModel().getColumn(0).setMinWidth(0);
-//        jRegisterTable.getColumnModel().getColumn(0).setMaxWidth(0);
-//        for (DeliveryMan deliveryMan : deliveryManDirectory.getDeliveryMens()) {
-//                    Object[] row = new Object[6];
-//                    row[0] = deliveryMan;
-//                    row[1] = deliveryMan.getName();
-//                    row[2] = deliveryMan.getMobileNumber();
-//                    row[3] = deliveryMan.getAddress();
-//                    row[4] = deliveryMan.getUsername();
-//                    row[5] = deliveryMan.getPassword();
-//                    model.addRow(row);
-//                
-//            }
+        DefaultTableModel model = (DefaultTableModel) jRegisterTable.getModel();
+        model.setRowCount(0);
+        jRegisterTable.getColumnModel().getColumn(0).setMinWidth(0);
+        jRegisterTable.getColumnModel().getColumn(0).setMaxWidth(0);
+        for(Network network : system.getNetworks())
+        {
+            for(Enterprise enterprise : network.getEnterpriseDirectory().getEnterprises())
+            {
+                for(UserAccount userAccount : enterprise.getUserAccountDirectory().getUserAccountList())
+                {
+                    Object[] row = new Object[6];
+                    row[0]=userAccount.getUniqueId();
+                    row[1] = network.getNetworkName();
+                    row[2] = enterprise;
+                    row[3] = userAccount.getEmployee().getName();
+                    row[4] = userAccount.getUsername();
+                    row[5] = userAccount.getPassword();
+                    model.addRow(row);
+                }
+            }
+        }
+
     }
     private void reset() {
             txtName.setText("");
             txtUsername.setText("");
             txtPassword.setText("");
+            networkJComboBox.setSelectedIndex(0);
+            enterpriseJComboBox.setSelectedIndex(0);
         }
     private void populateNetworkComboBox() {
         networkJComboBox.removeAllItems();
-        for (Network network : system.getNetworks()) {
-            networkJComboBox.addItem(network);
-        }
+       for(Network network: system.getNetworks())
+       {
+           networkJComboBox.addItem(network.getNetworkName());
+       }
     }
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnCreateDeliveryMan;

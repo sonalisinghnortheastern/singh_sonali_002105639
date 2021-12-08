@@ -134,25 +134,6 @@ public class ManageEnterpriseJPanel extends javax.swing.JPanel {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.TRAILING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(178, Short.MAX_VALUE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(btnDelete, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 148, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addGroup(layout.createSequentialGroup()
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                    .addComponent(jLabel3, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(jLabel2, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(networkJComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, 260, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(enterpriseTypeJComboBox, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 165, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(txtName, javax.swing.GroupLayout.PREFERRED_SIZE, 259, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addGap(223, 223, 223))))
             .addComponent(jLabel1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addGroup(layout.createSequentialGroup()
                 .addGap(259, 259, 259)
@@ -160,6 +141,27 @@ public class ManageEnterpriseJPanel extends javax.swing.JPanel {
                 .addGap(58, 58, 58)
                 .addComponent(btnModify)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap(164, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                            .addComponent(jLabel3, javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel2, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 126, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(43, 43, 43)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(enterpriseTypeJComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, 279, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addContainerGap())
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(networkJComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, 260, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(74, 74, 74)
+                                .addComponent(btnDelete, javax.swing.GroupLayout.PREFERRED_SIZE, 148, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 165, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(txtName, javax.swing.GroupLayout.PREFERRED_SIZE, 259, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(223, 223, 223))))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -210,8 +212,9 @@ public class ManageEnterpriseJPanel extends javax.swing.JPanel {
         String enterpriseName=txtName.getText();
         Enterprise createEnterprise = network1.getEnterpriseDirectory().createEnterprise(enterpriseName, enterpriseType);
         populateTable();
+        dB4OUtil.storeSystem(system);
         JOptionPane.showMessageDialog(null, "Enterprise Added Succesfully");
-        txtName.setText("");
+        reset();
     } 
     catch(Exception e)
     {
@@ -221,33 +224,52 @@ public class ManageEnterpriseJPanel extends javax.swing.JPanel {
 
     private void btnModifyActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnModifyActionPerformed
       try{
-//           int rowNumber=jRegisterTable.getSelectedRow();
-//           String oldNetwork =(jRegisterTable.getModel().getValueAt(rowNumber, 1).toString());
-//            txtName.setText(jRegisterTable.getModel().getValueAt(rowNumber, 3).toString());
-//            Enterprise enterprise=(Enterprise) (jRegisterTable.getModel().getValueAt(rowNumber, 0));
-//            enterprise.setName(txtName.getText());
-//            int index=0;
-//            for(Network network:system.getNetworks())
-//            {
-//                if(network.getNetworkName().equals(oldNetwork))
-//                {
-//                    for(Enterprise enterprise1:network.getEnterpriseDirectory().getEnterprises())
-//                    {
-//                        if(enterprise1.equals(enterprise))
-//                        {
-//                           network.getEnterpriseDirectory().getEnterprises().set(index, enterprise);
-//                        }
-//                        else{
-//                            index++;
-//                        }
-//                            
-//                    }
-//                    
-//                }
-//            }
-//            populateTable();
-//            txtName.setText("");
-//            JOptionPane.showMessageDialog(null, "Enterprise Updated Succesfully");
+          
+           int rowNumber=jRegisterTable.getSelectedRow();
+            String oldNetwork =(jRegisterTable.getModel().getValueAt(rowNumber, 1).toString());
+            String enterpriseName=txtName.getText();
+            Enterprise enterprise=(Enterprise) (jRegisterTable.getModel().getValueAt(rowNumber, 0));
+            enterprise.setName(enterpriseName);
+            if(enterpriseTypeJComboBox.getSelectedItem().equals(Enterprise.EnterpriseType.NGO))
+            {
+                enterprise.setEnterpriseType(Enterprise.EnterpriseType.NGO);
+            }
+            else if(enterpriseTypeJComboBox.getSelectedItem().equals(Enterprise.EnterpriseType.College))
+            {
+                 enterprise.setEnterpriseType(Enterprise.EnterpriseType.College);
+            }
+            else if(enterpriseTypeJComboBox.getSelectedItem().equals(Enterprise.EnterpriseType.CollegeCounsellor))
+            {
+                 enterprise.setEnterpriseType(Enterprise.EnterpriseType.CollegeCounsellor);
+            }
+            else if(enterpriseTypeJComboBox.getSelectedItem().equals(Enterprise.EnterpriseType.Restaurant))
+            {
+                 enterprise.setEnterpriseType(Enterprise.EnterpriseType.Restaurant);
+            }
+             else if(enterpriseTypeJComboBox.getSelectedItem().equals(Enterprise.EnterpriseType.Hospital))
+            {
+                 enterprise.setEnterpriseType(Enterprise.EnterpriseType.Hospital);
+            }
+            int index=0;
+            for(Network network:system.getNetworks())
+            {
+                if(network.getNetworkName().equals(oldNetwork))
+                {
+                    for(Enterprise enterprise1:network.getEnterpriseDirectory().getEnterprises())
+                    {
+                        if(enterprise1.equals(enterprise))
+                        {
+                           network.getEnterpriseDirectory().getEnterprises().set(index, enterprise);
+                        }
+                        else{
+                            index++;
+                        }
+                    }
+                }
+            }
+            populateTable();
+            reset();
+            JOptionPane.showMessageDialog(null, "Enterprise Updated Succesfully");
             
        }
       catch(Exception e)
@@ -267,8 +289,6 @@ try{
         else{
             Enterprise enterprise=(Enterprise) jRegisterTable.getValueAt(selectedRowIndex, 0);
             String networkName=(String) jRegisterTable.getValueAt(selectedRowIndex, 1);
-            
-            
             for(Network network : system.getNetworks())
             {
                 if(network.getNetworkName().equals(networkName))
@@ -282,13 +302,12 @@ try{
                             enterprise1.remove();
                             
                         }
-                        
                     }
                 }
             }
             populateTable();
-            JOptionPane.showMessageDialog(null, "Network Deleted Succesfully");
-            txtName.setText("");
+            JOptionPane.showMessageDialog(null, "Enterprise Deleted Succesfully");
+            reset();
         }
     }
     catch(Exception e)
@@ -299,8 +318,19 @@ try{
 
     private void jRegisterTableMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jRegisterTableMouseClicked
     try{
+        networkJComboBox.setEditable(false);
            int rowNumber=jRegisterTable.getSelectedRow();
             txtName.setText(jRegisterTable.getModel().getValueAt(rowNumber, 3).toString());
+            Enterprise.EnterpriseType type=(Enterprise.EnterpriseType) jRegisterTable.getModel().getValueAt(rowNumber, 2);
+            for(Network networks:system.getNetworks())
+            {
+                if(networks.getNetworkName().equals(jRegisterTable.getModel().getValueAt(rowNumber, 1).toString()))
+                {
+                    networkJComboBox.setSelectedItem(networks.getNetworkName());
+                }
+            }
+            enterpriseTypeJComboBox.setSelectedItem(type);
+            
        }
       catch(Exception e)
       {
@@ -346,7 +376,12 @@ try{
         
     }    
 
-    
+    private  void reset()
+    {
+        txtName.setText("");
+            networkJComboBox.setSelectedIndex(0);
+            enterpriseTypeJComboBox.setSelectedIndex(0);
+    }
    
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnCreate;

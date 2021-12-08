@@ -269,7 +269,7 @@ public class MainJFrame extends javax.swing.JFrame {
     private void jLabel1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel1MouseClicked
 
         container.removeAll();
-        //dB4OUtil.storeSystem(system);
+        dB4OUtil.storeSystem(system);
         loginJPanel.setVisible(true);
         container.setVisible(false);
         leftPanel.setVisible(true);

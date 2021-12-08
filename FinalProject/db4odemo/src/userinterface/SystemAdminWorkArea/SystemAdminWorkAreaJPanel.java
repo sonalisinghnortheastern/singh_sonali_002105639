@@ -42,6 +42,7 @@ public class SystemAdminWorkAreaJPanel extends javax.swing.JPanel {
         btnManageRestaurant = new javax.swing.JButton();
         btnManageDeliveryMen = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
+        btnManagePeopleAdmin = new javax.swing.JButton();
         jPanel2 = new javax.swing.JPanel();
         jLabel2 = new javax.swing.JLabel();
 
@@ -84,19 +85,29 @@ public class SystemAdminWorkAreaJPanel extends javax.swing.JPanel {
             }
         });
 
+        btnManagePeopleAdmin.setFont(new java.awt.Font("Comic Sans MS", 1, 14)); // NOI18N
+        btnManagePeopleAdmin.setText("Manage People Admin");
+        btnManagePeopleAdmin.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnManagePeopleAdminActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(btnManageRestaurant, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addComponent(btnManageDeliveryMen)
-                .addGap(0, 0, Short.MAX_VALUE))
             .addComponent(btnManageCustomers, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jLabel1)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(btnManageDeliveryMen, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(btnManagePeopleAdmin, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGap(0, 0, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -109,7 +120,9 @@ public class SystemAdminWorkAreaJPanel extends javax.swing.JPanel {
                 .addComponent(btnManageRestaurant)
                 .addGap(70, 70, 70)
                 .addComponent(btnManageDeliveryMen)
-                .addContainerGap(437, Short.MAX_VALUE))
+                .addGap(45, 45, 45)
+                .addComponent(btnManagePeopleAdmin)
+                .addContainerGap(363, Short.MAX_VALUE))
         );
 
         jSplitPane.setLeftComponent(jPanel1);
@@ -160,11 +173,18 @@ public class SystemAdminWorkAreaJPanel extends javax.swing.JPanel {
         // TODO add your handling code here:
        dB4OUtil.storeSystem(ecosystem);
     }//GEN-LAST:event_jLabel1MousePressed
+
+    private void btnManagePeopleAdminActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnManagePeopleAdminActionPerformed
+        // TODO add your handling code here:
+         ManagePeopleJPanel managePeopleJPanel=new ManagePeopleJPanel(ecosystem);
+        jSplitPane.setRightComponent(managePeopleJPanel);
+    }//GEN-LAST:event_btnManagePeopleAdminActionPerformed
    
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnManageCustomers;
     private javax.swing.JButton btnManageDeliveryMen;
+    private javax.swing.JButton btnManagePeopleAdmin;
     private javax.swing.JButton btnManageRestaurant;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;

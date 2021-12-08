@@ -6,7 +6,6 @@ package Business.Role;
 
 import Business.EcoSystem;
 
-import Business.Organization;
 import Business.UserAccount.UserAccount;
 import javax.swing.JPanel;
 
@@ -20,6 +19,8 @@ public abstract class Role {
         RestaurantAdmin("RestaurantAdmin"),
         Customer("Customer"),
         DeliveryMan("Delivery"),
+        OrganizationAdmin("OrganizationAdmin"),
+        NGOEmployeeRole("NGOEmployee"),
         SysAdmin("Sysadmin");
         
         private String value;

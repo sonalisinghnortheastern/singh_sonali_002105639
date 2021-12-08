@@ -40,15 +40,15 @@ public class EnterpriseDirectory {
         enterprise=new NGOEnterprise(name);
         enterprises.add(enterprise);
         }
-        if(type==Enterprise.EnterpriseType.Hospital){
+        if(type==Enterprise.EnterpriseType.Restaurant){
         enterprise=new RestaurantEnterprise(name);
         enterprises.add(enterprise);
         }
-        if(type==Enterprise.EnterpriseType.Hospital){
+        if(type==Enterprise.EnterpriseType.College){
         enterprise=new CollegeEnterprise(name);
         enterprises.add(enterprise);
         }
-        if(type==Enterprise.EnterpriseType.Hospital){
+        if(type==Enterprise.EnterpriseType.CollegeCounsellor){
         enterprise=new CollegeCounsellorEnterprise(name);
         enterprises.add(enterprise);
         }
