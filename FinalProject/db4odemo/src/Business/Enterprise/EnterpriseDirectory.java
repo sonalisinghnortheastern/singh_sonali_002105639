@@ -29,26 +29,27 @@ public class EnterpriseDirectory {
     public EnterpriseDirectory() {
         enterprises=new ArrayList<Enterprise>();
     }
-    public Enterprise createEnterprise(String name,Enterprise.EnterpriseType type)
+    public Enterprise createEnterprise(String name,String type)
     {
         Enterprise enterprise=null;
-        if(type==Enterprise.EnterpriseType.Hospital){
-        enterprise=new HospitalEnterprise(name);
-        enterprises.add(enterprise);
+        if(type.equals("Hospital"))
+        {
+            enterprise=new HospitalEnterprise(name);
+            enterprises.add(enterprise);
         }
-        if(type==Enterprise.EnterpriseType.NGO){
+        if(type.equals("NGO")){
         enterprise=new NGOEnterprise(name);
         enterprises.add(enterprise);
         }
-        if(type==Enterprise.EnterpriseType.Restaurant){
+        if(type.equals("Restaurant")){
         enterprise=new RestaurantEnterprise(name);
         enterprises.add(enterprise);
         }
-        if(type==Enterprise.EnterpriseType.College){
+        if(type.equals("College")){
         enterprise=new CollegeEnterprise(name);
         enterprises.add(enterprise);
         }
-        if(type==Enterprise.EnterpriseType.CollegeCounsellor){
+        if(type.equals("CollegeCounsellor")){
         enterprise=new CollegeCounsellorEnterprise(name);
         enterprises.add(enterprise);
         }

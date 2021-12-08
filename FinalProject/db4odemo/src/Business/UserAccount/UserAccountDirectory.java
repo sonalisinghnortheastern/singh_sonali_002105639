@@ -4,7 +4,10 @@
  */
 package Business.UserAccount;
 
+import Business.EcoSystem;
 import Business.Employee.Employee;
+import Business.Enterprise.Enterprise;
+import Business.Network.Network;
 import Business.Role.Role;
 import java.util.ArrayList;
 
@@ -43,10 +46,32 @@ public class UserAccountDirectory {
         return userAccount;
     }
     
-    public boolean checkIfUsernameIsUnique(String username){
+    public boolean checkIfUsernameIsUnique(String username,EcoSystem system){
         for (UserAccount ua : userAccountList){
             if (ua.getUsername().equals(username))
+            {
                 return false;
+            }
+            for (Network networks :system.getNetworks() ) {
+                for (Enterprise enterprises : networks.getEnterpriseDirectory().getEnterprises()) {
+                    for (UserAccount userAccount : enterprises.getUserAccountDirectory().getUserAccountList()) {
+                        if (userAccount.getUsername().equals(username)) {
+                            return false;
+                        }
+//                        for (Organization org : enterprises.getOrganizationDirectory().g()) {
+//                            for (UserAccount accOrg : org.getUserAccountDirectory().getUserAccountList()) {
+//                                //                 System.out.println("Organization-->" + accOrg.getUsername());
+//                                if (accOrg.getUname().equals(username)) {
+//                                    return false;
+//                                }
+//                            }
+//
+//                        }
+                    }
+
+                }
+            }
+            
         }
         return true;
     }

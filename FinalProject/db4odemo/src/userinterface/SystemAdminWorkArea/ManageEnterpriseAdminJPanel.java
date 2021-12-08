@@ -28,6 +28,7 @@ public class ManageEnterpriseAdminJPanel extends javax.swing.JPanel {
         initComponents();
         this.system = system;
         populateNetworkComboBox();
+        populateTable();
     }
 
     /**
@@ -245,16 +246,16 @@ public class ManageEnterpriseAdminJPanel extends javax.swing.JPanel {
     String username=txtUsername.getText();
     String password =txtPassword.getText();
     Enterprise enterprise = (Enterprise) enterpriseJComboBox.getSelectedItem();
-    if(system.getUserAccountDirectory().checkIfUsernameIsUnique(username))
+    if(system.getUserAccountDirectory().checkIfUsernameIsUnique(username,system))
     {
         Random random=new Random();
         int uniqueId=random.nextInt((9999 - 100) + 1) + 10;
         Employee employee = enterprise.getEmployeeDirectory().createEmployee(name);
         enterprise.getUserAccountDirectory().createUserAccount(username, password, employee, new OrganizationAdminRole(),uniqueId);
+        dB4OUtil.storeSystem(system);
         populateTable();
         JOptionPane.showMessageDialog(null, "Organisation Admin Created");
         reset();
-    
     }
     else{
         JOptionPane.showMessageDialog(null, "Username already exist");
@@ -264,24 +265,45 @@ public class ManageEnterpriseAdminJPanel extends javax.swing.JPanel {
 
     private void btnModifyActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnModifyActionPerformed
     try{
-        int rowNumber=jRegisterTable.getSelectedRow();
         String name= txtName.getText();
         String username=txtUsername.getText();
         String password =txtPassword.getText();
-        Enterprise enterprise = (Enterprise) enterpriseJComboBox.getSelectedItem();
-         UserAccount userAccount = (UserAccount) enterpriseJComboBox.getSelectedItem();
-//        for(Network network : system.getNetworks())
-//        {
-//            for(Enterprise enterprise1 : network.getEnterpriseDirectory().getEnterprises())
-//            {
-//               for(UserAccount userAccount : enterprise1.getUserAccountDirectory().getUserAccountList())
-//               {
-//                   if(userAccount.equals(userAccount))
-//               }
-//            }
-//        }
-        
-        
+        int rowNumber=jRegisterTable.getSelectedRow();
+        int uniqueId=(int) jRegisterTable.getModel().getValueAt(rowNumber, 0);
+         for(Network networks : system.getNetworks())
+         {
+             for(Enterprise enterprises :networks.getEnterpriseDirectory().getEnterprises())
+             {
+                 for(UserAccount userAccount : enterprises.getUserAccountDirectory().getUserAccountList())
+                 {
+                     if(txtUsername.getText().equals(userAccount.getUsername()))
+                    {
+                        if(uniqueId != userAccount.getUniqueId())
+                        {
+                            JOptionPane.showMessageDialog(this, "Username already taken.Please take a diffrent username");
+                            return;
+                        }
+                    }
+                 }
+             }
+         }
+         system.getNetworks().forEach(networks -> {
+             networks.getEnterpriseDirectory().getEnterprises().forEach(enterprises -> {
+                 enterprises.getUserAccountDirectory().getUserAccountList().stream().filter(userAccount -> (uniqueId == userAccount.getUniqueId())).map(userAccount -> {
+                     userAccount.setUsername(username);
+                     return userAccount;
+                 }).map(userAccount -> {
+                     userAccount.setPassword(password);
+                     return userAccount;
+                 }).forEachOrdered(userAccount -> {
+                     userAccount.getEmployee().setName(name);
+                 });
+            });
+        });
+         dB4OUtil.storeSystem(system);
+         populateTable();
+         reset();
+         JOptionPane.showMessageDialog(null, "User modifed succesfully");
     }
     catch(Exception e)
     {
@@ -298,25 +320,22 @@ public class ManageEnterpriseAdminJPanel extends javax.swing.JPanel {
             return;
         }
         else{
-            String userName=(String) jRegisterTable.getValueAt(selectedRowIndex, 4);
-            int index=0;
+            int uniqueId= (int) jRegisterTable.getValueAt(selectedRowIndex, 0);
             for(Network network : system.getNetworks())
             {
                 for(Enterprise enterprise : network.getEnterpriseDirectory().getEnterprises())
                 {
                     for(UserAccount userAccount : enterprise.getUserAccountDirectory().getUserAccountList())
                     {
-                        if(!userAccount.getUsername().equals(userName))
+                        if(userAccount.getUniqueId()== uniqueId)
                         {
-                            index++;
-                        }
-                        else{
+                            enterprise.getUserAccountDirectory().getUserAccountList().remove(userAccount);
                             break;
                         }
                     }
-                    enterprise.getUserAccountDirectory().getUserAccountList().remove(index);
                 }
             }
+            dB4OUtil.storeSystem(system);
             populateTable();
             reset();
             JOptionPane.showMessageDialog(null, "Admin Deleted Successfully");
@@ -394,11 +413,17 @@ public class ManageEnterpriseAdminJPanel extends javax.swing.JPanel {
 
     }
     private void reset() {
+        try{
             txtName.setText("");
             txtUsername.setText("");
             txtPassword.setText("");
             networkJComboBox.setSelectedIndex(0);
             enterpriseJComboBox.setSelectedIndex(0);
+        }
+        catch(Exception ex)
+        {
+            throw  ex;
+        }
         }
     private void populateNetworkComboBox() {
         networkJComboBox.removeAllItems();

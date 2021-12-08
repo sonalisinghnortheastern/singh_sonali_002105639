@@ -198,6 +198,7 @@ public class ManageEnterpriseJPanel extends javax.swing.JPanel {
     private void btnCreateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCreateActionPerformed
     try{
         int index=0;
+        String enterpriseType="";
         Network network1=null;
         for (Network network : system.getNetworks()) {
             if(network.getNetworkName().equals((networkJComboBox.getSelectedItem())))
@@ -208,13 +209,33 @@ public class ManageEnterpriseJPanel extends javax.swing.JPanel {
                 index++;
             }
         }
-        Enterprise.EnterpriseType enterpriseType = (Enterprise.EnterpriseType) enterpriseTypeJComboBox.getSelectedItem();
+        Enterprise.EnterpriseType type = (Enterprise.EnterpriseType) enterpriseTypeJComboBox.getSelectedItem();
+        if(type.getValue().equals("NGO"))
+        {
+            enterpriseType="NGO";
+        }
+        if(type.getValue().equals("Restaurant"))
+        {
+            enterpriseType="Restaurant";
+        }
+        if(type.getValue().equals("Hospital"))
+        {
+            enterpriseType="Hospital";
+        }
+        if(type.getValue().equals("College"))
+        {
+            enterpriseType="College";
+        }
+        if(type.getValue().equals("CollegeCounsellor"))
+        {
+            enterpriseType="CollegeCounsellor";
+        }
         String enterpriseName=txtName.getText();
         Enterprise createEnterprise = network1.getEnterpriseDirectory().createEnterprise(enterpriseName, enterpriseType);
-        populateTable();
         dB4OUtil.storeSystem(system);
         JOptionPane.showMessageDialog(null, "Enterprise Added Succesfully");
         reset();
+        populateTable();
     } 
     catch(Exception e)
     {
@@ -232,23 +253,23 @@ public class ManageEnterpriseJPanel extends javax.swing.JPanel {
             enterprise.setName(enterpriseName);
             if(enterpriseTypeJComboBox.getSelectedItem().equals(Enterprise.EnterpriseType.NGO))
             {
-                enterprise.setEnterpriseType(Enterprise.EnterpriseType.NGO);
+                enterprise.setEnterpriseType(Enterprise.EnterpriseType.NGO.getValue());
             }
             else if(enterpriseTypeJComboBox.getSelectedItem().equals(Enterprise.EnterpriseType.College))
             {
-                 enterprise.setEnterpriseType(Enterprise.EnterpriseType.College);
+                 enterprise.setEnterpriseType(Enterprise.EnterpriseType.College.getValue());
             }
             else if(enterpriseTypeJComboBox.getSelectedItem().equals(Enterprise.EnterpriseType.CollegeCounsellor))
             {
-                 enterprise.setEnterpriseType(Enterprise.EnterpriseType.CollegeCounsellor);
+                 enterprise.setEnterpriseType(Enterprise.EnterpriseType.CollegeCounsellor.getValue());
             }
             else if(enterpriseTypeJComboBox.getSelectedItem().equals(Enterprise.EnterpriseType.Restaurant))
             {
-                 enterprise.setEnterpriseType(Enterprise.EnterpriseType.Restaurant);
+                 enterprise.setEnterpriseType(Enterprise.EnterpriseType.Restaurant.getValue());
             }
              else if(enterpriseTypeJComboBox.getSelectedItem().equals(Enterprise.EnterpriseType.Hospital))
             {
-                 enterprise.setEnterpriseType(Enterprise.EnterpriseType.Hospital);
+                 enterprise.setEnterpriseType(Enterprise.EnterpriseType.Hospital.getValue());
             }
             int index=0;
             for(Network network:system.getNetworks())
@@ -269,6 +290,7 @@ public class ManageEnterpriseJPanel extends javax.swing.JPanel {
             }
             populateTable();
             reset();
+            dB4OUtil.storeSystem(system);
             JOptionPane.showMessageDialog(null, "Enterprise Updated Succesfully");
             
        }
@@ -306,6 +328,7 @@ try{
                 }
             }
             populateTable();
+            dB4OUtil.storeSystem(system);
             JOptionPane.showMessageDialog(null, "Enterprise Deleted Succesfully");
             reset();
         }
@@ -321,7 +344,7 @@ try{
         networkJComboBox.setEditable(false);
            int rowNumber=jRegisterTable.getSelectedRow();
             txtName.setText(jRegisterTable.getModel().getValueAt(rowNumber, 3).toString());
-            Enterprise.EnterpriseType type=(Enterprise.EnterpriseType) jRegisterTable.getModel().getValueAt(rowNumber, 2);
+            String type=jRegisterTable.getModel().getValueAt(rowNumber, 2).toString();
             for(Network networks:system.getNetworks())
             {
                 if(networks.getNetworkName().equals(jRegisterTable.getModel().getValueAt(rowNumber, 1).toString()))
@@ -329,7 +352,26 @@ try{
                     networkJComboBox.setSelectedItem(networks.getNetworkName());
                 }
             }
-            enterpriseTypeJComboBox.setSelectedItem(type);
+            if(type.equals(Enterprise.EnterpriseType.NGO.getValue()))
+            {
+                enterpriseTypeJComboBox.setSelectedItem(Enterprise.EnterpriseType.NGO);
+            }
+            if(type.equals(Enterprise.EnterpriseType.Restaurant.getValue()))
+            {
+                enterpriseTypeJComboBox.setSelectedItem(Enterprise.EnterpriseType.Restaurant);
+            }
+            if(type.equals(Enterprise.EnterpriseType.College.getValue()))
+            {
+                enterpriseTypeJComboBox.setSelectedItem(Enterprise.EnterpriseType.College);
+            }
+            if(type.equals(Enterprise.EnterpriseType.CollegeCounsellor.getValue()))
+            {
+                enterpriseTypeJComboBox.setSelectedItem(Enterprise.EnterpriseType.CollegeCounsellor);
+            }
+            if(type.equals(Enterprise.EnterpriseType.Hospital.getValue()))
+            {
+                enterpriseTypeJComboBox.setSelectedItem(Enterprise.EnterpriseType.Hospital);
+            }
             
        }
       catch(Exception e)
