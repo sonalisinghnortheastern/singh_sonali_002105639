@@ -5,7 +5,6 @@
 package Business.Role;
 
 import Business.EcoSystem;
-
 import Business.UserAccount.UserAccount;
 import javax.swing.JPanel;
 
@@ -16,12 +15,16 @@ import javax.swing.JPanel;
 public abstract class Role {
     
     public enum RoleType{
-        RestaurantAdmin("RestaurantAdmin"),
         Customer("Customer"),
-        DeliveryMan("Delivery"),
-        OrganizationAdmin("OrganizationAdmin"),
-        NGOEmployeeRole("NGOEmployee"),
-        SysAdmin("Sysadmin");
+        DeliveryMan("Delivery Role"),
+        OrganizationAdmin("OrganizationAdmin Role"),
+        SysAdmin("Sysadmin"),
+        Receptionist("Receptionist Role"),
+        NGOEmployee("NGO Employee Role"),
+        Doctor("Doctor Role"),
+        Counsellor("Counsellor Role"),
+        College("College Role"),
+        RestaurantAdmin("Restaurant Role");
         
         private String value;
         private RoleType(String value){

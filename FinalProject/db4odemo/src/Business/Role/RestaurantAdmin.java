@@ -14,7 +14,7 @@ import userinterface.RestaurantAdminRole.RestaurantWorkAreaJPanel;
  *
  * @author raunak
  */
-public class RestaurantRole extends Role{
+public class RestaurantAdmin extends Role{
 
     @Override
     public JPanel createWorkArea(JPanel userProcessContainer, UserAccount account, EcoSystem business) {

@@ -24,13 +24,13 @@ public abstract class Organization {
     private static int counter=0;
     
     public enum Type{
-        RestaurantAdmin("RestaurantAdmin"),
-        NGO("NGO"),
-        DeliveryMan("Delivery"),
-        Healthcare("Healthcare"),
-        Counsellor("Counsellor"),
-        College("College"),
-        SysAdmin("Sysadmin");
+        Receptionist("Receptionist Organization"),
+        NGOAdmin("NGO Admin Organization"),
+        Doctor("Doctor Organization"),
+        Counsellor("Counsellor Organization"),
+        College("College Organization"),
+        Restaurant("Restaurant Organization"),
+        DeliveryMan("Delivery Man Organization");
         
         
         private String value;
@@ -50,9 +50,7 @@ public abstract class Organization {
         organizationID = counter;
         ++counter;
     }
-    public Organization(){
-        
-    }
+
     public abstract ArrayList<Role> getSupportedRole();
     
     public UserAccountDirectory getUserAccountDirectory() {

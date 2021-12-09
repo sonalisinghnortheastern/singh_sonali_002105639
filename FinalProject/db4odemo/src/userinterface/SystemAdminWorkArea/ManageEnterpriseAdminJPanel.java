@@ -10,7 +10,7 @@ import Business.EcoSystem;
 import Business.Employee.Employee;
 import Business.Enterprise.Enterprise;
 import Business.Network.Network;
-import Business.Role.OrganizationAdminRole;
+import Business.Role.OrganizationAdmin;
 import Business.UserAccount.UserAccount;
 import java.util.Random;
 import javax.swing.JOptionPane;
@@ -251,7 +251,7 @@ public class ManageEnterpriseAdminJPanel extends javax.swing.JPanel {
         Random random=new Random();
         int uniqueId=random.nextInt((9999 - 100) + 1) + 10;
         Employee employee = enterprise.getEmployeeDirectory().createEmployee(name);
-        enterprise.getUserAccountDirectory().createUserAccount(username, password, employee, new OrganizationAdminRole(),uniqueId);
+        enterprise.getUserAccountDirectory().createUserAccount(username, password, employee, new OrganizationAdmin(),uniqueId);
         dB4OUtil.storeSystem(system);
         populateTable();
         JOptionPane.showMessageDialog(null, "Organisation Admin Created");
@@ -431,6 +431,28 @@ public class ManageEnterpriseAdminJPanel extends javax.swing.JPanel {
        {
            networkJComboBox.addItem(network.getNetworkName());
        }
+    }
+    private void addEmployee()
+    {
+        String name= txtName.getText();
+    String username=txtUsername.getText();
+    String password =txtPassword.getText();
+    Enterprise enterprise = (Enterprise) enterpriseJComboBox.getSelectedItem();
+    if(system.getUserAccountDirectory().checkIfUsernameIsUnique(username,system))
+    {
+        Random random=new Random();
+        int uniqueId=random.nextInt((9999 - 100) + 1) + 10;
+        Employee employee = enterprise.getEmployeeDirectory().createEmployee(name);
+        enterprise.getUserAccountDirectory().createUserAccount(username, password, employee, new OrganizationAdmin(),uniqueId);
+        dB4OUtil.storeSystem(system);
+        populateTable();
+        JOptionPane.showMessageDialog(null, "Organisation Admin Created");
+        reset();
+    }
+    else{
+        JOptionPane.showMessageDialog(null, "Username already exist");
+        return;
+    }
     }
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnCreateDeliveryMan;

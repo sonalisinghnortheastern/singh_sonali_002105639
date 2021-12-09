@@ -9,6 +9,7 @@ package Business;
 import Business.Network.Network;
 import Business.Role.Role;
 import Business.Role.SystemAdminRole;
+import Business.UserAccount.loggedInUser;
 import java.util.ArrayList;
 
 /**
@@ -19,6 +20,15 @@ public class EcoSystem extends Organization{
     
     private static EcoSystem business;
     private ArrayList<Network> networks;
+    private loggedInUser logInUser;
+
+    public loggedInUser getLogInUser() {
+        return logInUser;
+    }
+
+    public void setLogInUser(loggedInUser logInUser) {
+        this.logInUser = logInUser;
+    }
     public static EcoSystem getInstance(){
         if(business==null){
             business=new EcoSystem();
@@ -35,6 +45,7 @@ public class EcoSystem extends Organization{
     private EcoSystem() {
         super(null);
         networks=new ArrayList<>();
+        logInUser=new loggedInUser();
     }
 
     public static EcoSystem getBusiness() {
