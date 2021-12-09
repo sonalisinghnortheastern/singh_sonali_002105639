@@ -289,6 +289,7 @@ public class MainJFrame extends javax.swing.JFrame {
                         {
                             loggedInUser logInUser=new loggedInUser();
                             logInUser.setLogInId(userAccount.getUniqueId());
+                            system.setLogInUser(logInUser);
                         }
                     }
                 }

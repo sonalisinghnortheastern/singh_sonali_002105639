@@ -5,7 +5,7 @@
  */
 package Business.OrganisationAdmin;
 
-import Business.Role.OrganizationAdminRole;
+import Business.Role.OrganizationAdmin;
 import Business.UserAccount.UserAccount;
 
 /**
@@ -20,7 +20,7 @@ public class OrganisationAdmin extends UserAccount {
         setUsername(userName);
         setPassword(password);
         setUniqueId(uniqueId);
-        setRole(new OrganizationAdminRole());
+        setRole(new OrganizationAdmin());
         this.name = name;
     }
     public String getName() {
