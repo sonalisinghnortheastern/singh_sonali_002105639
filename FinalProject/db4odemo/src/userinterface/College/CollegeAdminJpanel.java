@@ -37,9 +37,9 @@ public class CollegeAdminJpanel extends javax.swing.JPanel {
         jPanel1 = new javax.swing.JPanel();
         jSplitPane = new javax.swing.JSplitPane();
         jPanel2 = new javax.swing.JPanel();
-        btnManageMenu = new javax.swing.JButton();
+        btnManageCollege = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
-        btnManageMenu1 = new javax.swing.JButton();
+        btnCollegeCounsellor = new javax.swing.JButton();
         jPanel3 = new javax.swing.JPanel();
         jLabel2 = new javax.swing.JLabel();
 
@@ -47,22 +47,22 @@ public class CollegeAdminJpanel extends javax.swing.JPanel {
 
         jPanel2.setBackground(new java.awt.Color(240, 178, 62));
 
-        btnManageMenu.setFont(new java.awt.Font("Comic Sans MS", 1, 14)); // NOI18N
-        btnManageMenu.setText("MANAGE COLLEGES");
-        btnManageMenu.addActionListener(new java.awt.event.ActionListener() {
+        btnManageCollege.setFont(new java.awt.Font("Comic Sans MS", 1, 14)); // NOI18N
+        btnManageCollege.setText("MANAGE COLLEGE");
+        btnManageCollege.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnManageMenuActionPerformed(evt);
+                btnManageCollegeActionPerformed(evt);
             }
         });
 
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Icons/LogoutIcon.png"))); // NOI18N
 
-        btnManageMenu1.setFont(new java.awt.Font("Comic Sans MS", 1, 14)); // NOI18N
-        btnManageMenu1.setText("ASSIGN COLLEGE");
-        btnManageMenu1.addActionListener(new java.awt.event.ActionListener() {
+        btnCollegeCounsellor.setFont(new java.awt.Font("Comic Sans MS", 1, 14)); // NOI18N
+        btnCollegeCounsellor.setText("COLLEGE COUNSELLOR");
+        btnCollegeCounsellor.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnManageMenu1ActionPerformed(evt);
+                btnCollegeCounsellorActionPerformed(evt);
             }
         });
 
@@ -70,20 +70,20 @@ public class CollegeAdminJpanel extends javax.swing.JPanel {
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(btnManageMenu, javax.swing.GroupLayout.DEFAULT_SIZE, 191, Short.MAX_VALUE)
+            .addComponent(btnManageCollege, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addComponent(jLabel1)
                 .addGap(0, 0, Short.MAX_VALUE))
-            .addComponent(btnManageMenu1, javax.swing.GroupLayout.DEFAULT_SIZE, 191, Short.MAX_VALUE)
+            .addComponent(btnCollegeCounsellor, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addComponent(jLabel1)
                 .addGap(111, 111, 111)
-                .addComponent(btnManageMenu)
+                .addComponent(btnManageCollege)
                 .addGap(62, 62, 62)
-                .addComponent(btnManageMenu1)
+                .addComponent(btnCollegeCounsellor)
                 .addContainerGap(246, Short.MAX_VALUE))
         );
 
@@ -130,21 +130,21 @@ public class CollegeAdminJpanel extends javax.swing.JPanel {
         );
     }// </editor-fold>//GEN-END:initComponents
 
-    private void btnManageMenuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnManageMenuActionPerformed
+    private void btnManageCollegeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnManageCollegeActionPerformed
         ManageCollegeJPanel manageCollegeJPanel =new ManageCollegeJPanel(ecosystem);
         jSplitPane.setRightComponent(manageCollegeJPanel);
-    }//GEN-LAST:event_btnManageMenuActionPerformed
+    }//GEN-LAST:event_btnManageCollegeActionPerformed
 
-    private void btnManageMenu1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnManageMenu1ActionPerformed
+    private void btnCollegeCounsellorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCollegeCounsellorActionPerformed
         // TODO add your handling code here:
-        AssignCollegeJPanel assignCollegeJPanel =new AssignCollegeJPanel(ecosystem);
+        AssignCounsellorToStudent assignCollegeJPanel =new AssignCounsellorToStudent(ecosystem);
     jSplitPane.setRightComponent(assignCollegeJPanel);
-    }//GEN-LAST:event_btnManageMenu1ActionPerformed
+    }//GEN-LAST:event_btnCollegeCounsellorActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton btnManageMenu;
-    private javax.swing.JButton btnManageMenu1;
+    private javax.swing.JButton btnCollegeCounsellor;
+    private javax.swing.JButton btnManageCollege;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JPanel jPanel1;
