@@ -385,30 +385,26 @@ public class ManageOrganizationEmployeeJPanel extends javax.swing.JPanel {
     }//GEN-LAST:event_btnDeleteEmployeeActionPerformed
     private void populateTable() {
         try {
+            
             DefaultTableModel model = (DefaultTableModel) jRegisterTable.getModel();
             model.setRowCount(0);
             jRegisterTable.getColumnModel().getColumn(0).setMinWidth(0);
             jRegisterTable.getColumnModel().getColumn(0).setMaxWidth(0);
-            for(Network network : system.getNetworks())
+            for(Organization organization : loggedInUserEnterprise.getOrganizationDirectory().getOrganisationList())
             {
-                for(Enterprise enterprise : network.getEnterpriseDirectory().getEnterprises())
-                {
-                    for(Organization organization : enterprise.getOrganizationDirectory().getOrganisationList())
-                    {
-                        for (UserAccount userAccount : organization.getUserAccountDirectory().getUserAccountList()) {
-                        Object[] row = new Object[6];
-                        row[0]=  userAccount.getUniqueId();
-                        row[1] = organization.getName();
-                        row[2] = userAccount.getRole();
-                        row[3] = userAccount.getEmployee().getName();
-                        row[4] = userAccount.getUsername();
-                        row[5] = userAccount.getPassword();
-                        model.addRow(row);
+                for (UserAccount userAccount : organization.getUserAccountDirectory().getUserAccountList()) {
+                Object[] row = new Object[6];
+                row[0]=  userAccount.getUniqueId();
+                row[1] = organization.getName();
+                row[2] = userAccount.getRole();
+                row[3] = userAccount.getEmployee().getName();
+                row[4] = userAccount.getUsername();
+                row[5] = userAccount.getPassword();
+                model.addRow(row);
 
-                        }
-                    }
                 }
             }
+
         } catch (Exception e) {
             throw e;
         }
@@ -440,7 +436,7 @@ public class ManageOrganizationEmployeeJPanel extends javax.swing.JPanel {
     private javax.swing.JTextField txtPassword;
     private javax.swing.JTextField txtUsername;
     // End of variables declaration//GEN-END:variables
-
+Enterprise loggedInUserEnterprise=null;
     private void populateData() {
        for(Network network : system.getNetworks() )
        {
@@ -450,6 +446,7 @@ public class ManageOrganizationEmployeeJPanel extends javax.swing.JPanel {
                {
                    if(useraccount.getUniqueId()== system.getLogInUser().getLogInId())
                    {
+                       loggedInUserEnterprise=enterprise;
                        jLabel1.setText("ENTERPRISE :"+enterprise.getEnterpriseType());
                        if(enterprise.getEnterpriseType().equals("NGO"))
                        {
@@ -523,7 +520,7 @@ public class ManageOrganizationEmployeeJPanel extends javax.swing.JPanel {
        {
            newRole=new DoctorRole();
        }
-        if(role.equals("Counsellor"))
+        if(role.equals("Counsellor Role"))
        {
            newRole=new CounsellorRole();
        }
@@ -586,7 +583,7 @@ public class ManageOrganizationEmployeeJPanel extends javax.swing.JPanel {
             Employee employee=organization.getEmployeeDirectory().createEmployee(employeeName); //adding an employee to an org
             Random random=new Random();
             int uniqueId=random.nextInt((9999 - 100) + 1) + 10; //creates unique ID
-            organization.getUserAccountDirectory().createUserAccount(username, password, employee, new NGOEmployee(), uniqueId);
+            organization.getUserAccountDirectory().createUserAccount(username, password, employee, populateRole(role), uniqueId);
             for(Network network : system.getNetworks() ) //looping through networks
             {
                 for(Enterprise enterprise : network.getEnterpriseDirectory().getEnterprises()) //looping through enterprises

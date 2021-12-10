@@ -14,10 +14,20 @@ public class WorkQueue {
     
     private ArrayList<PlaceOrderWorkRequest> workRequestList;
     private ArrayList<EntryChildWorkRequest> workRequestListNew;
+    private ArrayList<AssignToCounsellorWorkRequest> assignToCounsellorWorkRequests;
+
+    public ArrayList<AssignToCounsellorWorkRequest> getAssignToCounsellorWorkRequests() {
+        return assignToCounsellorWorkRequests;
+    }
+
+    public void setAssignToCounsellorWorkRequests(ArrayList<AssignToCounsellorWorkRequest> assignToCounsellorWorkRequests) {
+        this.assignToCounsellorWorkRequests = assignToCounsellorWorkRequests;
+    }
 
     public WorkQueue() {
         workRequestList = new ArrayList();
         workRequestListNew=new ArrayList();
+        assignToCounsellorWorkRequests=new ArrayList<>();
     }
     public ArrayList<PlaceOrderWorkRequest> getWorkRequestList() {
         return workRequestList;
