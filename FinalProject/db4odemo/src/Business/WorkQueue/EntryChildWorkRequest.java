@@ -24,13 +24,13 @@ public class EntryChildWorkRequest extends WorkRequest {
         this.loginId = loginId;
     }
     private NGOEnterprise nGOEnterprise;
-    private boolean isAccepted;
+    private String isAccepted;
 
-    public boolean isIsAccepted() {
+    public String isIsAccepted() {
         return isAccepted;
     }
 
-    public void setIsAccepted(boolean isAccepted) {
+    public void setIsAccepted(String isAccepted) {
         this.isAccepted = isAccepted;
     }
 
