@@ -86,7 +86,7 @@ public class SystemAdminWorkAreaJPanel extends javax.swing.JPanel {
         });
 
         btnManagePeopleAdmin.setFont(new java.awt.Font("Comic Sans MS", 1, 14)); // NOI18N
-        btnManagePeopleAdmin.setText("Manage People Admin");
+        btnManagePeopleAdmin.setText("Register Person");
         btnManagePeopleAdmin.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnManagePeopleAdminActionPerformed(evt);

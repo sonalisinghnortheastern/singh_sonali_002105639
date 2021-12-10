@@ -434,8 +434,7 @@ public class ManagePeopleJPanel extends javax.swing.JPanel {
             }
             else{
                 EntryChildWorkRequest entryChildWorkRequest= (EntryChildWorkRequest) jRegisterTable.getValueAt(selectedRowIndex, 0);
-                if(entryChildWorkRequest.isIsAccepted())
-                {
+                if(entryChildWorkRequest.isIsAccepted()){
                     JOptionPane.showMessageDialog(null, "Work Request Cannot be cancelled .Please talk to the NGO for the same");
                     return;
                 }

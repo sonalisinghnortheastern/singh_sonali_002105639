@@ -19,7 +19,6 @@ public class WorkQueue {
         workRequestList = new ArrayList();
         workRequestListNew=new ArrayList();
     }
-
     public ArrayList<PlaceOrderWorkRequest> getWorkRequestList() {
         return workRequestList;
     }

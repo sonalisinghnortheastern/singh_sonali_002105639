@@ -23,7 +23,7 @@ import Business.Role.CounsellorRole;
 import Business.Role.CustomerRole;
 import Business.Role.DeliverManRole;
 import Business.Role.DoctorRole;
-import Business.Role.NGOEmployeeRole;
+import Business.Role.NGOEmployee;
 import Business.Role.OrganizationAdmin;
 import Business.Role.ReceptionistRole;
 import Business.Role.RestaurantAdmin;
@@ -210,11 +210,11 @@ public class ManageOrganizationEmployeeJPanel extends javax.swing.JPanel {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lblAvailablity3, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(txtPassword, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(56, 56, 56)
+                .addGap(18, 18, 18)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnAddItem)
                     .addComponent(btnUpdateItem))
-                .addGap(72, 72, 72))
+                .addGap(110, 110, 110))
         );
 
         jRegisterTable.setBorder(javax.swing.BorderFactory.createEtchedBorder());
@@ -498,10 +498,10 @@ public class ManageOrganizationEmployeeJPanel extends javax.swing.JPanel {
     }
     private Role populateRole(String role)
     {
-        Role newRole = new NGOEmployeeRole();
-       if(role.equals(Role.RoleType.NGOEmployee))
+        Role newRole = new NGOEmployee();
+       if(role.equals("NGOEmployee"))
        {
-           newRole=new NGOEmployeeRole();
+           newRole=new NGOEmployee();
        }
         if(role.equals("Customer"))
        {
@@ -586,7 +586,7 @@ public class ManageOrganizationEmployeeJPanel extends javax.swing.JPanel {
             Employee employee=organization.getEmployeeDirectory().createEmployee(employeeName); //adding an employee to an org
             Random random=new Random();
             int uniqueId=random.nextInt((9999 - 100) + 1) + 10; //creates unique ID
-            organization.getUserAccountDirectory().createUserAccount(username, password, employee, populateRole(role), uniqueId);
+            organization.getUserAccountDirectory().createUserAccount(username, password, employee, new NGOEmployee(), uniqueId);
             for(Network network : system.getNetworks() ) //looping through networks
             {
                 for(Enterprise enterprise : network.getEnterpriseDirectory().getEnterprises()) //looping through enterprises

@@ -25,6 +25,8 @@ public class ManageEnterpriseJPanel extends javax.swing.JPanel {
         this.system = system;
         populateComboBox();
         populateTable();
+        networkJComboBox.setEnabled(true);
+        enterpriseTypeJComboBox.setEnabled(true);
     }
 
     /**
@@ -210,6 +212,8 @@ public class ManageEnterpriseJPanel extends javax.swing.JPanel {
 
     private void btnCreateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCreateActionPerformed
     try{
+        networkJComboBox.setEnabled(true);
+        enterpriseTypeJComboBox.setEnabled(true);
         int index=0;
         String enterpriseType="";
         Network network1=null;
@@ -258,7 +262,7 @@ public class ManageEnterpriseJPanel extends javax.swing.JPanel {
 
     private void btnModifyActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnModifyActionPerformed
       try{
-          
+            
            int rowNumber=jRegisterTable.getSelectedRow();
             String oldNetwork =(jRegisterTable.getModel().getValueAt(rowNumber, 1).toString());
             String enterpriseName=txtName.getText();
@@ -315,6 +319,8 @@ public class ManageEnterpriseJPanel extends javax.swing.JPanel {
 
     private void btnDeleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDeleteActionPerformed
 try{
+            networkJComboBox.setEnabled(true);
+            enterpriseTypeJComboBox.setEnabled(true);
         int selectedRowIndex=jRegisterTable.getSelectedRow();
         if(selectedRowIndex<0)
         {
@@ -354,7 +360,8 @@ try{
 
     private void jRegisterTableMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jRegisterTableMouseClicked
     try{
-        networkJComboBox.setEditable(false);
+            networkJComboBox.setEnabled(false);
+            enterpriseTypeJComboBox.setEnabled(false);
            int rowNumber=jRegisterTable.getSelectedRow();
             txtName.setText(jRegisterTable.getModel().getValueAt(rowNumber, 3).toString());
             String type=jRegisterTable.getModel().getValueAt(rowNumber, 2).toString();
@@ -385,7 +392,6 @@ try{
             {
                 enterpriseTypeJComboBox.setSelectedItem(Enterprise.EnterpriseType.Hospital);
             }
-            
        }
       catch(Exception e)
       {

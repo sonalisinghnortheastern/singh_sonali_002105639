@@ -8,16 +8,18 @@ package Business.Role;
 import Business.EcoSystem;
 import Business.UserAccount.UserAccount;
 import javax.swing.JPanel;
+import userinterface.NGO.NGOAdminJPanel;
+import userinterface.OrganizationAdminRole.OrganizationAdminWorkAreaJPanel;
 
 /**
  *
  * @author sonal
  */
-public class NGOEmployeeRole extends Role {
+public class NGOEmployee extends Role {
 
-    @Override
-    public JPanel createWorkArea(JPanel userProcessContainer, UserAccount account, EcoSystem business) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    
+      public JPanel createWorkArea(JPanel userProcessContainer, UserAccount account, EcoSystem business) {
+        return new NGOAdminJPanel( userProcessContainer, business );
     }
     
 }

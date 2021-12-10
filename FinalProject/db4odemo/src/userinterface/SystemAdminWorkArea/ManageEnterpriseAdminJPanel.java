@@ -270,10 +270,15 @@ public class ManageEnterpriseAdminJPanel extends javax.swing.JPanel {
 
     private void btnModifyEnterpriseAdminActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnModifyEnterpriseAdminActionPerformed
     try{
+        int rowNumber=jRegisterTable.getSelectedRow();
+        if(rowNumber<0)
+        {
+            JOptionPane.showMessageDialog(null, "Please select a row");
+            return;
+        }
         String name= txtName.getText();
         String username=txtUsername.getText();
         String password =txtPassword.getText();
-        int rowNumber=jRegisterTable.getSelectedRow();
         int uniqueId=(int) jRegisterTable.getModel().getValueAt(rowNumber, 0);
         
          for(Network networks : system.getNetworks())
@@ -345,6 +350,7 @@ public class ManageEnterpriseAdminJPanel extends javax.swing.JPanel {
             dB4OUtil.storeSystem(system);
             populateTable();
             reset();
+            populateNetworkComboBox();
             JOptionPane.showMessageDialog(null, "Admin Deleted Successfully");
             
         }
