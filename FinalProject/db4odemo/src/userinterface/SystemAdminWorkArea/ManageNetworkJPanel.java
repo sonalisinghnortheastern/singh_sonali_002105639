@@ -42,9 +42,9 @@ public class ManageNetworkJPanel extends javax.swing.JPanel {
         jLabel1 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
         txtName = new javax.swing.JTextField();
-        btnCreateCustomer = new javax.swing.JButton();
-        btnModify = new javax.swing.JButton();
-        btnDelete = new javax.swing.JButton();
+        btnCreateNetwork = new javax.swing.JButton();
+        btnModifyNetwork = new javax.swing.JButton();
+        btnDeleteNetwork = new javax.swing.JButton();
 
         setBackground(new java.awt.Color(0, 102, 102));
         setPreferredSize(new java.awt.Dimension(920, 708));
@@ -93,29 +93,29 @@ public class ManageNetworkJPanel extends javax.swing.JPanel {
         jLabel4.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel4.setText("Name :");
 
-        btnCreateCustomer.setFont(new java.awt.Font("Comic Sans MS", 1, 12)); // NOI18N
-        btnCreateCustomer.setText("Create Network");
-        btnCreateCustomer.setToolTipText("");
-        btnCreateCustomer.addActionListener(new java.awt.event.ActionListener() {
+        btnCreateNetwork.setFont(new java.awt.Font("Comic Sans MS", 1, 12)); // NOI18N
+        btnCreateNetwork.setText("Create Network");
+        btnCreateNetwork.setToolTipText("");
+        btnCreateNetwork.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnCreateCustomerActionPerformed(evt);
+                btnCreateNetworkActionPerformed(evt);
             }
         });
 
-        btnModify.setFont(new java.awt.Font("Comic Sans MS", 1, 12)); // NOI18N
-        btnModify.setText("Update Network");
-        btnModify.addActionListener(new java.awt.event.ActionListener() {
+        btnModifyNetwork.setFont(new java.awt.Font("Comic Sans MS", 1, 12)); // NOI18N
+        btnModifyNetwork.setText("Update Network");
+        btnModifyNetwork.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnModifyActionPerformed(evt);
+                btnModifyNetworkActionPerformed(evt);
             }
         });
 
-        btnDelete.setFont(new java.awt.Font("Comic Sans MS", 1, 12)); // NOI18N
-        btnDelete.setText("Delete Network");
-        btnDelete.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        btnDelete.addActionListener(new java.awt.event.ActionListener() {
+        btnDeleteNetwork.setFont(new java.awt.Font("Comic Sans MS", 1, 12)); // NOI18N
+        btnDeleteNetwork.setText("Delete Network");
+        btnDeleteNetwork.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        btnDeleteNetwork.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnDeleteActionPerformed(evt);
+                btnDeleteNetworkActionPerformed(evt);
             }
         });
 
@@ -129,7 +129,7 @@ public class ManageNetworkJPanel extends javax.swing.JPanel {
             .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 920, javax.swing.GroupLayout.PREFERRED_SIZE)
             .addGroup(layout.createSequentialGroup()
                 .addGap(743, 743, 743)
-                .addComponent(btnDelete, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addComponent(btnDeleteNetwork, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE))
             .addGroup(layout.createSequentialGroup()
                 .addGap(240, 240, 240)
                 .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -137,9 +137,9 @@ public class ManageNetworkJPanel extends javax.swing.JPanel {
                 .addComponent(txtName, javax.swing.GroupLayout.PREFERRED_SIZE, 259, javax.swing.GroupLayout.PREFERRED_SIZE))
             .addGroup(layout.createSequentialGroup()
                 .addGap(285, 285, 285)
-                .addComponent(btnCreateCustomer)
+                .addComponent(btnCreateNetwork)
                 .addGap(32, 32, 32)
-                .addComponent(btnModify, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addComponent(btnModifyNetwork, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -149,20 +149,20 @@ public class ManageNetworkJPanel extends javax.swing.JPanel {
                 .addGap(30, 30, 30)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 165, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(15, 15, 15)
-                .addComponent(btnDelete)
+                .addComponent(btnDeleteNetwork)
                 .addGap(21, 21, 21)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel4)
                     .addComponent(txtName, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(40, 40, 40)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btnCreateCustomer)
-                    .addComponent(btnModify))
+                    .addComponent(btnCreateNetwork)
+                    .addComponent(btnModifyNetwork))
                 .addGap(301, 301, 301))
         );
     }// </editor-fold>//GEN-END:initComponents
 
-    private void btnCreateCustomerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCreateCustomerActionPerformed
+    private void btnCreateNetworkActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCreateNetworkActionPerformed
     try {
         String networkName = txtName.getText();
         if(networkName.equals(""))
@@ -189,9 +189,9 @@ public class ManageNetworkJPanel extends javax.swing.JPanel {
        
         throw e;
     }
-    }//GEN-LAST:event_btnCreateCustomerActionPerformed
+    }//GEN-LAST:event_btnCreateNetworkActionPerformed
 
-    private void btnModifyActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnModifyActionPerformed
+    private void btnModifyNetworkActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnModifyNetworkActionPerformed
     try{
         int index=0;
         int selectedRowIndex=jRegisterTable.getSelectedRow();
@@ -222,9 +222,9 @@ public class ManageNetworkJPanel extends javax.swing.JPanel {
     {
         throw e;
     }
-    }//GEN-LAST:event_btnModifyActionPerformed
+    }//GEN-LAST:event_btnModifyNetworkActionPerformed
 
-    private void btnDeleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDeleteActionPerformed
+    private void btnDeleteNetworkActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDeleteNetworkActionPerformed
     try{
         int selectedRowIndex=jRegisterTable.getSelectedRow();
         if(selectedRowIndex<0)
@@ -245,7 +245,7 @@ public class ManageNetworkJPanel extends javax.swing.JPanel {
     {
         throw e;
     }
-    }//GEN-LAST:event_btnDeleteActionPerformed
+    }//GEN-LAST:event_btnDeleteNetworkActionPerformed
 
     private void jRegisterTableMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jRegisterTableMouseClicked
        try{
@@ -278,9 +278,9 @@ public class ManageNetworkJPanel extends javax.swing.JPanel {
             txtName.setText("");
         }
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton btnCreateCustomer;
-    private javax.swing.JButton btnDelete;
-    private javax.swing.JButton btnModify;
+    private javax.swing.JButton btnCreateNetwork;
+    private javax.swing.JButton btnDeleteNetwork;
+    private javax.swing.JButton btnModifyNetwork;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JTable jRegisterTable;

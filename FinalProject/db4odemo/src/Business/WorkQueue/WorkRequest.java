@@ -6,6 +6,7 @@ package Business.WorkQueue;
 
 import Business.Customer.Customer;
 import Business.DeliveryMan.DeliveryMan;
+import Business.Person.Person;
 import Business.Restaurant.Restaurant;
 import java.util.Date;
 
@@ -16,7 +17,13 @@ import java.util.Date;
 public abstract class WorkRequest {
 
     private String message;
+    private Person person;
     private Customer customer;
+    private Restaurant restaurant;
+    private DeliveryMan deliverMan;
+    private String status;
+    private Date requestDate;
+    private Date resolveDate;
 
     public Customer getCustomer() {
         return customer;
@@ -25,6 +32,15 @@ public abstract class WorkRequest {
     public void setCustomer(Customer customer) {
         this.customer = customer;
     }
+    public Person getPerson() {
+        return person;
+    }
+
+    public void setPerson(Person person) {
+        this.person = person;
+    }
+
+    
 
     public Restaurant getRestaurant() {
         return restaurant;
@@ -41,11 +57,6 @@ public abstract class WorkRequest {
     public void setDeliverMan(DeliveryMan deliverMan) {
         this.deliverMan = deliverMan;
     }
-    private Restaurant restaurant;
-    private DeliveryMan deliverMan;
-    private String status;
-    private Date requestDate;
-    private Date resolveDate;
     
     public WorkRequest(){
         requestDate = new Date();

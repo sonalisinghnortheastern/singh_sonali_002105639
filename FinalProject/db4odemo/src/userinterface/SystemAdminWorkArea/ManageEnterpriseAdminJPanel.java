@@ -46,9 +46,9 @@ public class ManageEnterpriseAdminJPanel extends javax.swing.JPanel {
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
-        btnCreateDeliveryMan = new javax.swing.JButton();
-        btnModify = new javax.swing.JButton();
-        btnDelete = new javax.swing.JButton();
+        btnCreateEnterpriseAdmin = new javax.swing.JButton();
+        btnModifyEnterpriseAdmin = new javax.swing.JButton();
+        btnDeleteEnterpriseAdmin = new javax.swing.JButton();
         txtPassword = new javax.swing.JTextField();
         txtUsername = new javax.swing.JTextField();
         jLabel5 = new javax.swing.JLabel();
@@ -100,9 +100,10 @@ public class ManageEnterpriseAdminJPanel extends javax.swing.JPanel {
             jRegisterTable.getColumnModel().getColumn(3).setResizable(false);
         }
 
+        jLabel1.setBackground(new java.awt.Color(240, 178, 62));
         jLabel1.setFont(new java.awt.Font("Lucida Grande", 1, 18)); // NOI18N
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel1.setText("Manage Delivery Man");
+        jLabel1.setText("Manage Enterprise Admin");
         jLabel1.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
 
         jLabel2.setFont(new java.awt.Font("Comic Sans MS", 1, 14)); // NOI18N
@@ -119,30 +120,30 @@ public class ManageEnterpriseAdminJPanel extends javax.swing.JPanel {
         jLabel4.setText("Network :");
         jLabel4.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
 
-        btnCreateDeliveryMan.setFont(new java.awt.Font("Comic Sans MS", 1, 14)); // NOI18N
-        btnCreateDeliveryMan.setText("Create");
-        btnCreateDeliveryMan.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        btnCreateDeliveryMan.addActionListener(new java.awt.event.ActionListener() {
+        btnCreateEnterpriseAdmin.setFont(new java.awt.Font("Comic Sans MS", 1, 14)); // NOI18N
+        btnCreateEnterpriseAdmin.setText("Create");
+        btnCreateEnterpriseAdmin.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        btnCreateEnterpriseAdmin.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnCreateDeliveryManActionPerformed(evt);
+                btnCreateEnterpriseAdminActionPerformed(evt);
             }
         });
 
-        btnModify.setFont(new java.awt.Font("Comic Sans MS", 1, 14)); // NOI18N
-        btnModify.setText("Modify");
-        btnModify.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        btnModify.addActionListener(new java.awt.event.ActionListener() {
+        btnModifyEnterpriseAdmin.setFont(new java.awt.Font("Comic Sans MS", 1, 14)); // NOI18N
+        btnModifyEnterpriseAdmin.setText("Modify");
+        btnModifyEnterpriseAdmin.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        btnModifyEnterpriseAdmin.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnModifyActionPerformed(evt);
+                btnModifyEnterpriseAdminActionPerformed(evt);
             }
         });
 
-        btnDelete.setFont(new java.awt.Font("Comic Sans MS", 1, 14)); // NOI18N
-        btnDelete.setText("Delete ");
-        btnDelete.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        btnDelete.addActionListener(new java.awt.event.ActionListener() {
+        btnDeleteEnterpriseAdmin.setFont(new java.awt.Font("Comic Sans MS", 1, 14)); // NOI18N
+        btnDeleteEnterpriseAdmin.setText("Delete ");
+        btnDeleteEnterpriseAdmin.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        btnDeleteEnterpriseAdmin.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnDeleteActionPerformed(evt);
+                btnDeleteEnterpriseAdminActionPerformed(evt);
             }
         });
 
@@ -188,21 +189,18 @@ public class ManageEnterpriseAdminJPanel extends javax.swing.JPanel {
                             .addComponent(enterpriseJComboBox, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(298, 298, 298)
-                        .addComponent(btnCreateDeliveryMan, javax.swing.GroupLayout.PREFERRED_SIZE, 173, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(btnCreateEnterpriseAdmin, javax.swing.GroupLayout.PREFERRED_SIZE, 173, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 66, Short.MAX_VALUE)
-                        .addComponent(btnModify, javax.swing.GroupLayout.PREFERRED_SIZE, 165, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(btnModifyEnterpriseAdmin, javax.swing.GroupLayout.PREFERRED_SIZE, 165, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGap(0, 0, Short.MAX_VALUE))
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(86, 86, 86)
-                        .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 643, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 194, Short.MAX_VALUE))
                     .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addContainerGap(817, Short.MAX_VALUE)
-                        .addComponent(btnDelete, javax.swing.GroupLayout.PREFERRED_SIZE, 106, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(btnDeleteEnterpriseAdmin, javax.swing.GroupLayout.PREFERRED_SIZE, 106, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap())
+            .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -212,7 +210,7 @@ public class ManageEnterpriseAdminJPanel extends javax.swing.JPanel {
                 .addGap(18, 18, 18)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 165, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(31, 31, 31)
-                .addComponent(btnDelete)
+                .addComponent(btnDeleteEnterpriseAdmin)
                 .addGap(12, 12, 12)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel4)
@@ -235,23 +233,30 @@ public class ManageEnterpriseAdminJPanel extends javax.swing.JPanel {
                     .addComponent(txtPassword, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 30, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btnCreateDeliveryMan)
-                    .addComponent(btnModify))
+                    .addComponent(btnCreateEnterpriseAdmin)
+                    .addComponent(btnModifyEnterpriseAdmin))
                 .addGap(57, 57, 57))
         );
     }// </editor-fold>//GEN-END:initComponents
 
-    private void btnCreateDeliveryManActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCreateDeliveryManActionPerformed
+    private void btnCreateEnterpriseAdminActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCreateEnterpriseAdminActionPerformed
     String name= txtName.getText();
     String username=txtUsername.getText();
     String password =txtPassword.getText();
     Enterprise enterprise = (Enterprise) enterpriseJComboBox.getSelectedItem();
-    if(system.getUserAccountDirectory().checkIfUsernameIsUnique(username,system))
+    if(system.CheckIfUSernameIsUnique(username))
     {
         Random random=new Random();
         int uniqueId=random.nextInt((9999 - 100) + 1) + 10;
         Employee employee = enterprise.getEmployeeDirectory().createEmployee(name);
-        enterprise.getUserAccountDirectory().createUserAccount(username, password, employee, new OrganizationAdmin(),uniqueId);
+        UserAccount userAccount=new UserAccount();
+        userAccount.setUsername(username);
+        userAccount.setPassword(password);
+        userAccount.setEmployee(employee);
+        userAccount.setRole(new OrganizationAdmin());
+        userAccount.setUniqueId(uniqueId);
+        system.setUserAccounts(userAccount);
+        enterprise.getUserAccountDirectory().addUserAccountToAccounts(userAccount);
         dB4OUtil.storeSystem(system);
         populateTable();
         JOptionPane.showMessageDialog(null, "Organisation Admin Created");
@@ -261,15 +266,16 @@ public class ManageEnterpriseAdminJPanel extends javax.swing.JPanel {
         JOptionPane.showMessageDialog(null, "Username already exist");
         return;
     }
-    }//GEN-LAST:event_btnCreateDeliveryManActionPerformed
+    }//GEN-LAST:event_btnCreateEnterpriseAdminActionPerformed
 
-    private void btnModifyActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnModifyActionPerformed
+    private void btnModifyEnterpriseAdminActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnModifyEnterpriseAdminActionPerformed
     try{
         String name= txtName.getText();
         String username=txtUsername.getText();
         String password =txtPassword.getText();
         int rowNumber=jRegisterTable.getSelectedRow();
         int uniqueId=(int) jRegisterTable.getModel().getValueAt(rowNumber, 0);
+        
          for(Network networks : system.getNetworks())
          {
              for(Enterprise enterprises :networks.getEnterpriseDirectory().getEnterprises())
@@ -309,9 +315,9 @@ public class ManageEnterpriseAdminJPanel extends javax.swing.JPanel {
     {
         throw e;
     }
-    }//GEN-LAST:event_btnModifyActionPerformed
+    }//GEN-LAST:event_btnModifyEnterpriseAdminActionPerformed
 
-    private void btnDeleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDeleteActionPerformed
+    private void btnDeleteEnterpriseAdminActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDeleteEnterpriseAdminActionPerformed
     try{
         int selectedRowIndex=jRegisterTable.getSelectedRow();
         if(selectedRowIndex<0)
@@ -330,6 +336,7 @@ public class ManageEnterpriseAdminJPanel extends javax.swing.JPanel {
                         if(userAccount.getUniqueId()== uniqueId)
                         {
                             enterprise.getUserAccountDirectory().getUserAccountList().remove(userAccount);
+                            system.getUserAccounts().remove(userAccount);
                             break;
                         }
                     }
@@ -347,7 +354,7 @@ public class ManageEnterpriseAdminJPanel extends javax.swing.JPanel {
         throw e;
     }
        
-    }//GEN-LAST:event_btnDeleteActionPerformed
+    }//GEN-LAST:event_btnDeleteEnterpriseAdminActionPerformed
 
     private void jRegisterTableMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jRegisterTableMouseClicked
         try{
@@ -455,9 +462,9 @@ public class ManageEnterpriseAdminJPanel extends javax.swing.JPanel {
     }
     }
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton btnCreateDeliveryMan;
-    private javax.swing.JButton btnDelete;
-    private javax.swing.JButton btnModify;
+    private javax.swing.JButton btnCreateEnterpriseAdmin;
+    private javax.swing.JButton btnDeleteEnterpriseAdmin;
+    private javax.swing.JButton btnModifyEnterpriseAdmin;
     private javax.swing.JComboBox enterpriseJComboBox;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
