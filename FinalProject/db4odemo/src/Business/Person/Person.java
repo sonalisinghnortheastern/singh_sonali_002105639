@@ -18,6 +18,14 @@ public class Person {
     private String address;
     private String contact;
 
+    public int getLoginId() {
+        return loginId;
+    }
+
+    public void setLoginId(int loginId) {
+        this.loginId = loginId;
+    }
+    private int loginId;
 
     public String getName() {
         return name;

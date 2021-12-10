@@ -8,6 +8,8 @@ import Business.DB4OUtil.DB4OUtil;
 import Business.EcoSystem;
 import Business.Enterprise.Enterprise;
 import Business.Network.Network;
+import Business.Organization;
+import Business.Role.Role;
 import Business.Role.Role.RoleType;
 import Business.UserAccount.UserAccount;
 import Business.UserAccount.loggedInUser;
@@ -255,6 +257,22 @@ public class MainJFrame extends javax.swing.JFrame {
                             {
                                 break;
                             }
+                            if(userAccount==null)
+                            {
+                                for(Organization organisation: enterprises.getOrganizationDirectory().getOrganisationList())
+                                {
+                                   userAccount=organisation.getUserAccountDirectory().authenticateUser(userName, password);
+                                   if(userAccount!=null)
+                                   {
+                                       break;
+                                   }
+                                }
+                                
+                            }
+                            if(userAccount!=null)
+                            {
+                                break;
+                            }
                         }
                         if(userAccount!=null)
                         {
@@ -290,6 +308,26 @@ public class MainJFrame extends javax.swing.JFrame {
                             loggedInUser logInUser=new loggedInUser();
                             logInUser.setLogInId(userAccount.getUniqueId());
                             system.setLogInUser(logInUser);
+                            break;
+                        }
+                    }
+                }
+            }
+             for(Network networks:system.getNetworks())
+            {
+                for(Enterprise enterprises:networks.getEnterpriseDirectory().getEnterprises())
+                {
+                    for(Organization organisation:enterprises.getOrganizationDirectory().getOrganisationList())
+                    {
+                        for(UserAccount userAccount:organisation.getUserAccountDirectory().getUserAccountList())
+                        {
+                            if(userAccount.getUsername().equals(userName))
+                            {
+                                loggedInUser logInUser=new loggedInUser();
+                                logInUser.setLogInId(userAccount.getUniqueId());
+                                system.setLogInUser(logInUser);
+                                break;
+                            }
                         }
                     }
                 }
@@ -309,15 +347,17 @@ public class MainJFrame extends javax.swing.JFrame {
         leftPanel.setVisible(true);
     }//GEN-LAST:event_jLabel1MouseClicked
     private void switchJPanel(UserAccount loggedInUser) {
+        String abc=RoleType.OrganizationAdmin.name();
+    Role xyz=loggedInUser.getRole();
         if (loggedInUser != null) {
-            if(loggedInUser.getRole().equals(RoleType.OrganizationAdmin.toString()))
+            if(loggedInUser.getRole().equals(RoleType.OrganizationAdmin.name()))
             {
                 container.add("workArea", loggedInUser.getRole().createWorkArea(container,loggedInUser,system));
             }
             if(loggedInUser.getRole().equals(RoleType.RestaurantAdmin.toString())){
                 container.add("workArea", loggedInUser.getRole().createWorkArea(container,loggedInUser,system));
             }
-            else if (loggedInUser.getRole().equals(RoleType.Customer.toString())){
+            else if (loggedInUser.getRole().equals(Role.RoleType.NGOEmployee.toString())){
                 container.add("workArea", loggedInUser.getRole().createWorkArea(container,loggedInUser,system));
             }
             else if(loggedInUser.getRole().equals(RoleType.DeliveryMan.toString())){
