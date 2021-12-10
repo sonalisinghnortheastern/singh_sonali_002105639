@@ -13,10 +13,10 @@ public class Person {
     private String name;
     private double age;
     private String gender;
-    private String income;
+    private long income;
     private String education;
     private String address;
-    private String contact;
+    private long contact;
 
 
     public String getName() {
@@ -43,11 +43,11 @@ public class Person {
         this.gender = gender;
     }
 
-    public String getIncome() {
+    public long getIncome() {
         return income;
     }
 
-    public void setIncome(String income) {
+    public void setIncome(long income) {
         this.income = income;
     }
 
@@ -67,11 +67,11 @@ public class Person {
         this.address = address;
     }
 
-    public String getContact() {
+    public long getContact() {
         return contact;
     }
 
-    public void setContact(String contact) {
+    public void setContact(long contact) {
         this.contact = contact;
     }
 

@@ -38,16 +38,16 @@ import javax.swing.table.DefaultTableModel;
  
  * @author sonal
  */
-public class ManageMenuJPanel extends javax.swing.JPanel {
+public class ManageOrganizationEmployeeJPanel extends javax.swing.JPanel {
 
     /**
-     * Creates new form ManageMenuJPanel
+     * Creates new form ManageOrganizationEmployeeJPanel
      */
     private final EcoSystem system;  
     boolean validateNullOrEmpty=true;
     boolean validateRegex=true;
     private DB4OUtil dB4OUtil = DB4OUtil.getInstance();
-    public ManageMenuJPanel(EcoSystem system) {
+    public ManageOrganizationEmployeeJPanel(EcoSystem system) {
         initComponents();
         this.system=system;
        populateData();
@@ -108,7 +108,7 @@ public class ManageMenuJPanel extends javax.swing.JPanel {
         btnAddItem.setBackground(new java.awt.Color(240, 178, 62));
         btnAddItem.setFont(new java.awt.Font("Arial Black", 1, 12)); // NOI18N
         btnAddItem.setForeground(new java.awt.Color(255, 255, 255));
-        btnAddItem.setText("ADD ITEM");
+        btnAddItem.setText("ADD ORGANISATION EMPLOYEE");
         btnAddItem.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         btnAddItem.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -119,7 +119,7 @@ public class ManageMenuJPanel extends javax.swing.JPanel {
         btnUpdateItem.setBackground(new java.awt.Color(240, 178, 62));
         btnUpdateItem.setFont(new java.awt.Font("Arial Black", 1, 12)); // NOI18N
         btnUpdateItem.setForeground(new java.awt.Color(255, 255, 255));
-        btnUpdateItem.setText("UPDATE ITEM");
+        btnUpdateItem.setText("UPDATE ORGANISATION EMPLOYEE");
         btnUpdateItem.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         btnUpdateItem.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -161,11 +161,11 @@ public class ManageMenuJPanel extends javax.swing.JPanel {
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addContainerGap(144, Short.MAX_VALUE)
-                .addComponent(btnAddItem, javax.swing.GroupLayout.PREFERRED_SIZE, 134, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(93, 93, 93)
-                .addComponent(btnUpdateItem, javax.swing.GroupLayout.PREFERRED_SIZE, 142, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(77, 77, 77))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(btnAddItem)
+                .addGap(59, 59, 59)
+                .addComponent(btnUpdateItem)
+                .addContainerGap())
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(77, 77, 77)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -196,11 +196,9 @@ public class ManageMenuJPanel extends javax.swing.JPanel {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(48, 48, 48)
-                        .addComponent(lblPrice, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(50, 50, 50))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                        .addComponent(cmbRole, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(50, 50, 50)))
+                        .addComponent(lblPrice, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(cmbRole, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(50, 50, 50)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lblAvailablity, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(txtEmployeeName, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -258,7 +256,7 @@ public class ManageMenuJPanel extends javax.swing.JPanel {
         btnDeleteEmployee.setBackground(new java.awt.Color(240, 178, 62));
         btnDeleteEmployee.setFont(new java.awt.Font("Arial Black", 1, 12)); // NOI18N
         btnDeleteEmployee.setForeground(new java.awt.Color(255, 255, 255));
-        btnDeleteEmployee.setText("DELETE ITEM");
+        btnDeleteEmployee.setText("DELETE");
         btnDeleteEmployee.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         btnDeleteEmployee.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -467,8 +465,8 @@ public class ManageMenuJPanel extends javax.swing.JPanel {
                            cmbRole.removeAllItems();
                            cmbOrganisation.addItem(Organization.Type.Restaurant.getValue());
                            cmbOrganisation.addItem(Organization.Type.DeliveryMan.getValue());
-                           cmbRole.addItem(Role.RoleType.RestaurantAdmin.getValue());
-                           cmbRole.addItem(Role.RoleType.DeliveryMan.getValue());
+                           cmbRole.addItem(Role.RoleType.RestaurantAdmin.toString());
+                           cmbRole.addItem(Role.RoleType.DeliveryMan.toString());
                        }
                        else if(enterprise.getEnterpriseType().equals("College"))
                        {
@@ -501,7 +499,7 @@ public class ManageMenuJPanel extends javax.swing.JPanel {
     private Role populateRole(String role)
     {
         Role newRole = new NGOEmployeeRole();
-       if(role.equals("NGOEmployee"))
+       if(role.equals(Role.RoleType.NGOEmployee))
        {
            newRole=new NGOEmployeeRole();
        }
@@ -576,8 +574,7 @@ public class ManageMenuJPanel extends javax.swing.JPanel {
         
     }
     private  void addEmployee(boolean update,int deletionIndex) //if update flag true and index where it has to be updated
-    {
-        try{
+    {try{
             String organisation = cmbOrganisation. getSelectedItem().toString(); //get selected organization
             String role = cmbRole. getSelectedItem().toString(); //get role from combo box dropdown
             String employeeName = txtEmployeeName.getText(); 
@@ -625,7 +622,7 @@ public class ManageMenuJPanel extends javax.swing.JPanel {
         }
     }
      private  int deleteEmployee(boolean update)    //returns index to add method where it has to update
-    {                                               
+     {                                             
         try{
             int deletionIndex=0;  //initially set to 0
         int selectedRowIndex=jRegisterTable.getSelectedRow();
@@ -684,6 +681,6 @@ public class ManageMenuJPanel extends javax.swing.JPanel {
         {
             throw ex;
         }
-    }
+     }
 }
 

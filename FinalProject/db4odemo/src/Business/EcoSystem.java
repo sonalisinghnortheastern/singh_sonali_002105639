@@ -9,6 +9,7 @@ package Business;
 import Business.Network.Network;
 import Business.Role.Role;
 import Business.Role.SystemAdminRole;
+import Business.UserAccount.UserAccount;
 import Business.UserAccount.loggedInUser;
 import java.util.ArrayList;
 
@@ -21,6 +22,15 @@ public class EcoSystem extends Organization{
     private static EcoSystem business;
     private ArrayList<Network> networks;
     private loggedInUser logInUser;
+    private ArrayList<UserAccount> userAccounts;
+
+    public ArrayList<UserAccount> getUserAccounts() {
+        return userAccounts;
+    }
+
+    public void setUserAccounts(UserAccount userAccount) {
+        this.userAccounts.add(userAccount);
+    }
 
     public loggedInUser getLogInUser() {
         return logInUser;
@@ -46,6 +56,7 @@ public class EcoSystem extends Organization{
         super(null);
         networks=new ArrayList<>();
         logInUser=new loggedInUser();
+        userAccounts=new ArrayList<>();
     }
 
     public static EcoSystem getBusiness() {
@@ -64,5 +75,20 @@ public class EcoSystem extends Organization{
 
     public void setNetworks(Network network) {
         networks.add(network);
+    }
+    public boolean CheckIfUSernameIsUnique(String username)
+    {
+        if(userAccounts==null)
+        {
+            userAccounts=new ArrayList<>();
+        }
+        for(UserAccount userAccount:userAccounts)
+        {
+            if(userAccount.getUsername().equals(username))
+            {
+                return false;
+            }
+        }
+        return true;
     }
 }

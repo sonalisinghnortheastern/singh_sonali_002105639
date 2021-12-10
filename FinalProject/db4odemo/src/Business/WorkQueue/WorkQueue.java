@@ -13,7 +13,7 @@ import java.util.ArrayList;
 public class WorkQueue {
     
     private ArrayList<PlaceOrderWorkRequest> workRequestList;
-    private ArrayList<WorkRequest> workRequestListNew;
+    private ArrayList<EntryChildWorkRequest> workRequestListNew;
 
     public WorkQueue() {
         workRequestList = new ArrayList();
@@ -28,10 +28,10 @@ public class WorkQueue {
         this.workRequestList.add(orderWorkRequest);
     }
 
-    public ArrayList<WorkRequest> getWorkRequestListNew() {
+    public ArrayList<EntryChildWorkRequest> getWorkRequestListNew() {
         if(workRequestListNew==null)
         {
-            workRequestListNew = new ArrayList<WorkRequest>();
+            workRequestListNew = new ArrayList<EntryChildWorkRequest>();
         }
         return workRequestListNew;
     }

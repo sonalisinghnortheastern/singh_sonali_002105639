@@ -79,11 +79,11 @@
         <DimensionLayout dim="0">
           <Group type="103" groupAlignment="0" attributes="0">
               <Group type="102" alignment="1" attributes="0">
-                  <EmptySpace pref="144" max="32767" attributes="0"/>
-                  <Component id="btnAddItem" min="-2" pref="134" max="-2" attributes="0"/>
-                  <EmptySpace min="-2" pref="93" max="-2" attributes="0"/>
-                  <Component id="btnUpdateItem" min="-2" pref="142" max="-2" attributes="0"/>
-                  <EmptySpace min="-2" pref="77" max="-2" attributes="0"/>
+                  <EmptySpace max="32767" attributes="0"/>
+                  <Component id="btnAddItem" min="-2" max="-2" attributes="0"/>
+                  <EmptySpace min="-2" pref="59" max="-2" attributes="0"/>
+                  <Component id="btnUpdateItem" min="-2" max="-2" attributes="0"/>
+                  <EmptySpace max="-2" attributes="0"/>
               </Group>
               <Group type="102" alignment="0" attributes="0">
                   <EmptySpace min="-2" pref="77" max="-2" attributes="0"/>
@@ -123,13 +123,10 @@
                       <Group type="102" attributes="0">
                           <EmptySpace min="-2" pref="48" max="-2" attributes="0"/>
                           <Component id="lblPrice" min="-2" pref="31" max="-2" attributes="0"/>
-                          <EmptySpace min="-2" pref="50" max="-2" attributes="0"/>
                       </Group>
-                      <Group type="102" alignment="1" attributes="0">
-                          <Component id="cmbRole" min="-2" pref="31" max="-2" attributes="0"/>
-                          <EmptySpace min="-2" pref="50" max="-2" attributes="0"/>
-                      </Group>
+                      <Component id="cmbRole" alignment="1" min="-2" pref="31" max="-2" attributes="0"/>
                   </Group>
+                  <EmptySpace min="50" pref="50" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
                       <Component id="lblAvailablity" alignment="3" min="-2" pref="34" max="-2" attributes="0"/>
                       <Component id="txtEmployeeName" alignment="3" min="-2" pref="31" max="-2" attributes="0"/>
@@ -193,7 +190,7 @@
             <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
               <Color blue="ff" green="ff" red="ff" type="rgb"/>
             </Property>
-            <Property name="text" type="java.lang.String" value="ADD ITEM"/>
+            <Property name="text" type="java.lang.String" value="ADD ORGANISATION EMPLOYEE"/>
             <Property name="horizontalTextPosition" type="int" value="0"/>
           </Properties>
           <Events>
@@ -211,7 +208,7 @@
             <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
               <Color blue="ff" green="ff" red="ff" type="rgb"/>
             </Property>
-            <Property name="text" type="java.lang.String" value="UPDATE ITEM"/>
+            <Property name="text" type="java.lang.String" value="UPDATE ORGANISATION EMPLOYEE"/>
             <Property name="horizontalTextPosition" type="int" value="0"/>
           </Properties>
           <Events>
@@ -394,7 +391,7 @@
         <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
           <Color blue="ff" green="ff" red="ff" type="rgb"/>
         </Property>
-        <Property name="text" type="java.lang.String" value="DELETE ITEM"/>
+        <Property name="text" type="java.lang.String" value="DELETE"/>
         <Property name="horizontalTextPosition" type="int" value="0"/>
       </Properties>
       <Events>

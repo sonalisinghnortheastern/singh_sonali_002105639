@@ -7,7 +7,6 @@ package userinterface.OrganizationAdminRole;
 
 import Business.EcoSystem;
 import javax.swing.JPanel;
-import userinterface.RestaurantAdminRole.*;
 
 /**
  *
@@ -46,7 +45,7 @@ public class OrganizationAdminWorkAreaJPanel extends javax.swing.JPanel {
         jPanel1.setBackground(new java.awt.Color(240, 178, 62));
 
         btnManageMenu.setFont(new java.awt.Font("Comic Sans MS", 1, 14)); // NOI18N
-        btnManageMenu.setText("MANAGE EMPLOYEE");
+        btnManageMenu.setText("MANAGE ORGANISATION EMPLOYEE");
         btnManageMenu.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnManageMenuActionPerformed(evt);
@@ -60,7 +59,7 @@ public class OrganizationAdminWorkAreaJPanel extends javax.swing.JPanel {
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(btnManageMenu, javax.swing.GroupLayout.DEFAULT_SIZE, 191, Short.MAX_VALUE)
+            .addComponent(btnManageMenu, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addComponent(jLabel1)
                 .addGap(0, 0, Short.MAX_VALUE))
@@ -84,7 +83,7 @@ public class OrganizationAdminWorkAreaJPanel extends javax.swing.JPanel {
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, 709, Short.MAX_VALUE)
+            .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -97,7 +96,7 @@ public class OrganizationAdminWorkAreaJPanel extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnManageMenuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnManageMenuActionPerformed
-    ManageMenuJPanel manageMenuJPanel =new ManageMenuJPanel(ecosystem);
+    ManageOrganizationEmployeeJPanel manageMenuJPanel =new ManageOrganizationEmployeeJPanel(ecosystem);
     jSplitPane.setRightComponent(manageMenuJPanel); 
     }//GEN-LAST:event_btnManageMenuActionPerformed
    
