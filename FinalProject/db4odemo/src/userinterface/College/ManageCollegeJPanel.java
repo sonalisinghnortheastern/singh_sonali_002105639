@@ -43,22 +43,21 @@ public class ManageCollegeJPanel extends javax.swing.JPanel {
         lblAvailablity = new javax.swing.JLabel();
         lblPrice = new javax.swing.JLabel();
         btnSubmit = new javax.swing.JButton();
-        txtUsername = new javax.swing.JTextField();
+        txtAge = new javax.swing.JTextField();
         lblAvailablity1 = new javax.swing.JLabel();
         lblAvailablity3 = new javax.swing.JLabel();
-        txtEmployeeName1 = new javax.swing.JTextField();
+        txtStudentName = new javax.swing.JTextField();
         yesRadioButton = new javax.swing.JRadioButton();
         noRadioButton = new javax.swing.JRadioButton();
         jRadioButton3 = new javax.swing.JRadioButton();
         jRadioButton4 = new javax.swing.JRadioButton();
         lblPrice1 = new javax.swing.JLabel();
-        txtEmployeeName2 = new javax.swing.JTextField();
+        txtNGOName = new javax.swing.JTextField();
         lblAvailablity4 = new javax.swing.JLabel();
         txtUsername1 = new javax.swing.JTextField();
-        jComboBox1 = new javax.swing.JComboBox<>();
         jScrollPane1 = new javax.swing.JScrollPane();
         jRegisterTable = new javax.swing.JTable();
-        txtEmployeeName = new javax.swing.JTextField();
+        txtCollegeName = new javax.swing.JTextField();
         lblItem = new javax.swing.JLabel();
 
         jPanel2.setBackground(new java.awt.Color(0, 102, 102));
@@ -110,9 +109,9 @@ public class ManageCollegeJPanel extends javax.swing.JPanel {
         lblAvailablity3.setFocusable(false);
         lblAvailablity3.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
 
-        txtEmployeeName1.addActionListener(new java.awt.event.ActionListener() {
+        txtStudentName.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtEmployeeName1ActionPerformed(evt);
+                txtStudentNameActionPerformed(evt);
             }
         });
 
@@ -132,9 +131,9 @@ public class ManageCollegeJPanel extends javax.swing.JPanel {
         lblPrice1.setText("NGO NAME:");
         lblPrice1.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
 
-        txtEmployeeName2.addActionListener(new java.awt.event.ActionListener() {
+        txtNGOName.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtEmployeeName2ActionPerformed(evt);
+                txtNGONameActionPerformed(evt);
             }
         });
 
@@ -145,8 +144,6 @@ public class ManageCollegeJPanel extends javax.swing.JPanel {
         lblAvailablity4.setFocusable(false);
         lblAvailablity4.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
 
-        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "ACCEPT", "REJECT" }));
-
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
         jPanel3Layout.setHorizontalGroup(
@@ -154,34 +151,29 @@ public class ManageCollegeJPanel extends javax.swing.JPanel {
             .addGroup(jPanel3Layout.createSequentialGroup()
                 .addGap(77, 77, 77)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(lblAvailablity, javax.swing.GroupLayout.PREFERRED_SIZE, 134, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(lblAvailablity1, javax.swing.GroupLayout.PREFERRED_SIZE, 134, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(lblPrice, javax.swing.GroupLayout.PREFERRED_SIZE, 134, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(lblPrice1, javax.swing.GroupLayout.PREFERRED_SIZE, 134, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(lblAvailablity3, javax.swing.GroupLayout.PREFERRED_SIZE, 134, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(93, 93, 93)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(btnSubmit, javax.swing.GroupLayout.PREFERRED_SIZE, 134, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                        .addComponent(txtStudentName, javax.swing.GroupLayout.DEFAULT_SIZE, 142, Short.MAX_VALUE)
+                        .addComponent(txtNGOName))
                     .addGroup(jPanel3Layout.createSequentialGroup()
-                        .addGap(93, 93, 93)
-                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                .addComponent(txtEmployeeName1)
-                                .addComponent(txtUsername, javax.swing.GroupLayout.PREFERRED_SIZE, 142, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(txtEmployeeName2))
-                            .addGroup(jPanel3Layout.createSequentialGroup()
-                                .addComponent(yesRadioButton)
-                                .addGap(36, 36, 36)
-                                .addComponent(noRadioButton))
-                            .addGroup(jPanel3Layout.createSequentialGroup()
-                                .addComponent(jRadioButton3)
-                                .addGap(18, 18, 18)
-                                .addComponent(jRadioButton4))
-                            .addComponent(txtUsername1, javax.swing.GroupLayout.PREFERRED_SIZE, 142, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addContainerGap(87, Short.MAX_VALUE))
+                        .addComponent(jRadioButton3)
+                        .addGap(18, 18, 18)
+                        .addComponent(jRadioButton4))
                     .addGroup(jPanel3Layout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 122, Short.MAX_VALUE)
-                        .addComponent(btnSubmit, javax.swing.GroupLayout.PREFERRED_SIZE, 134, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(66, 66, 66))))
+                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                            .addComponent(txtAge, javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(yesRadioButton, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addGap(36, 36, 36)
+                        .addComponent(noRadioButton))
+                    .addComponent(txtUsername1, javax.swing.GroupLayout.PREFERRED_SIZE, 142, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(220, Short.MAX_VALUE))
             .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(jPanel3Layout.createSequentialGroup()
                     .addGap(76, 76, 76)
@@ -194,11 +186,11 @@ public class ManageCollegeJPanel extends javax.swing.JPanel {
                 .addGap(25, 25, 25)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lblPrice, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(txtEmployeeName1, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(txtStudentName, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 33, Short.MAX_VALUE)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lblPrice1, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(txtEmployeeName2, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(txtNGOName, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(25, 25, 25)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lblAvailablity, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -206,7 +198,7 @@ public class ManageCollegeJPanel extends javax.swing.JPanel {
                     .addComponent(noRadioButton))
                 .addGap(35, 35, 35)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(txtUsername, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txtAge, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(lblAvailablity1, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(37, 37, 37)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -216,11 +208,9 @@ public class ManageCollegeJPanel extends javax.swing.JPanel {
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(lblAvailablity3, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(txtUsername1, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btnSubmit)
-                    .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(86, 86, 86))
+                .addGap(38, 38, 38)
+                .addComponent(btnSubmit)
+                .addGap(69, 69, 69))
             .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
                     .addContainerGap(288, Short.MAX_VALUE)
@@ -236,7 +226,7 @@ public class ManageCollegeJPanel extends javax.swing.JPanel {
 
             },
             new String [] {
-                "Default", "COLLEGE", "STUDENT", "NGO", "IS EDUCATED", "GENDER", "AGE", "COUNSELLOR"
+                "Default", "COLLEGE", "STUDENT", "NGO", "HIGHEST EDUCATION", "GENDER", "AGE", "COUNSELLOR"
             }
         ) {
             Class[] types = new Class [] {
@@ -284,7 +274,7 @@ public class ManageCollegeJPanel extends javax.swing.JPanel {
                 .addGap(303, 303, 303)
                 .addComponent(lblItem)
                 .addGap(99, 99, 99)
-                .addComponent(txtEmployeeName)
+                .addComponent(txtCollegeName)
                 .addGap(488, 488, 488))
         );
         jPanel2Layout.setVerticalGroup(
@@ -296,7 +286,7 @@ public class ManageCollegeJPanel extends javax.swing.JPanel {
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 165, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(37, 37, 37)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(txtEmployeeName, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txtCollegeName, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(lblItem, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(1, 1, 1)
                 .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -316,7 +306,7 @@ public class ManageCollegeJPanel extends javax.swing.JPanel {
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 853, Short.MAX_VALUE)
+            .addGap(0, 857, Short.MAX_VALUE)
             .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(jPanel1Layout.createSequentialGroup()
                     .addGap(0, 0, Short.MAX_VALUE)
@@ -337,7 +327,7 @@ public class ManageCollegeJPanel extends javax.swing.JPanel {
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 853, Short.MAX_VALUE)
+            .addGap(0, 857, Short.MAX_VALUE)
             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(layout.createSequentialGroup()
                     .addGap(0, 0, Short.MAX_VALUE)
@@ -351,6 +341,7 @@ public class ManageCollegeJPanel extends javax.swing.JPanel {
             if(yesRadioButton.isSelected()){
                 String highestEducation = JOptionPane.showInputDialog("Kindly fill the highest education");
             }
+            
                 
                 
                 
@@ -383,20 +374,19 @@ public class ManageCollegeJPanel extends javax.swing.JPanel {
             //        }
     }//GEN-LAST:event_jRegisterTableMouseClicked
 
-    private void txtEmployeeName1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtEmployeeName1ActionPerformed
+    private void txtStudentNameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtStudentNameActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_txtEmployeeName1ActionPerformed
+    }//GEN-LAST:event_txtStudentNameActionPerformed
 
-    private void txtEmployeeName2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtEmployeeName2ActionPerformed
+    private void txtNGONameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtNGONameActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_txtEmployeeName2ActionPerformed
+    }//GEN-LAST:event_txtNGONameActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnSubmit;
     private javax.swing.ButtonGroup buttonGroup1;
     private javax.swing.ButtonGroup buttonGroup2;
-    private javax.swing.JComboBox<String> jComboBox1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
@@ -413,10 +403,10 @@ public class ManageCollegeJPanel extends javax.swing.JPanel {
     private javax.swing.JLabel lblPrice;
     private javax.swing.JLabel lblPrice1;
     private javax.swing.JRadioButton noRadioButton;
-    private javax.swing.JTextField txtEmployeeName;
-    private javax.swing.JTextField txtEmployeeName1;
-    private javax.swing.JTextField txtEmployeeName2;
-    private javax.swing.JTextField txtUsername;
+    private javax.swing.JTextField txtAge;
+    private javax.swing.JTextField txtCollegeName;
+    private javax.swing.JTextField txtNGOName;
+    private javax.swing.JTextField txtStudentName;
     private javax.swing.JTextField txtUsername1;
     private javax.swing.JRadioButton yesRadioButton;
     // End of variables declaration//GEN-END:variables

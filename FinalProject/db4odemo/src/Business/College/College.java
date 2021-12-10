@@ -12,5 +12,10 @@ package Business.College;
 public class College {
     String highestEducation;
     String collegeName;
+    String studentName;
+    String NGO;
+    String Gender;
+    String Counsellor;
+    int Age;
     
 }

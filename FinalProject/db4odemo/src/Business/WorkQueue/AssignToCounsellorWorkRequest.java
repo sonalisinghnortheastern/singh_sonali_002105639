@@ -13,6 +13,15 @@ import Business.College.CollegeCounsellor;
  */
 public class AssignToCounsellorWorkRequest extends EntryChildWorkRequest{
     CollegeCounsellor counsellor;
+    EntryChildWorkRequest entryChildWorkRequest;
+
+    public EntryChildWorkRequest getEntryChildWorkRequest() {
+        return entryChildWorkRequest;
+    }
+
+    public void setEntryChildWorkRequest(EntryChildWorkRequest entryChildWorkRequest) {
+        this.entryChildWorkRequest = entryChildWorkRequest;
+    }
 
     public CollegeCounsellor getCounsellor() {
         return counsellor;

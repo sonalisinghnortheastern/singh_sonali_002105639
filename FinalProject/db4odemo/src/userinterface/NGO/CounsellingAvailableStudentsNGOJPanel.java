@@ -6,6 +6,10 @@
 package userinterface.NGO;
 
 import Business.EcoSystem;
+import Business.Enterprise.Enterprise;
+import Business.Network.Network;
+import Business.Organization;
+import Business.UserAccount.UserAccount;
 import Business.WorkQueue.AssignToCounsellorWorkRequest;
 import java.util.ArrayList;
 import javax.swing.table.DefaultTableModel;
@@ -25,6 +29,7 @@ public class CounsellingAvailableStudentsNGOJPanel extends javax.swing.JPanel {
         this.ecosystem= ecosystem;
         jPanel2.setVisible(false);
         populate();
+        populateCounsellors();
     }
 
     /**
@@ -42,7 +47,7 @@ public class CounsellingAvailableStudentsNGOJPanel extends javax.swing.JPanel {
         jRegisterTable = new javax.swing.JTable();
         jPanel2 = new javax.swing.JPanel();
         jLabel4 = new javax.swing.JLabel();
-        cmbEducation = new javax.swing.JComboBox<>();
+        cmbCounsellor = new javax.swing.JComboBox<>();
 
         jPanel1.setBackground(new java.awt.Color(0, 102, 102));
 
@@ -69,7 +74,7 @@ public class CounsellingAvailableStudentsNGOJPanel extends javax.swing.JPanel {
                 java.lang.Object.class, java.lang.String.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class
             };
             boolean[] canEdit = new boolean [] {
-                false, false, false, false, true
+                false, false, false, false, false
             };
 
             public Class getColumnClass(int columnIndex) {
@@ -94,10 +99,10 @@ public class CounsellingAvailableStudentsNGOJPanel extends javax.swing.JPanel {
         jLabel4.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel4.setText("AVAILABLE COUNSELLORS:");
 
-        cmbEducation.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "High School", "Senior Secondary School", "Bachelors", "Masters", " " }));
-        cmbEducation.addActionListener(new java.awt.event.ActionListener() {
+        cmbCounsellor.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "High School", "Senior Secondary School", "Bachelors", "Masters", " " }));
+        cmbCounsellor.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                cmbEducationActionPerformed(evt);
+                cmbCounsellorActionPerformed(evt);
             }
         });
 
@@ -108,9 +113,9 @@ public class CounsellingAvailableStudentsNGOJPanel extends javax.swing.JPanel {
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 211, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 79, Short.MAX_VALUE)
-                .addComponent(cmbEducation, javax.swing.GroupLayout.PREFERRED_SIZE, 259, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(38, 38, 38))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 107, Short.MAX_VALUE)
+                .addComponent(cmbCounsellor, javax.swing.GroupLayout.PREFERRED_SIZE, 259, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -118,7 +123,7 @@ public class CounsellingAvailableStudentsNGOJPanel extends javax.swing.JPanel {
                 .addGap(49, 49, 49)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel4)
-                    .addComponent(cmbEducation, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(cmbCounsellor, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(104, Short.MAX_VALUE))
         );
 
@@ -127,11 +132,9 @@ public class CounsellingAvailableStudentsNGOJPanel extends javax.swing.JPanel {
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, 1107, Short.MAX_VALUE)
+            .addComponent(jScrollPane1)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addComponent(jScrollPane1)
-                .addContainerGap())
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(88, 88, 88)
+                .addGap(210, 210, 210)
                 .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
@@ -142,9 +145,9 @@ public class CounsellingAvailableStudentsNGOJPanel extends javax.swing.JPanel {
                 .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 52, Short.MAX_VALUE)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 165, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(80, 80, 80)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(401, 401, 401))
+                .addGap(470, 470, 470))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
@@ -183,13 +186,13 @@ public class CounsellingAvailableStudentsNGOJPanel extends javax.swing.JPanel {
         }
     }//GEN-LAST:event_jRegisterTableMouseClicked
 
-    private void cmbEducationActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmbEducationActionPerformed
+    private void cmbCounsellorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmbCounsellorActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_cmbEducationActionPerformed
+    }//GEN-LAST:event_cmbCounsellorActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JComboBox<String> cmbEducation;
+    private javax.swing.JComboBox<String> cmbCounsellor;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JPanel jPanel1;
@@ -202,50 +205,65 @@ public class CounsellingAvailableStudentsNGOJPanel extends javax.swing.JPanel {
         ArrayList<AssignToCounsellorWorkRequest> finalWorkRequests=new ArrayList<>();
         int loggedinID = ecosystem.getLogInUser().getLogInId();
     for(AssignToCounsellorWorkRequest workRequest: ecosystem.getWorkQueue().getAssignToCounsellorWorkRequests()){
-        ecosystem.getNetworks().forEach(network -> {
-            network.getEnterpriseDirectory().getEnterprises().stream().filter(enterprise -> (enterprise.getEnterpriseType().equals("NGO"))).forEachOrdered(enterprise -> {
-                enterprise.getOrganizationDirectory().getOrganisationList().forEach(organisation -> {
-                    organisation.getUserAccountDirectory().getUserAccountList().stream().filter(userAccount -> (userAccount.getUniqueId()== loggedinID)).filter(_item -> (workRequest.getNgoName().equals(enterprise.getName()))).forEachOrdered(_item -> {
-                        finalWorkRequests.add(workRequest);
-                    });
-                });
-            });
-            });
+        for(Network network:ecosystem.getNetworks())
+        {
+            for(Enterprise enterprise : network.getEnterpriseDirectory().getEnterprises())
+            {
+                if(enterprise.getEnterpriseType().equals("NGO"))
+                {
+                    for(Organization organisation : enterprise.getOrganizationDirectory().getOrganisationList())
+                    {
+                       for(UserAccount userAccount : organisation.getUserAccountDirectory().getUserAccountList())
+                       {
+                           if(userAccount.getUniqueId()== loggedinID)
+                           {
+                              if(workRequest.getEntryChildWorkRequest().getNgoName().equals(enterprise.getName()))
+                              {
+                                  if(workRequest.getEntryChildWorkRequest().isIsAccepted() &&workRequest.getEntryChildWorkRequest().getPerson().getAge()>17 &&  workRequest.getCounsellor()==null)
+                                  {
+                                      finalWorkRequests.add(workRequest);
+                                  }
+                              }
+                           }
+                       }
+                    }
+                }
+            }
+        }
         DefaultTableModel model = (DefaultTableModel) jRegisterTable.getModel();
         model.setRowCount(0);
         jRegisterTable.getColumnModel().getColumn(0).setMinWidth(0);
         jRegisterTable.getColumnModel().getColumn(0).setMaxWidth(0);
-        String status="";
         for(AssignToCounsellorWorkRequest requests : finalWorkRequests)
         {
-            if((!requests.isIsAccepted() && requests.getMessage()==null) )
-            {
-                break;
-            }
-            if(!requests.isIsAccepted() && requests.getMessage()!=null)
-            {
-                status="DECLINED";
-            }
-            if(requests.isIsAccepted())
-            {
-                status="ACCEPTED";
-            }
-            
-            Object[] row = new Object[7];
-            row[0]=requests;
-            row[1] = requests.getPerson().getName();
-            row[2] = requests.getPerson().getAge();
-            row[3] = requests.getPerson().getAddress();
-            row[4] = requests.getPerson().getContact(); 
-            row[5]= status;
-            row[6]= requests.getMessage();
+            Object[] row = new Object[5];
+            row[0]= requests;
+            row[1] = requests.getEntryChildWorkRequest().getPerson().getName();
+            row[2] = requests.getEntryChildWorkRequest().getPerson().getAge();
+            row[3] = requests.getEntryChildWorkRequest().getPerson().getContact(); 
+            row[4]= requests.getEntryChildWorkRequest().getPerson().getEducation();
             model.addRow(row);
-            status="";
         }
     }
-    
-    
   }
+    
+    private void populateCounsellors()
+    {
+        cmbCounsellor.removeAllItems();
+        for(Network network: ecosystem.getNetworks())
+        {
+            for(Enterprise enterprise:network.getEnterpriseDirectory().getEnterprises())
+            {
+                if(enterprise.getEnterpriseType().equals("Counsellor "))
+                {
+                    for(Organization organization:enterprise.getOrganizationDirectory().getOrganisationList() )
+                    {
+                        cmbCounsellor.addItem(organization.getName());
+                    }
+                }
+            }
+        }
+    }
 
   
 }

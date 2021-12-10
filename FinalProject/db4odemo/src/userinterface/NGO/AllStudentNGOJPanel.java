@@ -6,6 +6,10 @@
 package userinterface.NGO;
 
 import Business.EcoSystem;
+import Business.Enterprise.Enterprise;
+import Business.Network.Network;
+import Business.Organization;
+import Business.UserAccount.UserAccount;
 import Business.WorkQueue.AssignToCounsellorWorkRequest;
 import java.util.ArrayList;
 import javax.swing.table.DefaultTableModel;
@@ -79,14 +83,14 @@ public class AllStudentNGOJPanel extends javax.swing.JPanel {
 
             },
             new String [] {
-                "Default", "Name", "Age", "Address", "Contact", "Status", "Message"
+                "Default", "Name", "Age", "Address", "Contact"
             }
         ) {
             Class[] types = new Class [] {
-                java.lang.Object.class, java.lang.String.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class
+                java.lang.Object.class, java.lang.String.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class
             };
             boolean[] canEdit = new boolean [] {
-                false, false, false, false, false, false, true
+                false, false, false, false, false
             };
 
             public Class getColumnClass(int columnIndex) {
@@ -254,11 +258,13 @@ public class AllStudentNGOJPanel extends javax.swing.JPanel {
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, 1107, Short.MAX_VALUE)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addComponent(jScrollPane1)
-                .addContainerGap())
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(88, 88, 88)
-                .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(102, 102, 102)
+                        .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(40, 40, 40)
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 968, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
@@ -266,11 +272,11 @@ public class AllStudentNGOJPanel extends javax.swing.JPanel {
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(11, 11, 11)
                 .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 52, Short.MAX_VALUE)
+                .addGap(26, 26, 26)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 165, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(80, 80, 80)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(62, 62, 62))
+                .addContainerGap(157, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
@@ -301,7 +307,7 @@ public class AllStudentNGOJPanel extends javax.swing.JPanel {
     try{     
             int rowNumber=jRegisterTable.getSelectedRow();
             AssignToCounsellorWorkRequest request=(AssignToCounsellorWorkRequest) jRegisterTable.getModel().getValueAt(rowNumber, 0);
-            if(request.getCounsellor().getCounsellorName()==null)
+            if(request.getCounsellor()==null ||request.getCounsellor().getCounsellorName()==null )
             {
                 jLabel10.setVisible(false);
                 jLabel12.setVisible(false);
@@ -317,20 +323,20 @@ public class AllStudentNGOJPanel extends javax.swing.JPanel {
                 //txtCollege.setText(request.getCollegeName());
                 txtCounsellor.setText(request.getCounsellor().getCounsellorName());
             }
-            txtName.setText(request.getPerson().getName());
-            txtAge.setText(String.valueOf(request.getPerson().getAge()));
-            if(request.getPerson().getGender().equals("Female"))
+            txtName.setText(request.getEntryChildWorkRequest().getPerson().getName());
+            txtAge.setText(String.valueOf(request.getEntryChildWorkRequest().getPerson().getAge()));
+            if(request.getEntryChildWorkRequest().getPerson().getGender().equals("Female"))
             {
                 radioButtonFemale.setSelected(true);
             }
-            if(request.getPerson().getGender().equals("Male"))
+            if(request.getEntryChildWorkRequest().getPerson().getGender().equals("Male"))
             {
                 radiobtnMale.setSelected(true);
             }
-            cmbEducation.setSelectedItem(request.getPerson().getEducation());
-            txtIncome.setText(String.valueOf(request.getPerson().getIncome()));
-            txtAddress.setText(request.getPerson().getAddress());
-            txtContact.setText(String.valueOf(request.getPerson().getContact()));
+            cmbEducation.setSelectedItem(request.getEntryChildWorkRequest().getPerson().getEducation());
+            txtIncome.setText(String.valueOf(request.getEntryChildWorkRequest().getPerson().getIncome()));
+            txtAddress.setText(request.getEntryChildWorkRequest().getPerson().getAddress());
+            txtContact.setText(String.valueOf(request.getEntryChildWorkRequest().getPerson().getContact()));
         }
         catch(Exception e)
         {
@@ -369,45 +375,46 @@ public class AllStudentNGOJPanel extends javax.swing.JPanel {
     private void populate() {
         ArrayList<AssignToCounsellorWorkRequest> finalWorkRequests=new ArrayList<>();
         int loggedinID = ecosystem.getLogInUser().getLogInId();
-    for(AssignToCounsellorWorkRequest workRequest: ecosystem.getWorkQueue().getAssignToCounsellorWorkRequests()){
-        ecosystem.getNetworks().forEach(network -> {
-            network.getEnterpriseDirectory().getEnterprises().stream().filter(enterprise -> (enterprise.getEnterpriseType().equals("NGO"))).forEachOrdered(enterprise -> {
-                enterprise.getOrganizationDirectory().getOrganisationList().forEach(organisation -> {
-                    organisation.getUserAccountDirectory().getUserAccountList().stream().filter(userAccount -> (userAccount.getUniqueId()== loggedinID)).filter(_item -> (workRequest.getNgoName().equals(enterprise.getName()))).forEachOrdered(_item -> {
-                        finalWorkRequests.add(workRequest);
-                    });
-                });
-            });
-            });
+        for(AssignToCounsellorWorkRequest workRequest: ecosystem.getWorkQueue().getAssignToCounsellorWorkRequests()){
+        for(Network network:ecosystem.getNetworks())
+        {
+            for(Enterprise enterprise : network.getEnterpriseDirectory().getEnterprises())
+            {
+                if(enterprise.getEnterpriseType().equals("NGO"))
+                {
+                    for(Organization organisation : enterprise.getOrganizationDirectory().getOrganisationList())
+                    {
+                       for(UserAccount userAccount : organisation.getUserAccountDirectory().getUserAccountList())
+                       {
+                           if(userAccount.getUniqueId()== loggedinID)
+                           {
+                               String x= workRequest.getEntryChildWorkRequest().getNgoName();
+                              if(workRequest.getEntryChildWorkRequest().getNgoName().equals(enterprise.getName()))
+                              {
+                                  if(workRequest.getEntryChildWorkRequest().isIsAccepted())
+                                  {
+                                       finalWorkRequests.add(workRequest);
+                                  }
+                              }
+                           }
+                       }
+                    }
+                }
+            }
+        }
         DefaultTableModel model = (DefaultTableModel) jRegisterTable.getModel();
         model.setRowCount(0);
         jRegisterTable.getColumnModel().getColumn(0).setMinWidth(0);
         jRegisterTable.getColumnModel().getColumn(0).setMaxWidth(0);
-        String status="";
         for(AssignToCounsellorWorkRequest requests : finalWorkRequests)
         {
-            if(!requests.isIsAccepted() && requests.getMessage()==null)
-            {
-                break;
-            }
-            if(!requests.isIsAccepted() && requests.getMessage()!=null)
-            {
-                status="DECLINED";
-            }
-            if(requests.isIsAccepted())
-            {
-                status="ACCEPTED";
-            }
-            Object[] row = new Object[7];
+            Object[] row = new Object[5];
             row[0]=requests;
-            row[1] = requests.getPerson().getName();
-            row[2] = requests.getPerson().getAge();
-            row[3] = requests.getPerson().getAddress();
-            row[4] = requests.getPerson().getContact(); 
-            row[5]= status;
-            row[6]= requests.getMessage();
+            row[1] = requests.getEntryChildWorkRequest().getPerson().getName();
+            row[2] = requests.getEntryChildWorkRequest().getPerson().getAge();
+            row[3] = requests.getEntryChildWorkRequest().getPerson().getAddress();
+            row[4] = requests.getEntryChildWorkRequest().getPerson().getContact(); 
             model.addRow(row);
-            status="";
         }
     }
     

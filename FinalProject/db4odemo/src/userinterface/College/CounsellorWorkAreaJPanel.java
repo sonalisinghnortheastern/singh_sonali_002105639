@@ -11,13 +11,13 @@ import Business.EcoSystem;
  *
  * @author sonal
  */
-public class AssignCounsellorToStudent extends javax.swing.JPanel {
+public class CounsellorWorkAreaJPanel extends javax.swing.JPanel {
 
     /**
      * Creates new form AssignCollegeJPanel
      */
      private final EcoSystem system; 
-    public AssignCounsellorToStudent(EcoSystem system) {
+    public CounsellorWorkAreaJPanel(EcoSystem system) {
        initComponents();
          this.system=system;
         populateTable();
@@ -114,9 +114,9 @@ public class AssignCounsellorToStudent extends javax.swing.JPanel {
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addGap(11, 11, 11)
                 .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 73, Short.MAX_VALUE)
+                .addGap(28, 28, 28)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 165, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 51, Short.MAX_VALUE)
                 .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(58, 58, 58))
         );
@@ -191,5 +191,6 @@ public class AssignCounsellorToStudent extends javax.swing.JPanel {
     // End of variables declaration//GEN-END:variables
 
     private void populateTable() {
+        
     }
 }

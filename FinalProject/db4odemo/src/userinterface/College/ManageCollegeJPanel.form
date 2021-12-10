@@ -34,7 +34,7 @@
     </DimensionLayout>
     <DimensionLayout dim="1">
       <Group type="103" groupAlignment="0" attributes="0">
-          <EmptySpace min="0" pref="853" max="32767" attributes="0"/>
+          <EmptySpace min="0" pref="857" max="32767" attributes="0"/>
           <Group type="103" rootIndex="1" groupAlignment="0" attributes="0">
               <Group type="102" attributes="0">
                   <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
@@ -63,7 +63,7 @@
         </DimensionLayout>
         <DimensionLayout dim="1">
           <Group type="103" groupAlignment="0" attributes="0">
-              <EmptySpace min="0" pref="853" max="32767" attributes="0"/>
+              <EmptySpace min="0" pref="857" max="32767" attributes="0"/>
               <Group type="103" rootIndex="1" groupAlignment="0" attributes="0">
                   <Group type="102" alignment="0" attributes="0">
                       <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
@@ -96,7 +96,7 @@
                       <EmptySpace min="-2" pref="303" max="-2" attributes="0"/>
                       <Component id="lblItem" min="-2" max="-2" attributes="0"/>
                       <EmptySpace min="-2" pref="99" max="-2" attributes="0"/>
-                      <Component id="txtEmployeeName" max="32767" attributes="0"/>
+                      <Component id="txtCollegeName" max="32767" attributes="0"/>
                       <EmptySpace min="-2" pref="488" max="-2" attributes="0"/>
                   </Group>
               </Group>
@@ -110,7 +110,7 @@
                       <Component id="jScrollPane1" min="-2" pref="165" max="-2" attributes="0"/>
                       <EmptySpace min="-2" pref="37" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="3" attributes="0">
-                          <Component id="txtEmployeeName" alignment="3" min="-2" pref="31" max="-2" attributes="0"/>
+                          <Component id="txtCollegeName" alignment="3" min="-2" pref="31" max="-2" attributes="0"/>
                           <Component id="lblItem" alignment="3" min="-2" pref="34" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace min="-2" pref="1" max="-2" attributes="0"/>
@@ -150,42 +150,35 @@
                       <Group type="102" alignment="0" attributes="0">
                           <EmptySpace min="-2" pref="77" max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="1" attributes="0">
-                              <Component id="jComboBox1" alignment="1" min="-2" pref="110" max="-2" attributes="0"/>
                               <Component id="lblAvailablity" alignment="1" min="-2" pref="134" max="-2" attributes="0"/>
                               <Component id="lblAvailablity1" alignment="1" min="-2" pref="134" max="-2" attributes="0"/>
                               <Component id="lblPrice" alignment="1" min="-2" pref="134" max="-2" attributes="0"/>
                               <Component id="lblPrice1" alignment="1" min="-2" pref="134" max="-2" attributes="0"/>
                               <Component id="lblAvailablity3" alignment="1" min="-2" pref="134" max="-2" attributes="0"/>
                           </Group>
+                          <EmptySpace min="-2" pref="93" max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="0" attributes="0">
-                              <Group type="102" alignment="0" attributes="0">
-                                  <EmptySpace min="-2" pref="93" max="-2" attributes="0"/>
-                                  <Group type="103" groupAlignment="0" attributes="0">
-                                      <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                                          <Component id="txtEmployeeName1" max="32767" attributes="0"/>
-                                          <Component id="txtUsername" alignment="0" min="-2" pref="142" max="-2" attributes="0"/>
-                                          <Component id="txtEmployeeName2" alignment="0" max="32767" attributes="0"/>
-                                      </Group>
-                                      <Group type="102" attributes="0">
-                                          <Component id="yesRadioButton" min="-2" max="-2" attributes="0"/>
-                                          <EmptySpace min="-2" pref="36" max="-2" attributes="0"/>
-                                          <Component id="noRadioButton" min="-2" max="-2" attributes="0"/>
-                                      </Group>
-                                      <Group type="102" attributes="0">
-                                          <Component id="jRadioButton3" min="-2" max="-2" attributes="0"/>
-                                          <EmptySpace type="separate" max="-2" attributes="0"/>
-                                          <Component id="jRadioButton4" min="-2" max="-2" attributes="0"/>
-                                      </Group>
-                                      <Component id="txtUsername1" min="-2" pref="142" max="-2" attributes="0"/>
-                                  </Group>
-                                  <EmptySpace pref="87" max="32767" attributes="0"/>
+                              <Component id="btnSubmit" min="-2" pref="134" max="-2" attributes="0"/>
+                              <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                                  <Component id="txtStudentName" pref="142" max="32767" attributes="0"/>
+                                  <Component id="txtNGOName" alignment="0" max="32767" attributes="0"/>
                               </Group>
                               <Group type="102" attributes="0">
-                                  <EmptySpace pref="122" max="32767" attributes="0"/>
-                                  <Component id="btnSubmit" min="-2" pref="134" max="-2" attributes="0"/>
-                                  <EmptySpace min="-2" pref="66" max="-2" attributes="0"/>
+                                  <Component id="jRadioButton3" min="-2" max="-2" attributes="0"/>
+                                  <EmptySpace type="separate" max="-2" attributes="0"/>
+                                  <Component id="jRadioButton4" min="-2" max="-2" attributes="0"/>
                               </Group>
+                              <Group type="102" alignment="0" attributes="0">
+                                  <Group type="103" groupAlignment="1" max="-2" attributes="0">
+                                      <Component id="txtAge" alignment="0" max="32767" attributes="0"/>
+                                      <Component id="yesRadioButton" alignment="0" max="32767" attributes="0"/>
+                                  </Group>
+                                  <EmptySpace min="-2" pref="36" max="-2" attributes="0"/>
+                                  <Component id="noRadioButton" min="-2" max="-2" attributes="0"/>
+                              </Group>
+                              <Component id="txtUsername1" min="-2" pref="142" max="-2" attributes="0"/>
                           </Group>
+                          <EmptySpace pref="220" max="32767" attributes="0"/>
                       </Group>
                       <Group type="103" rootIndex="1" groupAlignment="0" attributes="0">
                           <Group type="102" alignment="0" attributes="0">
@@ -202,12 +195,12 @@
                           <EmptySpace min="-2" pref="25" max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="3" attributes="0">
                               <Component id="lblPrice" alignment="3" min="-2" pref="31" max="-2" attributes="0"/>
-                              <Component id="txtEmployeeName1" alignment="3" min="-2" pref="31" max="-2" attributes="0"/>
+                              <Component id="txtStudentName" alignment="3" min="-2" pref="31" max="-2" attributes="0"/>
                           </Group>
                           <EmptySpace pref="33" max="32767" attributes="0"/>
                           <Group type="103" groupAlignment="3" attributes="0">
                               <Component id="lblPrice1" alignment="3" min="-2" pref="31" max="-2" attributes="0"/>
-                              <Component id="txtEmployeeName2" alignment="3" min="-2" pref="31" max="-2" attributes="0"/>
+                              <Component id="txtNGOName" alignment="3" min="-2" pref="31" max="-2" attributes="0"/>
                           </Group>
                           <EmptySpace min="-2" pref="25" max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="3" attributes="0">
@@ -217,7 +210,7 @@
                           </Group>
                           <EmptySpace min="-2" pref="35" max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="3" attributes="0">
-                              <Component id="txtUsername" alignment="3" min="-2" pref="31" max="-2" attributes="0"/>
+                              <Component id="txtAge" alignment="3" min="-2" pref="31" max="-2" attributes="0"/>
                               <Component id="lblAvailablity1" alignment="3" min="-2" pref="34" max="-2" attributes="0"/>
                           </Group>
                           <EmptySpace min="-2" pref="37" max="-2" attributes="0"/>
@@ -230,12 +223,9 @@
                               <Component id="lblAvailablity3" min="-2" pref="34" max="-2" attributes="0"/>
                               <Component id="txtUsername1" min="-2" pref="31" max="-2" attributes="0"/>
                           </Group>
-                          <EmptySpace type="separate" max="-2" attributes="0"/>
-                          <Group type="103" groupAlignment="3" attributes="0">
-                              <Component id="btnSubmit" alignment="3" min="-2" max="-2" attributes="0"/>
-                              <Component id="jComboBox1" alignment="3" min="-2" max="-2" attributes="0"/>
-                          </Group>
-                          <EmptySpace min="-2" pref="86" max="-2" attributes="0"/>
+                          <EmptySpace min="-2" pref="38" max="-2" attributes="0"/>
+                          <Component id="btnSubmit" min="-2" max="-2" attributes="0"/>
+                          <EmptySpace min="-2" pref="69" max="-2" attributes="0"/>
                       </Group>
                       <Group type="103" rootIndex="1" groupAlignment="0" attributes="0">
                           <Group type="102" alignment="1" attributes="0">
@@ -293,7 +283,7 @@
                     <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnSubmitActionPerformed"/>
                   </Events>
                 </Component>
-                <Component class="javax.swing.JTextField" name="txtUsername">
+                <Component class="javax.swing.JTextField" name="txtAge">
                 </Component>
                 <Component class="javax.swing.JLabel" name="lblAvailablity1">
                   <Properties>
@@ -323,9 +313,9 @@
                     <Property name="horizontalTextPosition" type="int" value="0"/>
                   </Properties>
                 </Component>
-                <Component class="javax.swing.JTextField" name="txtEmployeeName1">
+                <Component class="javax.swing.JTextField" name="txtStudentName">
                   <Events>
-                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="txtEmployeeName1ActionPerformed"/>
+                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="txtStudentNameActionPerformed"/>
                   </Events>
                 </Component>
                 <Component class="javax.swing.JRadioButton" name="yesRadioButton">
@@ -367,9 +357,9 @@
                     <Property name="horizontalTextPosition" type="int" value="0"/>
                   </Properties>
                 </Component>
-                <Component class="javax.swing.JTextField" name="txtEmployeeName2">
+                <Component class="javax.swing.JTextField" name="txtNGOName">
                   <Events>
-                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="txtEmployeeName2ActionPerformed"/>
+                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="txtNGONameActionPerformed"/>
                   </Events>
                 </Component>
                 <Component class="javax.swing.JLabel" name="lblAvailablity4">
@@ -387,19 +377,6 @@
                   </Properties>
                 </Component>
                 <Component class="javax.swing.JTextField" name="txtUsername1">
-                </Component>
-                <Component class="javax.swing.JComboBox" name="jComboBox1">
-                  <Properties>
-                    <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
-                      <StringArray count="2">
-                        <StringItem index="0" value="ACCEPT"/>
-                        <StringItem index="1" value="REJECT"/>
-                      </StringArray>
-                    </Property>
-                  </Properties>
-                  <AuxValues>
-                    <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
-                  </AuxValues>
                 </Component>
               </SubComponents>
             </Container>
@@ -429,7 +406,7 @@
                         <Column editable="false" title="COLLEGE" type="java.lang.String"/>
                         <Column editable="false" title="STUDENT" type="java.lang.Object"/>
                         <Column editable="false" title="NGO" type="java.lang.Object"/>
-                        <Column editable="false" title="IS EDUCATED" type="java.lang.Object"/>
+                        <Column editable="false" title="HIGHEST EDUCATION" type="java.lang.Object"/>
                         <Column editable="false" title="GENDER" type="java.lang.String"/>
                         <Column editable="false" title="AGE" type="java.lang.String"/>
                         <Column editable="true" title="COUNSELLOR" type="java.lang.Object"/>
@@ -454,7 +431,7 @@
                 </Component>
               </SubComponents>
             </Container>
-            <Component class="javax.swing.JTextField" name="txtEmployeeName">
+            <Component class="javax.swing.JTextField" name="txtCollegeName">
             </Component>
             <Component class="javax.swing.JLabel" name="lblItem">
               <Properties>

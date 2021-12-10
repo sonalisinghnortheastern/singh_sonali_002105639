@@ -7,7 +7,6 @@ package userinterface.College;
 
 import Business.EcoSystem;
 import javax.swing.JPanel;
-import userinterface.OrganizationAdminRole.*;
 
 /**
  *
@@ -38,6 +37,7 @@ public class CollegeAdminWorkAreaJPanel extends javax.swing.JPanel {
         jPanel1 = new javax.swing.JPanel();
         btnManageMenu = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
+        btnManageMenu1 = new javax.swing.JButton();
         jPanel2 = new javax.swing.JPanel();
         jLabel2 = new javax.swing.JLabel();
 
@@ -46,7 +46,7 @@ public class CollegeAdminWorkAreaJPanel extends javax.swing.JPanel {
         jPanel1.setBackground(new java.awt.Color(240, 178, 62));
 
         btnManageMenu.setFont(new java.awt.Font("Comic Sans MS", 1, 14)); // NOI18N
-        btnManageMenu.setText("MANAGE STUDENTS");
+        btnManageMenu.setText("ADMIT TO COLLEGE");
         btnManageMenu.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnManageMenuActionPerformed(evt);
@@ -56,22 +56,31 @@ public class CollegeAdminWorkAreaJPanel extends javax.swing.JPanel {
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Icons/LogoutIcon.png"))); // NOI18N
 
+        btnManageMenu1.setFont(new java.awt.Font("Comic Sans MS", 1, 14)); // NOI18N
+        btnManageMenu1.setText("ASSIGN COUNSELLOR");
+        btnManageMenu1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnManageMenu1ActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(btnManageMenu, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addComponent(jLabel1)
-                .addGap(0, 0, Short.MAX_VALUE))
+            .addComponent(jLabel1)
+            .addComponent(btnManageMenu1)
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addComponent(jLabel1)
-                .addGap(177, 177, 177)
+                .addGap(138, 138, 138)
                 .addComponent(btnManageMenu)
-                .addContainerGap(271, Short.MAX_VALUE))
+                .addGap(57, 57, 57)
+                .addComponent(btnManageMenu1)
+                .addContainerGap(224, Short.MAX_VALUE))
         );
 
         jSplitPane.setLeftComponent(jPanel1);
@@ -97,13 +106,23 @@ public class CollegeAdminWorkAreaJPanel extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnManageMenuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnManageMenuActionPerformed
-    ManageOrganizationEmployeeJPanel manageMenuJPanel =new ManageOrganizationEmployeeJPanel(ecosystem);
-    jSplitPane.setRightComponent(manageMenuJPanel); 
+//    ManageOrganizationEmployeeJPanel manageMenuJPanel =new ManageOrganizationEmployeeJPanel(ecosystem);
+//    jSplitPane.setRightComponent(manageMenuJPanel); 
+       ManageCollegeJPanel manageCollegeJPanel =new ManageCollegeJPanel(ecosystem);
+       jSplitPane.setRightComponent(manageCollegeJPanel); 
+    
     }//GEN-LAST:event_btnManageMenuActionPerformed
+
+    private void btnManageMenu1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnManageMenu1ActionPerformed
+        // TODO add your handling code here:
+         CounsellorWorkAreaJPanel manageCounsellorWorkAreaJPanel =new CounsellorWorkAreaJPanel(ecosystem);
+       jSplitPane.setRightComponent(manageCounsellorWorkAreaJPanel); 
+    }//GEN-LAST:event_btnManageMenu1ActionPerformed
    
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnManageMenu;
+    private javax.swing.JButton btnManageMenu1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JPanel jPanel1;

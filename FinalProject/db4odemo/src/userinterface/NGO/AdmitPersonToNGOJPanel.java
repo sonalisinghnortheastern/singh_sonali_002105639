@@ -5,11 +5,13 @@
  */
 package userinterface.NGO;
 
+import Business.DB4OUtil.DB4OUtil;
 import Business.EcoSystem;
 import Business.Enterprise.Enterprise;
 import Business.Network.Network;
 import Business.Organization;
 import Business.UserAccount.UserAccount;
+import Business.WorkQueue.AssignToCounsellorWorkRequest;
 import Business.WorkQueue.EntryChildWorkRequest;
 import java.util.ArrayList;
 import javax.swing.JOptionPane;
@@ -25,6 +27,7 @@ public class AdmitPersonToNGOJPanel extends javax.swing.JPanel {
      * Creates new form AdmitPersonToNGOl
      */
     EcoSystem ecosystem;
+    private DB4OUtil dB4OUtil = DB4OUtil.getInstance();
     public AdmitPersonToNGOJPanel(EcoSystem ecosystem) {
         initComponents();
         this.ecosystem= ecosystem;
@@ -204,14 +207,19 @@ public class AdmitPersonToNGOJPanel extends javax.swing.JPanel {
         int comboIndex = jComboBox1.getSelectedIndex();
         if(comboIndex==0){
             entryChildWorkRequest.setIsAccepted(true);
+            AssignToCounsellorWorkRequest assignToCounsellorWorkRequest=new  AssignToCounsellorWorkRequest();
+            assignToCounsellorWorkRequest.setEntryChildWorkRequest(entryChildWorkRequest);
+            ecosystem.getWorkQueue().getAssignToCounsellorWorkRequests().add(assignToCounsellorWorkRequest);
+            
         }
         else{
             entryChildWorkRequest.setIsAccepted(false);
             String response = JOptionPane.showInputDialog("Kindly enter a reason");
-            entryChildWorkRequest.setMessage(response);
+            entryChildWorkRequest.setRejectionMessage(response);
         }
         populate();
         JOptionPane.showMessageDialog(null, "Status Updated");
+        dB4OUtil.storeSystem(ecosystem);
         jPanel2.setVisible(false);
       
     }//GEN-LAST:event_btnAcceptRequestActionPerformed
@@ -261,28 +269,27 @@ public class AdmitPersonToNGOJPanel extends javax.swing.JPanel {
         String status="";
         for(EntryChildWorkRequest requests : finalWorkRequests)
         {
-            if(requests.isIsAccepted())
+            if(!requests.isIsAccepted())
             {
-                break;
+                if(!requests.isIsAccepted() && requests.getMessage()!=null)
+                {
+                    status="DECLINED";
+                }
+                if(requests.isIsAccepted())
+                {
+                    status="ACCEPTED";
+                }
+                Object[] row = new Object[7];
+                row[0]=requests;
+                row[1] = requests.getPerson().getName();
+                row[2] = requests.getPerson().getAge();
+                row[3] = requests.getPerson().getAddress();
+                row[4] = requests.getPerson().getContact(); 
+                row[5]= status;
+                row[6]= requests.getRejectionMessage();
+                model.addRow(row);
+                status="";
             }
-            if(!requests.isIsAccepted() && requests.getMessage()!=null)
-            {
-                status="DECLINED";
-            }
-            if(requests.isIsAccepted())
-            {
-                status="ACCEPTED";
-            }
-            Object[] row = new Object[7];
-            row[0]=requests;
-            row[1] = requests.getPerson().getName();
-            row[2] = requests.getPerson().getAge();
-            row[3] = requests.getPerson().getAddress();
-            row[4] = requests.getPerson().getContact(); 
-            row[5]= status;
-            row[6]= requests.getMessage();
-            model.addRow(row);
-            status="";
         }
     }
     

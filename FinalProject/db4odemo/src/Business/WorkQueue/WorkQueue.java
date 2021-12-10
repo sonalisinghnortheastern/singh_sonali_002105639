@@ -17,6 +17,10 @@ public class WorkQueue {
     private ArrayList<AssignToCounsellorWorkRequest> assignToCounsellorWorkRequests;
 
     public ArrayList<AssignToCounsellorWorkRequest> getAssignToCounsellorWorkRequests() {
+        if(assignToCounsellorWorkRequests==null)
+        {
+            assignToCounsellorWorkRequests=new ArrayList<>();
+        }
         return assignToCounsellorWorkRequests;
     }
 
