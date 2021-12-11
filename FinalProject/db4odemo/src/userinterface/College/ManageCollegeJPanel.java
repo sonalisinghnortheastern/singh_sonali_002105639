@@ -6,7 +6,6 @@
 package userinterface.College;
 
 import Business.EcoSystem;
-import javax.swing.JOptionPane;
 
 /**
  *
@@ -39,24 +38,6 @@ public class ManageCollegeJPanel extends javax.swing.JPanel {
         jPanel1 = new javax.swing.JPanel();
         jPanel2 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
-        jPanel3 = new javax.swing.JPanel();
-        lblAvailablity = new javax.swing.JLabel();
-        lblPrice = new javax.swing.JLabel();
-        btnSubmit = new javax.swing.JButton();
-        txtAge = new javax.swing.JTextField();
-        lblAvailablity1 = new javax.swing.JLabel();
-        lblAvailablity3 = new javax.swing.JLabel();
-        txtStudentName = new javax.swing.JTextField();
-        yesRadioButton = new javax.swing.JRadioButton();
-        noRadioButton = new javax.swing.JRadioButton();
-        jRadioButton3 = new javax.swing.JRadioButton();
-        jRadioButton4 = new javax.swing.JRadioButton();
-        lblPrice1 = new javax.swing.JLabel();
-        txtNGOName = new javax.swing.JTextField();
-        lblAvailablity4 = new javax.swing.JLabel();
-        txtUsername1 = new javax.swing.JTextField();
-        lblItem = new javax.swing.JLabel();
-        txtCollegeName = new javax.swing.JTextField();
         jScrollPane1 = new javax.swing.JScrollPane();
         jRegisterTable = new javax.swing.JTable();
 
@@ -68,168 +49,6 @@ public class ManageCollegeJPanel extends javax.swing.JPanel {
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel1.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         jLabel1.setOpaque(true);
-
-        jPanel3.setBackground(new java.awt.Color(0, 102, 102));
-
-        lblAvailablity.setFont(new java.awt.Font("Comic Sans MS", 1, 14)); // NOI18N
-        lblAvailablity.setForeground(new java.awt.Color(255, 255, 255));
-        lblAvailablity.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        lblAvailablity.setText("IS EDUCATED:");
-        lblAvailablity.setFocusable(false);
-        lblAvailablity.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-
-        lblPrice.setFont(new java.awt.Font("Comic Sans MS", 1, 14)); // NOI18N
-        lblPrice.setForeground(new java.awt.Color(255, 255, 255));
-        lblPrice.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        lblPrice.setText("STUDENT NAME:");
-        lblPrice.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-
-        btnSubmit.setBackground(new java.awt.Color(240, 178, 62));
-        btnSubmit.setFont(new java.awt.Font("Arial Black", 1, 12)); // NOI18N
-        btnSubmit.setForeground(new java.awt.Color(255, 255, 255));
-        btnSubmit.setText("SUBMIT");
-        btnSubmit.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        btnSubmit.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnSubmitActionPerformed(evt);
-            }
-        });
-
-        lblAvailablity1.setFont(new java.awt.Font("Comic Sans MS", 1, 14)); // NOI18N
-        lblAvailablity1.setForeground(new java.awt.Color(255, 255, 255));
-        lblAvailablity1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        lblAvailablity1.setText("AGE:");
-        lblAvailablity1.setFocusable(false);
-        lblAvailablity1.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-
-        lblAvailablity3.setFont(new java.awt.Font("Comic Sans MS", 1, 14)); // NOI18N
-        lblAvailablity3.setForeground(new java.awt.Color(255, 255, 255));
-        lblAvailablity3.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        lblAvailablity3.setText("COUNSELLOR:");
-        lblAvailablity3.setFocusable(false);
-        lblAvailablity3.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-
-        txtStudentName.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtStudentNameActionPerformed(evt);
-            }
-        });
-
-        buttonGroup1.add(yesRadioButton);
-        yesRadioButton.setText("YES");
-
-        buttonGroup1.add(noRadioButton);
-        noRadioButton.setText("NO");
-
-        jRadioButton3.setText("FEMALE");
-
-        jRadioButton4.setText("MALE");
-
-        lblPrice1.setFont(new java.awt.Font("Comic Sans MS", 1, 14)); // NOI18N
-        lblPrice1.setForeground(new java.awt.Color(255, 255, 255));
-        lblPrice1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        lblPrice1.setText("NGO NAME:");
-        lblPrice1.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-
-        txtNGOName.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtNGONameActionPerformed(evt);
-            }
-        });
-
-        lblAvailablity4.setFont(new java.awt.Font("Comic Sans MS", 1, 14)); // NOI18N
-        lblAvailablity4.setForeground(new java.awt.Color(255, 255, 255));
-        lblAvailablity4.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        lblAvailablity4.setText("GENDER:");
-        lblAvailablity4.setFocusable(false);
-        lblAvailablity4.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-
-        lblItem.setFont(new java.awt.Font("Comic Sans MS", 1, 14)); // NOI18N
-        lblItem.setForeground(new java.awt.Color(255, 255, 255));
-        lblItem.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        lblItem.setText("COLLEGE NAME:");
-        lblItem.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-
-        javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
-        jPanel3.setLayout(jPanel3Layout);
-        jPanel3Layout.setHorizontalGroup(
-            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel3Layout.createSequentialGroup()
-                .addGap(77, 77, 77)
-                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(lblAvailablity4, javax.swing.GroupLayout.PREFERRED_SIZE, 134, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(lblAvailablity, javax.swing.GroupLayout.PREFERRED_SIZE, 134, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(lblAvailablity1, javax.swing.GroupLayout.PREFERRED_SIZE, 134, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(lblPrice, javax.swing.GroupLayout.PREFERRED_SIZE, 134, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(lblPrice1, javax.swing.GroupLayout.PREFERRED_SIZE, 134, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(lblAvailablity3, javax.swing.GroupLayout.PREFERRED_SIZE, 134, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(lblItem, javax.swing.GroupLayout.Alignment.LEADING))
-                .addGap(93, 93, 93)
-                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel3Layout.createSequentialGroup()
-                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(btnSubmit, javax.swing.GroupLayout.PREFERRED_SIZE, 134, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                .addComponent(txtStudentName, javax.swing.GroupLayout.DEFAULT_SIZE, 142, Short.MAX_VALUE)
-                                .addComponent(txtNGOName))
-                            .addComponent(txtUsername1, javax.swing.GroupLayout.PREFERRED_SIZE, 142, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(txtAge, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGroup(jPanel3Layout.createSequentialGroup()
-                                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jRadioButton3)
-                                    .addComponent(yesRadioButton))
-                                .addGap(18, 18, 18)
-                                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(noRadioButton)
-                                    .addComponent(jRadioButton4))))
-                        .addGap(0, 26, Short.MAX_VALUE))
-                    .addComponent(txtCollegeName))
-                .addContainerGap())
-        );
-        jPanel3Layout.setVerticalGroup(
-            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel3Layout.createSequentialGroup()
-                .addContainerGap(78, Short.MAX_VALUE)
-                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(lblItem, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(txtCollegeName, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
-                        .addComponent(lblPrice, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(27, 27, 27))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
-                        .addComponent(txtStudentName, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(39, 39, 39)))
-                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(lblPrice1, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(txtNGOName, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel3Layout.createSequentialGroup()
-                        .addComponent(lblAvailablity, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(lblAvailablity1, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(txtAge, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(18, 18, 18)
-                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(jPanel3Layout.createSequentialGroup()
-                                .addComponent(lblAvailablity4, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(18, 18, 18)
-                                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                    .addComponent(lblAvailablity3, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(txtUsername1, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addGap(28, 28, 28)
-                                .addComponent(btnSubmit))
-                            .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                .addComponent(jRadioButton3)
-                                .addComponent(jRadioButton4))))
-                    .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(yesRadioButton)
-                        .addComponent(noRadioButton)))
-                .addGap(25, 25, 25))
-        );
 
         jRegisterTable.setBorder(javax.swing.BorderFactory.createEtchedBorder());
         jRegisterTable.setFont(new java.awt.Font("Arial Black", 1, 14)); // NOI18N
@@ -273,10 +92,6 @@ public class ManageCollegeJPanel extends javax.swing.JPanel {
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, 1178, Short.MAX_VALUE)
             .addComponent(jScrollPane1)
-            .addGroup(jPanel2Layout.createSequentialGroup()
-                .addGap(219, 219, 219)
-                .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -285,9 +100,7 @@ public class ManageCollegeJPanel extends javax.swing.JPanel {
                 .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 165, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(73, 73, 73)
-                .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(58, 58, 58))
+                .addGap(655, 655, 655))
         );
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
@@ -333,28 +146,6 @@ public class ManageCollegeJPanel extends javax.swing.JPanel {
         );
     }// </editor-fold>//GEN-END:initComponents
 
-    private void btnSubmitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSubmitActionPerformed
-        
-            if(yesRadioButton.isSelected()){
-                String highestEducation = JOptionPane.showInputDialog("Kindly fill the highest education");
-            }
-            
-                
-                
-                
-                
-//        try{
-        
-        
-        
-            //            addEmployee(false,-1);
-            //        }
-        //        catch(Exception ex)
-        //        {
-            //            throw ex;
-            //        }
-    }//GEN-LAST:event_btnSubmitActionPerformed
-
     private void jRegisterTableMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jRegisterTableMouseClicked
         //        try{
             //            int rowNumber=jRegisterTable.getSelectedRow();
@@ -371,44 +162,18 @@ public class ManageCollegeJPanel extends javax.swing.JPanel {
             //        }
     }//GEN-LAST:event_jRegisterTableMouseClicked
 
-    private void txtStudentNameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtStudentNameActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txtStudentNameActionPerformed
-
-    private void txtNGONameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtNGONameActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txtNGONameActionPerformed
-
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton btnSubmit;
     private javax.swing.ButtonGroup buttonGroup1;
     private javax.swing.ButtonGroup buttonGroup2;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
-    private javax.swing.JPanel jPanel3;
-    private javax.swing.JRadioButton jRadioButton3;
-    private javax.swing.JRadioButton jRadioButton4;
     private javax.swing.JTable jRegisterTable;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JLabel lblAvailablity;
-    private javax.swing.JLabel lblAvailablity1;
-    private javax.swing.JLabel lblAvailablity3;
-    private javax.swing.JLabel lblAvailablity4;
-    private javax.swing.JLabel lblItem;
-    private javax.swing.JLabel lblPrice;
-    private javax.swing.JLabel lblPrice1;
-    private javax.swing.JRadioButton noRadioButton;
-    private javax.swing.JTextField txtAge;
-    private javax.swing.JTextField txtCollegeName;
-    private javax.swing.JTextField txtNGOName;
-    private javax.swing.JTextField txtStudentName;
-    private javax.swing.JTextField txtUsername1;
-    private javax.swing.JRadioButton yesRadioButton;
     // End of variables declaration//GEN-END:variables
 
     private void populateTable() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        //throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 }

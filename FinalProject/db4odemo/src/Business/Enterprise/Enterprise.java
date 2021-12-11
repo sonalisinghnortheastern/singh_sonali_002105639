@@ -32,13 +32,23 @@ public class Enterprise extends Organization {
         this.organizationDirectory = organizationDirectory;
     }
 
-    public Enterprise(String name,String type) {
+    public Enterprise(String name,String type,String collegeType) {
         super(name);
         this.enterpriseType=type;
+        this.collegeType=collegeType;
         this.organizationDirectory=new OrganizationDirectory();
     }
     
     private  String enterpriseType; 
+    private  String  collegeType;
+
+    public String getCollegeType() {
+        return collegeType;
+    }
+
+    public void setCollegeType(String collegeType) {
+        this.collegeType = collegeType;
+    }
     private  OrganizationDirectory organizationDirectory;
     @Override
     public ArrayList<Role> getSupportedRole() {

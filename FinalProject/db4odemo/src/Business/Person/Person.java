@@ -17,6 +17,7 @@ public class Person {
     private String education;
     private String address;
     private long contact;
+     private int loginId;
 
     public int getLoginId() {
         return loginId;
@@ -25,7 +26,7 @@ public class Person {
     public void setLoginId(int loginId) {
         this.loginId = loginId;
     }
-    private int loginId;
+   
 
     public String getName() {
         return name;

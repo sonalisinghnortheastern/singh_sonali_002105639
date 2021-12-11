@@ -115,14 +115,14 @@ public class AdmitPersonToNGOJPanel extends javax.swing.JPanel {
 
             },
             new String [] {
-                "Default", "Name", "Age", "Address", "Contact", "Status", "Message"
+                "Default", "Name", "Age", "Address", "Contact"
             }
         ) {
             Class[] types = new Class [] {
-                java.lang.Object.class, java.lang.String.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class
+                java.lang.Object.class, java.lang.String.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class
             };
             boolean[] canEdit = new boolean [] {
-                false, false, false, false, false, false, true
+                false, false, false, false, false
             };
 
             public Class getColumnClass(int columnIndex) {
@@ -201,6 +201,7 @@ public class AdmitPersonToNGOJPanel extends javax.swing.JPanel {
 
         if(index<0){
             JOptionPane.showMessageDialog(null, "Kindly select a row to accept/reject the child");
+            return;
         }
 
         EntryChildWorkRequest entryChildWorkRequest=(EntryChildWorkRequest)jRegisterTable.getModel().getValueAt(index, 0);
@@ -269,31 +270,19 @@ public class AdmitPersonToNGOJPanel extends javax.swing.JPanel {
         String status="";
         for(EntryChildWorkRequest requests : finalWorkRequests)
         {
-            if(!requests.isIsAccepted())
+            if(!requests.isIsAccepted() && requests.getRejectionMessage() == null)
             {
-                if(!requests.isIsAccepted() && requests.getMessage()!=null)
-                {
-                    status="DECLINED";
-                }
-                if(requests.isIsAccepted())
-                {
-                    status="ACCEPTED";
-                }
                 Object[] row = new Object[7];
                 row[0]=requests;
                 row[1] = requests.getPerson().getName();
                 row[2] = requests.getPerson().getAge();
                 row[3] = requests.getPerson().getAddress();
                 row[4] = requests.getPerson().getContact(); 
-                row[5]= status;
-                row[6]= requests.getRejectionMessage();
                 model.addRow(row);
                 status="";
             }
         }
     }
-    
-    
   }
 
   

@@ -106,8 +106,7 @@ public class CollegeAdminWorkAreaJPanel extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnManageMenuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnManageMenuActionPerformed
-//    ManageOrganizationEmployeeJPanel manageMenuJPanel =new ManageOrganizationEmployeeJPanel(ecosystem);
-//    jSplitPane.setRightComponent(manageMenuJPanel); 
+
        ManageCollegeJPanel manageCollegeJPanel =new ManageCollegeJPanel(ecosystem);
        jSplitPane.setRightComponent(manageCollegeJPanel); 
     

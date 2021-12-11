@@ -15,6 +15,19 @@ public class WorkQueue {
     private ArrayList<PlaceOrderWorkRequest> workRequestList;
     private ArrayList<EntryChildWorkRequest> workRequestListNew;
     private ArrayList<AssignToCounsellorWorkRequest> assignToCounsellorWorkRequests;
+    private ArrayList<AssignToCollegeWorkRequest> assignToCollegeWorkRequests;
+
+    public ArrayList<AssignToCollegeWorkRequest> getAssignToCollegeWorkRequests() {
+        if(assignToCollegeWorkRequests==null)
+        {
+            assignToCollegeWorkRequests=new ArrayList<>();
+        }
+        return assignToCollegeWorkRequests;
+    }
+
+    public void setAssignToCollegeWorkRequests(ArrayList<AssignToCollegeWorkRequest> assignToCollegeWorkRequests) {
+        this.assignToCollegeWorkRequests = assignToCollegeWorkRequests;
+    }
 
     public ArrayList<AssignToCounsellorWorkRequest> getAssignToCounsellorWorkRequests() {
         if(assignToCounsellorWorkRequests==null)

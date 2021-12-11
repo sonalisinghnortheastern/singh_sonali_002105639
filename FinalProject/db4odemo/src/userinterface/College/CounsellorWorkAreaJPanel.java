@@ -6,11 +6,13 @@
 package userinterface.College;
 
 import Business.Customer.GeneralInformation;
+import Business.DB4OUtil.DB4OUtil;
 import Business.EcoSystem;
 import Business.Enterprise.Enterprise;
 import Business.Network.Network;
 import Business.Organization;
 import Business.UserAccount.UserAccount;
+import Business.WorkQueue.AssignToCollegeWorkRequest;
 import Business.WorkQueue.AssignToCounsellorWorkRequest;
 import java.util.ArrayList;
 import javax.swing.JOptionPane;
@@ -26,10 +28,13 @@ public class CounsellorWorkAreaJPanel extends javax.swing.JPanel {
      * Creates new form AssignCollegeJPanel
      */
      private final EcoSystem system; 
+     private AssignToCounsellorWorkRequest collegeAdded;
+     private DB4OUtil dB4OUtil = DB4OUtil.getInstance();
     public CounsellorWorkAreaJPanel(EcoSystem system) {
        initComponents();
          this.system=system;
         populateTable();
+        jPanel3.setVisible(false);
         
     }
 
@@ -42,6 +47,17 @@ public class CounsellorWorkAreaJPanel extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        buttonGroup1 = new javax.swing.ButtonGroup();
+        buttonGroup2 = new javax.swing.ButtonGroup();
+        buttonGroup3 = new javax.swing.ButtonGroup();
+        buttonGroup4 = new javax.swing.ButtonGroup();
+        buttonGroup5 = new javax.swing.ButtonGroup();
+        buttonGroup6 = new javax.swing.ButtonGroup();
+        buttonGroup7 = new javax.swing.ButtonGroup();
+        buttonGroup8 = new javax.swing.ButtonGroup();
+        buttonGroup9 = new javax.swing.ButtonGroup();
+        buttonGroup10 = new javax.swing.ButtonGroup();
+        buttonGroup11 = new javax.swing.ButtonGroup();
         jPanel1 = new javax.swing.JPanel();
         jPanel2 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
@@ -86,10 +102,12 @@ public class CounsellorWorkAreaJPanel extends javax.swing.JPanel {
         necNo = new javax.swing.JRadioButton();
         necYes = new javax.swing.JRadioButton();
         jLabel16 = new javax.swing.JLabel();
-        necNo1 = new javax.swing.JRadioButton();
-        necYes1 = new javax.swing.JRadioButton();
-        necNo2 = new javax.swing.JRadioButton();
+        cmbFieldOfStudy = new javax.swing.JComboBox<>();
         jButton1 = new javax.swing.JButton();
+        jPanel3 = new javax.swing.JPanel();
+        jLabel2 = new javax.swing.JLabel();
+        cmbCollege = new javax.swing.JComboBox();
+        btnCreate = new javax.swing.JButton();
 
         jPanel2.setBackground(new java.awt.Color(0, 102, 102));
 
@@ -140,10 +158,13 @@ public class CounsellorWorkAreaJPanel extends javax.swing.JPanel {
 
         jLabel3.setText("What Type of family you are in: ");
 
+        buttonGroup1.add(rbNuclear);
         rbNuclear.setText("Nuclear");
 
+        buttonGroup1.add(rbSingleParent);
         rbSingleParent.setText("Single Parent");
 
+        buttonGroup1.add(rbExtended);
         rbExtended.setText("Extended");
 
         javax.swing.GroupLayout familyBackPanelLayout = new javax.swing.GroupLayout(familyBackPanel);
@@ -170,7 +191,7 @@ public class CounsellorWorkAreaJPanel extends javax.swing.JPanel {
                     .addComponent(rbNuclear)
                     .addComponent(rbSingleParent)
                     .addComponent(rbExtended))
-                .addContainerGap(205, Short.MAX_VALUE))
+                .addContainerGap(152, Short.MAX_VALUE))
         );
 
         tabbedPanel.addTab("Family Background Information", familyBackPanel);
@@ -179,8 +200,10 @@ public class CounsellorWorkAreaJPanel extends javax.swing.JPanel {
 
         jLabel6.setText("Do you ever convicted for a crime:");
 
+        buttonGroup2.add(rbConvictedNo);
         rbConvictedNo.setText("No");
 
+        buttonGroup2.add(rbConvictedYes);
         rbConvictedYes.setText("Yes");
 
         javax.swing.GroupLayout criminalPanelLayout = new javax.swing.GroupLayout(criminalPanel);
@@ -195,7 +218,7 @@ public class CounsellorWorkAreaJPanel extends javax.swing.JPanel {
                         .addComponent(rbConvictedYes)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(rbConvictedNo)))
-                .addContainerGap(553, Short.MAX_VALUE))
+                .addContainerGap(307, Short.MAX_VALUE))
         );
         criminalPanelLayout.setVerticalGroup(
             criminalPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -206,7 +229,7 @@ public class CounsellorWorkAreaJPanel extends javax.swing.JPanel {
                 .addGroup(criminalPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(rbConvictedYes)
                     .addComponent(rbConvictedNo))
-                .addContainerGap(185, Short.MAX_VALUE))
+                .addContainerGap(132, Short.MAX_VALUE))
         );
 
         tabbedPanel.addTab("Criminal Information", criminalPanel);
@@ -215,8 +238,10 @@ public class CounsellorWorkAreaJPanel extends javax.swing.JPanel {
 
         jLabel4.setText("Do you use drugs:");
 
+        buttonGroup3.add(rbDrugsYes);
         rbDrugsYes.setText("Yes");
 
+        buttonGroup3.add(rbDrugsNo);
         rbDrugsNo.setText("No");
 
         javax.swing.GroupLayout drugPanelLayout = new javax.swing.GroupLayout(drugPanel);
@@ -231,7 +256,7 @@ public class CounsellorWorkAreaJPanel extends javax.swing.JPanel {
                         .addComponent(rbDrugsYes)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(rbDrugsNo)))
-                .addContainerGap(633, Short.MAX_VALUE))
+                .addContainerGap(387, Short.MAX_VALUE))
         );
         drugPanelLayout.setVerticalGroup(
             drugPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -251,20 +276,26 @@ public class CounsellorWorkAreaJPanel extends javax.swing.JPanel {
 
         jLabel11.setText("Do you have any previous backlogs :");
 
+        buttonGroup4.add(guardYes);
         guardYes.setText("Yes");
 
+        buttonGroup4.add(guardlNo);
         guardlNo.setText("No");
 
         jLabel17.setText("Do you have any previous technical knowldege ?");
 
+        buttonGroup6.add(techNo);
         techNo.setText("No");
 
+        buttonGroup6.add(techYes);
         techYes.setText("Yes");
 
         jLabel9.setText("Can you use a computer ?");
 
+        buttonGroup5.add(rbComputerNo1);
         rbComputerNo1.setText("No");
 
+        buttonGroup5.add(rbComputerYes1);
         rbComputerYes1.setText("Yes");
 
         javax.swing.GroupLayout guardPanelLayout = new javax.swing.GroupLayout(guardPanel);
@@ -294,7 +325,7 @@ public class CounsellorWorkAreaJPanel extends javax.swing.JPanel {
                                 .addComponent(guardYes)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(guardlNo)))
-                        .addContainerGap(485, Short.MAX_VALUE))))
+                        .addContainerGap(239, Short.MAX_VALUE))))
         );
         guardPanelLayout.setVerticalGroup(
             guardPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -317,7 +348,7 @@ public class CounsellorWorkAreaJPanel extends javax.swing.JPanel {
                 .addGroup(guardPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(techYes)
                     .addComponent(techNo))
-                .addContainerGap(67, Short.MAX_VALUE))
+                .addContainerGap(14, Short.MAX_VALUE))
         );
 
         tabbedPanel.addTab("Previous Experience", guardPanel);
@@ -326,14 +357,18 @@ public class CounsellorWorkAreaJPanel extends javax.swing.JPanel {
 
         jLabel10.setText("Are you physically active:");
 
+        buttonGroup7.add(isPhysicalYes);
         isPhysicalYes.setText("Yes");
 
+        buttonGroup7.add(isPhysicalNo);
         isPhysicalNo.setText("No");
 
         jLabel15.setText("Do you have any medical condition ?");
 
+        buttonGroup8.add(medicalYes);
         medicalYes.setText("Yes");
 
+        buttonGroup8.add(medicalNo);
         medicalNo.setText("No");
 
         javax.swing.GroupLayout physicalPanelLayout = new javax.swing.GroupLayout(physicalPanel);
@@ -353,7 +388,7 @@ public class CounsellorWorkAreaJPanel extends javax.swing.JPanel {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(isPhysicalNo))
                     .addComponent(jLabel15))
-                .addContainerGap(543, Short.MAX_VALUE))
+                .addContainerGap(297, Short.MAX_VALUE))
         );
         physicalPanelLayout.setVerticalGroup(
             physicalPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -370,7 +405,7 @@ public class CounsellorWorkAreaJPanel extends javax.swing.JPanel {
                 .addGroup(physicalPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(medicalYes)
                     .addComponent(medicalNo))
-                .addContainerGap(123, Short.MAX_VALUE))
+                .addContainerGap(70, Short.MAX_VALUE))
         );
 
         tabbedPanel.addTab("Physical Information", physicalPanel);
@@ -379,23 +414,23 @@ public class CounsellorWorkAreaJPanel extends javax.swing.JPanel {
 
         jLabel7.setText("Can you read /write?");
 
+        buttonGroup9.add(rbReadNo);
         rbReadNo.setText("No");
 
+        buttonGroup9.add(rbReadYes);
         rbReadYes.setText("Yes");
 
         jLabel14.setText("Are you willing to take necessary training for a job ?");
 
+        buttonGroup10.add(necNo);
         necNo.setText("No");
 
+        buttonGroup10.add(necYes);
         necYes.setText("Yes");
 
         jLabel16.setText("Which field are you intrested to study?");
 
-        necNo1.setText("Agriculture");
-
-        necYes1.setText("Computer Science");
-
-        necNo2.setText("Finance");
+        cmbFieldOfStudy.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Computer Science", "Agriculture", "Finance" }));
 
         javax.swing.GroupLayout educationPanelLayout = new javax.swing.GroupLayout(educationPanel);
         educationPanel.setLayout(educationPanelLayout);
@@ -414,14 +449,9 @@ public class CounsellorWorkAreaJPanel extends javax.swing.JPanel {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(rbReadNo))
                     .addComponent(jLabel14)
-                    .addGroup(educationPanelLayout.createSequentialGroup()
-                        .addComponent(necYes1)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(necNo1)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(necNo2))
-                    .addComponent(jLabel16))
-                .addContainerGap(468, Short.MAX_VALUE))
+                    .addComponent(jLabel16)
+                    .addComponent(cmbFieldOfStudy, javax.swing.GroupLayout.PREFERRED_SIZE, 171, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(228, Short.MAX_VALUE))
         );
         educationPanelLayout.setVerticalGroup(
             educationPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -440,12 +470,9 @@ public class CounsellorWorkAreaJPanel extends javax.swing.JPanel {
                     .addComponent(necNo))
                 .addGap(18, 18, 18)
                 .addComponent(jLabel16)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(educationPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(necYes1)
-                    .addComponent(necNo1)
-                    .addComponent(necNo2))
-                .addContainerGap(71, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 12, Short.MAX_VALUE)
+                .addComponent(cmbFieldOfStudy, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
         );
 
         tabbedPanel.addTab("Education Information", educationPanel);
@@ -457,21 +484,66 @@ public class CounsellorWorkAreaJPanel extends javax.swing.JPanel {
             }
         });
 
+        jLabel2.setFont(new java.awt.Font("Comic Sans MS", 1, 14)); // NOI18N
+        jLabel2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel2.setText("Network Name :");
+        jLabel2.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+
+        cmbCollege.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+
+        btnCreate.setFont(new java.awt.Font("Comic Sans MS", 1, 14)); // NOI18N
+        btnCreate.setText("ASSIGN COLLEGE");
+        btnCreate.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        btnCreate.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnCreateActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
+        jPanel3.setLayout(jPanel3Layout);
+        jPanel3Layout.setHorizontalGroup(
+            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel3Layout.createSequentialGroup()
+                .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 171, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 23, Short.MAX_VALUE)
+                .addComponent(cmbCollege, javax.swing.GroupLayout.PREFERRED_SIZE, 162, javax.swing.GroupLayout.PREFERRED_SIZE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
+                .addContainerGap(110, Short.MAX_VALUE)
+                .addComponent(btnCreate)
+                .addGap(89, 89, 89))
+        );
+        jPanel3Layout.setVerticalGroup(
+            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel3Layout.createSequentialGroup()
+                .addGap(57, 57, 57)
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel2)
+                    .addComponent(cmbCollege, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 53, Short.MAX_VALUE)
+                .addComponent(btnCreate)
+                .addGap(67, 67, 67))
+        );
+
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, 1109, Short.MAX_VALUE)
+            .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, 1125, Short.MAX_VALUE)
             .addComponent(jScrollPane1)
             .addGroup(jPanel2Layout.createSequentialGroup()
-                .addGap(462, 462, 462)
+                .addGap(319, 319, 319)
                 .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 121, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(526, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
+                .addContainerGap(695, Short.MAX_VALUE)
+                .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(74, 74, 74))
             .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(jPanel2Layout.createSequentialGroup()
                     .addGap(148, 148, 148)
-                    .addComponent(tabbedPanel, javax.swing.GroupLayout.PREFERRED_SIZE, 740, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addContainerGap(219, Short.MAX_VALUE)))
+                    .addComponent(tabbedPanel, javax.swing.GroupLayout.PREFERRED_SIZE, 494, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addContainerGap(467, Short.MAX_VALUE)))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -480,13 +552,15 @@ public class CounsellorWorkAreaJPanel extends javax.swing.JPanel {
                 .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(28, 28, 28)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 165, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 343, Short.MAX_VALUE)
+                .addGap(100, 100, 100)
+                .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 16, Short.MAX_VALUE)
                 .addComponent(jButton1)
-                .addGap(244, 244, 244))
+                .addGap(251, 251, 251))
             .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(jPanel2Layout.createSequentialGroup()
-                    .addGap(298, 298, 298)
-                    .addComponent(tabbedPanel, javax.swing.GroupLayout.PREFERRED_SIZE, 263, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGap(335, 335, 335)
+                    .addComponent(tabbedPanel, javax.swing.GroupLayout.PREFERRED_SIZE, 226, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addContainerGap(288, Short.MAX_VALUE)))
         );
 
@@ -494,7 +568,7 @@ public class CounsellorWorkAreaJPanel extends javax.swing.JPanel {
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 1109, Short.MAX_VALUE)
+            .addGap(0, 1129, Short.MAX_VALUE)
             .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(jPanel1Layout.createSequentialGroup()
                     .addGap(0, 0, Short.MAX_VALUE)
@@ -503,7 +577,7 @@ public class CounsellorWorkAreaJPanel extends javax.swing.JPanel {
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 849, Short.MAX_VALUE)
+            .addGap(0, 857, Short.MAX_VALUE)
             .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(jPanel1Layout.createSequentialGroup()
                     .addGap(0, 0, Short.MAX_VALUE)
@@ -515,7 +589,7 @@ public class CounsellorWorkAreaJPanel extends javax.swing.JPanel {
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 1109, Short.MAX_VALUE)
+            .addGap(0, 1129, Short.MAX_VALUE)
             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(layout.createSequentialGroup()
                     .addGap(0, 0, Short.MAX_VALUE)
@@ -524,7 +598,7 @@ public class CounsellorWorkAreaJPanel extends javax.swing.JPanel {
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 849, Short.MAX_VALUE)
+            .addGap(0, 857, Short.MAX_VALUE)
             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(layout.createSequentialGroup()
                     .addGap(0, 0, Short.MAX_VALUE)
@@ -534,19 +608,13 @@ public class CounsellorWorkAreaJPanel extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jRegisterTableMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jRegisterTableMouseClicked
-        //        try{
-            //            int rowNumber=jRegisterTable.getSelectedRow();
-            //            cmbOrganisation.setSelectedItem(jRegisterTable.getModel().getValueAt(rowNumber, 1).toString());
-            //            cmbRole.setSelectedItem(jRegisterTable.getModel().getValueAt(rowNumber, 2));
-            //            txtEmployeeName.setText(jRegisterTable.getModel().getValueAt(rowNumber, 3).toString());
-            //            txtUsername.setText(jRegisterTable.getModel().getValueAt(rowNumber, 4).toString());
-            //            txtPassword.setText(jRegisterTable.getModel().getValueAt(rowNumber, 5).toString());
-            //
-            //        }
-        //        catch(Exception e)
-        //        {
-            //            throw  e;
-            //        }
+        try{
+            
+        }
+        catch(Exception ex)
+        {
+            throw ex;
+        }
     }//GEN-LAST:event_jRegisterTableMouseClicked
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
@@ -642,39 +710,97 @@ public class CounsellorWorkAreaJPanel extends javax.swing.JPanel {
             {
                 generalInformation.setCanTakeTraining(false);
             }
-            if(necYes1.isSelected())
+            if(cmbFieldOfStudy.getSelectedItem().equals("Computer Science"))
             {
                 generalInformation.setEducationalFieldOfIntrest("Computer Science");
             }
-            if(necNo1.isSelected())
+            if(cmbFieldOfStudy.getSelectedItem().equals("Agriculture"))
             {
                 generalInformation.setEducationalFieldOfIntrest("Agriculture");
             }
-            if(necNo2.isSelected())
+            if(cmbFieldOfStudy.getSelectedItem().equals("Finance"))
             {
                 generalInformation.setEducationalFieldOfIntrest("Finance");
             }
-           AssignToCounsellorWorkRequest assignoldToCounsellorWorkRequest= (AssignToCounsellorWorkRequest) jRegisterTable.getModel().getValueAt(rowNumber, 0);
+            AssignToCounsellorWorkRequest assignoldToCounsellorWorkRequest= (AssignToCounsellorWorkRequest) jRegisterTable.getModel().getValueAt(rowNumber, 0);
             for(AssignToCounsellorWorkRequest assignToCounsellorWorkRequest:system.getWorkQueue().getAssignToCounsellorWorkRequests())
             {
                 if(assignToCounsellorWorkRequest.equals(assignoldToCounsellorWorkRequest))
                 {
                     assignToCounsellorWorkRequest.setGeneralInformation(generalInformation);
+                    collegeAdded=assignToCounsellorWorkRequest;
                 }
             }
+            populateCollegeCombo();
+            jPanel3.setVisible(true);
             
             
         }
         catch(Exception ex)
         {
-            
+            throw ex;
         }
     }//GEN-LAST:event_jButton1ActionPerformed
 
+    private void btnCreateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCreateActionPerformed
+        try{
+            int rowNumber=jRegisterTable.getSelectedRow();
+            if(rowNumber<0)
+            {
+                JOptionPane.showMessageDialog(null, "Please select a row");
+                return;
+            }
+            AssignToCounsellorWorkRequest assignToCounsellorWorkRequest=(AssignToCounsellorWorkRequest) jRegisterTable.getModel().getValueAt(rowNumber, 0);
+            int personId=assignToCounsellorWorkRequest.getEntryChildWorkRequest().getPerson().getLoginId();
+            AssignToCollegeWorkRequest assignToCollegeWorkRequest=new  AssignToCollegeWorkRequest();
+            assignToCollegeWorkRequest.setAssignToCounsellorWorkRequest(collegeAdded);
+            assignToCollegeWorkRequest.setCollegeName(cmbCollege.getSelectedItem().toString());
+            system.getWorkQueue().getAssignToCollegeWorkRequests().add(assignToCollegeWorkRequest);
+            for(AssignToCollegeWorkRequest assignToCollegeWorkRequest1: system.getWorkQueue().getAssignToCollegeWorkRequests())
+            {
+                if(assignToCollegeWorkRequest1.equals(assignToCollegeWorkRequest))
+                {
+                    assignToCollegeWorkRequest1.getAssignToCounsellorWorkRequest().setRequestCompleted(true);
+                    assignToCollegeWorkRequest1.getAssignToCounsellorWorkRequest().getCounsellor().setIsCounsellorAvailable(true);
+                }
+            }
+            for(AssignToCounsellorWorkRequest assignToCounsellorWorkRequest1:system.getWorkQueue().getAssignToCounsellorWorkRequests())
+            {
+                if(assignToCounsellorWorkRequest1.getEntryChildWorkRequest().getPerson().getLoginId()==personId)
+                {
+                    assignToCounsellorWorkRequest1.getCounsellor().setIsCounsellorAvailable(true);
+                    assignToCounsellorWorkRequest1.setRequestCompleted(true);
+                }
+            }
+            updateCounsellorToAvailable();
+            dB4OUtil.storeSystem(system);
+            JOptionPane.showMessageDialog(null, "College succesfully assigned.");
+            jPanel3.setVisible(false);
+            populateTable();
+            reset();
+        }
+        catch(Exception e)
+        {
+            throw e;
+        }
+    }//GEN-LAST:event_btnCreateActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton btnSubmit;
-    private javax.swing.JButton btnSubmit1;
+    private javax.swing.JButton btnCreate;
+    private javax.swing.ButtonGroup buttonGroup1;
+    private javax.swing.ButtonGroup buttonGroup10;
+    private javax.swing.ButtonGroup buttonGroup11;
+    private javax.swing.ButtonGroup buttonGroup2;
+    private javax.swing.ButtonGroup buttonGroup3;
+    private javax.swing.ButtonGroup buttonGroup4;
+    private javax.swing.ButtonGroup buttonGroup5;
+    private javax.swing.ButtonGroup buttonGroup6;
+    private javax.swing.ButtonGroup buttonGroup7;
+    private javax.swing.ButtonGroup buttonGroup8;
+    private javax.swing.ButtonGroup buttonGroup9;
+    private javax.swing.JComboBox cmbCollege;
+    private javax.swing.JComboBox<String> cmbFieldOfStudy;
     private javax.swing.JPanel criminalPanel;
     private javax.swing.JPanel drugPanel;
     private javax.swing.JPanel educationPanel;
@@ -692,6 +818,7 @@ public class CounsellorWorkAreaJPanel extends javax.swing.JPanel {
     private javax.swing.JLabel jLabel15;
     private javax.swing.JLabel jLabel16;
     private javax.swing.JLabel jLabel17;
+    private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel6;
@@ -699,15 +826,13 @@ public class CounsellorWorkAreaJPanel extends javax.swing.JPanel {
     private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
+    private javax.swing.JPanel jPanel3;
     private javax.swing.JTable jRegisterTable;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JRadioButton medicalNo;
     private javax.swing.JRadioButton medicalYes;
     private javax.swing.JRadioButton necNo;
-    private javax.swing.JRadioButton necNo1;
-    private javax.swing.JRadioButton necNo2;
     private javax.swing.JRadioButton necYes;
-    private javax.swing.JRadioButton necYes1;
     private javax.swing.JPanel physicalPanel;
     private javax.swing.JRadioButton rbComputerNo1;
     private javax.swing.JRadioButton rbComputerYes1;
@@ -771,4 +896,72 @@ public class CounsellorWorkAreaJPanel extends javax.swing.JPanel {
                 model.addRow(row);            
         }
 }
+    
+    private void populateCollegeCombo()
+    {
+        cmbCollege.removeAllItems();
+        for(Network network:system.getNetworks())
+        {
+            for(Enterprise enterprise : network.getEnterpriseDirectory().getEnterprises())
+            {
+                if(enterprise.getEnterpriseType().equals("College") && enterprise.getCollegeType().equals(cmbFieldOfStudy.getSelectedItem().toString()))
+                {
+                    cmbCollege.addItem(enterprise.getName());
+                }
+            }
+        }
+    }
+    private  void updateCounsellorToAvailable()
+    {
+        for(Network network:system.getNetworks())
+        {
+            for(Enterprise enterprise : network.getEnterpriseDirectory().getEnterprises())
+            {
+                if(enterprise.getEnterpriseType().equals("CollegeCounsellor"))
+                {
+                    for(Organization organisation : enterprise.getOrganizationDirectory().getOrganisationList())
+                    {
+                       for(UserAccount userAccount : organisation.getUserAccountDirectory().getUserAccountList())
+                       {
+                           if(userAccount.getUniqueId()== system.getLogInUser().getLogInId())
+                           {
+                              userAccount.setIsAvailable(true);
+                              return;
+                           }
+                       }
+                    }
+                }
+            }
+        }
+    }
+    private void reset()
+    {
+        guardYes.setSelected(false);
+        guardlNo.setSelected(false);
+        rbComputerNo1.setSelected(false);
+        rbComputerYes1.setSelected(false);
+        rbConvictedNo.setSelected(false);
+        rbConvictedYes.setSelected(false);
+        rbDrugsNo.setSelected(false);
+        rbDrugsYes.setSelected(false);
+        rbExtended.setSelected(false);
+        rbReadNo.setSelected(false);
+        rbReadYes.setSelected(false);
+        rbSingleParent.setSelected(false);
+        techYes.setSelected(false);
+        techNo.setSelected(false);
+        isPhysicalNo.setSelected(false);
+        isPhysicalYes.setSelected(false);
+        medicalNo.setSelected(false);
+        medicalYes.setSelected(false);
+        necNo.setSelected(false);
+        necYes.setSelected(false);
+        cmbFieldOfStudy.setSelectedIndex(0);
+        
+        
+        
+        
+        
+    }
+    
 }
