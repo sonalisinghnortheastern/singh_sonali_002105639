@@ -317,6 +317,11 @@ public class ManagePeopleJPanel extends javax.swing.JPanel {
     private void jRegisterTableMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jRegisterTableMouseClicked
         try{            
             int rowNumber=jRegisterTable.getSelectedRow();
+            if(rowNumber<0)
+            {
+                JOptionPane.showMessageDialog(null, "Please select a row");
+                return;
+            }
             EntryChildWorkRequest request=(EntryChildWorkRequest) jRegisterTable.getModel().getValueAt(rowNumber, 0);
             if(request.isIsAccepted())
             {

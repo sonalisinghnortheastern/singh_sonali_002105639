@@ -19,6 +19,15 @@ public class UserAccount {
     private Employee employee;
     private Role role;
     private int uniqueId;
+    private boolean isAvailable;
+
+    public boolean isIsAvailable() {
+        return isAvailable;
+    }
+
+    public void setIsAvailable(boolean isAvailable) {
+        this.isAvailable = isAvailable;
+    }
 
     public int getUniqueId() {
         return uniqueId;

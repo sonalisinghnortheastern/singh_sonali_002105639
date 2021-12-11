@@ -5,6 +5,8 @@
  */
 package userinterface.NGO;
 
+import Business.College.CollegeCounsellor;
+import Business.DB4OUtil.DB4OUtil;
 import Business.EcoSystem;
 import Business.Enterprise.Enterprise;
 import Business.Network.Network;
@@ -12,6 +14,7 @@ import Business.Organization;
 import Business.UserAccount.UserAccount;
 import Business.WorkQueue.AssignToCounsellorWorkRequest;
 import java.util.ArrayList;
+import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
 /**
@@ -24,12 +27,13 @@ public class CounsellingAvailableStudentsNGOJPanel extends javax.swing.JPanel {
      * Creates new form AdmitPersonToNGOl
      */
     EcoSystem ecosystem;
+    private DB4OUtil dB4OUtil = DB4OUtil.getInstance();
     public CounsellingAvailableStudentsNGOJPanel(EcoSystem ecosystem) {
         initComponents();
         this.ecosystem= ecosystem;
         jPanel2.setVisible(false);
         populate();
-        populateCounsellors();
+        populateCompany();
     }
 
     /**
@@ -47,7 +51,10 @@ public class CounsellingAvailableStudentsNGOJPanel extends javax.swing.JPanel {
         jRegisterTable = new javax.swing.JTable();
         jPanel2 = new javax.swing.JPanel();
         jLabel4 = new javax.swing.JLabel();
+        cmbEnterpriseName = new javax.swing.JComboBox<>();
+        jLabel5 = new javax.swing.JLabel();
         cmbCounsellor = new javax.swing.JComboBox<>();
+        btnAssignCounsellor = new javax.swing.JButton();
 
         jPanel1.setBackground(new java.awt.Color(0, 102, 102));
 
@@ -99,10 +106,27 @@ public class CounsellingAvailableStudentsNGOJPanel extends javax.swing.JPanel {
         jLabel4.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel4.setText("AVAILABLE COUNSELLORS:");
 
-        cmbCounsellor.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "High School", "Senior Secondary School", "Bachelors", "Masters", " " }));
-        cmbCounsellor.addActionListener(new java.awt.event.ActionListener() {
+        cmbEnterpriseName.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "High School", "Senior Secondary School", "Bachelors", "Masters", " " }));
+        cmbEnterpriseName.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                cmbCounsellorActionPerformed(evt);
+                cmbEnterpriseNameActionPerformed(evt);
+            }
+        });
+
+        jLabel5.setFont(new java.awt.Font("Comic Sans MS", 1, 14)); // NOI18N
+        jLabel5.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel5.setText("COMPANY:");
+
+        cmbCounsellor.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "High School", "Senior Secondary School", "Bachelors", "Masters", " " }));
+
+        btnAssignCounsellor.setBackground(new java.awt.Color(240, 178, 62));
+        btnAssignCounsellor.setFont(new java.awt.Font("Arial Black", 1, 12)); // NOI18N
+        btnAssignCounsellor.setForeground(new java.awt.Color(255, 255, 255));
+        btnAssignCounsellor.setText("ASSIGN");
+        btnAssignCounsellor.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        btnAssignCounsellor.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnAssignCounsellorActionPerformed(evt);
             }
         });
 
@@ -112,19 +136,33 @@ public class CounsellingAvailableStudentsNGOJPanel extends javax.swing.JPanel {
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 211, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 107, Short.MAX_VALUE)
-                .addComponent(cmbCounsellor, javax.swing.GroupLayout.PREFERRED_SIZE, 259, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap())
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 211, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 211, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 94, Short.MAX_VALUE)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(cmbEnterpriseName, javax.swing.GroupLayout.PREFERRED_SIZE, 259, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(cmbCounsellor, javax.swing.GroupLayout.PREFERRED_SIZE, 259, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(25, 25, 25))
+            .addGroup(jPanel2Layout.createSequentialGroup()
+                .addGap(203, 203, 203)
+                .addComponent(btnAssignCounsellor, javax.swing.GroupLayout.PREFERRED_SIZE, 153, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
-                .addGap(49, 49, 49)
+                .addGap(51, 51, 51)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel5)
+                    .addComponent(cmbEnterpriseName, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel4)
                     .addComponent(cmbCounsellor, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(104, Short.MAX_VALUE))
+                .addGap(27, 27, 27)
+                .addComponent(btnAssignCounsellor)
+                .addContainerGap(30, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
@@ -147,7 +185,7 @@ public class CounsellingAvailableStudentsNGOJPanel extends javax.swing.JPanel {
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 165, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(470, 470, 470))
+                .addGap(450, 450, 450))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
@@ -186,15 +224,58 @@ public class CounsellingAvailableStudentsNGOJPanel extends javax.swing.JPanel {
         }
     }//GEN-LAST:event_jRegisterTableMouseClicked
 
-    private void cmbCounsellorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmbCounsellorActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_cmbCounsellorActionPerformed
+    private void cmbEnterpriseNameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmbEnterpriseNameActionPerformed
+       populateCounsellors();
+    }//GEN-LAST:event_cmbEnterpriseNameActionPerformed
+
+    private void btnAssignCounsellorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAssignCounsellorActionPerformed
+       try {
+                int rowNumber=jRegisterTable.getSelectedRow();
+                if(rowNumber<0)
+                {
+                    JOptionPane.showMessageDialog(null, "Please select a row");
+                    return;
+                }
+               ArrayList<AssignToCounsellorWorkRequest> workRequest= ecosystem.getWorkQueue().getAssignToCounsellorWorkRequests();
+                for(AssignToCounsellorWorkRequest assignToCounsellorWorkRequest:workRequest)
+                {
+                    if(assignToCounsellorWorkRequest.equals(jRegisterTable.getModel().getValueAt(rowNumber, 0)))
+                    {
+                        if(!cmbCounsellor.getSelectedItem().toString().isEmpty())
+                        {
+                            CollegeCounsellor collegeCounsellor=new CollegeCounsellor();
+                            collegeCounsellor.setCounsellorName(cmbCounsellor.getSelectedItem().toString().split(",")[0]);
+                            collegeCounsellor.setIsCounsellorAvailable(false);
+                            collegeCounsellor.setCounsellorId(Integer.parseInt(cmbCounsellor.getSelectedItem().toString().split(",")[1]));
+                            assignToCounsellorWorkRequest.setCounsellor(collegeCounsellor);
+                            updateCounsellorInfo(Integer.parseInt(cmbCounsellor.getSelectedItem().toString().split(",")[1]));
+                            JOptionPane.showMessageDialog(null, "Counsellor Assigned Succesfully");
+                            jPanel2.setVisible(false);
+                            break;
+                        }
+                        else
+                        {
+                            JOptionPane.showMessageDialog(null, "Counsellor not Available Please Select a diffrent counsellor");
+                            break;
+                        }
+                    }
+                }
+                dB4OUtil.storeSystem(ecosystem);
+                populate();
+            } catch (Exception e) {
+    
+                throw e;
+            }
+    }//GEN-LAST:event_btnAssignCounsellorActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnAssignCounsellor;
     private javax.swing.JComboBox<String> cmbCounsellor;
+    private javax.swing.JComboBox<String> cmbEnterpriseName;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JTable jRegisterTable;
@@ -254,16 +335,59 @@ public class CounsellingAvailableStudentsNGOJPanel extends javax.swing.JPanel {
         {
             for(Enterprise enterprise:network.getEnterpriseDirectory().getEnterprises())
             {
-                if(enterprise.getEnterpriseType().equals("Counsellor "))
+                if(enterprise.getEnterpriseType().equals("CollegeCounsellor") && enterprise.getName().equals(cmbEnterpriseName.getSelectedItem()))
                 {
                     for(Organization organization:enterprise.getOrganizationDirectory().getOrganisationList() )
                     {
-                        cmbCounsellor.addItem(organization.getName());
+                           for(UserAccount userAccount:organization.getUserAccountDirectory().getUserAccountList())
+                           {
+                               if(userAccount.isIsAvailable())
+                               {
+                                   cmbCounsellor.addItem(userAccount.getEmployee().getName()+","+userAccount.getUniqueId());
+                               }
+                           }
                     }
                 }
             }
         }
     }
+    private void populateCompany()
+    {
+        cmbEnterpriseName.removeAllItems();
+        for(Network network: ecosystem.getNetworks())
+        {
+            for(Enterprise enterprise:network.getEnterpriseDirectory().getEnterprises())
+            {
+                if(enterprise.getEnterpriseType().equals("CollegeCounsellor"))
+                {
+                   cmbEnterpriseName.addItem(enterprise.getName());
+                }
+            }
+        }
+    }
+    private void updateCounsellorInfo(int counsellorUniqueId)
+    {
+        for(Network network: ecosystem.getNetworks())
+        {
+            for(Enterprise enterprise:network.getEnterpriseDirectory().getEnterprises())
+            {
+                if(enterprise.getEnterpriseType().equals("CollegeCounsellor"))
+                {
+                    for(Organization organization:enterprise.getOrganizationDirectory().getOrganisationList() )
+                    {
+                           for(UserAccount userAccount:organization.getUserAccountDirectory().getUserAccountList())
+                           {
+                               if(userAccount.getUniqueId()==counsellorUniqueId)
+                               {
+                                   userAccount.setIsAvailable(false);
+                               }
+                           }
+                    }
+                }
+            }
+        }
+    }
+    
 
   
 }

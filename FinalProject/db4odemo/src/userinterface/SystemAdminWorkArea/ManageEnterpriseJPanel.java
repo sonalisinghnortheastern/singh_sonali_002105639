@@ -276,8 +276,12 @@ public class ManageEnterpriseJPanel extends javax.swing.JPanel {
 
     private void btnModifyActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnModifyActionPerformed
       try{
-            
-           int rowNumber=jRegisterTable.getSelectedRow();
+            int rowNumber=jRegisterTable.getSelectedRow();
+            if(rowNumber<0)
+            {
+                JOptionPane.showMessageDialog(null, "Please select a row");
+                return;
+            }
             String oldNetwork =(jRegisterTable.getModel().getValueAt(rowNumber, 1).toString());
             String enterpriseName=txtName.getText();
             Enterprise enterprise=(Enterprise) (jRegisterTable.getModel().getValueAt(rowNumber, 0));

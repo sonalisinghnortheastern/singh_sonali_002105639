@@ -594,9 +594,13 @@ Enterprise loggedInUserEnterprise=null;
                         {
                             if(update) //perform the task if its update else simple addition
                             {
-                                enterprise.getOrganizationDirectory().getOrganisationList().set(deletionIndex, organization);
-                                break;
+                                    UserAccount a= enterprise.getOrganizationDirectory().getOrganisationList().get(deletionIndex).getUserAccountDirectory().getUserAccountList().get(0);
+                                    organization.getUserAccountDirectory().getUserAccountList().get(0).setUniqueId(a.getUniqueId());
+                                    organization.getUserAccountDirectory().getUserAccountList().get(0).setIsAvailable(a.isIsAvailable());
+                                    enterprise.getOrganizationDirectory().getOrganisationList().set(deletionIndex, organization);
+                                    break;
                             }
+                            organization.getUserAccountDirectory().getUserAccountList().get(0).setIsAvailable(true);
                             enterprise.getOrganizationDirectory().createOrganisation(organization); //no updation, only for adding
                         }
                      }
