@@ -22,6 +22,7 @@ import org.jfree.chart.plot.CategoryPlot;
 import org.jfree.chart.plot.PiePlot;
 import org.jfree.chart.plot.PlotOrientation;
 import org.jfree.chart.renderer.category.BarRenderer;
+import org.jfree.chart.renderer.category.LineAndShapeRenderer;
 import org.jfree.data.category.DefaultCategoryDataset;
 import org.jfree.data.general.DefaultPieDataset;
 
@@ -44,6 +45,7 @@ public class VisualizeNGOJPanel extends javax.swing.JPanel {
         populateData();
         showPieChart();
         showBarChart();
+        showLineChart();
     }
 
     /**
@@ -57,9 +59,9 @@ public class VisualizeNGOJPanel extends javax.swing.JPanel {
 
         jPanel1 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
-        jPanel2 = new javax.swing.JPanel();
         panelBarChart = new javax.swing.JPanel();
         panelBarChart1 = new javax.swing.JPanel();
+        panelBarChart2 = new javax.swing.JPanel();
 
         jPanel1.setBackground(new java.awt.Color(0, 102, 102));
 
@@ -71,20 +73,11 @@ public class VisualizeNGOJPanel extends javax.swing.JPanel {
         jLabel1.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         jLabel1.setOpaque(true);
 
-        javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
-        jPanel2.setLayout(jPanel2Layout);
-        jPanel2Layout.setHorizontalGroup(
-            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 345, Short.MAX_VALUE)
-        );
-        jPanel2Layout.setVerticalGroup(
-            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 262, Short.MAX_VALUE)
-        );
-
         panelBarChart.setLayout(new java.awt.BorderLayout());
 
         panelBarChart1.setLayout(new java.awt.BorderLayout());
+
+        panelBarChart2.setLayout(new java.awt.BorderLayout());
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -99,9 +92,9 @@ public class VisualizeNGOJPanel extends javax.swing.JPanel {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(panelBarChart1, javax.swing.GroupLayout.PREFERRED_SIZE, 373, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(315, 315, 315)
-                        .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(351, Short.MAX_VALUE))
+                        .addGap(240, 240, 240)
+                        .addComponent(panelBarChart2, javax.swing.GroupLayout.PREFERRED_SIZE, 373, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -112,9 +105,9 @@ public class VisualizeNGOJPanel extends javax.swing.JPanel {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(panelBarChart, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 257, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(panelBarChart1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 257, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(41, 41, 41)
-                .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(99, 99, 99))
+                .addGap(35, 35, 35)
+                .addComponent(panelBarChart2, javax.swing.GroupLayout.PREFERRED_SIZE, 257, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(110, 110, 110))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
@@ -142,9 +135,9 @@ public class VisualizeNGOJPanel extends javax.swing.JPanel {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel jLabel1;
     private javax.swing.JPanel jPanel1;
-    private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel panelBarChart;
     private javax.swing.JPanel panelBarChart1;
+    private javax.swing.JPanel panelBarChart2;
     // End of variables declaration//GEN-END:variables
 public void showPieChart(){
      HashMap<String, Integer> studentToCounsellor = new HashMap<String, Integer>();
@@ -229,6 +222,58 @@ public void showBarChart(){
         panelBarChart1.add(barpChartPanel, BorderLayout.CENTER);
         panelBarChart1.validate();
 }
+    public void showLineChart(){
+        //create dataset for the graph
+         DefaultCategoryDataset dataset = new DefaultCategoryDataset();
+         HashMap<String, Integer> studentToCounsellor = new HashMap<String, Integer>();
+        int vit=0;
+        int galgotia=0;
+        int others=0;
+           for(AssignToCollegeWorkRequest assignToCollegeWorkRequest:ecosystem.getWorkQueue().getAssignToCollegeWorkRequests())
+           {
+               if(assignToCollegeWorkRequest.getAssignToCounsellorWorkRequest().getEntryChildWorkRequest().getNgoName().equals("Upay"))
+               {
+                   if(assignToCollegeWorkRequest.getCollegeName().equalsIgnoreCase("vit") && assignToCollegeWorkRequest.isAcceptedByCollege())
+                   {
+                       vit++;
+                   }
+                   if(assignToCollegeWorkRequest.getCollegeName().equalsIgnoreCase("galgotia")&& assignToCollegeWorkRequest.isAcceptedByCollege())
+                   {
+                       galgotia++;
+                   }
+                   else{
+                       others++;
+                   }
+               }
+           }
+         
+        dataset.setValue(200, "", "january");
+        dataset.setValue(150, "Amount", "february");
+        dataset.setValue(18, "Amount", "march");
+        dataset.setValue(100, "Amount", "april");
+        dataset.setValue(80, "Amount", "may");
+        dataset.setValue(250, "Amount", "june");
+        
+        //create chart
+        JFreeChart linechart = ChartFactory.createLineChart("NUMBER OF STUDENTS SENT TO HOSPITAL","HOSPITAL","NUMBER OF STUDENTS", 
+                dataset, PlotOrientation.VERTICAL, false,true,false);
+        
+        //create plot object
+         CategoryPlot lineCategoryPlot = linechart.getCategoryPlot();
+       // lineCategoryPlot.setRangeGridlinePaint(Color.BLUE);
+        lineCategoryPlot.setBackgroundPaint(Color.white);
+        
+        //create render object to change the moficy the line properties like color
+        LineAndShapeRenderer lineRenderer = (LineAndShapeRenderer) lineCategoryPlot.getRenderer();
+        Color lineChartColor = new Color(204,0,51);
+        lineRenderer.setSeriesPaint(0, lineChartColor);
+        
+         //create chartPanel to display chart(graph)
+        ChartPanel lineChartPanel = new ChartPanel(linechart);
+        panelBarChart2.removeAll();
+        panelBarChart2.add(lineChartPanel, BorderLayout.CENTER);
+        panelBarChart2.validate();
+    }
     private void populateData()
     {
         for(Network network:ecosystem.getNetworks())
