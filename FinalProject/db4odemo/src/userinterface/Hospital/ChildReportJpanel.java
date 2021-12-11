@@ -9,15 +9,15 @@ import Business.EcoSystem;
 
 /**
  *
- * @author sonal
+ * @author Vijay
  */
-public class ManageHospitalJpanel extends javax.swing.JPanel {
+public class ChildReportJpanel extends javax.swing.JPanel {
 
     /**
      * Creates new form ManageHospitalJpanel
      */
     private final EcoSystem system;  
-    public ManageHospitalJpanel(EcoSystem system) {
+    public ChildReportJpanel(EcoSystem system) {
         initComponents();
          this.system=system;
         populateTable();

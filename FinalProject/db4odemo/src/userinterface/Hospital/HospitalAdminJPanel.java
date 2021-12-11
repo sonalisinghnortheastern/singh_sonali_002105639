@@ -10,7 +10,7 @@ import javax.swing.JPanel;
 
 /**
  *
- * @author sonal
+ * @author Vijay
  */
 public class HospitalAdminJPanel extends javax.swing.JPanel {
 
@@ -39,9 +39,10 @@ public class HospitalAdminJPanel extends javax.swing.JPanel {
         jPanel1 = new javax.swing.JPanel();
         jSplitPane = new javax.swing.JSplitPane();
         jPanel2 = new javax.swing.JPanel();
-        btnManageMenu = new javax.swing.JButton();
+        btnReceptionist = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
-        btnManageMenu1 = new javax.swing.JButton();
+        btnChildReport = new javax.swing.JButton();
+        btnVisitDoctor = new javax.swing.JButton();
         jPanel3 = new javax.swing.JPanel();
         jLabel2 = new javax.swing.JLabel();
 
@@ -49,22 +50,30 @@ public class HospitalAdminJPanel extends javax.swing.JPanel {
 
         jPanel2.setBackground(new java.awt.Color(240, 178, 62));
 
-        btnManageMenu.setFont(new java.awt.Font("Comic Sans MS", 1, 14)); // NOI18N
-        btnManageMenu.setText("MANAGE HOSPITAL");
-        btnManageMenu.addActionListener(new java.awt.event.ActionListener() {
+        btnReceptionist.setFont(new java.awt.Font("Comic Sans MS", 1, 14)); // NOI18N
+        btnReceptionist.setText("RECEPTIONIST");
+        btnReceptionist.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnManageMenuActionPerformed(evt);
+                btnReceptionistActionPerformed(evt);
             }
         });
 
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Icons/LogoutIcon.png"))); // NOI18N
 
-        btnManageMenu1.setFont(new java.awt.Font("Comic Sans MS", 1, 14)); // NOI18N
-        btnManageMenu1.setText("PATIENT DETAILS");
-        btnManageMenu1.addActionListener(new java.awt.event.ActionListener() {
+        btnChildReport.setFont(new java.awt.Font("Comic Sans MS", 1, 14)); // NOI18N
+        btnChildReport.setText("CHILD'S REPORT");
+        btnChildReport.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnManageMenu1ActionPerformed(evt);
+                btnChildReportActionPerformed(evt);
+            }
+        });
+
+        btnVisitDoctor.setFont(new java.awt.Font("Comic Sans MS", 1, 14)); // NOI18N
+        btnVisitDoctor.setText("VISIT THE DOCTOR");
+        btnVisitDoctor.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnVisitDoctorActionPerformed(evt);
             }
         });
 
@@ -72,21 +81,24 @@ public class HospitalAdminJPanel extends javax.swing.JPanel {
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(btnManageMenu, javax.swing.GroupLayout.DEFAULT_SIZE, 191, Short.MAX_VALUE)
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addComponent(jLabel1)
                 .addGap(0, 0, Short.MAX_VALUE))
-            .addComponent(btnManageMenu1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(btnChildReport, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(btnVisitDoctor, javax.swing.GroupLayout.DEFAULT_SIZE, 191, Short.MAX_VALUE)
+            .addComponent(btnReceptionist, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addComponent(jLabel1)
-                .addGap(138, 138, 138)
-                .addComponent(btnManageMenu)
-                .addGap(56, 56, 56)
-                .addComponent(btnManageMenu1)
-                .addContainerGap(225, Short.MAX_VALUE))
+                .addGap(101, 101, 101)
+                .addComponent(btnReceptionist)
+                .addGap(58, 58, 58)
+                .addComponent(btnVisitDoctor)
+                .addGap(43, 43, 43)
+                .addComponent(btnChildReport)
+                .addContainerGap(188, Short.MAX_VALUE))
         );
 
         jSplitPane.setLeftComponent(jPanel2);
@@ -132,21 +144,28 @@ public class HospitalAdminJPanel extends javax.swing.JPanel {
         );
     }// </editor-fold>//GEN-END:initComponents
 
-    private void btnManageMenuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnManageMenuActionPerformed
-        ManageHospitalJpanel hospitalMenuJPanel =new ManageHospitalJpanel(ecosystem);
-        jSplitPane.setRightComponent(hospitalMenuJPanel);
-    }//GEN-LAST:event_btnManageMenuActionPerformed
+    private void btnReceptionistActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnReceptionistActionPerformed
+        ReceptionistJPanel receptionJPanel =new ReceptionistJPanel(ecosystem);
+        jSplitPane.setRightComponent(receptionJPanel);
+    }//GEN-LAST:event_btnReceptionistActionPerformed
 
-    private void btnManageMenu1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnManageMenu1ActionPerformed
+    private void btnChildReportActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnChildReportActionPerformed
+        // TODO add ybtnDoctorAssignedour handling code here:
+       ChildReportJpanel childReportJPanel=new ChildReportJpanel(ecosystem);
+       jSplitPane.setRightComponent(childReportJPanel);
+    }//GEN-LAST:event_btnChildReportActionPerformed
+
+    private void btnVisitDoctorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVisitDoctorActionPerformed
         // TODO add your handling code here:
-           ManagePatientDetailsJPanel patientDetailsJPanel=new ManagePatientDetailsJPanel(ecosystem);
-        jSplitPane.setRightComponent(patientDetailsJPanel);
-    }//GEN-LAST:event_btnManageMenu1ActionPerformed
+        VisitDoctorJPanel visitDoctorJPanel=new VisitDoctorJPanel(ecosystem);
+        jSplitPane.setRightComponent(visitDoctorJPanel);
+    }//GEN-LAST:event_btnVisitDoctorActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton btnManageMenu;
-    private javax.swing.JButton btnManageMenu1;
+    private javax.swing.JButton btnChildReport;
+    private javax.swing.JButton btnReceptionist;
+    private javax.swing.JButton btnVisitDoctor;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JPanel jPanel1;
