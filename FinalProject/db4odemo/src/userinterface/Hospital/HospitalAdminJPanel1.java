@@ -12,20 +12,18 @@ import javax.swing.JPanel;
  *
  * @author Vijay
  */
-public class HospitalAdminJPanel extends javax.swing.JPanel {
+public class HospitalAdminJPanel1 extends javax.swing.JPanel {
 
     /**
-     * Creates new form HospitalAdminJPanel
+     * Creates new form HospitalAdminJPanel1
      */
-    
     JPanel userProcessContainer;
     EcoSystem ecosystem;
-    public HospitalAdminJPanel(JPanel userProcessContainer,EcoSystem ecosystem) {
-      initComponents();
+    public HospitalAdminJPanel1(JPanel userProcessContainer,EcoSystem ecosystem) {
+        initComponents();
         this.userProcessContainer=userProcessContainer;
         this.ecosystem=ecosystem;
     }
-    
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -36,7 +34,6 @@ public class HospitalAdminJPanel extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jPanel1 = new javax.swing.JPanel();
         jSplitPane = new javax.swing.JSplitPane();
         jPanel2 = new javax.swing.JPanel();
         btnReceptionist = new javax.swing.JButton();
@@ -46,7 +43,7 @@ public class HospitalAdminJPanel extends javax.swing.JPanel {
         jPanel3 = new javax.swing.JPanel();
         jLabel2 = new javax.swing.JLabel();
 
-        jPanel1.setLayout(new java.awt.CardLayout());
+        setLayout(new java.awt.CardLayout());
 
         jPanel2.setBackground(new java.awt.Color(240, 178, 62));
 
@@ -85,7 +82,7 @@ public class HospitalAdminJPanel extends javax.swing.JPanel {
                 .addComponent(jLabel1)
                 .addGap(0, 0, Short.MAX_VALUE))
             .addComponent(btnChildReport, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addComponent(btnVisitDoctor, javax.swing.GroupLayout.DEFAULT_SIZE, 191, Short.MAX_VALUE)
+            .addComponent(btnVisitDoctor, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addComponent(btnReceptionist, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         jPanel2Layout.setVerticalGroup(
@@ -98,7 +95,7 @@ public class HospitalAdminJPanel extends javax.swing.JPanel {
                 .addComponent(btnVisitDoctor)
                 .addGap(43, 43, 43)
                 .addComponent(btnChildReport)
-                .addContainerGap(188, Short.MAX_VALUE))
+                .addContainerGap(154, Short.MAX_VALUE))
         );
 
         jSplitPane.setLeftComponent(jPanel2);
@@ -111,37 +108,16 @@ public class HospitalAdminJPanel extends javax.swing.JPanel {
         jPanel3.setLayout(jPanel3Layout);
         jPanel3Layout.setHorizontalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, 709, Short.MAX_VALUE)
+            .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, 524, Short.MAX_VALUE)
+            .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, 490, Short.MAX_VALUE)
         );
 
         jSplitPane.setRightComponent(jPanel3);
 
-        jPanel1.add(jSplitPane, "card2");
-
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
-        this.setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 907, Short.MAX_VALUE)
-            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(layout.createSequentialGroup()
-                    .addGap(0, 0, Short.MAX_VALUE)
-                    .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 907, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGap(0, 0, Short.MAX_VALUE)))
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 526, Short.MAX_VALUE)
-            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(layout.createSequentialGroup()
-                    .addGap(0, 0, Short.MAX_VALUE)
-                    .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 526, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGap(0, 0, Short.MAX_VALUE)))
-        );
+        add(jSplitPane, "card2");
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnReceptionistActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnReceptionistActionPerformed
@@ -151,8 +127,8 @@ public class HospitalAdminJPanel extends javax.swing.JPanel {
 
     private void btnChildReportActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnChildReportActionPerformed
         // TODO add ybtnDoctorAssignedour handling code here:
-       ChildReportJpanel childReportJPanel=new ChildReportJpanel(ecosystem);
-       jSplitPane.setRightComponent(childReportJPanel);
+        ChildReportJpanel childReportJPanel=new ChildReportJpanel(ecosystem);
+        jSplitPane.setRightComponent(childReportJPanel);
     }//GEN-LAST:event_btnChildReportActionPerformed
 
     private void btnVisitDoctorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVisitDoctorActionPerformed
@@ -168,7 +144,6 @@ public class HospitalAdminJPanel extends javax.swing.JPanel {
     private javax.swing.JButton btnVisitDoctor;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
-    private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JSplitPane jSplitPane;

@@ -16,6 +16,14 @@ public class EntryHospitalWorkRequest {
     private double height;
     private double weight;
     private Hospital hospital;
+
+    public Hospital getHospital() {
+        return hospital;
+    }
+
+    public void setHospital(Hospital hospital) {
+        this.hospital = hospital;
+    }
     public EntryChildWorkRequest getEntryChildWorkRequest() {
         return entryChildWorkRequest;
     }

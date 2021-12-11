@@ -5,6 +5,7 @@
  */
 package userinterface.NGO;
 
+import Business.DB4OUtil.DB4OUtil;
 import Business.EcoSystem;
 import Business.Enterprise.Enterprise;
 import Business.Hospital.Hospital;
@@ -28,6 +29,7 @@ public class SendPersonForMedicalCheckup extends javax.swing.JPanel {
      * Creates new form SendPersonForMedicalCheckup
      */
      EcoSystem ecosystem;
+     private DB4OUtil dB4OUtil = DB4OUtil.getInstance();
     public SendPersonForMedicalCheckup(EcoSystem ecosystem) {
         initComponents();
         this.ecosystem=ecosystem;
@@ -196,18 +198,46 @@ public class SendPersonForMedicalCheckup extends javax.swing.JPanel {
     }//GEN-LAST:event_jRegisterTableMouseClicked
 
     private void btnSubmitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSubmitActionPerformed
-           
-         ArrayList<EntryHospitalWorkRequest> entryHospitals=new ArrayList<>();
+      try{   
+          int rowNumber=jRegisterTable.getSelectedRow();
+            if(rowNumber<0)
+            {
+                    JOptionPane.showMessageDialog(null, "Please select a row");
+                    return;
+             }
+         ArrayList<EntryHospitalWorkRequest> entryHospitals=ecosystem.getWorkQueue().getWorkRequestHospital();
+                 
          EntryHospitalWorkRequest entryHospital = new EntryHospitalWorkRequest();
          for(EntryChildWorkRequest workRequest: ecosystem.getWorkQueue().getWorkRequestListNew()){
-             entryHospital.setEntryChildWorkRequest(workRequest);
-             entryHospitals.add(entryHospital);          
-         }
-        
-         Hospital hospital = new Hospital();
-         
-         JOptionPane.showMessageDialog(null, "Hospital has been assigned");
-     //   hospital.setHospitalName(jComboBox1.set);
+         if(workRequest.equals(jRegisterTable.getModel().getValueAt(rowNumber, 0)))
+          {
+          entryHospital.setEntryChildWorkRequest(workRequest);
+          Hospital hospital = new Hospital();    
+          if(!jComboBox1.getSelectedItem().toString().isEmpty())
+          {
+          // updateHospitalInfo(Integer.parseInt(jComboBox1.getSelectedItem().toString()));
+           hospital.setHospitalName(jComboBox1.getSelectedItem().toString());
+           hospital.setIsHospitalAvailable(false);
+          hospital.setHospitalId(ecosystem.getLogInUser().getLogInId());
+          entryHospital.setHospital(hospital);
+           entryHospitals.add(entryHospital); 
+           
+           JOptionPane.showMessageDialog(null, "Hospital has been assigned");
+          break;
+       }//if
+       else{       
+             JOptionPane.showMessageDialog(null, "Hospital not Available Please Select a diffrent counsellor");
+             break;
+                        
+       } 
+      }//outer if
+    } //for   
+         dB4OUtil.storeSystem(ecosystem);
+        // populate();
+      } //try
+      catch (Exception e) {
+         throw e;
+      }
        // collegeCounsellor.setCounsellorName(cmbCounsellor.getSelectedItem().toString().split(",")[0]);
     }//GEN-LAST:event_btnSubmitActionPerformed
 
@@ -287,5 +317,27 @@ public class SendPersonForMedicalCheckup extends javax.swing.JPanel {
   
             }
         }
+
+    private void updateHospitalInfo(int uniqueHospitalId) {
+         for(Network network: ecosystem.getNetworks())
+        {
+            for(Enterprise enterprise:network.getEnterpriseDirectory().getEnterprises())
+            {   String e = enterprise.getEnterpriseType();
+                if(e.equals("Hospital"))
+                {
+                    for(Organization organization:enterprise.getOrganizationDirectory().getOrganisationList() )
+                    {
+                           for(UserAccount userAccount:organization.getUserAccountDirectory().getUserAccountList())
+                           {
+                               if(userAccount.getUniqueId()==uniqueHospitalId)
+                               {
+                                   userAccount.setIsAvailable(false);
+                               }
+                           }
+                    }
+                }
+            }
+        }
+    }
     
 }

@@ -13,6 +13,7 @@ import Business.UserAccount.UserAccount;
 import Business.WorkQueue.AssignToCounsellorWorkRequest;
 import Business.WorkQueue.EntryHospitalWorkRequest;
 import java.util.ArrayList;
+import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
 /**
@@ -45,9 +46,9 @@ public class ReceptionistJPanel extends javax.swing.JPanel {
         jLabel1 = new javax.swing.JLabel();
         jPanel2 = new javax.swing.JPanel();
         jLabel4 = new javax.swing.JLabel();
-        txtName = new javax.swing.JTextField();
+        txtHeight = new javax.swing.JTextField();
         jLabel5 = new javax.swing.JLabel();
-        txtAge = new javax.swing.JTextField();
+        txtWeight = new javax.swing.JTextField();
         btnRegisterDetails = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         jRegisterTable = new javax.swing.JTable();
@@ -66,13 +67,9 @@ public class ReceptionistJPanel extends javax.swing.JPanel {
         jLabel4.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel4.setText("Height:");
 
-        txtName.setEditable(false);
-
         jLabel5.setFont(new java.awt.Font("Comic Sans MS", 1, 14)); // NOI18N
         jLabel5.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel5.setText("Weight:");
-
-        txtAge.setEditable(false);
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -85,8 +82,8 @@ public class ReceptionistJPanel extends javax.swing.JPanel {
                     .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 146, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(74, 74, 74)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(txtAge, javax.swing.GroupLayout.DEFAULT_SIZE, 259, Short.MAX_VALUE)
-                    .addComponent(txtName))
+                    .addComponent(txtWeight, javax.swing.GroupLayout.DEFAULT_SIZE, 259, Short.MAX_VALUE)
+                    .addComponent(txtHeight))
                 .addContainerGap(115, Short.MAX_VALUE))
         );
         jPanel2Layout.setVerticalGroup(
@@ -94,11 +91,11 @@ public class ReceptionistJPanel extends javax.swing.JPanel {
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addGap(49, 49, 49)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(txtName, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txtHeight, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel4))
                 .addGap(20, 20, 20)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(txtAge, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txtWeight, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel5))
                 .addContainerGap(38, Short.MAX_VALUE))
         );
@@ -156,26 +153,27 @@ public class ReceptionistJPanel extends javax.swing.JPanel {
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, 1107, Short.MAX_VALUE)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap(242, Short.MAX_VALUE)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 968, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(34, 34, 34))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                         .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(232, 232, 232))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                         .addComponent(btnRegisterDetails, javax.swing.GroupLayout.PREFERRED_SIZE, 181, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(449, 449, 449))))
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGap(31, 31, 31)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 968, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(11, 11, 11)
                 .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(47, 47, 47)
+                .addGap(38, 38, 38)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 165, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
+                .addGap(27, 27, 27)
                 .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(30, 30, 30)
                 .addComponent(btnRegisterDetails)
@@ -205,56 +203,42 @@ public class ReceptionistJPanel extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnRegisterDetailsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegisterDetailsActionPerformed
-        //        try{
-            //            addEmployee(false,-1);
-            //        }
-        //        catch(Exception ex)
-        //        {
-            //            throw ex;
-            //        }
+        jPanel2.setVisible(true);
+        int rowNumber=jRegisterTable.getSelectedRow();
+        EntryHospitalWorkRequest request=(EntryHospitalWorkRequest) jRegisterTable.getModel().getValueAt(rowNumber, 0);
+       request.setHeight(Double.parseDouble(txtHeight.getText()));
+       request.setWeight(Double.parseDouble(txtWeight.getText()));
+        populateTable();
+        JOptionPane.showMessageDialog(null, "Parameters registered successfully");
+      
     }//GEN-LAST:event_btnRegisterDetailsActionPerformed
 
     private void jRegisterTableMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jRegisterTableMouseClicked
+        
+        
+       try{
+           jPanel2.setVisible(true);
+           int rowNumber=jRegisterTable.getSelectedRow();
+           EntryHospitalWorkRequest request=(EntryHospitalWorkRequest) jRegisterTable.getModel().getValueAt(rowNumber, 0);
+            if(request.getEntryChildWorkRequest()==null||request.getEntryChildWorkRequest().getPerson()==null){
+                jPanel2.setVisible(false);
+            }
+                   
 
-        jPanel2.setVisible(true);
-//        try{
-//            int rowNumber=jRegisterTable.getSelectedRow();
-//            AssignToCounsellorWorkRequest request=(AssignToCounsellorWorkRequest) jRegisterTable.getModel().getValueAt(rowNumber, 0);
-//            if(request.getCounsellor()==null ||request.getCounsellor().getCounsellorName()==null )
-//            {
-//                jLabel10.setVisible(false);
-//                jLabel12.setVisible(false);
-//                txtCounsellor.setVisible(false);
-//                txtCollege.setVisible(false);
-//
-//            }
-//            else{
-//                jLabel10.setVisible(true);
-//                jLabel12.setVisible(true);
-//                txtCounsellor.setVisible(true);
-//                txtCollege.setVisible(true);
-//                //txtCollege.setText(request.getCollegeName());
-//                txtCounsellor.setText(request.getCounsellor().getCounsellorName());
-//            }
-//            txtName.setText(request.getEntryChildWorkRequest().getPerson().getName());
-//            txtAge.setText(String.valueOf(request.getEntryChildWorkRequest().getPerson().getAge()));
-//            if(request.getEntryChildWorkRequest().getPerson().getGender().equals("Female"))
-//            {
-//                radioButtonFemale.setSelected(true);
-//            }
-//            if(request.getEntryChildWorkRequest().getPerson().getGender().equals("Male"))
-//            {
-//                radiobtnMale.setSelected(true);
-//            }
-//            cmbEducation.setSelectedItem(request.getEntryChildWorkRequest().getPerson().getEducation());
-//            txtIncome.setText(String.valueOf(request.getEntryChildWorkRequest().getPerson().getIncome()));
-//            txtAddress.setText(request.getEntryChildWorkRequest().getPerson().getAddress());
-//            txtContact.setText(String.valueOf(request.getEntryChildWorkRequest().getPerson().getContact()));
-//        }
-//        catch(Exception e)
-//        {
-//            throw  e;
-//        }
+            else{
+                jPanel2.setVisible(true);
+                
+               txtHeight.setText(jRegisterTable.getModel().getValueAt(rowNumber, 5).toString());
+               txtWeight.setText(jRegisterTable.getModel().getValueAt(rowNumber, 6).toString());
+               
+        }
+                
+        }
+       catch(Exception e)
+       {
+           throw  e;
+        }
+                
     }//GEN-LAST:event_jRegisterTableMouseClicked
 
 
@@ -267,8 +251,8 @@ public class ReceptionistJPanel extends javax.swing.JPanel {
     private javax.swing.JPanel jPanel2;
     private javax.swing.JTable jRegisterTable;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTextField txtAge;
-    private javax.swing.JTextField txtName;
+    private javax.swing.JTextField txtHeight;
+    private javax.swing.JTextField txtWeight;
     // End of variables declaration//GEN-END:variables
 
     private void populateTable() {
@@ -281,7 +265,7 @@ public class ReceptionistJPanel extends javax.swing.JPanel {
         {
             for(Enterprise enterprise : network.getEnterpriseDirectory().getEnterprises())
             {
-                if(enterprise.getEnterpriseType().equals("NGO"))
+                if(enterprise.getEnterpriseType().equals("Hospital"))
                 {
                     for(Organization organisation : enterprise.getOrganizationDirectory().getOrganisationList())
                     {
@@ -289,9 +273,8 @@ public class ReceptionistJPanel extends javax.swing.JPanel {
                        {
                            if(userAccount.getUniqueId()== loggedinID)
                            {
-                               String x= hospitalWorkRequest.getEntryChildWorkRequest().getNgoName();
                                       
-                              if(hospitalWorkRequest.getEntryChildWorkRequest().getNgoName().equals(enterprise.getName()))
+                              if(hospitalWorkRequest.getHospital().getHospitalName().equals(enterprise.getName()))
                                                   
                               {
                                   if(hospitalWorkRequest.getEntryChildWorkRequest().isIsAccepted())

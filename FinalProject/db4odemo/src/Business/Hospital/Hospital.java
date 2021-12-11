@@ -14,6 +14,24 @@ public class Hospital {
     private double temperature;
     private double bloodPressure;
     private double pulse;
+   private boolean isHospitalAvailable;
+   private int hospitalId;
+
+    public int getHospitalId() {
+        return hospitalId;
+    }
+
+    public void setHospitalId(int hospitalId) {
+        this.hospitalId = hospitalId;
+    }
+
+    public boolean isIsHospitalAvailable() {
+        return isHospitalAvailable;
+    }
+
+    public void setIsHospitalAvailable(boolean isHospitalAvailable) {
+        this.isHospitalAvailable = isHospitalAvailable;
+    }
 
     public String getHospitalName() {
         return hospitalName;
