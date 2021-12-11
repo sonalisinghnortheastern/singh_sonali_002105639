@@ -3,27 +3,31 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package userinterface.College;
+package userinterface.NGORole;
 
+import Business.DB4OUtil.DB4OUtil;
 import Business.EcoSystem;
 import javax.swing.JPanel;
-
 /**
  *
- * @author MyPC1
+ * @author Vijay
  */
-public class CollegeAdminWorkAreaJPanel extends javax.swing.JPanel {
+public class NGOAdminJPanel extends javax.swing.JPanel {
 
     /**
-     * Creates new form CounsellorAdminWorkAreaJPanel
+     * Creates new form NGOAdminJPanel
      */
     JPanel userProcessContainer;
     EcoSystem ecosystem;
-    public CollegeAdminWorkAreaJPanel(JPanel userProcessContainer,EcoSystem ecosystem) {
+    EcoSystem system;
+    private DB4OUtil dB4OUtil = DB4OUtil.getInstance();
+
+    public NGOAdminJPanel(JPanel userProcessContainer,EcoSystem ecosystem) {
         initComponents();
-        this.userProcessContainer=userProcessContainer;
+         this.userProcessContainer=userProcessContainer;
         this.ecosystem=ecosystem;
     }
+
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -37,8 +41,8 @@ public class CollegeAdminWorkAreaJPanel extends javax.swing.JPanel {
         jPanel1 = new javax.swing.JPanel();
         btnManageMenu = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
+        btnManageMenu1 = new javax.swing.JButton();
         btnManageMenu2 = new javax.swing.JButton();
-        btnManageMenu3 = new javax.swing.JButton();
         jPanel2 = new javax.swing.JPanel();
         jLabel2 = new javax.swing.JLabel();
 
@@ -47,7 +51,7 @@ public class CollegeAdminWorkAreaJPanel extends javax.swing.JPanel {
         jPanel1.setBackground(new java.awt.Color(240, 178, 62));
 
         btnManageMenu.setFont(new java.awt.Font("Comic Sans MS", 1, 14)); // NOI18N
-        btnManageMenu.setText("NEW ADMITS");
+        btnManageMenu.setText("NEW STUDENT INTAKE REQUESTS");
         btnManageMenu.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnManageMenuActionPerformed(evt);
@@ -57,19 +61,19 @@ public class CollegeAdminWorkAreaJPanel extends javax.swing.JPanel {
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Icons/LogoutIcon.png"))); // NOI18N
 
-        btnManageMenu2.setFont(new java.awt.Font("Comic Sans MS", 1, 14)); // NOI18N
-        btnManageMenu2.setText("VIEW ALL STUDENTS");
-        btnManageMenu2.addActionListener(new java.awt.event.ActionListener() {
+        btnManageMenu1.setFont(new java.awt.Font("Comic Sans MS", 1, 14)); // NOI18N
+        btnManageMenu1.setText("VIEW ALL STUDENTS");
+        btnManageMenu1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnManageMenu2ActionPerformed(evt);
+                btnManageMenu1ActionPerformed(evt);
             }
         });
 
-        btnManageMenu3.setFont(new java.awt.Font("Comic Sans MS", 1, 14)); // NOI18N
-        btnManageMenu3.setText("REQUEST HISTORY");
-        btnManageMenu3.addActionListener(new java.awt.event.ActionListener() {
+        btnManageMenu2.setFont(new java.awt.Font("Comic Sans MS", 1, 14)); // NOI18N
+        btnManageMenu2.setText("REQUEST COUNSELLING SERVICE");
+        btnManageMenu2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnManageMenu3ActionPerformed(evt);
+                btnManageMenu2ActionPerformed(evt);
             }
         });
 
@@ -77,24 +81,24 @@ public class CollegeAdminWorkAreaJPanel extends javax.swing.JPanel {
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(btnManageMenu, javax.swing.GroupLayout.DEFAULT_SIZE, 259, Short.MAX_VALUE)
+            .addComponent(btnManageMenu, javax.swing.GroupLayout.DEFAULT_SIZE, 319, Short.MAX_VALUE)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addComponent(jLabel1)
                 .addGap(0, 0, Short.MAX_VALUE))
+            .addComponent(btnManageMenu1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addComponent(btnManageMenu2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addComponent(btnManageMenu3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addComponent(jLabel1)
-                .addGap(138, 138, 138)
+                .addGap(177, 177, 177)
                 .addComponent(btnManageMenu)
                 .addGap(70, 70, 70)
-                .addComponent(btnManageMenu2)
+                .addComponent(btnManageMenu1)
                 .addGap(70, 70, 70)
-                .addComponent(btnManageMenu3)
-                .addContainerGap(112, Short.MAX_VALUE))
+                .addComponent(btnManageMenu2)
+                .addContainerGap(67, Short.MAX_VALUE))
         );
 
         jSplitPane.setLeftComponent(jPanel1);
@@ -111,7 +115,7 @@ public class CollegeAdminWorkAreaJPanel extends javax.swing.JPanel {
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, 524, Short.MAX_VALUE)
+            .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, 518, Short.MAX_VALUE)
         );
 
         jSplitPane.setRightComponent(jPanel2);
@@ -120,27 +124,25 @@ public class CollegeAdminWorkAreaJPanel extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnManageMenuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnManageMenuActionPerformed
-
-       ManageCollegeJPanel manageCollegeJPanel =new ManageCollegeJPanel(ecosystem);
-       jSplitPane.setRightComponent(manageCollegeJPanel); 
-    
+        AdmitPersonToNGOJPanel admitPersonToNGO =new AdmitPersonToNGOJPanel(ecosystem);
+        jSplitPane.setRightComponent(admitPersonToNGO);
     }//GEN-LAST:event_btnManageMenuActionPerformed
 
+    private void btnManageMenu1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnManageMenu1ActionPerformed
+        AllStudentNGOJPanel allStudentNGOJPanel =new AllStudentNGOJPanel(ecosystem);
+        jSplitPane.setRightComponent(allStudentNGOJPanel);
+    }//GEN-LAST:event_btnManageMenu1ActionPerformed
+
     private void btnManageMenu2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnManageMenu2ActionPerformed
-        AllStudentsWorkAreaJPanel allStudentsWorkAreaJPanel =new AllStudentsWorkAreaJPanel(ecosystem);
-       jSplitPane.setRightComponent(allStudentsWorkAreaJPanel); 
+       CounsellingAvailableStudentsNGOJPanel counsellingAvailableStudentsNGOJPanel =new CounsellingAvailableStudentsNGOJPanel(ecosystem);
+        jSplitPane.setRightComponent(counsellingAvailableStudentsNGOJPanel);
     }//GEN-LAST:event_btnManageMenu2ActionPerformed
 
-    private void btnManageMenu3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnManageMenu3ActionPerformed
-        HistoryWorkAreaJPanel historyWorkAreaJPanel =new HistoryWorkAreaJPanel(ecosystem);
-       jSplitPane.setRightComponent(historyWorkAreaJPanel); 
-    }//GEN-LAST:event_btnManageMenu3ActionPerformed
-   
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnManageMenu;
+    private javax.swing.JButton btnManageMenu1;
     private javax.swing.JButton btnManageMenu2;
-    private javax.swing.JButton btnManageMenu3;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JPanel jPanel1;

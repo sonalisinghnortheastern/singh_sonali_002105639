@@ -8,7 +8,7 @@ package Business.Role;
 import Business.EcoSystem;
 import Business.UserAccount.UserAccount;
 import javax.swing.JPanel;
-import userinterface.College.CollegeAdminWorkAreaJPanel;
+import userinterface.CounsellorRole.CounsellorAdminWorkAreaJPanel;
 
 /**
  *
@@ -18,7 +18,7 @@ public class CounsellorRole extends Role{
 
     @Override
     public JPanel createWorkArea(JPanel userProcessContainer, UserAccount account, EcoSystem business) {
-        return new CollegeAdminWorkAreaJPanel( userProcessContainer, business );
+        return new CounsellorAdminWorkAreaJPanel( userProcessContainer, business );
     }
     
 }

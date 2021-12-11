@@ -12,6 +12,24 @@ package Business.WorkQueue;
 public class AssignToCollegeWorkRequest {
     private AssignToCounsellorWorkRequest assignToCounsellorWorkRequest;
     private String collegeName;
+    private boolean AcceptedByCollege;
+
+    public boolean isAcceptedByCollege() {
+        return AcceptedByCollege;
+    }
+
+    public void setAcceptedByCollege(boolean AcceptedByCollege) {
+        this.AcceptedByCollege = AcceptedByCollege;
+    }
+
+    public String getRejectionMessageByCollege() {
+        return rejectionMessageByCollege;
+    }
+
+    public void setRejectionMessageByCollege(String rejectionMessageByCollege) {
+        this.rejectionMessageByCollege = rejectionMessageByCollege;
+    }
+    private String rejectionMessageByCollege;
 
     public AssignToCounsellorWorkRequest getAssignToCounsellorWorkRequest() {
         return assignToCounsellorWorkRequest;

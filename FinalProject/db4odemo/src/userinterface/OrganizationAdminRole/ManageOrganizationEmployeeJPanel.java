@@ -524,7 +524,7 @@ Enterprise loggedInUserEnterprise=null;
        {
            newRole=new CounsellorRole();
        }
-        if(role.equals("College"))
+        if(role.equals("College Role"))
        {
            newRole=new College();
        }
