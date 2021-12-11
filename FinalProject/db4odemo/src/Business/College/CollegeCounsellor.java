@@ -11,7 +11,15 @@ package Business.College;
  */
 public class CollegeCounsellor {
     private String counsellorName;
-    
+    private String counsellingCompanyName;
+
+    public String getCounsellingCompanyName() {
+        return counsellingCompanyName;
+    }
+
+    public void setCounsellingCompanyName(String counsellingCompanyName) {
+        this.counsellingCompanyName = counsellingCompanyName;
+    }
     public String getCounsellorName() {
         return counsellorName;
     }
