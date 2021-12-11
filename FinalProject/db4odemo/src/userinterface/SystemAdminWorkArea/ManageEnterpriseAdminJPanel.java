@@ -467,6 +467,16 @@ public class ManageEnterpriseAdminJPanel extends javax.swing.JPanel {
         return;
     }
     }
+    private void sendEmail()
+    {
+       String toEmail="";
+       String fromEmail="huskydevportal@gmail.com";
+       String fromEmailPassword="Husky@123";
+       String message= "You have been registered on the xyz portal with "+""+"username and "+""+"password";
+       String subject= "Registartion Successfull";
+       //
+
+    }
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnCreateEnterpriseAdmin;
     private javax.swing.JButton btnDeleteEnterpriseAdmin;
