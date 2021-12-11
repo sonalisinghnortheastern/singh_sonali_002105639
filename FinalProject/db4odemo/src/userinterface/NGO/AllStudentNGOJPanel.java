@@ -375,7 +375,7 @@ public class AllStudentNGOJPanel extends javax.swing.JPanel {
     private void populate() {
         ArrayList<AssignToCounsellorWorkRequest> finalWorkRequests=new ArrayList<>();
         int loggedinID = ecosystem.getLogInUser().getLogInId();
-        for(AssignToCounsellorWorkRequest workRequest: ecosystem.getWorkQueue().getAssignToCounsellorWorkRequests()){
+        for(AssignToCounsellorWorkRequest workRequest: ecosystem.getWorkQueue().getAssignToCounsellorWorkRequests())         {
         for(Network network:ecosystem.getNetworks())
         {
             for(Enterprise enterprise : network.getEnterpriseDirectory().getEnterprises())

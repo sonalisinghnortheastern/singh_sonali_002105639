@@ -9,17 +9,17 @@ package Business.WorkQueue;
  *
  * @author Vijay
  */
-public class EntryHospitalWorkQueue {
-    private EntryChildWorkRequest entryChidWorkRequest;
+public class EntryHospitalWorkRequest {
+    private EntryChildWorkRequest entryChildWorkRequest;
     private double height;
     private double weight;
 
-    public EntryChildWorkRequest getEntryChidWorkRequest() {
-        return entryChidWorkRequest;
+    public EntryChildWorkRequest getEntryChildWorkRequest() {
+        return entryChildWorkRequest;
     }
 
-    public void setEntryChidWorkRequest(EntryChildWorkRequest entryChidWorkRequest) {
-        this.entryChidWorkRequest = entryChidWorkRequest;
+    public void setEntryChildWorkRequest(EntryChildWorkRequest entryChildWorkRequest) {
+        this.entryChildWorkRequest = entryChildWorkRequest;
     }
 
     public double getHeight() {

@@ -6,6 +6,14 @@
 package userinterface.Hospital;
 
 import Business.EcoSystem;
+import Business.Enterprise.Enterprise;
+import Business.Network.Network;
+import Business.Organization;
+import Business.UserAccount.UserAccount;
+import Business.WorkQueue.AssignToCounsellorWorkRequest;
+import Business.WorkQueue.EntryHospitalWorkRequest;
+import java.util.ArrayList;
+import javax.swing.table.DefaultTableModel;
 
 /**
  *
@@ -16,11 +24,12 @@ public class ReceptionistJPanel extends javax.swing.JPanel {
     /**
      * Creates new form ReceptionistJPanel
      */
-     private final EcoSystem system;
-    public ReceptionistJPanel(EcoSystem system) {
+     private final EcoSystem ecosystem;
+    public ReceptionistJPanel(EcoSystem ecosystem) {
         initComponents();
-        this.system=system;
+        this.ecosystem=ecosystem;
         jPanel2.setVisible(false);
+        populateTable();
     }
 
     /**
@@ -261,4 +270,61 @@ public class ReceptionistJPanel extends javax.swing.JPanel {
     private javax.swing.JTextField txtAge;
     private javax.swing.JTextField txtName;
     // End of variables declaration//GEN-END:variables
-}
+
+    private void populateTable() {
+        ArrayList<EntryHospitalWorkRequest> finalWorkRequests=new ArrayList<>();
+        int loggedinID = ecosystem.getLogInUser().getLogInId();
+        
+        for(EntryHospitalWorkRequest hospitalWorkRequest: ecosystem.getWorkQueue().getWorkRequestHospital())   
+        {   
+            for(Network network:ecosystem.getNetworks())
+        {
+            for(Enterprise enterprise : network.getEnterpriseDirectory().getEnterprises())
+            {
+                if(enterprise.getEnterpriseType().equals("NGO"))
+                {
+                    for(Organization organisation : enterprise.getOrganizationDirectory().getOrganisationList())
+                    {
+                       for(UserAccount userAccount : organisation.getUserAccountDirectory().getUserAccountList())
+                       {
+                           if(userAccount.getUniqueId()== loggedinID)
+                           {
+                               String x= hospitalWorkRequest.getEntryChildWorkRequest().getNgoName();
+                                      
+                              if(hospitalWorkRequest.getEntryChildWorkRequest().getNgoName().equals(enterprise.getName()))
+                                                  
+                              {
+                                  if(hospitalWorkRequest.getEntryChildWorkRequest().isIsAccepted())
+                                  {
+                                       finalWorkRequests.add(hospitalWorkRequest);
+                                  }
+                              }
+                           }
+                       }
+                    }
+                }
+            }
+        }
+            
+        }
+        DefaultTableModel model = (DefaultTableModel) jRegisterTable.getModel();
+        model.setRowCount(0);
+        jRegisterTable.getColumnModel().getColumn(0).setMinWidth(0);
+        jRegisterTable.getColumnModel().getColumn(0).setMaxWidth(0);
+        
+        for(EntryHospitalWorkRequest requests : finalWorkRequests) //displaying on table from counsellor queue
+        {
+            Object[] row = new Object[7];
+            row[0]=requests;
+            row[1] = requests.getEntryChildWorkRequest().getPerson().getName();
+            row[2] = requests.getEntryChildWorkRequest().getPerson().getAge();
+            row[3] = requests.getEntryChildWorkRequest().getPerson().getAddress();
+            row[4] = requests.getEntryChildWorkRequest().getPerson().getContact();         
+            row[5] = requests.getHeight();
+            row[6]= requests.getWeight();
+            model.addRow(row);
+        }
+    }
+        
+ }
+
