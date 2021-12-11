@@ -7,6 +7,7 @@ package userinterface.NGO;
 
 import Business.EcoSystem;
 import Business.Enterprise.Enterprise;
+import Business.Hospital.Hospital;
 import Business.Network.Network;
 import Business.Organization;
 import Business.UserAccount.UserAccount;
@@ -14,6 +15,7 @@ import Business.WorkQueue.AssignToCounsellorWorkRequest;
 import Business.WorkQueue.EntryChildWorkRequest;
 import Business.WorkQueue.EntryHospitalWorkRequest;
 import java.util.ArrayList;
+import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
 /**
@@ -29,6 +31,7 @@ public class SendPersonForMedicalCheckup extends javax.swing.JPanel {
     public SendPersonForMedicalCheckup(EcoSystem ecosystem) {
         initComponents();
         this.ecosystem=ecosystem;
+        jComboBox1.setVisible(false);
         populate();
         
         
@@ -49,6 +52,7 @@ public class SendPersonForMedicalCheckup extends javax.swing.JPanel {
         jRegisterTable = new javax.swing.JTable();
         jComboBox1 = new javax.swing.JComboBox<>();
         jLabel2 = new javax.swing.JLabel();
+        btnSubmit = new javax.swing.JButton();
 
         jPanel1.setBackground(new java.awt.Color(0, 102, 102));
 
@@ -101,6 +105,17 @@ public class SendPersonForMedicalCheckup extends javax.swing.JPanel {
         jLabel2.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         jLabel2.setText("Populate Hospitals:");
 
+        btnSubmit.setBackground(new java.awt.Color(240, 178, 62));
+        btnSubmit.setFont(new java.awt.Font("Arial Black", 1, 12)); // NOI18N
+        btnSubmit.setForeground(new java.awt.Color(255, 255, 255));
+        btnSubmit.setText("SUBMIT");
+        btnSubmit.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        btnSubmit.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnSubmitActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -115,7 +130,10 @@ public class SendPersonForMedicalCheckup extends javax.swing.JPanel {
                         .addGap(230, 230, 230)
                         .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 161, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
-                        .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(454, 454, 454)
+                        .addComponent(btnSubmit, javax.swing.GroupLayout.PREFERRED_SIZE, 145, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
@@ -129,7 +147,9 @@ public class SendPersonForMedicalCheckup extends javax.swing.JPanel {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(605, Short.MAX_VALUE))
+                .addGap(57, 57, 57)
+                .addComponent(btnSubmit)
+                .addContainerGap(522, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
@@ -145,7 +165,7 @@ public class SendPersonForMedicalCheckup extends javax.swing.JPanel {
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 922, Short.MAX_VALUE)
+            .addGap(0, 923, Short.MAX_VALUE)
             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(layout.createSequentialGroup()
                     .addGap(0, 0, Short.MAX_VALUE)
@@ -157,48 +177,43 @@ public class SendPersonForMedicalCheckup extends javax.swing.JPanel {
     private void jRegisterTableMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jRegisterTableMouseClicked
 
 //        jPanel2.setVisible(true);
-       try{
+       try
+       {
             int rowNumber=jRegisterTable.getSelectedRow();
-//            AssignToCounsellorWorkRequest request=(AssignToCounsellorWorkRequest) jRegisterTable.getModel().getValueAt(rowNumber, 0);
-//            if(request.getCounsellor()==null ||request.getCounsellor().getCounsellorName()==null )
-//            {
-//                jLabel10.setVisible(false);
-//                jLabel12.setVisible(false);
-//                txtCounsellor.setVisible(false);
-//                txtCollege.setVisible(false);
-//
-//            }
-//            else{
-//                jLabel10.setVisible(true);
-//                jLabel12.setVisible(true);
-//                txtCounsellor.setVisible(true);
-//                txtCollege.setVisible(true);
-//                //txtCollege.setText(request.getCollegeName());
-//                txtCounsellor.setText(request.getCounsellor().getCounsellorName());
-//            }
-//            txtName.setText(request.getEntryChildWorkRequest().getPerson().getName());
-//            txtAge.setText(String.valueOf(request.getEntryChildWorkRequest().getPerson().getAge()));
-//            if(request.getEntryChildWorkRequest().getPerson().getGender().equals("Female"))
-//            {
-//                radioButtonFemale.setSelected(true);
-//            }
-//            if(request.getEntryChildWorkRequest().getPerson().getGender().equals("Male"))
-//            {
-//                radiobtnMale.setSelected(true);
-//            }
-//            cmbEducation.setSelectedItem(request.getEntryChildWorkRequest().getPerson().getEducation());
-//            txtIncome.setText(String.valueOf(request.getEntryChildWorkRequest().getPerson().getIncome()));
-//            txtAddress.setText(request.getEntryChildWorkRequest().getPerson().getAddress());
-//            txtContact.setText(String.valueOf(request.getEntryChildWorkRequest().getPerson().getContact()));
+           
+        if(rowNumber<0)
+        {
+            JOptionPane.showMessageDialog(null, "Please select a row");
+            return;
         }
+            
+            populateComboBox();
+       }     
         catch(Exception e)
         {
             throw  e;
         }
     }//GEN-LAST:event_jRegisterTableMouseClicked
 
+    private void btnSubmitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSubmitActionPerformed
+           
+         ArrayList<EntryHospitalWorkRequest> entryHospitals=new ArrayList<>();
+         EntryHospitalWorkRequest entryHospital = new EntryHospitalWorkRequest();
+         for(EntryChildWorkRequest workRequest: ecosystem.getWorkQueue().getWorkRequestListNew()){
+             entryHospital.setEntryChildWorkRequest(workRequest);
+             entryHospitals.add(entryHospital);          
+         }
+        
+         Hospital hospital = new Hospital();
+         
+         JOptionPane.showMessageDialog(null, "Hospital has been assigned");
+     //   hospital.setHospitalName(jComboBox1.set);
+       // collegeCounsellor.setCounsellorName(cmbCounsellor.getSelectedItem().toString().split(",")[0]);
+    }//GEN-LAST:event_btnSubmitActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnSubmit;
     private javax.swing.JComboBox<String> jComboBox1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
@@ -255,4 +270,22 @@ public class SendPersonForMedicalCheckup extends javax.swing.JPanel {
     
   }
 
+  
+    private void populateComboBox()
+    {
+        jComboBox1.setVisible(true);
+        jComboBox1.removeAllItems();  
+        for(Network network : ecosystem.getNetworks())
+        {
+            for(Enterprise enterprise : network.getEnterpriseDirectory().getEnterprises())
+            {
+                   String e = enterprise.getEnterpriseType();
+                if(e.equals("Hospital")){
+                    jComboBox1.addItem(enterprise.getName());
+                }
+            }
+  
+            }
+        }
+    
 }

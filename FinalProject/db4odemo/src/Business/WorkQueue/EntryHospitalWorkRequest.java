@@ -5,6 +5,8 @@
  */
 package Business.WorkQueue;
 
+import Business.Hospital.Hospital;
+
 /**
  *
  * @author Vijay
@@ -13,7 +15,7 @@ public class EntryHospitalWorkRequest {
     private EntryChildWorkRequest entryChildWorkRequest;
     private double height;
     private double weight;
-
+    private Hospital hospital;
     public EntryChildWorkRequest getEntryChildWorkRequest() {
         return entryChildWorkRequest;
     }
