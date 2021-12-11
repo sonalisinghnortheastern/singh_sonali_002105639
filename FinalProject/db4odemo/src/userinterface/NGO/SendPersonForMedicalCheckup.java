@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package userinterface.Hospital;
+package userinterface.NGO;
 
 import Business.EcoSystem;
 import Business.Enterprise.Enterprise;
@@ -11,6 +11,7 @@ import Business.Network.Network;
 import Business.Organization;
 import Business.UserAccount.UserAccount;
 import Business.WorkQueue.AssignToCounsellorWorkRequest;
+import Business.WorkQueue.EntryChildWorkRequest;
 import Business.WorkQueue.EntryHospitalWorkRequest;
 import java.util.ArrayList;
 import javax.swing.table.DefaultTableModel;
@@ -19,17 +20,18 @@ import javax.swing.table.DefaultTableModel;
  *
  * @author Vijay
  */
-public class ReceptionistJPanel extends javax.swing.JPanel {
+public class SendPersonForMedicalCheckup extends javax.swing.JPanel {
 
     /**
-     * Creates new form ReceptionistJPanel
+     * Creates new form SendPersonForMedicalCheckup
      */
-     private final EcoSystem ecosystem;
-    public ReceptionistJPanel(EcoSystem ecosystem) {
+     EcoSystem ecosystem;
+    public SendPersonForMedicalCheckup(EcoSystem ecosystem) {
         initComponents();
         this.ecosystem=ecosystem;
-        jPanel2.setVisible(false);
-        populateTable();
+        populate();
+        
+        
     }
 
     /**
@@ -43,14 +45,10 @@ public class ReceptionistJPanel extends javax.swing.JPanel {
 
         jPanel1 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
-        jPanel2 = new javax.swing.JPanel();
-        jLabel4 = new javax.swing.JLabel();
-        txtName = new javax.swing.JTextField();
-        jLabel5 = new javax.swing.JLabel();
-        txtAge = new javax.swing.JTextField();
-        btnRegisterDetails = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         jRegisterTable = new javax.swing.JTable();
+        jComboBox1 = new javax.swing.JComboBox<>();
+        jLabel2 = new javax.swing.JLabel();
 
         jPanel1.setBackground(new java.awt.Color(0, 102, 102));
 
@@ -58,61 +56,9 @@ public class ReceptionistJPanel extends javax.swing.JPanel {
         jLabel1.setFont(new java.awt.Font("Comic Sans MS", 1, 18)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(255, 255, 255));
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel1.setText("RECEPTIONIST RECORD");
+        jLabel1.setText("STUDENT ADMITTED");
         jLabel1.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         jLabel1.setOpaque(true);
-
-        jLabel4.setFont(new java.awt.Font("Comic Sans MS", 1, 14)); // NOI18N
-        jLabel4.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel4.setText("Height:");
-
-        txtName.setEditable(false);
-
-        jLabel5.setFont(new java.awt.Font("Comic Sans MS", 1, 14)); // NOI18N
-        jLabel5.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel5.setText("Weight:");
-
-        txtAge.setEditable(false);
-
-        javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
-        jPanel2.setLayout(jPanel2Layout);
-        jPanel2Layout.setHorizontalGroup(
-            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel2Layout.createSequentialGroup()
-                .addGap(39, 39, 39)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 146, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 146, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(74, 74, 74)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(txtAge, javax.swing.GroupLayout.DEFAULT_SIZE, 259, Short.MAX_VALUE)
-                    .addComponent(txtName))
-                .addContainerGap(115, Short.MAX_VALUE))
-        );
-        jPanel2Layout.setVerticalGroup(
-            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel2Layout.createSequentialGroup()
-                .addGap(49, 49, 49)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(txtName, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel4))
-                .addGap(20, 20, 20)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(txtAge, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel5))
-                .addContainerGap(38, Short.MAX_VALUE))
-        );
-
-        btnRegisterDetails.setBackground(new java.awt.Color(240, 178, 62));
-        btnRegisterDetails.setFont(new java.awt.Font("Arial Black", 1, 12)); // NOI18N
-        btnRegisterDetails.setForeground(new java.awt.Color(255, 255, 255));
-        btnRegisterDetails.setText("RECORD DETAILS");
-        btnRegisterDetails.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        btnRegisterDetails.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnRegisterDetailsActionPerformed(evt);
-            }
-        });
 
         jRegisterTable.setBorder(javax.swing.BorderFactory.createEtchedBorder());
         jRegisterTable.setFont(new java.awt.Font("Arial Black", 1, 14)); // NOI18N
@@ -122,14 +68,14 @@ public class ReceptionistJPanel extends javax.swing.JPanel {
 
             },
             new String [] {
-                "Default", "Name", "Age", "Address", "Contact", "Height", "Weight"
+                "Default", "Name", "Age", "Address", "Contact"
             }
         ) {
             Class[] types = new Class [] {
-                java.lang.Object.class, java.lang.String.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class
+                java.lang.Object.class, java.lang.String.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class
             };
             boolean[] canEdit = new boolean [] {
-                false, false, false, false, true, false, false
+                false, false, false, false, false
             };
 
             public Class getColumnClass(int columnIndex) {
@@ -150,36 +96,40 @@ public class ReceptionistJPanel extends javax.swing.JPanel {
         });
         jScrollPane1.setViewportView(jRegisterTable);
 
+        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+
+        jLabel2.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        jLabel2.setText("Populate Hospitals:");
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, 1107, Short.MAX_VALUE)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 968, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(34, 34, 34))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                        .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(232, 232, 232))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                        .addComponent(btnRegisterDetails, javax.swing.GroupLayout.PREFERRED_SIZE, 181, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(449, 449, 449))))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(40, 40, 40)
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 968, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(230, 230, 230)
+                        .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 161, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(11, 11, 11)
                 .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(47, 47, 47)
+                .addGap(26, 26, 26)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 165, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(30, 30, 30)
-                .addComponent(btnRegisterDetails)
-                .addContainerGap(435, Short.MAX_VALUE))
+                .addGap(43, 43, 43)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(605, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
@@ -195,7 +145,7 @@ public class ReceptionistJPanel extends javax.swing.JPanel {
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 919, Short.MAX_VALUE)
+            .addGap(0, 922, Short.MAX_VALUE)
             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(layout.createSequentialGroup()
                     .addGap(0, 0, Short.MAX_VALUE)
@@ -204,21 +154,11 @@ public class ReceptionistJPanel extends javax.swing.JPanel {
         );
     }// </editor-fold>//GEN-END:initComponents
 
-    private void btnRegisterDetailsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegisterDetailsActionPerformed
-        //        try{
-            //            addEmployee(false,-1);
-            //        }
-        //        catch(Exception ex)
-        //        {
-            //            throw ex;
-            //        }
-    }//GEN-LAST:event_btnRegisterDetailsActionPerformed
-
     private void jRegisterTableMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jRegisterTableMouseClicked
 
-        jPanel2.setVisible(true);
-//        try{
-//            int rowNumber=jRegisterTable.getSelectedRow();
+//        jPanel2.setVisible(true);
+       try{
+            int rowNumber=jRegisterTable.getSelectedRow();
 //            AssignToCounsellorWorkRequest request=(AssignToCounsellorWorkRequest) jRegisterTable.getModel().getValueAt(rowNumber, 0);
 //            if(request.getCounsellor()==null ||request.getCounsellor().getCounsellorName()==null )
 //            {
@@ -250,34 +190,28 @@ public class ReceptionistJPanel extends javax.swing.JPanel {
 //            txtIncome.setText(String.valueOf(request.getEntryChildWorkRequest().getPerson().getIncome()));
 //            txtAddress.setText(request.getEntryChildWorkRequest().getPerson().getAddress());
 //            txtContact.setText(String.valueOf(request.getEntryChildWorkRequest().getPerson().getContact()));
-//        }
-//        catch(Exception e)
-//        {
-//            throw  e;
-//        }
+        }
+        catch(Exception e)
+        {
+            throw  e;
+        }
     }//GEN-LAST:event_jRegisterTableMouseClicked
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton btnRegisterDetails;
+    private javax.swing.JComboBox<String> jComboBox1;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel4;
-    private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabel2;
     private javax.swing.JPanel jPanel1;
-    private javax.swing.JPanel jPanel2;
     private javax.swing.JTable jRegisterTable;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTextField txtAge;
-    private javax.swing.JTextField txtName;
     // End of variables declaration//GEN-END:variables
 
-    private void populateTable() {
-        ArrayList<EntryHospitalWorkRequest> finalWorkRequests=new ArrayList<>();
+    private void populate() {
+       ArrayList<EntryChildWorkRequest> finalWorkRequests=new ArrayList<>();
         int loggedinID = ecosystem.getLogInUser().getLogInId();
-        
-        for(EntryHospitalWorkRequest hospitalWorkRequest: ecosystem.getWorkQueue().getWorkRequestHospital())   
-        {   
-            for(Network network:ecosystem.getNetworks())
+        for(EntryChildWorkRequest workRequest: ecosystem.getWorkQueue().getWorkRequestListNew())         {
+        for(Network network:ecosystem.getNetworks())
         {
             for(Enterprise enterprise : network.getEnterpriseDirectory().getEnterprises())
             {
@@ -289,14 +223,11 @@ public class ReceptionistJPanel extends javax.swing.JPanel {
                        {
                            if(userAccount.getUniqueId()== loggedinID)
                            {
-                               String x= hospitalWorkRequest.getEntryChildWorkRequest().getNgoName();
-                                      
-                              if(hospitalWorkRequest.getEntryChildWorkRequest().getNgoName().equals(enterprise.getName()))
-                                                  
+                              if(workRequest.getNgoName().equals(enterprise.getName()))
                               {
-                                  if(hospitalWorkRequest.getEntryChildWorkRequest().isIsAccepted())
+                                  if(workRequest.isIsAccepted())
                                   {
-                                       finalWorkRequests.add(hospitalWorkRequest);
+                                       finalWorkRequests.add(workRequest);
                                   }
                               }
                            }
@@ -305,26 +236,23 @@ public class ReceptionistJPanel extends javax.swing.JPanel {
                 }
             }
         }
-            
-        }
         DefaultTableModel model = (DefaultTableModel) jRegisterTable.getModel();
         model.setRowCount(0);
         jRegisterTable.getColumnModel().getColumn(0).setMinWidth(0);
         jRegisterTable.getColumnModel().getColumn(0).setMaxWidth(0);
-        
-        for(EntryHospitalWorkRequest requests : finalWorkRequests) //displaying on table from counsellor queue
+        for(EntryChildWorkRequest requests : finalWorkRequests)
         {
-            Object[] row = new Object[7];
+            Object[] row = new Object[5];
             row[0]=requests;
-            row[1] = requests.getEntryChildWorkRequest().getPerson().getName();
-            row[2] = requests.getEntryChildWorkRequest().getPerson().getAge();
-            row[3] = requests.getEntryChildWorkRequest().getPerson().getAddress();
-            row[4] = requests.getEntryChildWorkRequest().getPerson().getContact();         
-            row[5] = requests.getHeight();
-            row[6]= requests.getWeight();
+            row[1] = requests.getPerson().getName();
+            row[2] = requests.getPerson().getAge();
+            row[3] = requests.getPerson().getAddress();
+            row[4] = requests.getPerson().getContact(); 
             model.addRow(row);
         }
     }
-        
- }
+    
+    
+  }
 
+}

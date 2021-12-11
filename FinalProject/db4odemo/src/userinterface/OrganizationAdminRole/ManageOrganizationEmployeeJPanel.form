@@ -25,13 +25,10 @@
           <Component id="jScrollPane1" alignment="0" max="32767" attributes="0"/>
           <Group type="102" alignment="1" attributes="0">
               <EmptySpace max="32767" attributes="0"/>
+              <Component id="jPanel1" min="-2" max="-2" attributes="0"/>
+              <EmptySpace min="-2" pref="115" max="-2" attributes="0"/>
               <Component id="btnDeleteEmployee" min="-2" pref="142" max="-2" attributes="0"/>
               <EmptySpace max="-2" attributes="0"/>
-          </Group>
-          <Group type="102" alignment="0" attributes="0">
-              <EmptySpace min="-2" pref="219" max="-2" attributes="0"/>
-              <Component id="jPanel1" min="-2" max="-2" attributes="0"/>
-              <EmptySpace max="32767" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -43,10 +40,11 @@
               <EmptySpace max="32767" attributes="0"/>
               <Component id="jScrollPane1" min="-2" pref="165" max="-2" attributes="0"/>
               <EmptySpace type="unrelated" max="-2" attributes="0"/>
-              <Component id="btnDeleteEmployee" min="-2" max="-2" attributes="0"/>
-              <EmptySpace min="-2" pref="35" max="-2" attributes="0"/>
-              <Component id="jPanel1" min="-2" pref="501" max="-2" attributes="0"/>
-              <EmptySpace min="-2" pref="58" max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="0" attributes="0">
+                  <Component id="btnDeleteEmployee" min="-2" max="-2" attributes="0"/>
+                  <Component id="jPanel1" min="-2" pref="501" max="-2" attributes="0"/>
+              </Group>
+              <EmptySpace min="-2" pref="120" max="-2" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -78,35 +76,39 @@
       <Layout>
         <DimensionLayout dim="0">
           <Group type="103" groupAlignment="0" attributes="0">
-              <Group type="102" alignment="1" attributes="0">
-                  <EmptySpace max="32767" attributes="0"/>
-                  <Component id="btnAddItem" min="-2" max="-2" attributes="0"/>
-                  <EmptySpace min="-2" pref="59" max="-2" attributes="0"/>
-                  <Component id="btnUpdateItem" min="-2" max="-2" attributes="0"/>
-                  <EmptySpace max="-2" attributes="0"/>
-              </Group>
               <Group type="102" alignment="0" attributes="0">
-                  <EmptySpace min="-2" pref="77" max="-2" attributes="0"/>
-                  <Group type="103" groupAlignment="0" attributes="0">
-                      <Group type="103" alignment="0" groupAlignment="1" attributes="0">
-                          <Component id="lblAvailablity3" min="-2" pref="134" max="-2" attributes="0"/>
-                          <Component id="lblAvailablity" min="-2" pref="134" max="-2" attributes="0"/>
-                          <Component id="lblAvailablity1" min="-2" pref="134" max="-2" attributes="0"/>
-                          <Component id="lblPrice" min="-2" pref="134" max="-2" attributes="0"/>
+                  <EmptySpace min="-2" pref="66" max="-2" attributes="0"/>
+                  <Group type="103" groupAlignment="1" attributes="0">
+                      <Component id="btnAddItem" min="-2" pref="145" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="0" attributes="0">
+                          <Group type="103" alignment="0" groupAlignment="1" attributes="0">
+                              <Component id="lblAvailablity3" min="-2" pref="134" max="-2" attributes="0"/>
+                              <Component id="lblAvailablity" min="-2" pref="134" max="-2" attributes="0"/>
+                              <Component id="lblAvailablity1" min="-2" pref="134" max="-2" attributes="0"/>
+                              <Component id="lblPrice" min="-2" pref="134" max="-2" attributes="0"/>
+                          </Group>
+                          <Component id="lblItem" alignment="0" min="-2" max="-2" attributes="0"/>
                       </Group>
-                      <Component id="lblItem" alignment="0" min="-2" max="-2" attributes="0"/>
                   </Group>
-                  <EmptySpace max="32767" attributes="0"/>
+                  <EmptySpace pref="25" max="32767" attributes="0"/>
                   <Group type="103" groupAlignment="0" attributes="0">
-                      <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                          <Component id="txtUsername" max="32767" attributes="0"/>
-                          <Component id="cmbRole" pref="142" max="32767" attributes="0"/>
-                          <Component id="txtEmployeeName" alignment="0" max="32767" attributes="0"/>
-                          <Component id="txtPassword" alignment="1" max="32767" attributes="0"/>
+                      <Group type="102" alignment="1" attributes="0">
+                          <Group type="103" groupAlignment="0" attributes="0">
+                              <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                                  <Component id="txtUsername" max="32767" attributes="0"/>
+                                  <Component id="cmbRole" pref="142" max="32767" attributes="0"/>
+                                  <Component id="txtEmployeeName" alignment="0" max="32767" attributes="0"/>
+                                  <Component id="txtPassword" alignment="1" max="32767" attributes="0"/>
+                              </Group>
+                              <Component id="cmbOrganisation" min="-2" pref="147" max="-2" attributes="0"/>
+                          </Group>
+                          <EmptySpace min="-2" pref="26" max="-2" attributes="0"/>
                       </Group>
-                      <Component id="cmbOrganisation" min="-2" pref="147" max="-2" attributes="0"/>
+                      <Group type="102" alignment="1" attributes="0">
+                          <Component id="btnUpdateItem" min="-2" pref="147" max="-2" attributes="0"/>
+                          <EmptySpace min="-2" pref="236" max="-2" attributes="0"/>
+                      </Group>
                   </Group>
-                  <EmptySpace min="-2" pref="26" max="-2" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
@@ -141,10 +143,10 @@
                       <Component id="lblAvailablity3" alignment="3" min="-2" pref="34" max="-2" attributes="0"/>
                       <Component id="txtPassword" alignment="3" min="-2" pref="31" max="-2" attributes="0"/>
                   </Group>
-                  <EmptySpace type="separate" max="-2" attributes="0"/>
-                  <Group type="103" groupAlignment="3" attributes="0">
-                      <Component id="btnAddItem" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="btnUpdateItem" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                  <Group type="103" groupAlignment="0" attributes="0">
+                      <Component id="btnAddItem" min="-2" max="-2" attributes="0"/>
+                      <Component id="btnUpdateItem" alignment="0" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace min="-2" pref="110" max="-2" attributes="0"/>
               </Group>
