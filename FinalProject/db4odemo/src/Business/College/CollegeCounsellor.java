@@ -11,7 +11,7 @@ package Business.College;
  */
 public class CollegeCounsellor {
     private String counsellorName;
-
+    
     public String getCounsellorName() {
         return counsellorName;
     }

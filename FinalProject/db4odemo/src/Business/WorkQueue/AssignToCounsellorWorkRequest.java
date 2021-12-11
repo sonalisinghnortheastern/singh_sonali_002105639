@@ -6,14 +6,33 @@
 package Business.WorkQueue;
 
 import Business.College.CollegeCounsellor;
+import Business.Customer.GeneralInformation;
 
 /**
  *
  * @author sonal
  */
-public class AssignToCounsellorWorkRequest extends EntryChildWorkRequest{
+public class AssignToCounsellorWorkRequest {
     CollegeCounsellor counsellor;
     EntryChildWorkRequest entryChildWorkRequest;
+    private boolean requestCompleted;
+    private GeneralInformation generalInformation;
+
+    public GeneralInformation getGeneralInformation() {
+        return generalInformation;
+    }
+
+    public void setGeneralInformation(GeneralInformation generalInformation) {
+        this.generalInformation = generalInformation;
+    }
+
+    public boolean isRequestCompleted() {
+        return requestCompleted;
+    }
+
+    public void setRequestCompleted(boolean requestCompleted) {
+        this.requestCompleted = requestCompleted;
+    }
 
     public EntryChildWorkRequest getEntryChildWorkRequest() {
         return entryChildWorkRequest;

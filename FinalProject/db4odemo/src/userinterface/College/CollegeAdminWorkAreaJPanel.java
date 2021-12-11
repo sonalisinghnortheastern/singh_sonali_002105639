@@ -57,7 +57,7 @@ public class CollegeAdminWorkAreaJPanel extends javax.swing.JPanel {
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Icons/LogoutIcon.png"))); // NOI18N
 
         btnManageMenu1.setFont(new java.awt.Font("Comic Sans MS", 1, 14)); // NOI18N
-        btnManageMenu1.setText("ASSIGN COUNSELLOR");
+        btnManageMenu1.setText("NEW COUNSELLING REQUEST");
         btnManageMenu1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnManageMenu1ActionPerformed(evt);
