@@ -141,8 +141,8 @@ public class ManageEnterpriseAdminJPanel extends javax.swing.JPanel {
         jLabel4.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
 
         btnCreateEnterpriseAdmin.setFont(new java.awt.Font("Comic Sans MS", 1, 14)); // NOI18N
+        btnCreateEnterpriseAdmin.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Icons/add1.png"))); // NOI18N
         btnCreateEnterpriseAdmin.setText("Create");
-        btnCreateEnterpriseAdmin.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         btnCreateEnterpriseAdmin.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnCreateEnterpriseAdminActionPerformed(evt);
@@ -150,8 +150,9 @@ public class ManageEnterpriseAdminJPanel extends javax.swing.JPanel {
         });
 
         btnModifyEnterpriseAdmin.setFont(new java.awt.Font("Comic Sans MS", 1, 14)); // NOI18N
+        btnModifyEnterpriseAdmin.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Icons/edit1.png"))); // NOI18N
         btnModifyEnterpriseAdmin.setText("Modify");
-        btnModifyEnterpriseAdmin.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        btnModifyEnterpriseAdmin.setHideActionText(true);
         btnModifyEnterpriseAdmin.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnModifyEnterpriseAdminActionPerformed(evt);
@@ -159,8 +160,8 @@ public class ManageEnterpriseAdminJPanel extends javax.swing.JPanel {
         });
 
         btnDeleteEnterpriseAdmin.setFont(new java.awt.Font("Comic Sans MS", 1, 14)); // NOI18N
+        btnDeleteEnterpriseAdmin.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Icons/del.png"))); // NOI18N
         btnDeleteEnterpriseAdmin.setText("Delete ");
-        btnDeleteEnterpriseAdmin.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         btnDeleteEnterpriseAdmin.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnDeleteEnterpriseAdminActionPerformed(evt);

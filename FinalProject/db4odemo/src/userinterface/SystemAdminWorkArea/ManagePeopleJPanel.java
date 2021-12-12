@@ -10,8 +10,11 @@ import Business.EcoSystem;
 import Business.Enterprise.Enterprise;
 import Business.Network.Network;
 import Business.WorkQueue.EntryChildWorkRequest;
+import java.awt.Color;
 import java.util.Random;
+import javax.swing.BorderFactory;
 import javax.swing.JOptionPane;
+import javax.swing.UIManager;
 import javax.swing.table.DefaultTableModel;
 
 /**
@@ -25,6 +28,11 @@ public class ManagePeopleJPanel extends javax.swing.JPanel {
      */
     private final EcoSystem system; 
     private DB4OUtil dB4OUtil = DB4OUtil.getInstance();
+
+	boolean validateNullOrEmpty=true;
+	boolean validateRegex=true;
+
+
     public ManagePeopleJPanel(EcoSystem system) {
         initComponents();
         this.system = system;
@@ -71,8 +79,6 @@ public class ManagePeopleJPanel extends javax.swing.JPanel {
         cmbEducation = new javax.swing.JComboBox<>();
         btnDelete = new javax.swing.JButton();
 
-        setLayout(new java.awt.CardLayout());
-
         jPanel1.setBackground(new java.awt.Color(153, 0, 0));
         jPanel1.setPreferredSize(new java.awt.Dimension(920, 708));
 
@@ -96,8 +102,8 @@ public class ManagePeopleJPanel extends javax.swing.JPanel {
         });
         jScrollPane1.setViewportView(jRegisterTable);
 
-        jLabel1.setBackground(new java.awt.Color(204, 204, 204));
-        jLabel1.setFont(new java.awt.Font("Comic Sans MS", 1, 18)); // NOI18N
+        jLabel1.setBackground(new java.awt.Color(153, 0, 0));
+        jLabel1.setFont(new java.awt.Font("Lucida Grande", 1, 18)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(255, 255, 255));
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel1.setText("Manage New Person");
@@ -112,7 +118,7 @@ public class ManagePeopleJPanel extends javax.swing.JPanel {
 
         btnCreateCustomer.setFont(new java.awt.Font("Comic Sans MS", 1, 12)); // NOI18N
         btnCreateCustomer.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Icons/add1.png"))); // NOI18N
-        btnCreateCustomer.setText("REGISTER PERSON");
+        btnCreateCustomer.setText("REGISTER");
         btnCreateCustomer.setToolTipText("");
         btnCreateCustomer.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -122,7 +128,7 @@ public class ManagePeopleJPanel extends javax.swing.JPanel {
 
         btnModify.setFont(new java.awt.Font("Comic Sans MS", 1, 12)); // NOI18N
         btnModify.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Icons/edit1.png"))); // NOI18N
-        btnModify.setText("UPDATE PERSON");
+        btnModify.setText("UPDATE");
         btnModify.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnModifyActionPerformed(evt);
@@ -184,49 +190,50 @@ public class ManagePeopleJPanel extends javax.swing.JPanel {
         buttonGroup1.add(radioButtonFemale);
         radioButtonFemale.setText("Female");
 
-        cmbEducation.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "High School", "Senior Secondary School", "Bachelors", "Masters", " " }));
+        cmbEducation.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "High School", "Senior Secondary School", "Bachelors", "Masters" }));
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
-                .addGap(39, 39, 39)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                        .addComponent(jLabel12, javax.swing.GroupLayout.PREFERRED_SIZE, 138, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(jLabel11, javax.swing.GroupLayout.PREFERRED_SIZE, 138, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(jLabel10, javax.swing.GroupLayout.PREFERRED_SIZE, 138, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 146, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(jLabel6, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 146, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addComponent(jLabel7, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 146, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(jLabel8, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 138, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(jLabel9, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 138, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGap(74, 74, 74)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(cmbNetwork, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(cmbNGO, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(txtContact)
-                    .addComponent(txtAddress)
-                    .addComponent(txtIncome)
-                    .addComponent(radiobtnMale)
-                    .addComponent(txtAge)
-                    .addComponent(txtName)
-                    .addComponent(cmbEducation, 0, 259, Short.MAX_VALUE))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-            .addGroup(jPanel2Layout.createSequentialGroup()
                 .addGap(414, 414, 414)
                 .addComponent(radioButtonFemale)
-                .addGap(0, 0, Short.MAX_VALUE))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
-                .addContainerGap(100, Short.MAX_VALUE)
-                .addComponent(btnCreateCustomer)
-                .addGap(53, 53, 53)
-                .addComponent(btnModify)
-                .addGap(206, 206, 206))
+                .addGap(0, 171, Short.MAX_VALUE))
+            .addGroup(jPanel2Layout.createSequentialGroup()
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addGap(39, 39, 39)
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                .addComponent(jLabel12, javax.swing.GroupLayout.PREFERRED_SIZE, 138, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(jLabel11, javax.swing.GroupLayout.PREFERRED_SIZE, 138, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(jLabel10, javax.swing.GroupLayout.PREFERRED_SIZE, 138, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 146, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addComponent(jLabel6, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 146, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addComponent(jLabel7, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 146, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(jLabel8, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 138, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(jLabel9, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 138, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGap(74, 74, 74)
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(cmbNetwork, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(cmbNGO, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(txtContact)
+                            .addComponent(txtAddress)
+                            .addComponent(txtIncome)
+                            .addComponent(radiobtnMale)
+                            .addComponent(txtAge)
+                            .addComponent(txtName)
+                            .addComponent(cmbEducation, 0, 259, Short.MAX_VALUE)))
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addGap(176, 176, 176)
+                        .addComponent(btnCreateCustomer)
+                        .addGap(34, 34, 34)
+                        .addComponent(btnModify)))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -268,15 +275,16 @@ public class ManagePeopleJPanel extends javax.swing.JPanel {
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel11)
                     .addComponent(cmbNetwork, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 46, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 45, Short.MAX_VALUE)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btnModify)
-                    .addComponent(btnCreateCustomer)))
+                    .addComponent(btnCreateCustomer)
+                    .addComponent(btnModify))
+                .addGap(26, 26, 26))
         );
 
         btnDelete.setFont(new java.awt.Font("Comic Sans MS", 1, 12)); // NOI18N
         btnDelete.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Icons/del.png"))); // NOI18N
-        btnDelete.setText("DELETE PERSON");
+        btnDelete.setLabel("DELETE");
         btnDelete.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnDeleteActionPerformed(evt);
@@ -288,37 +296,45 @@ public class ManagePeopleJPanel extends javax.swing.JPanel {
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(0, 332, Short.MAX_VALUE)
-                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 920, javax.swing.GroupLayout.PREFERRED_SIZE))
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                        .addGap(0, 0, Short.MAX_VALUE)
-                        .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(56, 56, 56)
-                        .addComponent(btnDelete, javax.swing.GroupLayout.PREFERRED_SIZE, 153, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(jScrollPane1))
+                .addGap(0, 0, Short.MAX_VALUE)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 920, Short.MAX_VALUE)
+                    .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(btnDelete, javax.swing.GroupLayout.PREFERRED_SIZE, 141, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(25, 25, 25)
-                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
+                .addContainerGap()
+                .addComponent(jLabel1)
+                .addGap(33, 33, 33)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 165, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(btnDelete, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(38, 38, 38)
-                        .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(314, Short.MAX_VALUE))
+                        .addComponent(btnDelete)
+                        .addGap(0, 0, Short.MAX_VALUE))
+                    .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap())
         );
 
-        add(jPanel1, "card2");
+        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
+        this.setLayout(layout);
+        layout.setHorizontalGroup(
+            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(layout.createSequentialGroup()
+                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 20, Short.MAX_VALUE))
+        );
+        layout.setVerticalGroup(
+            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 831, Short.MAX_VALUE)
+        );
     }// </editor-fold>//GEN-END:initComponents
 
     private void jRegisterTableMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jRegisterTableMouseClicked
@@ -363,9 +379,12 @@ public class ManagePeopleJPanel extends javax.swing.JPanel {
 
     private void btnCreateCustomerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCreateCustomerActionPerformed
             try {
+				
+				if(validateNullOrEmpty()){
+                 if(validateFields()){
                 EntryChildWorkRequest entryChildWorkRequest = new EntryChildWorkRequest();
                 entryChildWorkRequest.getPerson().setName(txtName.getText());
-                entryChildWorkRequest.getPerson().setAge(Double.parseDouble(txtAge.getText()));
+                entryChildWorkRequest.getPerson().setAge(Integer.parseInt(txtAge.getText()));
                 if(radiobtnMale.isSelected())
                 {
                     entryChildWorkRequest.getPerson().setGender("Male");
@@ -387,9 +406,28 @@ public class ManagePeopleJPanel extends javax.swing.JPanel {
                 JOptionPane.showMessageDialog(null, "Person Information Added Succesfully");
                 populateTable();
                 reset();
+			
+				}
+				else{
+				JOptionPane.showMessageDialog(this, "Validation Failed .Please check the blue boxes");
+				validateNullOrEmpty=true;
+				validateRegex=true;
+				}
+				}
+				else{
+				JOptionPane.showMessageDialog(this, "Validation Failed .Please check the blue boxes");
+				validateNullOrEmpty=true;
+				validateRegex=true;
+				}
+
+
                 
             } catch (Exception e) {
-    
+						
+				validateNullOrEmpty=true;
+				validateRegex=true;
+
+
                 throw e;
             }
     }//GEN-LAST:event_btnCreateCustomerActionPerformed
@@ -409,8 +447,11 @@ public class ManagePeopleJPanel extends javax.swing.JPanel {
             }
             
             EntryChildWorkRequest entryChildWorkRequest = new EntryChildWorkRequest();
+			if(validateNullOrEmpty()){
+             if(validateFields()){
+			
             entryChildWorkRequest.getPerson().setName(txtName.getText());
-            entryChildWorkRequest.getPerson().setAge(Double.parseDouble(txtAge.getText()));
+            entryChildWorkRequest.getPerson().setAge(Integer.parseInt(txtAge.getText()));
             if(radiobtnMale.isSelected())
             {
                 entryChildWorkRequest.getPerson().setGender("Male");
@@ -429,9 +470,26 @@ public class ManagePeopleJPanel extends javax.swing.JPanel {
             reset();
             dB4OUtil.storeSystem(system);
             JOptionPane.showMessageDialog(null, "Person Information Updated Succesfully");
+						
+				}
+				else{
+				JOptionPane.showMessageDialog(this, "Validation Failed .Please check the blue boxes");
+				validateNullOrEmpty=true;
+				validateRegex=true;
+				}
+				}
+				else{
+				JOptionPane.showMessageDialog(this, "Validation Failed .Please check the blue boxes");
+				validateNullOrEmpty=true;
+				validateRegex=true;
+				}
+
+
         }
         catch(Exception e)
         {
+			validateNullOrEmpty=true;
+            validateRegex=true;
             throw e;
         }
     }//GEN-LAST:event_btnModifyActionPerformed
@@ -511,6 +569,8 @@ public class ManagePeopleJPanel extends javax.swing.JPanel {
         cmbNGO.setSelectedIndex(0);
         cmbNetwork.setSelectedIndex(0);
     }
+	
+	
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnCreateCustomer;
@@ -565,5 +625,113 @@ public class ManagePeopleJPanel extends javax.swing.JPanel {
         }
         
   }
+  
+  private boolean validateNullOrEmpty() {
+validateNullOrEmpty=true;
+
+if(txtName.getText().trim().isEmpty() || txtName.getText()==null){
+validateNullOrEmpty=false;
+txtName.setToolTipText("Please Enter a Name");
+txtName.setBorder(BorderFactory.createLineBorder(Color.BLUE,1));
+}
+if(!txtName.getText().trim().isEmpty() && txtName.getText()!=null){
+txtName.setBorder(UIManager.getLookAndFeel().getDefaults().getBorder("TextField.border"));
+}
+
+
+if(txtAge.getText().trim().isEmpty() || txtAge.getText()==null){
+validateNullOrEmpty=false;
+txtAge.setToolTipText("Please Enter Age");
+txtAge.setBorder(BorderFactory.createLineBorder(Color.BLUE,1));
+}
+if(!txtAge.getText().trim().isEmpty() && txtAge.getText()!=null){
+txtAge.setBorder(UIManager.getLookAndFeel().getDefaults().getBorder("TextField.border"));
+}
+
+if(radiobtnMale.isEnabled()==false && radioButtonFemale.isEnabled()==false){
+validateNullOrEmpty=false;
+txtName.setToolTipText("Please select a radio button");
+}
+
+if(txtIncome.getText().trim().isEmpty() || txtIncome.getText()==null){
+validateNullOrEmpty=false;
+txtIncome.setToolTipText("Please Enter Income");
+txtIncome.setBorder(BorderFactory.createLineBorder(Color.BLUE,1));
+}
+if(!txtIncome.getText().trim().isEmpty() && txtIncome.getText()!=null){
+txtIncome.setBorder(UIManager.getLookAndFeel().getDefaults().getBorder("TextField.border"));
+}
+
+if(txtAddress.getText().trim().isEmpty() || txtAddress.getText()==null){
+validateNullOrEmpty=false;
+txtAddress.setToolTipText("Please Enter Address");
+txtAddress.setBorder(BorderFactory.createLineBorder(Color.BLUE,1));
+}
+if(!txtAddress.getText().trim().isEmpty() && txtAddress.getText()!=null){
+txtAddress.setBorder(UIManager.getLookAndFeel().getDefaults().getBorder("TextField.border"));
+}
+
+if(txtContact.getText().trim().isEmpty() || txtContact.getText()==null){
+validateNullOrEmpty=false;
+txtContact.setToolTipText("Please Enter Contact");
+txtContact.setBorder(BorderFactory.createLineBorder(Color.BLUE,1));
+}
+if(!txtContact.getText().trim().isEmpty() && txtContact.getText()!=null){
+txtContact.setBorder(UIManager.getLookAndFeel().getDefaults().getBorder("TextField.border"));
+}
+return validateNullOrEmpty;
+}
+
+
+
+private boolean validateFields() {
+validateRegex=true;
+//age, income, contact
+if(!txtAge.getText().matches("^[0-9]{2}$")){
+validateRegex=false;
+txtAge.setToolTipText("Please Enter Age, max age-99");
+txtName.setBorder(UIManager.getLookAndFeel().getDefaults().getBorder("TextField.border"));
+txtIncome.setBorder(UIManager.getLookAndFeel().getDefaults().getBorder("TextField.border"));
+txtAddress.setBorder(UIManager.getLookAndFeel().getDefaults().getBorder("TextField.border"));
+txtContact.setBorder(UIManager.getLookAndFeel().getDefaults().getBorder("TextField.border"));
+txtAge.setBorder(BorderFactory.createLineBorder (Color.BLUE));
+
+}
+
+if(txtAge.getText().matches("^[0-9]{2}$")){
+txtAge.setBorder(UIManager.getLookAndFeel().getDefaults().getBorder("TextField.border"));
+}
+
+if(!txtIncome.getText().matches("^[0-9]+")){
+validateRegex=false;
+txtIncome.setToolTipText("Please Enter Income in digits");
+txtName.setBorder(UIManager.getLookAndFeel().getDefaults().getBorder("TextField.border"));
+txtAge.setBorder(UIManager.getLookAndFeel().getDefaults().getBorder("TextField.border"));
+txtAddress.setBorder(UIManager.getLookAndFeel().getDefaults().getBorder("TextField.border"));
+txtContact.setBorder(UIManager.getLookAndFeel().getDefaults().getBorder("TextField.border"));
+txtIncome.setBorder(BorderFactory.createLineBorder (Color.BLUE));
+
+}
+
+if(txtIncome.getText().matches("^[0-9]+")){
+txtIncome.setBorder(UIManager.getLookAndFeel().getDefaults().getBorder("TextField.border"));
+}
+
+if(!txtContact.getText().matches("[0-9]{10}")){
+validateRegex=false;
+txtContact.setToolTipText("Please Enter 10 Digit Contact Number");
+txtName.setBorder(UIManager.getLookAndFeel().getDefaults().getBorder("TextField.border"));
+txtAge.setBorder(UIManager.getLookAndFeel().getDefaults().getBorder("TextField.border"));
+txtAddress.setBorder(UIManager.getLookAndFeel().getDefaults().getBorder("TextField.border"));
+txtIncome.setBorder(UIManager.getLookAndFeel().getDefaults().getBorder("TextField.border"));
+txtContact.setBorder(BorderFactory.createLineBorder (Color.BLUE));
+
+}
+
+if(txtContact.getText().matches("[0-9]{10}")){
+txtContact.setBorder(UIManager.getLookAndFeel().getDefaults().getBorder("TextField.border"));
+}
+return validateRegex;
+}
     
 }
