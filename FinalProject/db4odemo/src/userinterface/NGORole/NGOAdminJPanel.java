@@ -103,26 +103,26 @@ public class NGOAdminJPanel extends javax.swing.JPanel {
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addComponent(jLabel1)
                 .addGap(0, 0, Short.MAX_VALUE))
-            .addComponent(btnManageMenu1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addComponent(btnManageMenu2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addComponent(btnManageMenu3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addComponent(btnManageMenu4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(btnManageMenu1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addComponent(jLabel1)
-                .addGap(72, 72, 72)
+                .addGap(27, 27, 27)
                 .addComponent(btnManageMenu)
-                .addGap(57, 57, 57)
+                .addGap(27, 27, 27)
                 .addComponent(btnManageMenu4)
-                .addGap(49, 49, 49)
+                .addGap(32, 32, 32)
                 .addComponent(btnManageMenu2)
-                .addGap(59, 59, 59)
+                .addGap(33, 33, 33)
                 .addComponent(btnManageMenu3)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 53, Short.MAX_VALUE)
+                .addGap(32, 32, 32)
                 .addComponent(btnManageMenu1)
-                .addGap(36, 36, 36))
+                .addContainerGap(175, Short.MAX_VALUE))
         );
 
         jSplitPane.setLeftComponent(jPanel1);
