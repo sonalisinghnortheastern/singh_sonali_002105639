@@ -52,6 +52,9 @@ public class AdmitPersonToNGOJPanel extends javax.swing.JPanel {
         jScrollPane1 = new javax.swing.JScrollPane();
         jRegisterTable = new javax.swing.JTable();
 
+        setMaximumSize(new java.awt.Dimension(1293, 1048));
+        setMinimumSize(new java.awt.Dimension(1093, 848));
+
         jPanel1.setBackground(new java.awt.Color(153, 0, 0));
 
         jLabel1.setBackground(new java.awt.Color(153, 0, 0));
