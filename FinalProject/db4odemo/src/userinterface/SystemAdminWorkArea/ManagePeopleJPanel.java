@@ -10,6 +10,7 @@ import Business.EcoSystem;
 import Business.Enterprise.Enterprise;
 import Business.Network.Network;
 import Business.WorkQueue.EntryChildWorkRequest;
+import java.util.Random;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
@@ -81,7 +82,7 @@ public class ManagePeopleJPanel extends javax.swing.JPanel {
 
             },
             new String [] {
-                "Default", "Name", "Age", "Gender", "Highest Education", "Family Income", "Address", "Contact"
+                "Default", "Name", "Age", "Gender", "Highest Education", "Family Income", "Address", "Contact", "NGO"
             }
         ));
         jRegisterTable.setGridColor(new java.awt.Color(56, 90, 174));
@@ -340,6 +341,7 @@ public class ManagePeopleJPanel extends javax.swing.JPanel {
                 jLabel12.setVisible(false);
                 jLabel11.setVisible(false);
             }
+            
             txtName.setText(jRegisterTable.getModel().getValueAt(rowNumber, 1).toString());
             txtAge.setText(jRegisterTable.getModel().getValueAt(rowNumber, 2).toString());
             if(jRegisterTable.getModel().getValueAt(rowNumber, 3).toString().equals("Female"))
@@ -354,6 +356,7 @@ public class ManagePeopleJPanel extends javax.swing.JPanel {
             txtIncome.setText(jRegisterTable.getModel().getValueAt(rowNumber, 5).toString());
             txtAddress.setText(jRegisterTable.getModel().getValueAt(rowNumber, 6).toString());
             txtContact.setText(jRegisterTable.getModel().getValueAt(rowNumber, 7).toString());
+            cmbNGO.setSelectedItem(jRegisterTable.getModel().getValueAt(rowNumber, 8).toString());
         }
         catch(Exception e)
         {
@@ -379,6 +382,9 @@ public class ManagePeopleJPanel extends javax.swing.JPanel {
                 entryChildWorkRequest.getPerson().setName(txtName.getText());
                 entryChildWorkRequest.getPerson().setEducation(cmbEducation.getSelectedItem().toString());
                 entryChildWorkRequest.setNgoName(cmbNGO.getSelectedItem().toString());
+                Random random=new Random();
+                int uniqueId=random.nextInt((9999 - 100) + 1) + 10; //creates unique ID
+                entryChildWorkRequest.getPerson().setLoginId(uniqueId);
                 system.getWorkQueue().getWorkRequestListNew().add(entryChildWorkRequest);
                 dB4OUtil.storeSystem(system);
                 JOptionPane.showMessageDialog(null, "Person Information Added Succesfully");
@@ -547,7 +553,7 @@ public class ManagePeopleJPanel extends javax.swing.JPanel {
         jRegisterTable.getColumnModel().getColumn(0).setMaxWidth(0);
         for(EntryChildWorkRequest workQueue : system.getWorkQueue().getWorkRequestListNew())
         {
-                    Object[] row = new Object[9];
+                    Object[] row = new Object[10];
                     row[0]=workQueue;
                     row[1] = workQueue.getPerson().getName();
                     row[2] = workQueue.getPerson().getAge();
@@ -556,6 +562,7 @@ public class ManagePeopleJPanel extends javax.swing.JPanel {
                     row[5] = workQueue.getPerson().getIncome();
                     row[6] = workQueue.getPerson().getAddress();
                     row[7] = workQueue.getPerson().getContact();
+                    row[8]=  workQueue.getNgoName();
                     model.addRow(row);
                 
         }

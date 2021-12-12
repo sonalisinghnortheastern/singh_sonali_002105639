@@ -14,15 +14,6 @@ import Business.Person.Person;
  */
 public class EntryChildWorkRequest extends WorkRequest {
     private String ngoName;
-    private int loginId;
-
-    public int getLoginId() {
-        return loginId;
-    }
-
-    public void setLoginId(int loginId) {
-        this.loginId = loginId;
-    }
     private NGOEnterprise nGOEnterprise;
     private boolean isAccepted;
 

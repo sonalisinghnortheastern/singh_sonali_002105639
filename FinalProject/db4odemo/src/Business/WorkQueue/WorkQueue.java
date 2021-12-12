@@ -16,6 +16,19 @@ public class WorkQueue {
     private ArrayList<EntryChildWorkRequest> workRequestListNew;
     private ArrayList<AssignToCounsellorWorkRequest> assignToCounsellorWorkRequests;
     private ArrayList<EntryHospitalWorkRequest> workRequestHospital;
+    private ArrayList<AssignToCollegeWorkRequest> assignToCollegeWorkRequests;
+
+    public ArrayList<AssignToCollegeWorkRequest> getAssignToCollegeWorkRequests() {
+        if(assignToCollegeWorkRequests==null)
+        {
+            assignToCollegeWorkRequests=new ArrayList<>();
+        }
+        return assignToCollegeWorkRequests;
+    }
+
+    public void setAssignToCollegeWorkRequests(ArrayList<AssignToCollegeWorkRequest> assignToCollegeWorkRequests) {
+        this.assignToCollegeWorkRequests = assignToCollegeWorkRequests;
+    }
 
     public ArrayList<EntryHospitalWorkRequest> getWorkRequestHospital() {
           if(workRequestHospital==null)

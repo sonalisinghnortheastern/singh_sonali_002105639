@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package userinterface.NGO;
+package userinterface.NGORole;
 
 import Business.College.CollegeCounsellor;
 import Business.DB4OUtil.DB4OUtil;
@@ -247,6 +247,7 @@ public class CounsellingAvailableStudentsNGOJPanel extends javax.swing.JPanel {
                             collegeCounsellor.setCounsellorName(cmbCounsellor.getSelectedItem().toString().split(",")[0]);
                             collegeCounsellor.setIsCounsellorAvailable(false);
                             collegeCounsellor.setCounsellorId(Integer.parseInt(cmbCounsellor.getSelectedItem().toString().split(",")[1]));
+                            collegeCounsellor.setCounsellingCompanyName(cmbEnterpriseName.getSelectedItem().toString());
                             assignToCounsellorWorkRequest.setCounsellor(collegeCounsellor);
                             updateCounsellorInfo(Integer.parseInt(cmbCounsellor.getSelectedItem().toString().split(",")[1]));
                             JOptionPane.showMessageDialog(null, "Counsellor Assigned Succesfully");

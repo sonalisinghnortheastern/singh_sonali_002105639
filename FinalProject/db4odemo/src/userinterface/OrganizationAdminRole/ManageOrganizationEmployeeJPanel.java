@@ -30,7 +30,16 @@ import Business.Role.RestaurantAdmin;
 import Business.Role.Role;
 import Business.UserAccount.UserAccount;
 import java.util.Iterator;
+import java.util.Properties;
 import java.util.Random;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.mail.Message;
+import javax.mail.PasswordAuthentication;
+import javax.mail.Session;
+import javax.mail.Transport;
+import javax.mail.internet.InternetAddress;
+import javax.mail.internet.MimeMessage;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
@@ -299,7 +308,11 @@ public class ManageOrganizationEmployeeJPanel extends javax.swing.JPanel {
         }
         catch(Exception ex)
         {
-            throw ex;
+            try {
+                throw ex;
+            } catch (Exception ex1) {
+                Logger.getLogger(ManageOrganizationEmployeeJPanel.class.getName()).log(Level.SEVERE, null, ex1);
+            }
         }
     }//GEN-LAST:event_btnAddItemActionPerformed
 
@@ -379,7 +392,11 @@ public class ManageOrganizationEmployeeJPanel extends javax.swing.JPanel {
         }
         catch(Exception ex)
         {
-            throw ex;
+            try {
+                throw ex;
+            } catch (Exception ex1) {
+                Logger.getLogger(ManageOrganizationEmployeeJPanel.class.getName()).log(Level.SEVERE, null, ex1);
+            }
         }
     }//GEN-LAST:event_btnDeleteEmployeeActionPerformed
     private void populateTable() {
@@ -523,7 +540,7 @@ Enterprise loggedInUserEnterprise=null;
        {
            newRole=new CounsellorRole();
        }
-        if(role.equals("College"))
+        if(role.equals("College Role"))
        {
            newRole=new College();
        }
@@ -569,7 +586,7 @@ Enterprise loggedInUserEnterprise=null;
         return organization;
         
     }
-    private  void addEmployee(boolean update,int deletionIndex) //if update flag true and index where it has to be updated
+    private  void addEmployee(boolean update,int deletionIndex) throws Exception //if update flag true and index where it has to be updated
     {try{
             String organisation = cmbOrganisation. getSelectedItem().toString(); //get selected organization
             String role = cmbRole. getSelectedItem().toString(); //get role from combo box dropdown
@@ -613,6 +630,7 @@ Enterprise loggedInUserEnterprise=null;
             JOptionPane.showMessageDialog(null, "Organisation Employee Added Successfully");
             }
             else{
+                sendEmail(username, password);
                 JOptionPane.showMessageDialog(null, "Organisation Employee Updated Successfully"); //if update flag true
             }
         }
@@ -621,7 +639,7 @@ Enterprise loggedInUserEnterprise=null;
             throw ex;
         }
     }
-     private  int deleteEmployee(boolean update)    //returns index to add method where it has to update
+     private  int deleteEmployee(boolean update) throws Exception    //returns index to add method where it has to update
      {                                             
         try{
             int deletionIndex=0;  //initially set to 0
@@ -682,5 +700,38 @@ Enterprise loggedInUserEnterprise=null;
             throw ex;
         }
      }
+     private void sendEmail(String toEmailAddress,String password) throws Exception
+    {
+       String toEmail=toEmailAddress;
+       String fromEmail="huskydevportal@gmail.com";
+       String fromEmailPassword="Husky@123";
+       String message= "You have been registered on the xyz portal with "+toEmailAddress +"username and "+password +"password";
+       String subject= "Registartion Successfull";
+       Properties properties=new Properties();
+       properties.put("mail.smtp.auth", true);
+       properties.put("mail.smtp.starttls.enable", true);
+       properties.put("mail.smtp.host", "smtp.gmail.com");
+       properties.put("mail.smtp.port", 587);
+        Session session = Session.getDefaultInstance(properties,new javax.mail.Authenticator() {
+        protected PasswordAuthentication getPasswordAuthentication(){
+        return new PasswordAuthentication(fromEmail,fromEmailPassword);
+
+        }
+        });
+
+        try{
+        //
+        MimeMessage mimeMessage = new MimeMessage(session);
+        mimeMessage.setFrom(new InternetAddress(fromEmail));
+        mimeMessage.addRecipient(Message.RecipientType.TO, new InternetAddress(toEmail));
+        mimeMessage.setSubject(subject);
+        mimeMessage.setText(message);
+        Transport.send(mimeMessage);
+        }
+        catch(Exception e){
+            throw  e;
+        }
+
+    }
 }
 

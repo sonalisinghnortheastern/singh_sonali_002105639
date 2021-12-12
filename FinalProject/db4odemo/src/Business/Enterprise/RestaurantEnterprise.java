@@ -15,7 +15,7 @@ import java.util.ArrayList;
 public class RestaurantEnterprise extends Enterprise {
 
     public RestaurantEnterprise(String name) {
-        super(name,"Restaurant");
+        super(name,"Restaurant","");
     }
    public ArrayList<Role> getSupportedRole()
     {

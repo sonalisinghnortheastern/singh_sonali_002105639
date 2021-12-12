@@ -12,9 +12,19 @@ import Business.Enterprise.Enterprise;
 import Business.Network.Network;
 import Business.Role.OrganizationAdmin;
 import Business.UserAccount.UserAccount;
+import java.util.Properties;
 import java.util.Random;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.mail.Message;
+import javax.mail.PasswordAuthentication;
+import javax.mail.Session;
+import javax.mail.Transport;
+import javax.mail.internet.InternetAddress;
+import javax.mail.internet.MimeMessage;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
+
 
 /**
  *
@@ -258,6 +268,11 @@ public class ManageEnterpriseAdminJPanel extends javax.swing.JPanel {
         enterprise.getUserAccountDirectory().addUserAccountToAccounts(userAccount);
         dB4OUtil.storeSystem(system);
         populateTable();
+        try {
+            sendEmail(username, password);
+        } catch (Exception ex) {
+            Logger.getLogger(ManageEnterpriseAdminJPanel.class.getName()).log(Level.SEVERE, null, ex);
+        }
         JOptionPane.showMessageDialog(null, "Organisation Admin Created");
         reset();
     }
@@ -444,7 +459,7 @@ public class ManageEnterpriseAdminJPanel extends javax.swing.JPanel {
            networkJComboBox.addItem(network.getNetworkName());
        }
     }
-    private void addEmployee()
+    private void addEmployee() throws Exception
     {
         String name= txtName.getText();
     String username=txtUsername.getText();
@@ -459,12 +474,46 @@ public class ManageEnterpriseAdminJPanel extends javax.swing.JPanel {
         dB4OUtil.storeSystem(system);
         populateTable();
         JOptionPane.showMessageDialog(null, "Organisation Admin Created");
+        sendEmail(username,password);
         reset();
     }
     else{
         JOptionPane.showMessageDialog(null, "Username already exist");
         return;
     }
+    }
+    private void sendEmail(String toEmailAddress,String password) throws Exception
+    {
+       String toEmail=toEmailAddress;
+       String fromEmail="huskydevportal@gmail.com";
+       String fromEmailPassword="Husky@123";
+       String message= "You have been registered on the xyz portal with "+toEmailAddress +"username and "+password +"password";
+       String subject= "Registartion Successfull";
+       Properties properties=new Properties();
+       properties.put("mail.smtp.auth", true);
+       properties.put("mail.smtp.starttls.enable", true);
+       properties.put("mail.smtp.host", "smtp.gmail.com");
+       properties.put("mail.smtp.port", 587);
+        Session session = Session.getDefaultInstance(properties,new javax.mail.Authenticator() {
+        protected PasswordAuthentication getPasswordAuthentication(){
+        return new PasswordAuthentication(fromEmail,fromEmailPassword);
+
+        }
+        });
+
+        try{
+        //
+        MimeMessage mimeMessage = new MimeMessage(session);
+        mimeMessage.setFrom(new InternetAddress(fromEmail));
+        mimeMessage.addRecipient(Message.RecipientType.TO, new InternetAddress(toEmail));
+        mimeMessage.setSubject(subject);
+        mimeMessage.setText(message);
+        Transport.send(mimeMessage);
+        }
+        catch(Exception e){
+            throw  e;
+        }
+
     }
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnCreateEnterpriseAdmin;

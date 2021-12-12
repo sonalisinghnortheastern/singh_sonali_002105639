@@ -3,31 +3,27 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package userinterface.NGO;
+package userinterface.CounsellorRole;
 
-import Business.DB4OUtil.DB4OUtil;
 import Business.EcoSystem;
 import javax.swing.JPanel;
+
 /**
  *
- * @author Vijay
+ * @author MyPC1
  */
-public class NGOAdminJPanel extends javax.swing.JPanel {
+public class CounsellorAdminWorkAreaJPanel extends javax.swing.JPanel {
 
     /**
-     * Creates new form NGOAdminJPanel
+     * Creates new form CounsellorAdminWorkAreaJPanel
      */
     JPanel userProcessContainer;
     EcoSystem ecosystem;
-    EcoSystem system;
-    private DB4OUtil dB4OUtil = DB4OUtil.getInstance();
-
-    public NGOAdminJPanel(JPanel userProcessContainer,EcoSystem ecosystem) {
+    public CounsellorAdminWorkAreaJPanel(JPanel userProcessContainer,EcoSystem ecosystem) {
         initComponents();
-         this.userProcessContainer=userProcessContainer;
+        this.userProcessContainer=userProcessContainer;
         this.ecosystem=ecosystem;
     }
-
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -42,8 +38,6 @@ public class NGOAdminJPanel extends javax.swing.JPanel {
         btnManageMenu = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
         btnManageMenu1 = new javax.swing.JButton();
-        btnManageMenu2 = new javax.swing.JButton();
-        btnManageMenu3 = new javax.swing.JButton();
         jPanel2 = new javax.swing.JPanel();
         jLabel2 = new javax.swing.JLabel();
 
@@ -52,7 +46,7 @@ public class NGOAdminJPanel extends javax.swing.JPanel {
         jPanel1.setBackground(new java.awt.Color(240, 178, 62));
 
         btnManageMenu.setFont(new java.awt.Font("Comic Sans MS", 1, 14)); // NOI18N
-        btnManageMenu.setText("NEW STUDENT INTAKE REQUESTS");
+        btnManageMenu.setText("VIEW HISTORY");
         btnManageMenu.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnManageMenuActionPerformed(evt);
@@ -63,26 +57,10 @@ public class NGOAdminJPanel extends javax.swing.JPanel {
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Icons/LogoutIcon.png"))); // NOI18N
 
         btnManageMenu1.setFont(new java.awt.Font("Comic Sans MS", 1, 14)); // NOI18N
-        btnManageMenu1.setText("VIEW ALL STUDENTS");
+        btnManageMenu1.setText("NEW COUNSELLING REQUEST");
         btnManageMenu1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnManageMenu1ActionPerformed(evt);
-            }
-        });
-
-        btnManageMenu2.setFont(new java.awt.Font("Comic Sans MS", 1, 14)); // NOI18N
-        btnManageMenu2.setText("REQUEST COUNSELLING SERVICE");
-        btnManageMenu2.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnManageMenu2ActionPerformed(evt);
-            }
-        });
-
-        btnManageMenu3.setFont(new java.awt.Font("Comic Sans MS", 1, 14)); // NOI18N
-        btnManageMenu3.setText("SEND TO HOSPITAL");
-        btnManageMenu3.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnManageMenu3ActionPerformed(evt);
             }
         });
 
@@ -90,27 +68,26 @@ public class NGOAdminJPanel extends javax.swing.JPanel {
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(btnManageMenu, javax.swing.GroupLayout.DEFAULT_SIZE, 319, Short.MAX_VALUE)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addComponent(jLabel1)
-                .addGap(0, 0, Short.MAX_VALUE))
-            .addComponent(btnManageMenu1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addComponent(btnManageMenu2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addComponent(btnManageMenu3, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 319, Short.MAX_VALUE)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addComponent(jLabel1)
+                        .addGap(0, 0, Short.MAX_VALUE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(btnManageMenu1, javax.swing.GroupLayout.PREFERRED_SIZE, 259, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(btnManageMenu, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap())
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addComponent(jLabel1)
-                .addGap(114, 114, 114)
-                .addComponent(btnManageMenu)
-                .addGap(31, 31, 31)
+                .addGap(153, 153, 153)
                 .addComponent(btnManageMenu1)
-                .addGap(42, 42, 42)
-                .addComponent(btnManageMenu2)
-                .addGap(34, 34, 34)
-                .addComponent(btnManageMenu3)
-                .addContainerGap(134, Short.MAX_VALUE))
+                .addGap(60, 60, 60)
+                .addComponent(btnManageMenu)
+                .addContainerGap(206, Short.MAX_VALUE))
         );
 
         jSplitPane.setLeftComponent(jPanel1);
@@ -127,7 +104,7 @@ public class NGOAdminJPanel extends javax.swing.JPanel {
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, 518, Short.MAX_VALUE)
+            .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, 524, Short.MAX_VALUE)
         );
 
         jSplitPane.setRightComponent(jPanel2);
@@ -136,32 +113,22 @@ public class NGOAdminJPanel extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnManageMenuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnManageMenuActionPerformed
-        AdmitPersonToNGOJPanel admitPersonToNGO =new AdmitPersonToNGOJPanel(ecosystem);
-        jSplitPane.setRightComponent(admitPersonToNGO);
+
+//       ManageCollegeJPanel manageCollegeJPanel =new ManageCollegeJPanel(ecosystem);
+//       jSplitPane.setRightComponent(manageCollegeJPanel); 
+    
     }//GEN-LAST:event_btnManageMenuActionPerformed
 
     private void btnManageMenu1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnManageMenu1ActionPerformed
-        AllStudentNGOJPanel allStudentNGOJPanel =new AllStudentNGOJPanel(ecosystem);
-        jSplitPane.setRightComponent(allStudentNGOJPanel);
-    }//GEN-LAST:event_btnManageMenu1ActionPerformed
-
-    private void btnManageMenu2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnManageMenu2ActionPerformed
-       CounsellingAvailableStudentsNGOJPanel counsellingAvailableStudentsNGOJPanel =new CounsellingAvailableStudentsNGOJPanel(ecosystem);
-        jSplitPane.setRightComponent(counsellingAvailableStudentsNGOJPanel);
-    }//GEN-LAST:event_btnManageMenu2ActionPerformed
-
-    private void btnManageMenu3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnManageMenu3ActionPerformed
         // TODO add your handling code here:
-          SendPersonForMedicalCheckup medicalCheck =new SendPersonForMedicalCheckup(ecosystem);
-        jSplitPane.setRightComponent(medicalCheck);
-    }//GEN-LAST:event_btnManageMenu3ActionPerformed
-
+         CounsellorWorkAreaJPanel manageCounsellorWorkAreaJPanel =new CounsellorWorkAreaJPanel(ecosystem);
+       jSplitPane.setRightComponent(manageCounsellorWorkAreaJPanel); 
+    }//GEN-LAST:event_btnManageMenu1ActionPerformed
+   
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnManageMenu;
     private javax.swing.JButton btnManageMenu1;
-    private javax.swing.JButton btnManageMenu2;
-    private javax.swing.JButton btnManageMenu3;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JPanel jPanel1;

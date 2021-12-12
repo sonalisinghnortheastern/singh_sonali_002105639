@@ -5,8 +5,17 @@
  */
 package userinterface.College;
 
+import Business.Customer.GeneralInformation;
+import Business.DB4OUtil.DB4OUtil;
 import Business.EcoSystem;
+import Business.Enterprise.Enterprise;
+import Business.Network.Network;
+import Business.Organization;
+import Business.UserAccount.UserAccount;
+import Business.WorkQueue.AssignToCollegeWorkRequest;
+import java.util.ArrayList;
 import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
 
 /**
  *
@@ -17,11 +26,13 @@ public class ManageCollegeJPanel extends javax.swing.JPanel {
     /**
      * Creates new form ManageCollegeJPanel
      */
-    private final EcoSystem system;  
+    private final EcoSystem system;
+    private DB4OUtil dB4OUtil = DB4OUtil.getInstance();
     public ManageCollegeJPanel(EcoSystem system) {
         initComponents();
          this.system=system;
         populateTable();
+        tabbedPanel.setVisible(false);
         
     }
 
@@ -39,26 +50,43 @@ public class ManageCollegeJPanel extends javax.swing.JPanel {
         jPanel1 = new javax.swing.JPanel();
         jPanel2 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
-        jPanel3 = new javax.swing.JPanel();
-        lblAvailablity = new javax.swing.JLabel();
-        lblPrice = new javax.swing.JLabel();
-        btnSubmit = new javax.swing.JButton();
-        txtAge = new javax.swing.JTextField();
-        lblAvailablity1 = new javax.swing.JLabel();
-        lblAvailablity3 = new javax.swing.JLabel();
-        txtStudentName = new javax.swing.JTextField();
-        yesRadioButton = new javax.swing.JRadioButton();
-        noRadioButton = new javax.swing.JRadioButton();
-        jRadioButton3 = new javax.swing.JRadioButton();
-        jRadioButton4 = new javax.swing.JRadioButton();
-        lblPrice1 = new javax.swing.JLabel();
-        txtNGOName = new javax.swing.JTextField();
-        lblAvailablity4 = new javax.swing.JLabel();
-        txtUsername1 = new javax.swing.JTextField();
-        lblItem = new javax.swing.JLabel();
-        txtCollegeName = new javax.swing.JTextField();
         jScrollPane1 = new javax.swing.JScrollPane();
         jRegisterTable = new javax.swing.JTable();
+        jPanel3 = new javax.swing.JPanel();
+        jComboBox1 = new javax.swing.JComboBox<>();
+        jLabel2 = new javax.swing.JLabel();
+        btnAcceptRequest = new javax.swing.JButton();
+        tabbedPanel = new javax.swing.JTabbedPane();
+        familyBackPanel = new javax.swing.JPanel();
+        jLabel3 = new javax.swing.JLabel();
+        rbNuclear = new javax.swing.JRadioButton();
+        rbSingleParent = new javax.swing.JRadioButton();
+        rbExtended = new javax.swing.JRadioButton();
+        criminalPanel = new javax.swing.JPanel();
+        jLabel6 = new javax.swing.JLabel();
+        rbConvictedNo = new javax.swing.JRadioButton();
+        rbConvictedYes = new javax.swing.JRadioButton();
+        drugPanel = new javax.swing.JPanel();
+        jLabel4 = new javax.swing.JLabel();
+        rbDrugsYes = new javax.swing.JRadioButton();
+        rbDrugsNo = new javax.swing.JRadioButton();
+        guardPanel = new javax.swing.JPanel();
+        jLabel11 = new javax.swing.JLabel();
+        guardYes = new javax.swing.JRadioButton();
+        guardlNo = new javax.swing.JRadioButton();
+        jLabel17 = new javax.swing.JLabel();
+        techNo = new javax.swing.JRadioButton();
+        techYes = new javax.swing.JRadioButton();
+        jLabel9 = new javax.swing.JLabel();
+        rbComputerNo1 = new javax.swing.JRadioButton();
+        rbComputerYes1 = new javax.swing.JRadioButton();
+        physicalPanel = new javax.swing.JPanel();
+        jLabel10 = new javax.swing.JLabel();
+        isPhysicalYes = new javax.swing.JRadioButton();
+        isPhysicalNo = new javax.swing.JRadioButton();
+        jLabel15 = new javax.swing.JLabel();
+        medicalYes = new javax.swing.JRadioButton();
+        medicalNo = new javax.swing.JRadioButton();
 
         jPanel2.setBackground(new java.awt.Color(0, 102, 102));
 
@@ -66,170 +94,9 @@ public class ManageCollegeJPanel extends javax.swing.JPanel {
         jLabel1.setFont(new java.awt.Font("Comic Sans MS", 1, 18)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(255, 255, 255));
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel1.setText("NEW ADMIT REQUEST");
         jLabel1.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         jLabel1.setOpaque(true);
-
-        jPanel3.setBackground(new java.awt.Color(0, 102, 102));
-
-        lblAvailablity.setFont(new java.awt.Font("Comic Sans MS", 1, 14)); // NOI18N
-        lblAvailablity.setForeground(new java.awt.Color(255, 255, 255));
-        lblAvailablity.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        lblAvailablity.setText("IS EDUCATED:");
-        lblAvailablity.setFocusable(false);
-        lblAvailablity.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-
-        lblPrice.setFont(new java.awt.Font("Comic Sans MS", 1, 14)); // NOI18N
-        lblPrice.setForeground(new java.awt.Color(255, 255, 255));
-        lblPrice.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        lblPrice.setText("STUDENT NAME:");
-        lblPrice.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-
-        btnSubmit.setBackground(new java.awt.Color(240, 178, 62));
-        btnSubmit.setFont(new java.awt.Font("Arial Black", 1, 12)); // NOI18N
-        btnSubmit.setForeground(new java.awt.Color(255, 255, 255));
-        btnSubmit.setText("SUBMIT");
-        btnSubmit.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        btnSubmit.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnSubmitActionPerformed(evt);
-            }
-        });
-
-        lblAvailablity1.setFont(new java.awt.Font("Comic Sans MS", 1, 14)); // NOI18N
-        lblAvailablity1.setForeground(new java.awt.Color(255, 255, 255));
-        lblAvailablity1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        lblAvailablity1.setText("AGE:");
-        lblAvailablity1.setFocusable(false);
-        lblAvailablity1.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-
-        lblAvailablity3.setFont(new java.awt.Font("Comic Sans MS", 1, 14)); // NOI18N
-        lblAvailablity3.setForeground(new java.awt.Color(255, 255, 255));
-        lblAvailablity3.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        lblAvailablity3.setText("COUNSELLOR:");
-        lblAvailablity3.setFocusable(false);
-        lblAvailablity3.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-
-        txtStudentName.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtStudentNameActionPerformed(evt);
-            }
-        });
-
-        buttonGroup1.add(yesRadioButton);
-        yesRadioButton.setText("YES");
-
-        buttonGroup1.add(noRadioButton);
-        noRadioButton.setText("NO");
-
-        jRadioButton3.setText("FEMALE");
-
-        jRadioButton4.setText("MALE");
-
-        lblPrice1.setFont(new java.awt.Font("Comic Sans MS", 1, 14)); // NOI18N
-        lblPrice1.setForeground(new java.awt.Color(255, 255, 255));
-        lblPrice1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        lblPrice1.setText("NGO NAME:");
-        lblPrice1.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-
-        txtNGOName.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtNGONameActionPerformed(evt);
-            }
-        });
-
-        lblAvailablity4.setFont(new java.awt.Font("Comic Sans MS", 1, 14)); // NOI18N
-        lblAvailablity4.setForeground(new java.awt.Color(255, 255, 255));
-        lblAvailablity4.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        lblAvailablity4.setText("GENDER:");
-        lblAvailablity4.setFocusable(false);
-        lblAvailablity4.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-
-        lblItem.setFont(new java.awt.Font("Comic Sans MS", 1, 14)); // NOI18N
-        lblItem.setForeground(new java.awt.Color(255, 255, 255));
-        lblItem.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        lblItem.setText("COLLEGE NAME:");
-        lblItem.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-
-        javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
-        jPanel3.setLayout(jPanel3Layout);
-        jPanel3Layout.setHorizontalGroup(
-            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel3Layout.createSequentialGroup()
-                .addGap(77, 77, 77)
-                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(lblAvailablity4, javax.swing.GroupLayout.PREFERRED_SIZE, 134, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(lblAvailablity, javax.swing.GroupLayout.PREFERRED_SIZE, 134, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(lblAvailablity1, javax.swing.GroupLayout.PREFERRED_SIZE, 134, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(lblPrice, javax.swing.GroupLayout.PREFERRED_SIZE, 134, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(lblPrice1, javax.swing.GroupLayout.PREFERRED_SIZE, 134, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(lblAvailablity3, javax.swing.GroupLayout.PREFERRED_SIZE, 134, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(lblItem, javax.swing.GroupLayout.Alignment.LEADING))
-                .addGap(93, 93, 93)
-                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel3Layout.createSequentialGroup()
-                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(btnSubmit, javax.swing.GroupLayout.PREFERRED_SIZE, 134, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                .addComponent(txtStudentName, javax.swing.GroupLayout.DEFAULT_SIZE, 142, Short.MAX_VALUE)
-                                .addComponent(txtNGOName))
-                            .addComponent(txtUsername1, javax.swing.GroupLayout.PREFERRED_SIZE, 142, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(txtAge, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGroup(jPanel3Layout.createSequentialGroup()
-                                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jRadioButton3)
-                                    .addComponent(yesRadioButton))
-                                .addGap(18, 18, 18)
-                                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(noRadioButton)
-                                    .addComponent(jRadioButton4))))
-                        .addGap(0, 26, Short.MAX_VALUE))
-                    .addComponent(txtCollegeName))
-                .addContainerGap())
-        );
-        jPanel3Layout.setVerticalGroup(
-            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel3Layout.createSequentialGroup()
-                .addContainerGap(78, Short.MAX_VALUE)
-                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(lblItem, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(txtCollegeName, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
-                        .addComponent(lblPrice, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(27, 27, 27))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
-                        .addComponent(txtStudentName, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(39, 39, 39)))
-                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(lblPrice1, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(txtNGOName, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel3Layout.createSequentialGroup()
-                        .addComponent(lblAvailablity, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(lblAvailablity1, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(txtAge, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(18, 18, 18)
-                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(jPanel3Layout.createSequentialGroup()
-                                .addComponent(lblAvailablity4, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(18, 18, 18)
-                                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                    .addComponent(lblAvailablity3, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(txtUsername1, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addGap(28, 28, 28)
-                                .addComponent(btnSubmit))
-                            .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                .addComponent(jRadioButton3)
-                                .addComponent(jRadioButton4))))
-                    .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(yesRadioButton)
-                        .addComponent(noRadioButton)))
-                .addGap(25, 25, 25))
-        );
 
         jRegisterTable.setBorder(javax.swing.BorderFactory.createEtchedBorder());
         jRegisterTable.setFont(new java.awt.Font("Arial Black", 1, 14)); // NOI18N
@@ -239,14 +106,14 @@ public class ManageCollegeJPanel extends javax.swing.JPanel {
 
             },
             new String [] {
-                "Default", "COLLEGE", "STUDENT", "NGO", "HIGHEST EDUCATION", "GENDER", "AGE", "COUNSELLOR"
+                "Default", "STUDENT NAME", "NGO", "HIGHEST EDUCATION", "GENDER", "AGE", "COUNSELLOR"
             }
         ) {
             Class[] types = new Class [] {
-                java.lang.Object.class, java.lang.String.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.String.class, java.lang.String.class, java.lang.Object.class
+                java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.String.class, java.lang.String.class, java.lang.Object.class
             };
             boolean[] canEdit = new boolean [] {
-                false, false, false, false, false, false, false, true
+                false, false, false, false, false, false, true
             };
 
             public Class getColumnClass(int columnIndex) {
@@ -267,6 +134,307 @@ public class ManageCollegeJPanel extends javax.swing.JPanel {
         });
         jScrollPane1.setViewportView(jRegisterTable);
 
+        jPanel3.setBackground(new java.awt.Color(0, 102, 102));
+
+        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "ACCEPT", "REJECT" }));
+
+        jLabel2.setText("STATUS :");
+
+        btnAcceptRequest.setBackground(new java.awt.Color(240, 178, 62));
+        btnAcceptRequest.setFont(new java.awt.Font("Arial Black", 1, 12)); // NOI18N
+        btnAcceptRequest.setForeground(new java.awt.Color(255, 255, 255));
+        btnAcceptRequest.setText("SUBMIT");
+        btnAcceptRequest.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        btnAcceptRequest.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnAcceptRequestActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
+        jPanel3.setLayout(jPanel3Layout);
+        jPanel3Layout.setHorizontalGroup(
+            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel3Layout.createSequentialGroup()
+                .addContainerGap(58, Short.MAX_VALUE)
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
+                        .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(41, 41, 41)
+                        .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, 119, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(29, 29, 29))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
+                        .addComponent(btnAcceptRequest)
+                        .addGap(124, 124, 124))))
+        );
+        jPanel3Layout.setVerticalGroup(
+            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel3Layout.createSequentialGroup()
+                .addGap(21, 21, 21)
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addComponent(btnAcceptRequest)
+                .addContainerGap(37, Short.MAX_VALUE))
+        );
+
+        familyBackPanel.setBackground(new java.awt.Color(255, 255, 255));
+
+        jLabel3.setText("What Type of family you are in: ");
+
+        rbNuclear.setText("Nuclear");
+        rbNuclear.setEnabled(false);
+
+        rbSingleParent.setText("Single Parent");
+        rbSingleParent.setEnabled(false);
+
+        rbExtended.setText("Extended");
+        rbExtended.setEnabled(false);
+
+        javax.swing.GroupLayout familyBackPanelLayout = new javax.swing.GroupLayout(familyBackPanel);
+        familyBackPanel.setLayout(familyBackPanelLayout);
+        familyBackPanelLayout.setHorizontalGroup(
+            familyBackPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(familyBackPanelLayout.createSequentialGroup()
+                .addGap(20, 20, 20)
+                .addComponent(jLabel3)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(rbNuclear)
+                .addGap(50, 50, 50)
+                .addComponent(rbSingleParent)
+                .addGap(38, 38, 38)
+                .addComponent(rbExtended)
+                .addContainerGap())
+        );
+        familyBackPanelLayout.setVerticalGroup(
+            familyBackPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(familyBackPanelLayout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(familyBackPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel3)
+                    .addComponent(rbNuclear)
+                    .addComponent(rbSingleParent)
+                    .addComponent(rbExtended))
+                .addContainerGap(152, Short.MAX_VALUE))
+        );
+
+        tabbedPanel.addTab("Family Background Information", familyBackPanel);
+
+        criminalPanel.setBackground(new java.awt.Color(255, 255, 255));
+
+        jLabel6.setText("Do you ever convicted for a crime:");
+
+        rbConvictedNo.setText("No");
+        rbConvictedNo.setEnabled(false);
+
+        rbConvictedYes.setText("Yes");
+        rbConvictedYes.setEnabled(false);
+
+        javax.swing.GroupLayout criminalPanelLayout = new javax.swing.GroupLayout(criminalPanel);
+        criminalPanel.setLayout(criminalPanelLayout);
+        criminalPanelLayout.setHorizontalGroup(
+            criminalPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(criminalPanelLayout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(criminalPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel6)
+                    .addGroup(criminalPanelLayout.createSequentialGroup()
+                        .addComponent(rbConvictedYes)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(rbConvictedNo)))
+                .addContainerGap(307, Short.MAX_VALUE))
+        );
+        criminalPanelLayout.setVerticalGroup(
+            criminalPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(criminalPanelLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jLabel6)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(criminalPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(rbConvictedYes)
+                    .addComponent(rbConvictedNo))
+                .addContainerGap(132, Short.MAX_VALUE))
+        );
+
+        tabbedPanel.addTab("Criminal Information", criminalPanel);
+
+        drugPanel.setBackground(new java.awt.Color(255, 255, 255));
+
+        jLabel4.setText("Do you use drugs:");
+
+        rbDrugsYes.setText("Yes");
+        rbDrugsYes.setEnabled(false);
+
+        rbDrugsNo.setText("No");
+        rbDrugsNo.setEnabled(false);
+
+        javax.swing.GroupLayout drugPanelLayout = new javax.swing.GroupLayout(drugPanel);
+        drugPanel.setLayout(drugPanelLayout);
+        drugPanelLayout.setHorizontalGroup(
+            drugPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(drugPanelLayout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(drugPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel4)
+                    .addGroup(drugPanelLayout.createSequentialGroup()
+                        .addComponent(rbDrugsYes)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(rbDrugsNo)))
+                .addContainerGap(387, Short.MAX_VALUE))
+        );
+        drugPanelLayout.setVerticalGroup(
+            drugPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(drugPanelLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jLabel4)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(drugPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(rbDrugsYes)
+                    .addComponent(rbDrugsNo))
+                .addGap(205, 205, 205))
+        );
+
+        tabbedPanel.addTab("DrugAbuse Information", drugPanel);
+
+        guardPanel.setBackground(new java.awt.Color(255, 255, 255));
+
+        jLabel11.setText("Do you have any previous backlogs :");
+
+        guardYes.setText("Yes");
+        guardYes.setEnabled(false);
+
+        guardlNo.setText("No");
+        guardlNo.setEnabled(false);
+
+        jLabel17.setText("Do you have any previous technical knowldege ?");
+
+        techNo.setText("No");
+        techNo.setEnabled(false);
+
+        techYes.setText("Yes");
+        techYes.setEnabled(false);
+
+        jLabel9.setText("Can you use a computer ?");
+
+        rbComputerNo1.setText("No");
+        rbComputerNo1.setEnabled(false);
+
+        rbComputerYes1.setText("Yes");
+        rbComputerYes1.setEnabled(false);
+
+        javax.swing.GroupLayout guardPanelLayout = new javax.swing.GroupLayout(guardPanel);
+        guardPanel.setLayout(guardPanelLayout);
+        guardPanelLayout.setHorizontalGroup(
+            guardPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(guardPanelLayout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(guardPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(guardPanelLayout.createSequentialGroup()
+                        .addGroup(guardPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel9)
+                            .addGroup(guardPanelLayout.createSequentialGroup()
+                                .addComponent(rbComputerYes1)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(rbComputerNo1)))
+                        .addGap(0, 0, Short.MAX_VALUE))
+                    .addGroup(guardPanelLayout.createSequentialGroup()
+                        .addGroup(guardPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(guardPanelLayout.createSequentialGroup()
+                                .addComponent(techYes)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(techNo))
+                            .addComponent(jLabel17)
+                            .addComponent(jLabel11)
+                            .addGroup(guardPanelLayout.createSequentialGroup()
+                                .addComponent(guardYes)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(guardlNo)))
+                        .addContainerGap(239, Short.MAX_VALUE))))
+        );
+        guardPanelLayout.setVerticalGroup(
+            guardPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(guardPanelLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jLabel11)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(guardPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(guardYes)
+                    .addComponent(guardlNo))
+                .addGap(18, 18, 18)
+                .addComponent(jLabel9)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(guardPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(rbComputerYes1)
+                    .addComponent(rbComputerNo1))
+                .addGap(19, 19, 19)
+                .addComponent(jLabel17)
+                .addGap(5, 5, 5)
+                .addGroup(guardPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(techYes)
+                    .addComponent(techNo))
+                .addContainerGap(14, Short.MAX_VALUE))
+        );
+
+        tabbedPanel.addTab("Previous Experience", guardPanel);
+
+        physicalPanel.setBackground(new java.awt.Color(255, 255, 255));
+
+        jLabel10.setText("Are you physically active:");
+
+        isPhysicalYes.setText("Yes");
+        isPhysicalYes.setEnabled(false);
+
+        isPhysicalNo.setText("No");
+        isPhysicalNo.setEnabled(false);
+
+        jLabel15.setText("Do you have any medical condition ?");
+
+        medicalYes.setText("Yes");
+        medicalYes.setEnabled(false);
+
+        medicalNo.setText("No");
+        medicalNo.setEnabled(false);
+
+        javax.swing.GroupLayout physicalPanelLayout = new javax.swing.GroupLayout(physicalPanel);
+        physicalPanel.setLayout(physicalPanelLayout);
+        physicalPanelLayout.setHorizontalGroup(
+            physicalPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(physicalPanelLayout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(physicalPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(physicalPanelLayout.createSequentialGroup()
+                        .addComponent(medicalYes)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(medicalNo))
+                    .addComponent(jLabel10)
+                    .addGroup(physicalPanelLayout.createSequentialGroup()
+                        .addComponent(isPhysicalYes)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(isPhysicalNo))
+                    .addComponent(jLabel15))
+                .addContainerGap(297, Short.MAX_VALUE))
+        );
+        physicalPanelLayout.setVerticalGroup(
+            physicalPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(physicalPanelLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jLabel10)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(physicalPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(isPhysicalYes)
+                    .addComponent(isPhysicalNo))
+                .addGap(18, 18, 18)
+                .addComponent(jLabel15)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(physicalPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(medicalYes)
+                    .addComponent(medicalNo))
+                .addContainerGap(70, Short.MAX_VALUE))
+        );
+
+        tabbedPanel.addTab("Physical Information", physicalPanel);
+
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
@@ -274,9 +442,13 @@ public class ManageCollegeJPanel extends javax.swing.JPanel {
             .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, 1178, Short.MAX_VALUE)
             .addComponent(jScrollPane1)
             .addGroup(jPanel2Layout.createSequentialGroup()
-                .addGap(219, 219, 219)
-                .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(222, 222, 222)
+                .addComponent(tabbedPanel, javax.swing.GroupLayout.PREFERRED_SIZE, 494, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(286, 286, 286))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -285,30 +457,31 @@ public class ManageCollegeJPanel extends javax.swing.JPanel {
                 .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 165, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(73, 73, 73)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(58, 58, 58))
+                .addGap(62, 62, 62)
+                .addComponent(tabbedPanel, javax.swing.GroupLayout.PREFERRED_SIZE, 226, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(221, 221, 221))
         );
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 1178, Short.MAX_VALUE)
+            .addGap(0, 1198, Short.MAX_VALUE)
             .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(jPanel1Layout.createSequentialGroup()
-                    .addGap(0, 0, Short.MAX_VALUE)
+                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                    .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGap(0, 0, Short.MAX_VALUE)))
+                    .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGap(0, 872, Short.MAX_VALUE)
             .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                     .addGap(0, 0, Short.MAX_VALUE)
-                    .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGap(0, 0, Short.MAX_VALUE)))
+                    .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
@@ -333,82 +506,226 @@ public class ManageCollegeJPanel extends javax.swing.JPanel {
         );
     }// </editor-fold>//GEN-END:initComponents
 
-    private void btnSubmitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSubmitActionPerformed
-        
-            if(yesRadioButton.isSelected()){
-                String highestEducation = JOptionPane.showInputDialog("Kindly fill the highest education");
-            }
-            
-                
-                
-                
-                
-//        try{
-        
-        
-        
-            //            addEmployee(false,-1);
-            //        }
-        //        catch(Exception ex)
-        //        {
-            //            throw ex;
-            //        }
-    }//GEN-LAST:event_btnSubmitActionPerformed
+    private void btnAcceptRequestActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAcceptRequestActionPerformed
+
+        int index = jRegisterTable.getSelectedRow();
+
+        if(index<0){
+            JOptionPane.showMessageDialog(null, "Kindly select a row to accept/reject the child");
+            return;
+        }
+
+        AssignToCollegeWorkRequest assignToCollegeWorkRequest=(AssignToCollegeWorkRequest)jRegisterTable.getModel().getValueAt(index, 0);
+        int comboIndex = jComboBox1.getSelectedIndex();
+        if(comboIndex==0){
+            assignToCollegeWorkRequest.setAcceptedByCollege(true);
+        }
+        else{
+            assignToCollegeWorkRequest.setAcceptedByCollege(false);
+            String response = JOptionPane.showInputDialog("Kindly enter a reason");
+            assignToCollegeWorkRequest.setRejectionMessageByCollege(response);
+        }
+        populateTable();
+        JOptionPane.showMessageDialog(null, "Status Updated");
+        dB4OUtil.storeSystem(system);
+        tabbedPanel.setVisible(false);
+
+    }//GEN-LAST:event_btnAcceptRequestActionPerformed
 
     private void jRegisterTableMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jRegisterTableMouseClicked
-        //        try{
-            //            int rowNumber=jRegisterTable.getSelectedRow();
-            //            cmbOrganisation.setSelectedItem(jRegisterTable.getModel().getValueAt(rowNumber, 1).toString());
-            //            cmbRole.setSelectedItem(jRegisterTable.getModel().getValueAt(rowNumber, 2));
-            //            txtEmployeeName.setText(jRegisterTable.getModel().getValueAt(rowNumber, 3).toString());
-            //            txtUsername.setText(jRegisterTable.getModel().getValueAt(rowNumber, 4).toString());
-            //            txtPassword.setText(jRegisterTable.getModel().getValueAt(rowNumber, 5).toString());
-            //
-            //        }
-        //        catch(Exception e)
-        //        {
-            //            throw  e;
-            //        }
+        try{
+            int index = jRegisterTable.getSelectedRow();
+            if(index<0){
+                JOptionPane.showMessageDialog(null, "Kindly select a row to accept/reject the child");
+                return;
+            }
+            populateDetailedView();
+            tabbedPanel.setVisible(true);
+        
+        }
+        catch(Exception ex)
+        {
+            throw ex;
+        }
     }//GEN-LAST:event_jRegisterTableMouseClicked
-
-    private void txtStudentNameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtStudentNameActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txtStudentNameActionPerformed
-
-    private void txtNGONameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtNGONameActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txtNGONameActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton btnSubmit;
+    private javax.swing.JButton btnAcceptRequest;
     private javax.swing.ButtonGroup buttonGroup1;
     private javax.swing.ButtonGroup buttonGroup2;
+    private javax.swing.JPanel criminalPanel;
+    private javax.swing.JPanel drugPanel;
+    private javax.swing.JPanel familyBackPanel;
+    private javax.swing.JPanel guardPanel;
+    private javax.swing.JRadioButton guardYes;
+    private javax.swing.JRadioButton guardlNo;
+    private javax.swing.JRadioButton isPhysicalNo;
+    private javax.swing.JRadioButton isPhysicalYes;
+    private javax.swing.JComboBox<String> jComboBox1;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel10;
+    private javax.swing.JLabel jLabel11;
+    private javax.swing.JLabel jLabel15;
+    private javax.swing.JLabel jLabel17;
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel6;
+    private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
-    private javax.swing.JRadioButton jRadioButton3;
-    private javax.swing.JRadioButton jRadioButton4;
     private javax.swing.JTable jRegisterTable;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JLabel lblAvailablity;
-    private javax.swing.JLabel lblAvailablity1;
-    private javax.swing.JLabel lblAvailablity3;
-    private javax.swing.JLabel lblAvailablity4;
-    private javax.swing.JLabel lblItem;
-    private javax.swing.JLabel lblPrice;
-    private javax.swing.JLabel lblPrice1;
-    private javax.swing.JRadioButton noRadioButton;
-    private javax.swing.JTextField txtAge;
-    private javax.swing.JTextField txtCollegeName;
-    private javax.swing.JTextField txtNGOName;
-    private javax.swing.JTextField txtStudentName;
-    private javax.swing.JTextField txtUsername1;
-    private javax.swing.JRadioButton yesRadioButton;
+    private javax.swing.JRadioButton medicalNo;
+    private javax.swing.JRadioButton medicalYes;
+    private javax.swing.JPanel physicalPanel;
+    private javax.swing.JRadioButton rbComputerNo1;
+    private javax.swing.JRadioButton rbComputerYes1;
+    private javax.swing.JRadioButton rbConvictedNo;
+    private javax.swing.JRadioButton rbConvictedYes;
+    private javax.swing.JRadioButton rbDrugsNo;
+    private javax.swing.JRadioButton rbDrugsYes;
+    private javax.swing.JRadioButton rbExtended;
+    private javax.swing.JRadioButton rbNuclear;
+    private javax.swing.JRadioButton rbSingleParent;
+    private javax.swing.JTabbedPane tabbedPanel;
+    private javax.swing.JRadioButton techNo;
+    private javax.swing.JRadioButton techYes;
     // End of variables declaration//GEN-END:variables
 
     private void populateTable() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        ArrayList<AssignToCollegeWorkRequest> finalWorkRequests=new ArrayList<>();
+        int loggedinID = system.getLogInUser().getLogInId();
+    for(AssignToCollegeWorkRequest workRequest: system.getWorkQueue().getAssignToCollegeWorkRequests()){
+        for(Network network:system.getNetworks())
+        {
+            for(Enterprise enterprise : network.getEnterpriseDirectory().getEnterprises())
+            {
+                if(enterprise.getEnterpriseType().equals("College"))
+                {
+                    for(Organization organisation : enterprise.getOrganizationDirectory().getOrganisationList())
+                    {
+                       for(UserAccount userAccount : organisation.getUserAccountDirectory().getUserAccountList())
+                       {
+                           if(userAccount.getUniqueId()== loggedinID)
+                           {
+                              if(workRequest.getCollegeName().equals(enterprise.getName()))
+                              {
+                                  finalWorkRequests.add(workRequest);
+                              }
+                           }
+                       }
+                    }
+                }
+            }
+        }
+        DefaultTableModel model = (DefaultTableModel) jRegisterTable.getModel();
+        model.setRowCount(0);
+        jRegisterTable.getColumnModel().getColumn(0).setMinWidth(0);
+        jRegisterTable.getColumnModel().getColumn(0).setMaxWidth(0);
+        for(AssignToCollegeWorkRequest requests : finalWorkRequests)
+        {
+            if(!requests.isAcceptedByCollege() && requests.getRejectionMessageByCollege()== null)
+            {
+                Object[] row = new Object[7];
+                row[0]=requests;
+                row[1] = requests.getAssignToCounsellorWorkRequest().getEntryChildWorkRequest().getPerson().getName();
+                row[2] = requests.getAssignToCounsellorWorkRequest().getEntryChildWorkRequest().getNgoName();
+                row[3] = requests.getAssignToCounsellorWorkRequest().getEntryChildWorkRequest().getPerson().getEducation();
+                row[4] = requests.getAssignToCounsellorWorkRequest().getEntryChildWorkRequest().getPerson().getGender();
+                row[5] = requests.getAssignToCounsellorWorkRequest().getEntryChildWorkRequest().getPerson().getAge();
+                row[6] = requests.getAssignToCounsellorWorkRequest().getCounsellor().getCounsellorName();
+                model.addRow(row);
+            }
+        }
+    }
+  }
+    private void populateDetailedView()
+    {
+        int rowNumber=jRegisterTable.getSelectedRow();
+        if(rowNumber<0)
+        {
+            JOptionPane.showMessageDialog(null, "Please select a row");
+            return;
+        }
+        AssignToCollegeWorkRequest assignToCollegeWorkRequest= (AssignToCollegeWorkRequest) jRegisterTable.getModel().getValueAt(rowNumber, 0);
+        int uniqueId=assignToCollegeWorkRequest.getAssignToCounsellorWorkRequest().getEntryChildWorkRequest().getPerson().getLoginId();
+        for(AssignToCollegeWorkRequest assignToCollegeWorkRequest1:system.getWorkQueue().getAssignToCollegeWorkRequests())
+        {
+            if(assignToCollegeWorkRequest1.getAssignToCounsellorWorkRequest().getEntryChildWorkRequest().getPerson().getLoginId()==uniqueId)
+            {
+               GeneralInformation generalInformation=assignToCollegeWorkRequest.getAssignToCounsellorWorkRequest().getGeneralInformation();
+               if(generalInformation.getFamilyType().equals("Nuclear"))
+               {
+                   rbNuclear.setSelected(true);
+               }
+               if(generalInformation.getFamilyType().equals("Single Parent"))
+               {
+                   rbSingleParent.setSelected(true);
+               }
+               if(generalInformation.getFamilyType().equals("Extended"))
+               {
+                   rbExtended.setSelected(true);
+               }
+               if(generalInformation.isCriminalHistory())
+               {
+                   rbConvictedYes.setSelected(true);
+               }
+               if(!generalInformation.isCriminalHistory())
+               {
+                   rbConvictedNo.setSelected(true);
+               }
+               if(generalInformation.isDrugHsitory())
+               {
+                   rbDrugsYes.setSelected(true);
+               }
+               if(!generalInformation.isDrugHsitory())
+               {
+                   rbDrugsNo.setSelected(true);
+               }
+               if(generalInformation.isBacklogs())
+               {
+                   guardYes.setSelected(true);
+               }
+               if(!generalInformation.isBacklogs())
+               {
+                   guardlNo.setSelected(true);
+               }
+               if(generalInformation.isComputerKnowldege())
+               {
+                   rbComputerYes1.setSelected(true);
+               }
+               if(!generalInformation.isComputerKnowldege())
+               {
+                   rbComputerNo1.setSelected(true);
+               }
+               if(generalInformation.isTechnicalKnowldege())
+               {
+                   techYes.setSelected(true);
+               }
+               if(!generalInformation.isTechnicalKnowldege())
+               {
+                   techNo.setSelected(true);
+               }
+               if(generalInformation.isPhysicalActive())
+               {
+                   isPhysicalYes.setSelected(true);
+               }
+               if(!generalInformation.isPhysicalActive())
+               {
+                   isPhysicalNo.setSelected(true);
+               }
+               if(generalInformation.isMedicalCondition())
+               {
+                   medicalYes.setSelected(true);
+               }
+               if(!generalInformation.isMedicalCondition())
+               {
+                   medicalNo.setSelected(true);
+               }
+            }
+        }
     }
 }

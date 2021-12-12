@@ -8,7 +8,7 @@ package Business.Role;
 import Business.EcoSystem;
 import Business.UserAccount.UserAccount;
 import javax.swing.JPanel;
-import userinterface.NGO.NGOAdminJPanel;
+import userinterface.NGORole.NGOAdminJPanel;
 import userinterface.OrganizationAdminRole.OrganizationAdminWorkAreaJPanel;
 
 /**

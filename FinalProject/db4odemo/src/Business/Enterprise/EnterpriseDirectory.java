@@ -29,7 +29,7 @@ public class EnterpriseDirectory {
     public EnterpriseDirectory() {
         enterprises=new ArrayList<Enterprise>();
     }
-    public Enterprise createEnterprise(String name,String type)
+    public Enterprise createEnterprise(String name,String type,String collegeName)
     {
         Enterprise enterprise=null;
         if(type.equals("Hospital"))
@@ -46,7 +46,7 @@ public class EnterpriseDirectory {
         enterprises.add(enterprise);
         }
         if(type.equals("College")){
-        enterprise=new CollegeEnterprise(name);
+        enterprise=new CollegeEnterprise(name,collegeName);
         enterprises.add(enterprise);
         }
         if(type.equals("CollegeCounsellor")){
