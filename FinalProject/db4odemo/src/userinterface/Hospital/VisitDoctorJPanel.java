@@ -13,6 +13,7 @@ import Business.Organization;
 import Business.UserAccount.UserAccount;
 import Business.WorkQueue.EntryHospitalWorkRequest;
 import java.util.ArrayList;
+import java.util.Date;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
@@ -304,6 +305,7 @@ try{
             if(hospitalWorkRequest.equals(request)){
                  hospitalWorkRequest.getHospital().getDoctor().setDoctorAvailable(true);
                 hospitalWorkRequest.setMedicalCheckupCompleted(true);
+                hospitalWorkRequest.setMedicalCheckupCompletedDate(new Date());
             }
         }
         JOptionPane.showMessageDialog(null, "Request Completed Successfully");

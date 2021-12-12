@@ -15,6 +15,7 @@ import Business.UserAccount.UserAccount;
 import Business.WorkQueue.EntryChildWorkRequest;
 import Business.WorkQueue.EntryHospitalWorkRequest;
 import java.util.ArrayList;
+import java.util.Date;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
@@ -249,6 +250,7 @@ public class SendPersonForMedicalCheckup extends javax.swing.JPanel {
                                       if(entryChildWorkRequest.getNgoName().equals(enterprise.getName()))
                                       {
                                           entryChildWorkRequest.setHospitalAppointmentBooked(true);
+                                          entryChildWorkRequest.setHospitalAppointmentBookingDate(new Date());
                                       }
                                    }
                                }

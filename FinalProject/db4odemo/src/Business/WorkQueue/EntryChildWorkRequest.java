@@ -7,6 +7,7 @@ package Business.WorkQueue;
 
 import Business.Enterprise.NGOEnterprise;
 import Business.Person.Person;
+import java.util.Date;
 
 /**
  *
@@ -17,6 +18,15 @@ public class EntryChildWorkRequest extends WorkRequest {
     private NGOEnterprise nGOEnterprise;
     private boolean isAccepted;
     private boolean hospitalAppointmentBooked;
+    private Date hospitalAppointmentBookingDate;
+
+    public Date getHospitalAppointmentBookingDate() {
+        return hospitalAppointmentBookingDate;
+    }
+
+    public void setHospitalAppointmentBookingDate(Date hospitalAppointmentBookingDate) {
+        this.hospitalAppointmentBookingDate = hospitalAppointmentBookingDate;
+    }
 
     public boolean isHospitalAppointmentBooked() {
         return hospitalAppointmentBooked;

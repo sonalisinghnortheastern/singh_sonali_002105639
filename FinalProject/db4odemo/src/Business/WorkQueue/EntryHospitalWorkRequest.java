@@ -6,6 +6,7 @@
 package Business.WorkQueue;
 
 import Business.Hospital.Hospital;
+import java.util.Date;
 
 /**
  *
@@ -16,6 +17,7 @@ public class EntryHospitalWorkRequest {
     private double height;
     private double weight;
     private boolean medicalCheckupCompleted;
+    private Date medicalCheckupCompletedDate;
 
     public boolean isMedicalCheckupCompleted() {
         return medicalCheckupCompleted;
