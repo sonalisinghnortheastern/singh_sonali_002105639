@@ -7,6 +7,8 @@ package userinterface.SystemAdminWorkArea;
 
 import Business.DB4OUtil.DB4OUtil;
 import Business.EcoSystem;
+import java.awt.Image;
+import javax.swing.ImageIcon;
 import javax.swing.JPanel;
 
 /**
@@ -20,12 +22,15 @@ public class SystemAdminWorkAreaJPanel extends javax.swing.JPanel {
      */
     JPanel userProcessContainer;
     EcoSystem ecosystem;
-   
+//    ImageIcon imageIcon = new ImageIcon(new ImageIcon("C:\\Users\\krupa\\Desktop\\AED final project\\singh_sonali_002105639\\FinalProject\\db4odemo\\src\\Icons\\AdminImage.png").getImage().getScaledInstance(1222, 785, Image.SCALE_DEFAULT));
+//   
     private DB4OUtil dB4OUtil = DB4OUtil.getInstance();
     public SystemAdminWorkAreaJPanel(JPanel userProcessContainer,EcoSystem ecosystem) {
         initComponents();
         this.userProcessContainer=userProcessContainer;
         this.ecosystem=ecosystem;
+//        jLabel2.setIcon(imageIcon);
+
     }
     /**
      * This method is called from within the constructor to initialize the form.
@@ -46,28 +51,38 @@ public class SystemAdminWorkAreaJPanel extends javax.swing.JPanel {
         jPanel2 = new javax.swing.JPanel();
         jLabel2 = new javax.swing.JLabel();
 
+        setPreferredSize(new java.awt.Dimension(1200, 802));
         setLayout(new java.awt.CardLayout());
 
-        jPanel1.setBackground(new java.awt.Color(240, 178, 62));
+        jPanel1.setBackground(new java.awt.Color(153, 0, 0));
 
+        btnManageNetwork.setBackground(new java.awt.Color(204, 204, 204));
         btnManageNetwork.setFont(new java.awt.Font("Comic Sans MS", 1, 14)); // NOI18N
+        btnManageNetwork.setForeground(new java.awt.Color(153, 0, 0));
         btnManageNetwork.setText("Manage Networks");
+        btnManageNetwork.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED, java.awt.Color.lightGray, java.awt.Color.lightGray, null, null));
         btnManageNetwork.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnManageNetworkActionPerformed(evt);
             }
         });
 
+        btnManageEnterprise.setBackground(new java.awt.Color(204, 204, 204));
         btnManageEnterprise.setFont(new java.awt.Font("Comic Sans MS", 1, 14)); // NOI18N
+        btnManageEnterprise.setForeground(new java.awt.Color(153, 0, 0));
         btnManageEnterprise.setText("Manage Enterprise");
+        btnManageEnterprise.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED, java.awt.Color.lightGray, java.awt.Color.lightGray, null, null));
         btnManageEnterprise.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnManageEnterpriseActionPerformed(evt);
             }
         });
 
+        btnManageEnterpriseAdmin.setBackground(new java.awt.Color(204, 204, 204));
         btnManageEnterpriseAdmin.setFont(new java.awt.Font("Comic Sans MS", 1, 14)); // NOI18N
+        btnManageEnterpriseAdmin.setForeground(new java.awt.Color(153, 0, 0));
         btnManageEnterpriseAdmin.setText("Manage Enterprise Admin");
+        btnManageEnterpriseAdmin.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED, java.awt.Color.lightGray, java.awt.Color.lightGray, null, null));
         btnManageEnterpriseAdmin.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnManageEnterpriseAdminActionPerformed(evt);
@@ -75,18 +90,18 @@ public class SystemAdminWorkAreaJPanel extends javax.swing.JPanel {
         });
 
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Icons/LogoutIcon.png"))); // NOI18N
+        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Icons/logout.png"))); // NOI18N
         jLabel1.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jLabel1MouseClicked(evt);
-            }
             public void mousePressed(java.awt.event.MouseEvent evt) {
                 jLabel1MousePressed(evt);
             }
         });
 
+        btnManagePeopleAdmin.setBackground(new java.awt.Color(204, 204, 204));
         btnManagePeopleAdmin.setFont(new java.awt.Font("Comic Sans MS", 1, 14)); // NOI18N
+        btnManagePeopleAdmin.setForeground(new java.awt.Color(153, 0, 0));
         btnManagePeopleAdmin.setText("Register Person");
+        btnManagePeopleAdmin.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED, java.awt.Color.lightGray, java.awt.Color.lightGray, null, null));
         btnManagePeopleAdmin.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnManagePeopleAdminActionPerformed(evt);
@@ -97,8 +112,8 @@ public class SystemAdminWorkAreaJPanel extends javax.swing.JPanel {
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(btnManageEnterprise, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addComponent(btnManageNetwork, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(btnManageEnterprise, javax.swing.GroupLayout.PREFERRED_SIZE, 205, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addComponent(btnManageNetwork, javax.swing.GroupLayout.PREFERRED_SIZE, 205, javax.swing.GroupLayout.PREFERRED_SIZE)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jLabel1)
@@ -109,39 +124,46 @@ public class SystemAdminWorkAreaJPanel extends javax.swing.JPanel {
                     .addComponent(btnManagePeopleAdmin, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addGap(0, 0, Short.MAX_VALUE))
         );
+
+        jPanel1Layout.linkSize(javax.swing.SwingConstants.HORIZONTAL, new java.awt.Component[] {btnManageEnterprise, btnManageEnterpriseAdmin, btnManageNetwork, btnManagePeopleAdmin});
+
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jLabel1)
                 .addGap(63, 63, 63)
-                .addComponent(btnManageNetwork)
+                .addComponent(btnManageNetwork, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(70, 70, 70)
                 .addComponent(btnManageEnterprise)
                 .addGap(70, 70, 70)
                 .addComponent(btnManageEnterpriseAdmin)
                 .addGap(70, 70, 70)
                 .addComponent(btnManagePeopleAdmin)
-                .addContainerGap(338, Short.MAX_VALUE))
+                .addContainerGap(270, Short.MAX_VALUE))
         );
+
+        jPanel1Layout.linkSize(javax.swing.SwingConstants.VERTICAL, new java.awt.Component[] {btnManageEnterprise, btnManageEnterpriseAdmin, btnManageNetwork, btnManagePeopleAdmin});
 
         jSplitPane.setLeftComponent(jPanel1);
 
+        jLabel2.setBackground(new java.awt.Color(204, 204, 204));
         jLabel2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel2.setIcon(new javax.swing.ImageIcon("C:\\Users\\sonal\\OneDrive\\Desktop\\singh_sonali_002105639\\Assignment_5\\db4odemo\\src\\Icons\\AdminImage.png.jfif")); // NOI18N
+        jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Icons/AdminImage.png"))); // NOI18N
         jLabel2.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        jLabel2.setMaximumSize(new java.awt.Dimension(896, 543));
-        jLabel2.setMinimumSize(new java.awt.Dimension(896, 543));
+        jLabel2.setMaximumSize(new java.awt.Dimension(238, 250));
+        jLabel2.setMinimumSize(new java.awt.Dimension(238, 250));
+        jLabel2.setPreferredSize(new java.awt.Dimension(1222, 785));
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, 1216, Short.MAX_VALUE)
+            .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, 785, Short.MAX_VALUE)
+            .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
         jSplitPane.setRightComponent(jPanel2);
@@ -163,11 +185,6 @@ public class SystemAdminWorkAreaJPanel extends javax.swing.JPanel {
         ManageEnterpriseAdminJPanel manageEnterpriseAdminJPanel=new ManageEnterpriseAdminJPanel(ecosystem);
         jSplitPane.setRightComponent(manageEnterpriseAdminJPanel);
     }//GEN-LAST:event_btnManageEnterpriseAdminActionPerformed
-
-    private void jLabel1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel1MouseClicked
-        // TODO add your handling code here:
-       
-    }//GEN-LAST:event_jLabel1MouseClicked
 
     private void jLabel1MousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel1MousePressed
         // TODO add your handling code here:
