@@ -9,8 +9,11 @@ import Business.DB4OUtil.DB4OUtil;
 import Business.EcoSystem;
 import Business.Enterprise.Enterprise;
 import Business.Network.Network;
+import java.awt.Color;
 import java.util.Iterator;
+import javax.swing.BorderFactory;
 import javax.swing.JOptionPane;
+import javax.swing.UIManager;
 import javax.swing.table.DefaultTableModel;
 
 /**
@@ -171,7 +174,7 @@ public class ManageEnterpriseJPanel extends javax.swing.JPanel {
                                 .addGap(36, 36, 36)
                                 .addComponent(networkJComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, 260, javax.swing.GroupLayout.PREFERRED_SIZE))))
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(95, 95, 95)
+                        .addGap(115, 115, 115)
                         .addComponent(btnCreate)
                         .addGap(37, 37, 37)
                         .addComponent(btnModify)))
@@ -199,11 +202,11 @@ public class ManageEnterpriseJPanel extends javax.swing.JPanel {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel6)
                     .addComponent(cmbCollegeType, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(61, 61, 61)
+                .addGap(58, 58, 58)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnCreate)
                     .addComponent(btnModify, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(186, Short.MAX_VALUE))
+                .addContainerGap(189, Short.MAX_VALUE))
         );
 
         jPanel1Layout.linkSize(javax.swing.SwingConstants.VERTICAL, new java.awt.Component[] {btnCreate, btnModify});
@@ -255,7 +258,7 @@ public class ManageEnterpriseJPanel extends javax.swing.JPanel {
             .addGroup(layout.createSequentialGroup()
                 .addGap(25, 25, 25)
                 .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 11, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(btnRefresh, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -268,7 +271,7 @@ public class ManageEnterpriseJPanel extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnCreateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCreateActionPerformed
-    try{
+try{
         networkJComboBox.setEnabled(true);
         enterpriseTypeJComboBox.setEnabled(true);
         int index=0;
@@ -307,6 +310,16 @@ public class ManageEnterpriseJPanel extends javax.swing.JPanel {
         }
         String enterpriseName=txtName.getText();
         String collegeType="";
+        
+        if(txtName.getText().trim().isEmpty()|| txtName.getText()==null){
+           txtName.setBorder(BorderFactory.createLineBorder (Color.BLUE));
+            txtName.setToolTipText("Please Enter A Name");
+
+           JOptionPane.showMessageDialog(this, "Validation Failed .Please check the blue box");
+           return;
+        }
+        else{
+        txtName.setBorder(UIManager.getLookAndFeel().getDefaults().getBorder("TextField.border"));   
         if(enterpriseType.equals("College"))
         {
             collegeType=cmbCollegeType.getSelectedItem().toString();
@@ -320,6 +333,7 @@ public class ManageEnterpriseJPanel extends javax.swing.JPanel {
         JOptionPane.showMessageDialog(null, "Enterprise Added Succesfully");
         reset();
         populateTable();
+      }  
     } 
     catch(Exception e)
     {
@@ -328,7 +342,7 @@ public class ManageEnterpriseJPanel extends javax.swing.JPanel {
     }//GEN-LAST:event_btnCreateActionPerformed
 
     private void btnModifyActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnModifyActionPerformed
-      try{
+try{
             int rowNumber=jRegisterTable.getSelectedRow();
             if(rowNumber<0)
             {
@@ -338,7 +352,17 @@ public class ManageEnterpriseJPanel extends javax.swing.JPanel {
             String oldNetwork =(jRegisterTable.getModel().getValueAt(rowNumber, 1).toString());
             String enterpriseName=txtName.getText();
             Enterprise enterprise=(Enterprise) (jRegisterTable.getModel().getValueAt(rowNumber, 0));
-            enterprise.setName(enterpriseName);
+            if(txtName.getText().trim().isEmpty()|| txtName.getText()==null){
+               txtName.setBorder(BorderFactory.createLineBorder (Color.BLUE));
+            txtName.setToolTipText("Please Enter A Name");
+
+               JOptionPane.showMessageDialog(this, "Validation Failed .Please check the blue box");
+               return;
+            }
+            else{
+                txtName.setBorder(UIManager.getLookAndFeel().getDefaults().getBorder("TextField.border"));
+                enterprise.setName(enterpriseName);
+            }
             if(enterpriseTypeJComboBox.getSelectedItem().equals(Enterprise.EnterpriseType.NGO))
             {
                 enterprise.setEnterpriseType(Enterprise.EnterpriseType.NGO.getValue());

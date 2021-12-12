@@ -14,6 +14,11 @@ import Business.Role.Role.RoleType;
 import Business.UserAccount.UserAccount;
 import Business.UserAccount.loggedInUser;
 import java.awt.CardLayout;
+import java.awt.Dimension;
+import java.awt.Image;
+import java.awt.Toolkit;
+import javax.swing.ImageIcon;
+import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 
 /**
@@ -29,8 +34,8 @@ public class MainJFrame extends javax.swing.JFrame {
 
     public MainJFrame() {
         initComponents();
-        system = dB4OUtil.retrieveSystem();
- 
+        system = dB4OUtil.retrieveSystem();        
+        
 //        jLabel2.setIcon(imageIcon);
 //    ImageIcon imageIcon = new ImageIcon("C:\\Users\\krupa\\Desktop\\AED final project\\singh_sonali_002105639\\FinalProject\\db4odemo\\src\\Icons\\Foster-Family-Coloring.jpg");
 //        Image img = imageIcon.getImage();
@@ -64,7 +69,8 @@ public class MainJFrame extends javax.swing.JFrame {
         container = new javax.swing.JPanel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        getContentPane().setLayout(new java.awt.CardLayout());
+        setResizable(false);
+        getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         loginJPanel.setBackground(new java.awt.Color(153, 0, 0));
         loginJPanel.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 255, 255)));
@@ -83,7 +89,7 @@ public class MainJFrame extends javax.swing.JFrame {
         leftPanel.setLayout(leftPanelLayout);
         leftPanelLayout.setHorizontalGroup(
             leftPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(leftPanelLayout.createSequentialGroup()
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, leftPanelLayout.createSequentialGroup()
                 .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 456, Short.MAX_VALUE)
                 .addContainerGap())
         );
@@ -160,7 +166,7 @@ public class MainJFrame extends javax.swing.JFrame {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, passwordPanelLayout.createSequentialGroup()
                 .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 47, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(txtPassword, javax.swing.GroupLayout.DEFAULT_SIZE, 251, Short.MAX_VALUE))
+                .addComponent(txtPassword, javax.swing.GroupLayout.DEFAULT_SIZE, 250, Short.MAX_VALUE))
         );
         passwordPanelLayout.setVerticalGroup(
             passwordPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -180,7 +186,7 @@ public class MainJFrame extends javax.swing.JFrame {
             loginJPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(loginJPanelLayout.createSequentialGroup()
                 .addComponent(leftPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 158, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 376, Short.MAX_VALUE)
                 .addGroup(loginJPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(loginJPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                         .addComponent(userNamePanel, javax.swing.GroupLayout.PREFERRED_SIZE, 304, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -213,7 +219,7 @@ public class MainJFrame extends javax.swing.JFrame {
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
-        getContentPane().add(loginJPanel, "card2");
+        getContentPane().add(loginJPanel, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1420, 840));
 
         logoutJPanel.setBackground(new java.awt.Color(153, 0, 0));
 
@@ -248,12 +254,13 @@ public class MainJFrame extends javax.swing.JFrame {
                     .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
         );
 
-        getContentPane().add(logoutJPanel, "card3");
+        getContentPane().add(logoutJPanel, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 60, 60));
 
-        container.setBackground(new java.awt.Color(81, 53, 103));
+        container.setBackground(new java.awt.Color(153, 0, 0));
         container.setForeground(new java.awt.Color(255, 255, 255));
+        container.setPreferredSize(new java.awt.Dimension(1200, 840));
         container.setLayout(new java.awt.CardLayout());
-        getContentPane().add(container, "card4");
+        getContentPane().add(container, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 1, 1200, 840));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents

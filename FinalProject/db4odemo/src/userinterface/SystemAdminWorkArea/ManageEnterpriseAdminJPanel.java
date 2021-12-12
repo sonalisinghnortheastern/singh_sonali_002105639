@@ -12,6 +12,7 @@ import Business.Enterprise.Enterprise;
 import Business.Network.Network;
 import Business.Role.OrganizationAdmin;
 import Business.UserAccount.UserAccount;
+import java.awt.Color;
 import java.util.Properties;
 import java.util.Random;
 import java.util.logging.Level;
@@ -22,18 +23,25 @@ import javax.mail.Session;
 import javax.mail.Transport;
 import javax.mail.internet.InternetAddress;
 import javax.mail.internet.MimeMessage;
+import javax.swing.BorderFactory;
 import javax.swing.JOptionPane;
+import javax.swing.UIManager;
 import javax.swing.table.DefaultTableModel;
 
 
 /**
  *
  * @author sonal
+ * 
  */
 public class ManageEnterpriseAdminJPanel extends javax.swing.JPanel {
 
     private final EcoSystem system;
     private DB4OUtil dB4OUtil = DB4OUtil.getInstance();
+    boolean validateNullOrEmpty=true;
+    boolean validateRegex=true;
+    
+    
     public ManageEnterpriseAdminJPanel(EcoSystem system) {
         initComponents();
         this.system = system;
@@ -73,7 +81,7 @@ public class ManageEnterpriseAdminJPanel extends javax.swing.JPanel {
 
         jRegisterTable.setBackground(new java.awt.Color(204, 204, 204));
         jRegisterTable.setBorder(javax.swing.BorderFactory.createEtchedBorder());
-        jRegisterTable.setFont(new java.awt.Font("Arial Black", 0, 14)); // NOI18N
+        jRegisterTable.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
         jRegisterTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
@@ -201,7 +209,7 @@ public class ManageEnterpriseAdminJPanel extends javax.swing.JPanel {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(layout.createSequentialGroup()
-                        .addContainerGap(42, Short.MAX_VALUE)
+                        .addContainerGap(193, Short.MAX_VALUE)
                         .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 961, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(385, 385, 385)
@@ -277,6 +285,9 @@ public class ManageEnterpriseAdminJPanel extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnCreateEnterpriseAdminActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCreateEnterpriseAdminActionPerformed
+try{ 
+    if(validateNullOrEmpty()){
+      if(validateFields()){  
     String name= txtName.getText();
     String username=txtUsername.getText();
     String password =txtPassword.getText();
@@ -298,6 +309,7 @@ public class ManageEnterpriseAdminJPanel extends javax.swing.JPanel {
         populateTable();
         try {
             sendEmail(username, password);
+            JOptionPane.showMessageDialog(null, "Email Sent Successfully");
         } catch (Exception ex) {
             Logger.getLogger(ManageEnterpriseAdminJPanel.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -307,7 +319,25 @@ public class ManageEnterpriseAdminJPanel extends javax.swing.JPanel {
     else{
         JOptionPane.showMessageDialog(null, "Username already exist");
         return;
+     }
     }
+    else{
+        JOptionPane.showMessageDialog(this, "Validation Failed .Please check the blue boxes");
+        validateNullOrEmpty=true;
+        validateRegex=true;
+    }  
+    }  
+    else{
+         JOptionPane.showMessageDialog(this, "Validation Failed .Please check the blue boxes");
+         validateNullOrEmpty=true;
+         validateRegex=true;
+    }
+   }
+   catch(Exception e){
+       validateNullOrEmpty=true;
+       validateRegex=true;
+       throw e;
+   }    
     }//GEN-LAST:event_btnCreateEnterpriseAdminActionPerformed
 
     private void btnModifyEnterpriseAdminActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnModifyEnterpriseAdminActionPerformed
@@ -515,7 +545,7 @@ public class ManageEnterpriseAdminJPanel extends javax.swing.JPanel {
        String toEmail=toEmailAddress;
        String fromEmail="huskydevportal@gmail.com";
        String fromEmailPassword="Husky@123";
-       String message= "You have been registered on the xyz portal with "+toEmailAddress +"username and "+password +"password";
+       String message= "You have been registered on the Foster Care portal with "+toEmailAddress +" username and "+password +" password";
        String subject= "Registartion Successfull";
        Properties properties=new Properties();
        properties.put("mail.smtp.auth", true);
@@ -543,6 +573,57 @@ public class ManageEnterpriseAdminJPanel extends javax.swing.JPanel {
         }
 
     }
+    
+private  boolean validateNullOrEmpty(){
+         validateNullOrEmpty=true;
+         if(txtName.getText().trim().isEmpty() || txtName.getText()==null){
+             validateNullOrEmpty=false;
+            txtName.setToolTipText("Please Enter a Name");
+            txtName.setBorder(BorderFactory.createLineBorder(Color.BLUE,1));
+         }
+          if(!txtName.getText().trim().isEmpty() && txtName.getText()!=null){
+            txtName.setBorder(UIManager.getLookAndFeel().getDefaults().getBorder("TextField.border"));
+         }
+          
+          if(txtUsername.getText().trim().isEmpty() || txtUsername.getText()==null){
+             validateNullOrEmpty=false;
+            txtUsername.setToolTipText("Please Enter a Username");
+            txtUsername.setBorder(BorderFactory.createLineBorder(Color.BLUE,1));
+         } 
+           if(!txtUsername.getText().trim().isEmpty() && txtUsername.getText()!=null){
+            txtUsername.setBorder(UIManager.getLookAndFeel().getDefaults().getBorder("TextField.border"));
+         }
+         
+            if(txtPassword.getText().trim().isEmpty() || txtPassword.getText()==null){
+             validateNullOrEmpty=false;
+            txtPassword.setToolTipText("Please Enter a Password");
+            txtPassword.setBorder(BorderFactory.createLineBorder(Color.BLUE,1));
+         } 
+          if(!txtPassword.getText().trim().isEmpty() && txtPassword.getText()!=null){
+            txtPassword.setBorder(UIManager.getLookAndFeel().getDefaults().getBorder("TextField.border"));
+         }
+          
+          return  validateNullOrEmpty;
+     }
+     
+     private  boolean  validateFields()
+    {
+        validateRegex=true;
+        
+        if(!txtUsername.getText().matches("[\\w-]+@([\\w-]+\\.)+[\\w-]+")){
+            validateRegex=false;
+            txtUsername.setToolTipText("Please Enter A Valid Email Address");
+            txtName.setBorder(UIManager.getLookAndFeel().getDefaults().getBorder("TextField.border"));
+            txtUsername.setBorder(BorderFactory.createLineBorder (Color.BLUE));
+        }
+        
+        if(txtUsername.getText().matches("[\\w-]+@([\\w-]+\\.)+[\\w-]+")){
+           txtUsername.setBorder(UIManager.getLookAndFeel().getDefaults().getBorder("TextField.border"));
+        }
+        return validateRegex;
+    }
+     
+     
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnCreateEnterpriseAdmin;
     private javax.swing.JButton btnDeleteEnterpriseAdmin;
