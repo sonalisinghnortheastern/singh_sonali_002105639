@@ -178,7 +178,7 @@ public class MainJFrame extends javax.swing.JFrame {
                 .addContainerGap()
                 .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(txtPassword, javax.swing.GroupLayout.DEFAULT_SIZE, 247, Short.MAX_VALUE))
+                .addComponent(txtPassword, javax.swing.GroupLayout.DEFAULT_SIZE, 250, Short.MAX_VALUE))
         );
         passwordPanelLayout.setVerticalGroup(
             passwordPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -254,7 +254,7 @@ public class MainJFrame extends javax.swing.JFrame {
         logoutJPanel.setLayout(logoutJPanelLayout);
         logoutJPanelLayout.setHorizontalGroup(
             logoutJPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 81, Short.MAX_VALUE)
+            .addGap(0, 77, Short.MAX_VALUE)
             .addGroup(logoutJPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(logoutJPanelLayout.createSequentialGroup()
                     .addContainerGap()
@@ -263,7 +263,7 @@ public class MainJFrame extends javax.swing.JFrame {
         );
         logoutJPanelLayout.setVerticalGroup(
             logoutJPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 72, Short.MAX_VALUE)
+            .addGap(0, 68, Short.MAX_VALUE)
             .addGroup(logoutJPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(logoutJPanelLayout.createSequentialGroup()
                     .addContainerGap()
@@ -275,9 +275,9 @@ public class MainJFrame extends javax.swing.JFrame {
 
         container.setBackground(new java.awt.Color(153, 0, 0));
         container.setForeground(new java.awt.Color(255, 255, 255));
-        container.setPreferredSize(new java.awt.Dimension(1200, 840));
+        container.setPreferredSize(new java.awt.Dimension(2193, 1202));
         container.setLayout(new java.awt.CardLayout());
-        getContentPane().add(container, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 1, 1200, 840));
+        getContentPane().add(container, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 1, -1, -1));
 
         pack();
         setLocationRelativeTo(null);
