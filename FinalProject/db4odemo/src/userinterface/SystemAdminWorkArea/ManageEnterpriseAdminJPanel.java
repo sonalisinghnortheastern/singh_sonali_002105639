@@ -12,6 +12,7 @@ import Business.Enterprise.Enterprise;
 import Business.Network.Network;
 import Business.Role.OrganizationAdmin;
 import Business.UserAccount.UserAccount;
+import java.awt.Color;
 import java.util.Properties;
 import java.util.Random;
 import java.util.logging.Level;
@@ -22,7 +23,9 @@ import javax.mail.Session;
 import javax.mail.Transport;
 import javax.mail.internet.InternetAddress;
 import javax.mail.internet.MimeMessage;
+import javax.swing.BorderFactory;
 import javax.swing.JOptionPane;
+import javax.swing.UIManager;
 import javax.swing.table.DefaultTableModel;
 
 
@@ -34,6 +37,8 @@ public class ManageEnterpriseAdminJPanel extends javax.swing.JPanel {
 
     private final EcoSystem system;
     private DB4OUtil dB4OUtil = DB4OUtil.getInstance();
+    boolean validateNullOrEmpty=true;
+    boolean validateRegex=true;
     public ManageEnterpriseAdminJPanel(EcoSystem system) {
         initComponents();
         this.system = system;
@@ -181,9 +186,17 @@ public class ManageEnterpriseAdminJPanel extends javax.swing.JPanel {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addContainerGap(817, Short.MAX_VALUE)
+                        .addComponent(btnDeleteEnterpriseAdmin, javax.swing.GroupLayout.PREFERRED_SIZE, 106, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap())
+            .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(238, 238, 238)
+                        .addGap(240, 240, 240)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel3)
                             .addComponent(jLabel2)
@@ -193,24 +206,16 @@ public class ManageEnterpriseAdminJPanel extends javax.swing.JPanel {
                         .addGap(139, 139, 139)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(txtName)
-                            .addComponent(txtUsername, javax.swing.GroupLayout.DEFAULT_SIZE, 240, Short.MAX_VALUE)
-                            .addComponent(txtPassword, javax.swing.GroupLayout.DEFAULT_SIZE, 240, Short.MAX_VALUE)
+                            .addComponent(txtUsername)
+                            .addComponent(txtPassword)
                             .addComponent(networkJComboBox, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(enterpriseJComboBox, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                            .addComponent(enterpriseJComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, 240, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(298, 298, 298)
+                        .addGap(267, 267, 267)
                         .addComponent(btnCreateEnterpriseAdmin, javax.swing.GroupLayout.PREFERRED_SIZE, 173, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 66, Short.MAX_VALUE)
+                        .addGap(41, 41, 41)
                         .addComponent(btnModifyEnterpriseAdmin, javax.swing.GroupLayout.PREFERRED_SIZE, 165, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGap(0, 0, Short.MAX_VALUE))
-            .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addContainerGap(817, Short.MAX_VALUE)
-                        .addComponent(btnDeleteEnterpriseAdmin, javax.swing.GroupLayout.PREFERRED_SIZE, 106, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap())
-            .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -219,67 +224,92 @@ public class ManageEnterpriseAdminJPanel extends javax.swing.JPanel {
                 .addComponent(jLabel1)
                 .addGap(18, 18, 18)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 165, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(31, 31, 31)
-                .addComponent(btnDeleteEnterpriseAdmin)
-                .addGap(12, 12, 12)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel4)
-                    .addComponent(networkJComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(22, 22, 22)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel5)
-                    .addComponent(enterpriseJComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(25, 25, 25)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel6)
-                    .addComponent(txtName, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(30, 30, 30)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel2)
-                    .addComponent(txtUsername, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(30, 30, 30)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel3)
-                    .addComponent(txtPassword, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 30, Short.MAX_VALUE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btnCreateEnterpriseAdmin)
-                    .addComponent(btnModifyEnterpriseAdmin))
-                .addGap(57, 57, 57))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(31, 31, 31)
+                        .addComponent(btnDeleteEnterpriseAdmin))
+                    .addGroup(layout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel4)
+                            .addComponent(networkJComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(22, 22, 22)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel5)
+                            .addComponent(enterpriseJComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(25, 25, 25)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel6)
+                            .addComponent(txtName, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(30, 30, 30)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel2)
+                            .addComponent(txtUsername, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(30, 30, 30)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel3)
+                            .addComponent(txtPassword, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(btnModifyEnterpriseAdmin)
+                    .addComponent(btnCreateEnterpriseAdmin))
+                .addContainerGap(137, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnCreateEnterpriseAdminActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCreateEnterpriseAdminActionPerformed
-    String name= txtName.getText();
-    String username=txtUsername.getText();
-    String password =txtPassword.getText();
-    Enterprise enterprise = (Enterprise) enterpriseJComboBox.getSelectedItem();
-    if(system.CheckIfUSernameIsUnique(username))
-    {
-        Random random=new Random();
-        int uniqueId=random.nextInt((9999 - 100) + 1) + 10;
-        Employee employee = enterprise.getEmployeeDirectory().createEmployee(name);
-        UserAccount userAccount=new UserAccount();
-        userAccount.setUsername(username);
-        userAccount.setPassword(password);
-        userAccount.setEmployee(employee);
-        userAccount.setRole(new OrganizationAdmin());
-        userAccount.setUniqueId(uniqueId);
-        system.setUserAccounts(userAccount);
-        enterprise.getUserAccountDirectory().addUserAccountToAccounts(userAccount);
-        dB4OUtil.storeSystem(system);
-        populateTable();
-        try {
-            sendEmail(username, password);
-        } catch (Exception ex) {
-            Logger.getLogger(ManageEnterpriseAdminJPanel.class.getName()).log(Level.SEVERE, null, ex);
-        }
-        JOptionPane.showMessageDialog(null, "Organisation Admin Created");
-        reset();
+    try{ 
+     if(validateNullOrEmpty()){
+       if(validateFields()){  
+     String name= txtName.getText();
+     String username=txtUsername.getText();
+     String password =txtPassword.getText();
+     Enterprise enterprise = (Enterprise) enterpriseJComboBox.getSelectedItem();
+     if(system.CheckIfUSernameIsUnique(username))
+     {
+         Random random=new Random();
+         int uniqueId=random.nextInt((9999 - 100) + 1) + 10;
+         Employee employee = enterprise.getEmployeeDirectory().createEmployee(name);
+         UserAccount userAccount=new UserAccount();
+         userAccount.setUsername(username);
+         userAccount.setPassword(password);
+         userAccount.setEmployee(employee);
+         userAccount.setRole(new OrganizationAdmin());
+         userAccount.setUniqueId(uniqueId);
+         system.setUserAccounts(userAccount);
+         enterprise.getUserAccountDirectory().addUserAccountToAccounts(userAccount);
+         dB4OUtil.storeSystem(system);
+         populateTable();
+         try {
+             sendEmail(username, password);
+             JOptionPane.showMessageDialog(null, "Email Sent Successfully");
+         } catch (Exception ex) {
+             Logger.getLogger(ManageEnterpriseAdminJPanel.class.getName()).log(Level.SEVERE, null, ex);
+         }
+         JOptionPane.showMessageDialog(null, "Organisation Admin Created");
+         reset();
+     }
+     else{
+         JOptionPane.showMessageDialog(null, "Username already exist");
+         return;
+      }
+     }
+     else{
+         JOptionPane.showMessageDialog(this, "Validation Failed .Please check the red boxes");
+         validateNullOrEmpty=true;
+         validateRegex=true;
+     }  
+     }  
+     else{
+          JOptionPane.showMessageDialog(this, "Validation Failed .Please check the red boxes");
+          validateNullOrEmpty=true;
+          validateRegex=true;
+     }
     }
-    else{
-        JOptionPane.showMessageDialog(null, "Username already exist");
-        return;
+    catch(Exception e){
+        validateNullOrEmpty=true;
+        validateRegex=true;
+        throw e;
     }
     }//GEN-LAST:event_btnCreateEnterpriseAdminActionPerformed
 
@@ -291,6 +321,8 @@ public class ManageEnterpriseAdminJPanel extends javax.swing.JPanel {
             JOptionPane.showMessageDialog(null, "Please select a row");
             return;
         }
+        if(validateNullOrEmpty()){
+          if(validateFields()){ 
         String name= txtName.getText();
         String username=txtUsername.getText();
         String password =txtPassword.getText();
@@ -330,9 +362,23 @@ public class ManageEnterpriseAdminJPanel extends javax.swing.JPanel {
          populateTable();
          reset();
          JOptionPane.showMessageDialog(null, "User modifed succesfully");
+          }
+          else{
+           JOptionPane.showMessageDialog(this, "Validation Failed .Please check the red boxes");
+           validateNullOrEmpty=true;
+           validateRegex=true; 
+          }
+        }
+        else{           
+          JOptionPane.showMessageDialog(this, "Validation Failed .Please check the red boxes");
+          validateNullOrEmpty=true;
+          validateRegex=true;    
+        }
     }
     catch(Exception e)
     {
+        validateNullOrEmpty=true;
+        validateRegex=true;
         throw e;
     }
     }//GEN-LAST:event_btnModifyEnterpriseAdminActionPerformed
@@ -488,7 +534,7 @@ public class ManageEnterpriseAdminJPanel extends javax.swing.JPanel {
        String toEmail=toEmailAddress;
        String fromEmail="huskydevportal@gmail.com";
        String fromEmailPassword="Husky@123";
-       String message= "You have been registered on the xyz portal with "+toEmailAddress +"username and "+password +"password";
+       String message= "You have been registered on the xyz portal with "+toEmailAddress +" username and "+password +" password";
        String subject= "Registartion Successfull";
        Properties properties=new Properties();
        properties.put("mail.smtp.auth", true);
@@ -515,6 +561,54 @@ public class ManageEnterpriseAdminJPanel extends javax.swing.JPanel {
             throw  e;
         }
 
+    }
+     private  boolean validateNullOrEmpty(){
+         validateNullOrEmpty=true;
+         if(txtName.getText().trim().isEmpty() || txtName.getText()==null){
+             validateNullOrEmpty=false;
+            txtName.setToolTipText("Please Enter a Name");
+            txtName.setBorder(BorderFactory.createLineBorder(Color.red,1));
+         }
+          if(!txtName.getText().trim().isEmpty() && txtName.getText()!=null){
+            txtName.setBorder(UIManager.getLookAndFeel().getDefaults().getBorder("TextField.border"));
+         }
+          
+          if(txtUsername.getText().trim().isEmpty() || txtUsername.getText()==null){
+             validateNullOrEmpty=false;
+            txtUsername.setToolTipText("Please Enter a Username");
+            txtUsername.setBorder(BorderFactory.createLineBorder(Color.red,1));
+         } 
+           if(!txtUsername.getText().trim().isEmpty() && txtUsername.getText()!=null){
+            txtUsername.setBorder(UIManager.getLookAndFeel().getDefaults().getBorder("TextField.border"));
+         }
+         
+            if(txtPassword.getText().trim().isEmpty() || txtPassword.getText()==null){
+             validateNullOrEmpty=false;
+            txtPassword.setToolTipText("Please Enter a Password");
+            txtPassword.setBorder(BorderFactory.createLineBorder(Color.red,1));
+         } 
+          if(!txtPassword.getText().trim().isEmpty() && txtPassword.getText()!=null){
+            txtPassword.setBorder(UIManager.getLookAndFeel().getDefaults().getBorder("TextField.border"));
+         }
+          
+          return  validateNullOrEmpty;
+     }
+     
+     private  boolean  validateFields()
+    {
+        validateRegex=true;
+        
+        if(!txtUsername.getText().matches("[\\w-]+@([\\w-]+\\.)+[\\w-]+")){
+            validateRegex=false;
+            txtUsername.setToolTipText("Please Enter A Valid Email Address");
+            txtName.setBorder(UIManager.getLookAndFeel().getDefaults().getBorder("TextField.border"));
+            txtUsername.setBorder(BorderFactory.createLineBorder (Color.red));
+        }
+        
+        if(txtUsername.getText().matches("[\\w-]+@([\\w-]+\\.)+[\\w-]+")){
+           txtUsername.setBorder(UIManager.getLookAndFeel().getDefaults().getBorder("TextField.border"));
+        }
+        return validateRegex;
     }
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnCreateEnterpriseAdmin;

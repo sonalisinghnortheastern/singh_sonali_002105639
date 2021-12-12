@@ -8,6 +8,8 @@ package userinterface.SystemAdminWorkArea;
 import Business.DB4OUtil.DB4OUtil;
 import Business.EcoSystem;
 import Business.Network.Network;
+import java.awt.Color;
+import javax.swing.BorderFactory;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
@@ -164,7 +166,15 @@ public class ManageNetworkJPanel extends javax.swing.JPanel {
 
     private void btnCreateNetworkActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCreateNetworkActionPerformed
     try {
-        String networkName = txtName.getText();
+        
+            String networkName = txtName.getText();
+            if(networkName.trim().isEmpty()|| networkName==null){
+                txtName.setBorder(BorderFactory.createLineBorder (Color.BLUE));
+                txtName.setToolTipText("Please Enter A Network");
+               JOptionPane.showMessageDialog(this, "Validation Failed .Please check the red box");    
+               return;
+            }
+        
         if(networkName.equals(""))
         {
             JOptionPane.showMessageDialog(null, "Please enter network name");
@@ -201,6 +211,13 @@ public class ManageNetworkJPanel extends javax.swing.JPanel {
                     return;
         }
         for (Network network : system.getNetworks()) {
+            String network1 = txtName.getText();
+            if(network1.trim().isEmpty()|| network1==null){
+                txtName.setBorder(BorderFactory.createLineBorder (Color.BLUE));
+                txtName.setToolTipText("Please Enter A Network");
+               JOptionPane.showMessageDialog(this, "Validation Failed .Please check the red box");    
+               return;
+            }
             if(network.getNetworkName().equals(txtName.getText()) && selectedRowIndex != index)
             {
                 JOptionPane.showMessageDialog(null, "Network with this name already exists");

@@ -9,8 +9,11 @@ import Business.DB4OUtil.DB4OUtil;
 import Business.EcoSystem;
 import Business.Enterprise.Enterprise;
 import Business.Network.Network;
+import java.awt.Color;
 import java.util.Iterator;
+import javax.swing.BorderFactory;
 import javax.swing.JOptionPane;
+import javax.swing.UIManager;
 import javax.swing.table.DefaultTableModel;
 
 /**
@@ -284,6 +287,14 @@ public class ManageEnterpriseJPanel extends javax.swing.JPanel {
         }
         String enterpriseName=txtName.getText();
         String collegeType="";
+        
+        if(txtName.getText().trim().isEmpty()|| txtName.getText()==null){
+           txtName.setBorder(BorderFactory.createLineBorder (Color.red));
+           JOptionPane.showMessageDialog(this, "Validation Failed .Please check the red box");
+           return;
+        }
+        else{
+        txtName.setBorder(UIManager.getLookAndFeel().getDefaults().getBorder("TextField.border"));   
         if(enterpriseType.equals("College"))
         {
             collegeType=cmbCollegeType.getSelectedItem().toString();
@@ -297,6 +308,7 @@ public class ManageEnterpriseJPanel extends javax.swing.JPanel {
         JOptionPane.showMessageDialog(null, "Enterprise Added Succesfully");
         reset();
         populateTable();
+      }  
     } 
     catch(Exception e)
     {
@@ -315,7 +327,15 @@ public class ManageEnterpriseJPanel extends javax.swing.JPanel {
             String oldNetwork =(jRegisterTable.getModel().getValueAt(rowNumber, 1).toString());
             String enterpriseName=txtName.getText();
             Enterprise enterprise=(Enterprise) (jRegisterTable.getModel().getValueAt(rowNumber, 0));
-            enterprise.setName(enterpriseName);
+            if(txtName.getText().trim().isEmpty()|| txtName.getText()==null){
+               txtName.setBorder(BorderFactory.createLineBorder (Color.red));
+               JOptionPane.showMessageDialog(this, "Validation Failed .Please check the red box");
+               return;
+            }
+            else{
+                txtName.setBorder(UIManager.getLookAndFeel().getDefaults().getBorder("TextField.border"));
+                enterprise.setName(enterpriseName);
+            }
             if(enterpriseTypeJComboBox.getSelectedItem().equals(Enterprise.EnterpriseType.NGO))
             {
                 enterprise.setEnterpriseType(Enterprise.EnterpriseType.NGO.getValue());
@@ -516,6 +536,7 @@ try{
             networkJComboBox.setSelectedIndex(0);
             enterpriseTypeJComboBox.setSelectedIndex(0);
     }
+  
    
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnCreate;
