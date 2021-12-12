@@ -16,6 +16,19 @@ public class Hospital {
     private double pulse;
    private boolean isHospitalAvailable;
    private int hospitalId;
+   private Doctor doctor;
+
+    public Doctor getDoctor() {
+        if(doctor==null)
+        {
+            doctor=new Doctor();
+        }
+        return doctor;
+    }
+
+    public void setDoctor(Doctor doctor) {
+        this.doctor = doctor;
+    }
 
     public int getHospitalId() {
         return hospitalId;
