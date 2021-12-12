@@ -38,7 +38,7 @@ public class ReceptionistAdminJPanel extends javax.swing.JPanel {
         jPanel2 = new javax.swing.JPanel();
         btnReceptionist = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
-        btnAppointmentHistory = new javax.swing.JButton();
+        btnGraphRepresentation = new javax.swing.JButton();
         jPanel3 = new javax.swing.JPanel();
         jLabel2 = new javax.swing.JLabel();
 
@@ -57,11 +57,11 @@ public class ReceptionistAdminJPanel extends javax.swing.JPanel {
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Icons/LogoutIcon.png"))); // NOI18N
 
-        btnAppointmentHistory.setFont(new java.awt.Font("Comic Sans MS", 1, 14)); // NOI18N
-        btnAppointmentHistory.setText("APPOINTMENT HISTORY");
-        btnAppointmentHistory.addActionListener(new java.awt.event.ActionListener() {
+        btnGraphRepresentation.setFont(new java.awt.Font("Comic Sans MS", 1, 14)); // NOI18N
+        btnGraphRepresentation.setText("GRAPH REPRESENTATION");
+        btnGraphRepresentation.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnAppointmentHistoryActionPerformed(evt);
+                btnGraphRepresentationActionPerformed(evt);
             }
         });
 
@@ -72,7 +72,7 @@ public class ReceptionistAdminJPanel extends javax.swing.JPanel {
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addComponent(jLabel1)
                 .addGap(0, 0, Short.MAX_VALUE))
-            .addComponent(btnAppointmentHistory, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(btnGraphRepresentation, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addComponent(btnReceptionist, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         jPanel2Layout.setVerticalGroup(
@@ -82,7 +82,7 @@ public class ReceptionistAdminJPanel extends javax.swing.JPanel {
                 .addGap(101, 101, 101)
                 .addComponent(btnReceptionist)
                 .addGap(74, 74, 74)
-                .addComponent(btnAppointmentHistory)
+                .addComponent(btnGraphRepresentation)
                 .addContainerGap(210, Short.MAX_VALUE))
         );
 
@@ -113,13 +113,14 @@ public class ReceptionistAdminJPanel extends javax.swing.JPanel {
         jSplitPane.setRightComponent(receptionJPanel);
     }//GEN-LAST:event_btnReceptionistActionPerformed
 
-    private void btnAppointmentHistoryActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAppointmentHistoryActionPerformed
-       
-    }//GEN-LAST:event_btnAppointmentHistoryActionPerformed
+    private void btnGraphRepresentationActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGraphRepresentationActionPerformed
+        VisualizeHospitalHistoryJPanel visualizeHospitalHistoryJPanel=new VisualizeHospitalHistoryJPanel(ecosystem);
+        jSplitPane.setRightComponent(visualizeHospitalHistoryJPanel);
+    }//GEN-LAST:event_btnGraphRepresentationActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton btnAppointmentHistory;
+    private javax.swing.JButton btnGraphRepresentation;
     private javax.swing.JButton btnReceptionist;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;

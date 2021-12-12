@@ -19,6 +19,14 @@ public class EntryHospitalWorkRequest {
     private boolean medicalCheckupCompleted;
     private Date medicalCheckupCompletedDate;
 
+    public Date getMedicalCheckupCompletedDate() {
+        return medicalCheckupCompletedDate;
+    }
+
+    public void setMedicalCheckupCompletedDate(Date medicalCheckupCompletedDate) {
+        this.medicalCheckupCompletedDate = medicalCheckupCompletedDate;
+    }
+
     public boolean isMedicalCheckupCompleted() {
         return medicalCheckupCompleted;
     }

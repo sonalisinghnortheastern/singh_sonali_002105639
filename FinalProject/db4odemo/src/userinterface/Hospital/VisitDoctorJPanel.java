@@ -309,6 +309,8 @@ try{
             }
         }
         JOptionPane.showMessageDialog(null, "Request Completed Successfully");
+        populateTable();
+        dB4OUtil.storeSystem(system);
         jPanel2.setVisible(false);
         reset();
 }

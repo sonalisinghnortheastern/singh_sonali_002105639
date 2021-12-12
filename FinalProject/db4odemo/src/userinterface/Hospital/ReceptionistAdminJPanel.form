@@ -44,7 +44,7 @@
                       <Component id="jLabel1" min="-2" max="-2" attributes="0"/>
                       <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
                   </Group>
-                  <Component id="btnAppointmentHistory" alignment="0" max="32767" attributes="0"/>
+                  <Component id="btnGraphRepresentation" alignment="0" max="32767" attributes="0"/>
                   <Component id="btnReceptionist" alignment="0" max="32767" attributes="0"/>
               </Group>
             </DimensionLayout>
@@ -55,7 +55,7 @@
                       <EmptySpace min="-2" pref="101" max="-2" attributes="0"/>
                       <Component id="btnReceptionist" min="-2" max="-2" attributes="0"/>
                       <EmptySpace min="-2" pref="74" max="-2" attributes="0"/>
-                      <Component id="btnAppointmentHistory" min="-2" max="-2" attributes="0"/>
+                      <Component id="btnGraphRepresentation" min="-2" max="-2" attributes="0"/>
                       <EmptySpace pref="210" max="32767" attributes="0"/>
                   </Group>
               </Group>
@@ -81,15 +81,15 @@
                 </Property>
               </Properties>
             </Component>
-            <Component class="javax.swing.JButton" name="btnAppointmentHistory">
+            <Component class="javax.swing.JButton" name="btnGraphRepresentation">
               <Properties>
                 <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                   <Font name="Comic Sans MS" size="14" style="1"/>
                 </Property>
-                <Property name="text" type="java.lang.String" value="APPOINTMENT HISTORY"/>
+                <Property name="text" type="java.lang.String" value="GRAPH REPRESENTATION"/>
               </Properties>
               <Events>
-                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnAppointmentHistoryActionPerformed"/>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnGraphRepresentationActionPerformed"/>
               </Events>
             </Component>
           </SubComponents>
