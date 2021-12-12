@@ -11,7 +11,7 @@ package Business.Person;
  */
 public class Person {
     private String name;
-    private double age;
+    private int age;
     private String gender;
     private long income;
     private String education;
@@ -36,11 +36,11 @@ public class Person {
         this.name = name;
     }
 
-    public double getAge() {
+    public int getAge() {
         return age;
     }
 
-    public void setAge(double age) {
+    public void setAge(int age) {
         this.age = age;
     }
 

@@ -29,6 +29,7 @@ import Business.Role.ReceptionistRole;
 import Business.Role.RestaurantAdmin;
 import Business.Role.Role;
 import Business.UserAccount.UserAccount;
+import java.awt.Color;
 import java.util.Iterator;
 import java.util.Properties;
 import java.util.Random;
@@ -40,7 +41,9 @@ import javax.mail.Session;
 import javax.mail.Transport;
 import javax.mail.internet.InternetAddress;
 import javax.mail.internet.MimeMessage;
+import javax.swing.BorderFactory;
 import javax.swing.JOptionPane;
+import javax.swing.UIManager;
 import javax.swing.table.DefaultTableModel;
 
 /**
@@ -585,7 +588,9 @@ Enterprise loggedInUserEnterprise=null;
         
     }
     private  void addEmployee(boolean update,int deletionIndex) throws Exception //if update flag true and index where it has to be updated
-    {try{
+{try{           
+    if(validateNullOrEmpty()){	
+            if(validateFields()){
             String organisation = cmbOrganisation. getSelectedItem().toString(); //get selected organization
             String role = cmbRole. getSelectedItem().toString(); //get role from combo box dropdown
             String employeeName = txtEmployeeName.getText(); 
@@ -631,6 +636,18 @@ Enterprise loggedInUserEnterprise=null;
                 sendEmail(username, password);
                 JOptionPane.showMessageDialog(null, "Organisation Employee Updated Successfully"); //if update flag true
             }
+				}	
+			else{	
+			JOptionPane.showMessageDialog(this, "Validation Failed .Please check the blue boxes");	
+			validateNullOrEmpty=true;	
+			validateRegex=true;	
+			}	
+			}	
+			else{	
+			JOptionPane.showMessageDialog(this, "Validation Failed .Please check the blue boxes");	
+			validateNullOrEmpty=true;	
+			validateRegex=true;	
+			}
         }
         catch(Exception ex)
         {
@@ -704,7 +721,7 @@ Enterprise loggedInUserEnterprise=null;
        String fromEmail="huskydevportal@gmail.com";
        String fromEmailPassword="Husky@123";
        String message= "You have been registered on the xyz portal with "+toEmailAddress +"username and "+password +"password";
-       String subject= "Registartion Successfull";
+       String subject= "Registartion Successful";
        Properties properties=new Properties();
        properties.put("mail.smtp.auth", true);
        properties.put("mail.smtp.starttls.enable", true);
@@ -731,5 +748,71 @@ Enterprise loggedInUserEnterprise=null;
         }
 
     }
+     
+    private boolean validateNullOrEmpty() {
+    validateNullOrEmpty=true;
+    if(txtEmployeeName.getText().trim().isEmpty() || txtEmployeeName.getText()==null){
+    validateNullOrEmpty=false;
+    txtEmployeeName.setToolTipText("Please Enter Valid Employee Name");
+    txtEmployeeName.setBorder(BorderFactory.createLineBorder(Color.BLUE,1));
+    }
+    if(!txtEmployeeName.getText().trim().isEmpty() && txtEmployeeName.getText()!=null){
+    txtEmployeeName.setBorder(UIManager.getLookAndFeel().getDefaults().getBorder("TextField.border"));
+    }
+
+    if(txtUsername.getText().trim().isEmpty() || txtUsername.getText()==null){
+    validateNullOrEmpty=false;
+    txtUsername.setToolTipText("Please Enter a Valid Email ID");
+    txtUsername.setBorder(BorderFactory.createLineBorder(Color.BLUE,1));
+    }
+    if(!txtUsername.getText().trim().isEmpty() && txtUsername.getText()!=null){
+    txtUsername.setBorder(UIManager.getLookAndFeel().getDefaults().getBorder("TextField.border"));
+    }
+
+    if(txtPassword.getText().trim().isEmpty() || txtPassword.getText()==null){
+    validateNullOrEmpty=false;
+    txtPassword.setToolTipText("Please Enter a Password");
+    txtPassword.setBorder(BorderFactory.createLineBorder(Color.BLUE,1));
+    }
+
+    if(!txtPassword.getText().trim().isEmpty() && txtPassword.getText()!=null){
+    txtPassword.setBorder(UIManager.getLookAndFeel().getDefaults().getBorder("TextField.border"));
+    }
+
+    return validateNullOrEmpty;
+
+    }
+
+
+
+            private boolean validateFields() {
+
+            validateRegex=true;
+            if(!txtUsername.getText().matches("^(.+)@(.+)$")){
+            validateRegex=false;
+            txtUsername.setToolTipText("Please Enter A Valid Email Address");
+            txtUsername.setBorder(BorderFactory.createLineBorder (Color.BLUE));
+            }
+
+            if(txtUsername.getText().matches("^(.+)@(.+)$")){
+            txtUsername.setBorder(UIManager.getLookAndFeel().getDefaults().getBorder("TextField.border"));
+            }
+
+
+            if(!txtPassword.getText().matches("^(?=.*[A-Za-z])(?=.*\\d)(?=.*[@$!%*#?&])[A-Za-z\\d@$!%*#?&]{8,}$")){
+            validateRegex=false;
+            txtPassword.setToolTipText("Please Enter A Valid Password [minimum 8-digit with one letter, one number, and one special character");
+            txtPassword.setBorder(BorderFactory.createLineBorder (Color.BLUE));
+            txtUsername.setBorder(UIManager.getLookAndFeel().getDefaults().getBorder("TextField.border"));
+            }
+
+            if(txtPassword.getText().matches("^(?=.*[A-Za-z])(?=.*\\d)(?=.*[@$!%*#?&])[A-Za-z\\d@$!%*#?&]{8,}$")){
+            txtPassword.setBorder(UIManager.getLookAndFeel().getDefaults().getBorder("TextField.border"));
+            }
+
+
+            return validateRegex;
+            }
+     
 }
 
