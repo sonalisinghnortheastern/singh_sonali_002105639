@@ -529,11 +529,11 @@ Enterprise loggedInUserEnterprise=null;
        {
            newRole=new OrganizationAdmin();
        }
-        if(role.equals("Receptionist"))
+        if(role.equals("Receptionist Role"))
        {
            newRole=new ReceptionistRole();
        }
-        if(role.equals("Doctor"))
+        if(role.equals("Doctor Role"))
        {
            newRole=new DoctorRole();
        }

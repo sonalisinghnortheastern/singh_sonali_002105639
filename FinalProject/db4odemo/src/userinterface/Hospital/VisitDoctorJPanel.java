@@ -9,15 +9,15 @@ import Business.EcoSystem;
 
 /**
  *
- * @author sonal
+ * @author Vijay
  */
-public class ManagePatientDetailsJPanel extends javax.swing.JPanel {
+public class VisitDoctorJPanel extends javax.swing.JPanel {
 
     /**
      * Creates new form ManagePatientDetailsJPanel
      */
      private final EcoSystem system;
-     public ManagePatientDetailsJPanel(EcoSystem system) {
+     public VisitDoctorJPanel(EcoSystem system) {
         initComponents();
         this.system=system;
         populateTable();

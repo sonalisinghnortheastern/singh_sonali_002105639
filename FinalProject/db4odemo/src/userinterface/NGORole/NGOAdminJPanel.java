@@ -44,6 +44,7 @@ public class NGOAdminJPanel extends javax.swing.JPanel {
         btnManageMenu1 = new javax.swing.JButton();
         btnManageMenu2 = new javax.swing.JButton();
         btnManageMenu3 = new javax.swing.JButton();
+        btnManageMenu4 = new javax.swing.JButton();
         jPanel2 = new javax.swing.JPanel();
         jLabel2 = new javax.swing.JLabel();
 
@@ -86,6 +87,14 @@ public class NGOAdminJPanel extends javax.swing.JPanel {
             }
         });
 
+        btnManageMenu4.setFont(new java.awt.Font("Comic Sans MS", 1, 14)); // NOI18N
+        btnManageMenu4.setText("REQUEST MEDICAL CHECKUP");
+        btnManageMenu4.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnManageMenu4ActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -97,6 +106,7 @@ public class NGOAdminJPanel extends javax.swing.JPanel {
             .addComponent(btnManageMenu1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addComponent(btnManageMenu2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addComponent(btnManageMenu3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(btnManageMenu4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -104,13 +114,15 @@ public class NGOAdminJPanel extends javax.swing.JPanel {
                 .addComponent(jLabel1)
                 .addGap(72, 72, 72)
                 .addComponent(btnManageMenu)
-                .addGap(70, 70, 70)
-                .addComponent(btnManageMenu1)
-                .addGap(70, 70, 70)
+                .addGap(57, 57, 57)
+                .addComponent(btnManageMenu4)
+                .addGap(49, 49, 49)
                 .addComponent(btnManageMenu2)
-                .addGap(70, 70, 70)
+                .addGap(59, 59, 59)
                 .addComponent(btnManageMenu3)
-                .addContainerGap(73, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 53, Short.MAX_VALUE)
+                .addComponent(btnManageMenu1)
+                .addGap(36, 36, 36))
         );
 
         jSplitPane.setLeftComponent(jPanel1);
@@ -155,12 +167,18 @@ public class NGOAdminJPanel extends javax.swing.JPanel {
         jSplitPane.setRightComponent(visualizeNGOJPanel);
     }//GEN-LAST:event_btnManageMenu3ActionPerformed
 
+    private void btnManageMenu4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnManageMenu4ActionPerformed
+        SendPersonForMedicalCheckup visualizeNGOJPanel =new SendPersonForMedicalCheckup(ecosystem);
+        jSplitPane.setRightComponent(visualizeNGOJPanel);
+    }//GEN-LAST:event_btnManageMenu4ActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnManageMenu;
     private javax.swing.JButton btnManageMenu1;
     private javax.swing.JButton btnManageMenu2;
     private javax.swing.JButton btnManageMenu3;
+    private javax.swing.JButton btnManageMenu4;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JPanel jPanel1;
