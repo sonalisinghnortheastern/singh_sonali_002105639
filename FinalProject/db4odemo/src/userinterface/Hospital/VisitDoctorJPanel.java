@@ -5,7 +5,16 @@
  */
 package userinterface.Hospital;
 
+import Business.DB4OUtil.DB4OUtil;
 import Business.EcoSystem;
+import Business.Enterprise.Enterprise;
+import Business.Network.Network;
+import Business.Organization;
+import Business.UserAccount.UserAccount;
+import Business.WorkQueue.EntryHospitalWorkRequest;
+import java.util.ArrayList;
+import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
 
 /**
  *
@@ -17,10 +26,12 @@ public class VisitDoctorJPanel extends javax.swing.JPanel {
      * Creates new form ManagePatientDetailsJPanel
      */
      private final EcoSystem system;
+     private String enterpriseName;private DB4OUtil dB4OUtil = DB4OUtil.getInstance();
      public VisitDoctorJPanel(EcoSystem system) {
         initComponents();
         this.system=system;
         populateTable();
+        jPanel2.setVisible(false);
         
     }
 
@@ -35,22 +46,18 @@ public class VisitDoctorJPanel extends javax.swing.JPanel {
 
         jPanel1 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
-        jPanel2 = new javax.swing.JPanel();
-        lblAvailablity = new javax.swing.JLabel();
-        lblPrice = new javax.swing.JLabel();
-        btnAddItem = new javax.swing.JButton();
-        btnUpdateItem = new javax.swing.JButton();
-        txtUsername = new javax.swing.JTextField();
-        cmbRole = new javax.swing.JComboBox<>();
-        lblAvailablity1 = new javax.swing.JLabel();
-        txtEmployeeName = new javax.swing.JTextField();
-        lblAvailablity3 = new javax.swing.JLabel();
-        txtPassword = new javax.swing.JTextField();
-        lblItem = new javax.swing.JLabel();
-        cmbOrganisation = new javax.swing.JComboBox<>();
         jScrollPane1 = new javax.swing.JScrollPane();
         jRegisterTable = new javax.swing.JTable();
-        btnDeleteEmployee = new javax.swing.JButton();
+        jPanel2 = new javax.swing.JPanel();
+        jLabel4 = new javax.swing.JLabel();
+        txtBloodPressure = new javax.swing.JTextField();
+        jLabel5 = new javax.swing.JLabel();
+        txtTemprature = new javax.swing.JTextField();
+        btnRegisterDetails = new javax.swing.JButton();
+        jLabel6 = new javax.swing.JLabel();
+        jScrollPane2 = new javax.swing.JScrollPane();
+        jTextAreaPrescription = new javax.swing.JTextArea();
+        btnRegisterDetails1 = new javax.swing.JButton();
 
         jPanel1.setBackground(new java.awt.Color(0, 102, 102));
 
@@ -58,135 +65,9 @@ public class VisitDoctorJPanel extends javax.swing.JPanel {
         jLabel1.setFont(new java.awt.Font("Comic Sans MS", 1, 18)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(255, 255, 255));
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel1.setText("NEW PATIENT ");
         jLabel1.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         jLabel1.setOpaque(true);
-
-        jPanel2.setBackground(new java.awt.Color(0, 102, 102));
-
-        lblAvailablity.setFont(new java.awt.Font("Comic Sans MS", 1, 14)); // NOI18N
-        lblAvailablity.setForeground(new java.awt.Color(255, 255, 255));
-        lblAvailablity.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        lblAvailablity.setText("EMPLOYEE NAME:");
-        lblAvailablity.setFocusable(false);
-        lblAvailablity.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-
-        lblPrice.setFont(new java.awt.Font("Comic Sans MS", 1, 14)); // NOI18N
-        lblPrice.setForeground(new java.awt.Color(255, 255, 255));
-        lblPrice.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        lblPrice.setText("Role    :");
-        lblPrice.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-
-        btnAddItem.setBackground(new java.awt.Color(240, 178, 62));
-        btnAddItem.setFont(new java.awt.Font("Arial Black", 1, 12)); // NOI18N
-        btnAddItem.setForeground(new java.awt.Color(255, 255, 255));
-        btnAddItem.setText("ADD ITEM");
-        btnAddItem.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        btnAddItem.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnAddItemActionPerformed(evt);
-            }
-        });
-
-        btnUpdateItem.setBackground(new java.awt.Color(240, 178, 62));
-        btnUpdateItem.setFont(new java.awt.Font("Arial Black", 1, 12)); // NOI18N
-        btnUpdateItem.setForeground(new java.awt.Color(255, 255, 255));
-        btnUpdateItem.setText("UPDATE ITEM");
-        btnUpdateItem.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        btnUpdateItem.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnUpdateItemActionPerformed(evt);
-            }
-        });
-
-        cmbRole.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-
-        lblAvailablity1.setFont(new java.awt.Font("Comic Sans MS", 1, 14)); // NOI18N
-        lblAvailablity1.setForeground(new java.awt.Color(255, 255, 255));
-        lblAvailablity1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        lblAvailablity1.setText("USERNAME :");
-        lblAvailablity1.setFocusable(false);
-        lblAvailablity1.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-
-        lblAvailablity3.setFont(new java.awt.Font("Comic Sans MS", 1, 14)); // NOI18N
-        lblAvailablity3.setForeground(new java.awt.Color(255, 255, 255));
-        lblAvailablity3.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        lblAvailablity3.setText("PASSWORD :");
-        lblAvailablity3.setFocusable(false);
-        lblAvailablity3.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-
-        lblItem.setFont(new java.awt.Font("Comic Sans MS", 1, 14)); // NOI18N
-        lblItem.setForeground(new java.awt.Color(255, 255, 255));
-        lblItem.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        lblItem.setText("ORGANISATION :");
-        lblItem.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-
-        cmbOrganisation.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-        cmbOrganisation.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                cmbOrganisationActionPerformed(evt);
-            }
-        });
-
-        javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
-        jPanel2.setLayout(jPanel2Layout);
-        jPanel2Layout.setHorizontalGroup(
-            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
-                .addContainerGap(144, Short.MAX_VALUE)
-                .addComponent(btnAddItem, javax.swing.GroupLayout.PREFERRED_SIZE, 134, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(93, 93, 93)
-                .addComponent(btnUpdateItem, javax.swing.GroupLayout.PREFERRED_SIZE, 142, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(77, 77, 77))
-            .addGroup(jPanel2Layout.createSequentialGroup()
-                .addGap(77, 77, 77)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                        .addComponent(lblAvailablity3, javax.swing.GroupLayout.PREFERRED_SIZE, 134, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(lblAvailablity, javax.swing.GroupLayout.PREFERRED_SIZE, 134, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(lblAvailablity1, javax.swing.GroupLayout.PREFERRED_SIZE, 134, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(lblPrice, javax.swing.GroupLayout.PREFERRED_SIZE, 134, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(lblItem))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                        .addComponent(txtUsername)
-                        .addComponent(cmbRole, 0, 142, Short.MAX_VALUE)
-                        .addComponent(txtEmployeeName)
-                        .addComponent(txtPassword, javax.swing.GroupLayout.Alignment.TRAILING))
-                    .addComponent(cmbOrganisation, javax.swing.GroupLayout.PREFERRED_SIZE, 147, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(26, 26, 26))
-        );
-        jPanel2Layout.setVerticalGroup(
-            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel2Layout.createSequentialGroup()
-                .addGap(21, 21, 21)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(cmbOrganisation, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(lblItem, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addGap(48, 48, 48)
-                        .addComponent(lblPrice, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(cmbRole, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(50, 50, 50)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(lblAvailablity, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(txtEmployeeName, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(50, 50, 50)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(lblAvailablity1, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(txtUsername, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(50, 50, 50)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(lblAvailablity3, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(txtPassword, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(56, 56, 56)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btnAddItem)
-                    .addComponent(btnUpdateItem))
-                .addGap(72, 72, 72))
-        );
 
         jRegisterTable.setBorder(javax.swing.BorderFactory.createEtchedBorder());
         jRegisterTable.setFont(new java.awt.Font("Arial Black", 1, 14)); // NOI18N
@@ -196,14 +77,14 @@ public class VisitDoctorJPanel extends javax.swing.JPanel {
 
             },
             new String [] {
-                "Default", "ORGANISATION", "ROLE", "NAME", "USERNAME", "PASSWORD"
+                "Default", "Name", "Age", "Height", "Weight", "Blood Pressure", "Temprature"
             }
         ) {
             Class[] types = new Class [] {
-                java.lang.Object.class, java.lang.String.class, java.lang.Object.class, java.lang.Object.class, java.lang.String.class, java.lang.String.class
+                java.lang.Object.class, java.lang.String.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class
             };
             boolean[] canEdit = new boolean [] {
-                false, false, false, false, false, false
+                false, false, false, false, false, true, true
             };
 
             public Class getColumnClass(int columnIndex) {
@@ -224,51 +105,120 @@ public class VisitDoctorJPanel extends javax.swing.JPanel {
         });
         jScrollPane1.setViewportView(jRegisterTable);
 
-        btnDeleteEmployee.setBackground(new java.awt.Color(240, 178, 62));
-        btnDeleteEmployee.setFont(new java.awt.Font("Arial Black", 1, 12)); // NOI18N
-        btnDeleteEmployee.setForeground(new java.awt.Color(255, 255, 255));
-        btnDeleteEmployee.setText("DELETE ITEM");
-        btnDeleteEmployee.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        btnDeleteEmployee.addActionListener(new java.awt.event.ActionListener() {
+        jLabel4.setFont(new java.awt.Font("Comic Sans MS", 1, 14)); // NOI18N
+        jLabel4.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel4.setText("BLOOD PRESSURE :");
+
+        jLabel5.setFont(new java.awt.Font("Comic Sans MS", 1, 14)); // NOI18N
+        jLabel5.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel5.setText("TEMPRATURE :");
+
+        btnRegisterDetails.setBackground(new java.awt.Color(240, 178, 62));
+        btnRegisterDetails.setFont(new java.awt.Font("Arial Black", 1, 12)); // NOI18N
+        btnRegisterDetails.setForeground(new java.awt.Color(255, 255, 255));
+        btnRegisterDetails.setText("RECORD DETAILS");
+        btnRegisterDetails.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        btnRegisterDetails.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnDeleteEmployeeActionPerformed(evt);
+                btnRegisterDetailsActionPerformed(evt);
             }
         });
+
+        jLabel6.setFont(new java.awt.Font("Comic Sans MS", 1, 14)); // NOI18N
+        jLabel6.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel6.setText("PRESCRIPTION :");
+
+        jTextAreaPrescription.setColumns(20);
+        jTextAreaPrescription.setRows(5);
+        jScrollPane2.setViewportView(jTextAreaPrescription);
+
+        btnRegisterDetails1.setBackground(new java.awt.Color(240, 178, 62));
+        btnRegisterDetails1.setFont(new java.awt.Font("Arial Black", 1, 12)); // NOI18N
+        btnRegisterDetails1.setForeground(new java.awt.Color(255, 255, 255));
+        btnRegisterDetails1.setText("COMPLETE REQUEST");
+        btnRegisterDetails1.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        btnRegisterDetails1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnRegisterDetails1ActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
+        jPanel2.setLayout(jPanel2Layout);
+        jPanel2Layout.setHorizontalGroup(
+            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel2Layout.createSequentialGroup()
+                .addGap(39, 39, 39)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 146, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 146, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 146, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(74, 74, 74)
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(txtTemprature, javax.swing.GroupLayout.DEFAULT_SIZE, 259, Short.MAX_VALUE)
+                            .addComponent(txtBloodPressure)
+                            .addComponent(jScrollPane2)))
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addComponent(btnRegisterDetails, javax.swing.GroupLayout.PREFERRED_SIZE, 181, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(46, 46, 46)
+                        .addComponent(btnRegisterDetails1, javax.swing.GroupLayout.PREFERRED_SIZE, 196, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(115, Short.MAX_VALUE))
+        );
+        jPanel2Layout.setVerticalGroup(
+            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel2Layout.createSequentialGroup()
+                .addGap(49, 49, 49)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(txtBloodPressure, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel4))
+                .addGap(22, 22, 22)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(txtTemprature, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel5))
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addGap(35, 35, 35)
+                        .addComponent(jLabel6))
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addGap(18, 18, 18)
+                        .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 31, Short.MAX_VALUE)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(btnRegisterDetails)
+                    .addComponent(btnRegisterDetails1))
+                .addGap(26, 26, 26))
+        );
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, 1107, Short.MAX_VALUE)
-            .addComponent(jScrollPane1)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(btnDeleteEmployee, javax.swing.GroupLayout.PREFERRED_SIZE, 142, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap())
+            .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(219, 219, 219)
+                .addGap(169, 169, 169)
                 .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(976, Short.MAX_VALUE))
+            .addComponent(jScrollPane1)
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(11, 11, 11)
                 .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 165, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(btnDeleteEmployee)
-                .addGap(35, 35, 35)
-                .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, 501, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(58, 58, 58))
+                .addGap(37, 37, 37)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 81, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(42, 42, 42)
+                .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(351, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 1107, Short.MAX_VALUE)
+            .addGap(0, 1778, Short.MAX_VALUE)
             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(layout.createSequentialGroup()
                     .addGap(0, 0, Short.MAX_VALUE)
@@ -286,118 +236,170 @@ public class VisitDoctorJPanel extends javax.swing.JPanel {
         );
     }// </editor-fold>//GEN-END:initComponents
 
-    private void btnAddItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAddItemActionPerformed
-//        try{
-//            addEmployee(false,-1);
-//        }
-//        catch(Exception ex)
-//        {
-//            throw ex;
-//        }
-    }//GEN-LAST:event_btnAddItemActionPerformed
-
-    private void btnUpdateItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnUpdateItemActionPerformed
-//        try{
-//            int deletionIndex=deleteEmployee(true);
-//        }
-//        catch(Exception ex){
-//
-//        }
-    }//GEN-LAST:event_btnUpdateItemActionPerformed
-
-    private void cmbOrganisationActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmbOrganisationActionPerformed
-//        if(cmbOrganisation.getSelectedItem()==null)
-//        {
-//            return;
-//        }
-//        if(cmbOrganisation.getSelectedItem().equals(Organization.Type.NGOAdmin.getValue()))
-//        {
-//            cmbRole.removeAllItems();
-//            cmbRole.addItem(Role.RoleType.NGOEmployee.getValue());
-//        }
-//        if(cmbOrganisation.getSelectedItem().equals(Organization.Type.Restaurant.getValue()))
-//        {
-//            cmbRole.removeAllItems();
-//            cmbRole.addItem(Role.RoleType.RestaurantAdmin.getValue());
-//
-//        }
-//        if(cmbOrganisation.getSelectedItem().equals(Organization.Type.DeliveryMan.getValue()))
-//        {
-//            cmbRole.removeAllItems();
-//            cmbRole.addItem(Role.RoleType.DeliveryMan.getValue());
-//
-//        }
-//        if(cmbOrganisation.getSelectedItem().equals(Organization.Type.College.getValue()))
-//        {
-//            cmbRole.removeAllItems();
-//            cmbRole.addItem(Role.RoleType.College.getValue());
-//        }
-//        if(cmbOrganisation.getSelectedItem().equals(Organization.Type.Counsellor.getValue()))
-//        {
-//            cmbRole.removeAllItems();
-//            cmbRole.addItem(Role.RoleType.Counsellor.getValue());
-//
-//        }
-//        if(cmbOrganisation.getSelectedItem().equals(Organization.Type.Doctor.getValue()))
-//        {
-//            cmbRole.removeAllItems();
-//            cmbRole.addItem(Role.RoleType.Doctor.getValue());
-//        }
-//        if(cmbOrganisation.getSelectedItem().equals(Organization.Type.Receptionist.getValue()))
-//        {
-//            cmbRole.removeAllItems();
-//            cmbRole.addItem(Role.RoleType.Receptionist.getValue());
-//        }
-    }//GEN-LAST:event_cmbOrganisationActionPerformed
-
     private void jRegisterTableMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jRegisterTableMouseClicked
+
         try{
             int rowNumber=jRegisterTable.getSelectedRow();
-            cmbOrganisation.setSelectedItem(jRegisterTable.getModel().getValueAt(rowNumber, 1).toString());
-            cmbRole.setSelectedItem(jRegisterTable.getModel().getValueAt(rowNumber, 2));
-            txtEmployeeName.setText(jRegisterTable.getModel().getValueAt(rowNumber, 3).toString());
-            txtUsername.setText(jRegisterTable.getModel().getValueAt(rowNumber, 4).toString());
-            txtPassword.setText(jRegisterTable.getModel().getValueAt(rowNumber, 5).toString());
-
+            if(rowNumber<0)
+            {
+                JOptionPane.showMessageDialog(null, "Please select a row");
+                return;
+            }
+            EntryHospitalWorkRequest request=(EntryHospitalWorkRequest) jRegisterTable.getModel().getValueAt(rowNumber, 0);
+            if(request.getEntryChildWorkRequest()==null||request.getEntryChildWorkRequest().getPerson()==null){
+                jPanel2.setVisible(false);
+                jPanel2.setVisible(false);
+            }
+            else{
+                jPanel2.setVisible(true);
+                txtBloodPressure.setText(jRegisterTable.getModel().getValueAt(rowNumber, 5).toString());
+                txtTemprature.setText(jRegisterTable.getModel().getValueAt(rowNumber, 6).toString());
+            }
         }
         catch(Exception e)
         {
             throw  e;
         }
+
     }//GEN-LAST:event_jRegisterTableMouseClicked
 
-    private void btnDeleteEmployeeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDeleteEmployeeActionPerformed
-//        try{
-//            deleteEmployee(false);
-//        }
-//        catch(Exception ex)
-//        {
-//            throw ex;
-//        }
-    }//GEN-LAST:event_btnDeleteEmployeeActionPerformed
+    private void btnRegisterDetailsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegisterDetailsActionPerformed
+        try{
+        jPanel2.setVisible(true);
+        int rowNumber=jRegisterTable.getSelectedRow();
+        if(rowNumber<0)
+        {
+            JOptionPane.showMessageDialog(null, "Please select a row");
+            return;
+        }
+        EntryHospitalWorkRequest request=(EntryHospitalWorkRequest) jRegisterTable.getModel().getValueAt(rowNumber, 0);
+        for(EntryHospitalWorkRequest hospitalWorkRequest: system.getWorkQueue().getWorkRequestHospital() ){
+            if(hospitalWorkRequest.equals(request)){
+                hospitalWorkRequest.getHospital().setBloodPressure(Double.parseDouble(txtBloodPressure.getText()));
+                hospitalWorkRequest.getHospital().setTemperature(Double.parseDouble(txtTemprature.getText()));
+                hospitalWorkRequest.getHospital().setPrescription(jTextAreaPrescription.getText());
+            }
+        }
+        populateTable();
+        JOptionPane.showMessageDialog(null, "Parameters registered successfully");
+        dB4OUtil.storeSystem(system);
+        }
+        catch(Exception ex)
+        {
+            throw ex;
+        }
+
+    }//GEN-LAST:event_btnRegisterDetailsActionPerformed
+
+    private void btnRegisterDetails1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegisterDetails1ActionPerformed
+try{
+        int rowNumber=jRegisterTable.getSelectedRow();
+        if(rowNumber<0)
+        {
+            JOptionPane.showMessageDialog(null, "Please select a row");
+            return;
+        }
+        EntryHospitalWorkRequest request=(EntryHospitalWorkRequest) jRegisterTable.getModel().getValueAt(rowNumber, 0);
+        for(EntryHospitalWorkRequest hospitalWorkRequest: system.getWorkQueue().getWorkRequestHospital() ){
+            if(hospitalWorkRequest.equals(request)){
+                 hospitalWorkRequest.getHospital().getDoctor().setDoctorAvailable(true);
+                hospitalWorkRequest.setMedicalCheckupCompleted(true);
+            }
+        }
+        JOptionPane.showMessageDialog(null, "Request Completed Successfully");
+        jPanel2.setVisible(false);
+        reset();
+}
+catch(Exception ex)
+{
+    throw ex;
+}
+    }//GEN-LAST:event_btnRegisterDetails1ActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton btnAddItem;
-    private javax.swing.JButton btnDeleteEmployee;
-    private javax.swing.JButton btnUpdateItem;
-    private javax.swing.JComboBox<String> cmbOrganisation;
-    private javax.swing.JComboBox<String> cmbRole;
+    private javax.swing.JButton btnRegisterDetails;
+    private javax.swing.JButton btnRegisterDetails1;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabel6;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JTable jRegisterTable;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JLabel lblAvailablity;
-    private javax.swing.JLabel lblAvailablity1;
-    private javax.swing.JLabel lblAvailablity3;
-    private javax.swing.JLabel lblItem;
-    private javax.swing.JLabel lblPrice;
-    private javax.swing.JTextField txtEmployeeName;
-    private javax.swing.JTextField txtPassword;
-    private javax.swing.JTextField txtUsername;
+    private javax.swing.JScrollPane jScrollPane2;
+    private javax.swing.JTextArea jTextAreaPrescription;
+    private javax.swing.JTextField txtBloodPressure;
+    private javax.swing.JTextField txtTemprature;
     // End of variables declaration//GEN-END:variables
 
     private void populateTable() {
-   }
+        try{
+        ArrayList<EntryHospitalWorkRequest> finalWorkRequests=new ArrayList<>();
+        int loggedinID = system.getLogInUser().getLogInId();
+        
+        for(EntryHospitalWorkRequest hospitalWorkRequest: system.getWorkQueue().getWorkRequestHospital())   
+        {   
+            for(Network network:system.getNetworks())
+        {
+            for(Enterprise enterprise : network.getEnterpriseDirectory().getEnterprises())
+            {
+                if(enterprise.getEnterpriseType().equals("Hospital"))
+                {
+                    for(Organization organisation : enterprise.getOrganizationDirectory().getOrganisationList())
+                    {
+                       for(UserAccount userAccount : organisation.getUserAccountDirectory().getUserAccountList())
+                       {
+                           if(userAccount.getUniqueId()== loggedinID)
+                           {
+                                      
+                              if(hospitalWorkRequest.getHospital().getHospitalName().equals(enterprise.getName()))
+                                                  
+                              {
+                                  enterpriseName=enterprise.getName();
+                                  if(hospitalWorkRequest.getEntryChildWorkRequest().isIsAccepted() && !hospitalWorkRequest.isMedicalCheckupCompleted())
+                                  {
+                                       finalWorkRequests.add(hospitalWorkRequest);
+                                  }
+                              }
+                           }
+                       }
+                    }
+                }
+            }
+        }
+            
+        }
+        DefaultTableModel model = (DefaultTableModel) jRegisterTable.getModel();
+        model.setRowCount(0);
+        jRegisterTable.getColumnModel().getColumn(0).setMinWidth(0);
+        jRegisterTable.getColumnModel().getColumn(0).setMaxWidth(0);
+        
+        for(EntryHospitalWorkRequest requests : finalWorkRequests) //displaying on table from counsellor queue
+        {
+            Object[] row = new Object[7];
+            row[0]=requests;
+            row[1] = requests.getEntryChildWorkRequest().getPerson().getName();
+            row[2] = requests.getEntryChildWorkRequest().getPerson().getAge();         
+            row[3] = requests.getHeight();
+            row[4]= requests.getWeight();
+            row[5] = requests.getHospital().getBloodPressure();
+            row[6]= requests.getHospital().getTemperature();
+            model.addRow(row);
+        }
+    }
+        catch(Exception ex)
+        {
+            throw ex;
+        }
+    }
+    
+    
+    public void reset()
+    {
+        txtBloodPressure.setText("");
+        txtTemprature.setText("");
+        jTextAreaPrescription.setText("");
+    }
 }

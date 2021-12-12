@@ -251,6 +251,7 @@ public class ReceptionistJPanel extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnRegisterDetailsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegisterDetailsActionPerformed
+        try{
         jPanel2.setVisible(true);
         jPanel3.setVisible(true);
         int rowNumber=jRegisterTable.getSelectedRow();
@@ -265,7 +266,11 @@ public class ReceptionistJPanel extends javax.swing.JPanel {
         jPanel2.setVisible(true);
         JOptionPane.showMessageDialog(null, "Parameters registered successfully");
         dB4OUtil.storeSystem(ecosystem);
-      
+        }
+        catch(Exception ex)
+        {
+            throw ex;
+        }
     }//GEN-LAST:event_btnRegisterDetailsActionPerformed
 
     private void jRegisterTableMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jRegisterTableMouseClicked
@@ -324,6 +329,7 @@ public class ReceptionistJPanel extends javax.swing.JPanel {
                          assignToHospitalWorkRequest.getHospital().getDoctor().setDoctorId(Integer.parseInt(docComboBox.getSelectedItem().toString().split(",")[1]));
                          assignToHospitalWorkRequest.getHospital().getDoctor().setDoctorAvailable(false);
                          assignToHospitalWorkRequest.getHospital().setAppointmentSentToDoctor(true);
+                         assignToHospitalWorkRequest.setMedicalCheckupCompleted(false);
                          updateDoctorInfo(Integer.parseInt(docComboBox.getSelectedItem().toString().split(",")[1]));
                          JOptionPane.showMessageDialog(null, "Doctor Assigned Succesfully");
                          jPanel2.setVisible(false);
@@ -367,6 +373,7 @@ public class ReceptionistJPanel extends javax.swing.JPanel {
     // End of variables declaration//GEN-END:variables
 
     private void populateTable() {
+        try{
         ArrayList<EntryHospitalWorkRequest> finalWorkRequests=new ArrayList<>();
         int loggedinID = ecosystem.getLogInUser().getLogInId();
         
@@ -419,9 +426,15 @@ public class ReceptionistJPanel extends javax.swing.JPanel {
             row[6]= requests.getWeight();
             model.addRow(row);
         }
+        }
+        catch(Exception ex)
+        {
+            throw ex;
+        }
     }
 
     private void populateDocCombobox() {
+        try{
         docComboBox.removeAllItems();
         int loggedinID = ecosystem.getLogInUser().getLogInId();
         for(Network network: ecosystem.getNetworks())
@@ -444,9 +457,15 @@ public class ReceptionistJPanel extends javax.swing.JPanel {
                 }
             }
         }
+        }
+        catch(Exception ex)
+        {
+            throw ex;
+        }
     }
 
     private void updateDoctorInfo(int doctorUniqueId) {
+        try{
        for(Network network: ecosystem.getNetworks())
         {
             for(Enterprise enterprise:network.getEnterpriseDirectory().getEnterprises())
@@ -467,6 +486,11 @@ public class ReceptionistJPanel extends javax.swing.JPanel {
             }
         }
     }
-        
+      catch(Exception ex)
+      {
+          throw ex;
+      }
+    }
+         
  }
 

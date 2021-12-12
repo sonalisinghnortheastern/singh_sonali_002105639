@@ -15,6 +15,15 @@ public class EntryHospitalWorkRequest {
     private EntryChildWorkRequest entryChildWorkRequest;
     private double height;
     private double weight;
+    private boolean medicalCheckupCompleted;
+
+    public boolean isMedicalCheckupCompleted() {
+        return medicalCheckupCompleted;
+    }
+
+    public void setMedicalCheckupCompleted(boolean medicalCheckupCompleted) {
+        this.medicalCheckupCompleted = medicalCheckupCompleted;
+    }
     private Hospital hospital;
     
     public Hospital getHospital() {

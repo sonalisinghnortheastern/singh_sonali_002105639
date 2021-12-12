@@ -228,7 +228,7 @@ public class SendPersonForMedicalCheckup extends javax.swing.JPanel {
           if(!jComboBox1.getSelectedItem().toString().isEmpty())
           {
            hospital.setHospitalName(jComboBox1.getSelectedItem().toString());
-           hospital.setIsHospitalAvailable(false);
+           //hospital.setIsHospitalAvailable(false);
            hospital.setHospitalId(ecosystem.getLogInUser().getLogInId());
            entryHospital.setHospital(hospital);
            entryHospitals.add(entryHospital); 

@@ -13,7 +13,15 @@ public class Hospital {
     private String hospitalName;
     private double temperature;
     private double bloodPressure;
-    private double pulse;
+    private String prescription;
+
+    public String getPrescription() {
+        return prescription;
+    }
+
+    public void setPrescription(String prescription) {
+        this.prescription = prescription;
+    }
     private boolean isHospitalAvailable;
     private int hospitalId;
     private Doctor doctor;
@@ -47,13 +55,7 @@ public class Hospital {
         this.hospitalId = hospitalId;
     }
 
-    public boolean isIsHospitalAvailable() {
-        return isHospitalAvailable;
-    }
-
-    public void setIsHospitalAvailable(boolean isHospitalAvailable) {
-        this.isHospitalAvailable = isHospitalAvailable;
-    }
+ 
 
     public String getHospitalName() {
         return hospitalName;
@@ -77,14 +79,6 @@ public class Hospital {
 
     public void setBloodPressure(double bloodPressure) {
         this.bloodPressure = bloodPressure;
-    }
-
-    public double getPulse() {
-        return pulse;
-    }
-
-    public void setPulse(double pulse) {
-        this.pulse = pulse;
     }
     
 }
