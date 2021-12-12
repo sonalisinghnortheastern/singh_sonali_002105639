@@ -28,10 +28,12 @@ public class ReceptionistJPanel extends javax.swing.JPanel {
      */
      private final EcoSystem ecosystem;
      private String enterpriseName;private DB4OUtil dB4OUtil = DB4OUtil.getInstance();
+     int numberOfdoctorsAvailable=0;
     public ReceptionistJPanel(EcoSystem ecosystem) {
         initComponents();
         this.ecosystem=ecosystem;
         jPanel2.setVisible(false);
+        jPanel3.setVisible(false);
         populateTable();
         populateDocCombobox();
     }
@@ -93,19 +95,20 @@ public class ReceptionistJPanel extends javax.swing.JPanel {
         jPanel2Layout.setHorizontalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
-                .addGap(39, 39, 39)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 146, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 146, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(74, 74, 74)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(txtWeight, javax.swing.GroupLayout.DEFAULT_SIZE, 259, Short.MAX_VALUE)
-                    .addComponent(txtHeight))
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addGap(39, 39, 39)
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 146, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 146, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(74, 74, 74)
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(txtWeight, javax.swing.GroupLayout.DEFAULT_SIZE, 259, Short.MAX_VALUE)
+                            .addComponent(txtHeight)))
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addGap(214, 214, 214)
+                        .addComponent(btnRegisterDetails, javax.swing.GroupLayout.PREFERRED_SIZE, 181, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(115, Short.MAX_VALUE))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(btnRegisterDetails, javax.swing.GroupLayout.PREFERRED_SIZE, 181, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(212, 212, 212))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -118,9 +121,9 @@ public class ReceptionistJPanel extends javax.swing.JPanel {
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(txtWeight, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel5))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 31, Short.MAX_VALUE)
+                .addGap(18, 18, 18)
                 .addComponent(btnRegisterDetails)
-                .addContainerGap())
+                .addContainerGap(24, Short.MAX_VALUE))
         );
 
         jRegisterTable.setBorder(javax.swing.BorderFactory.createEtchedBorder());
@@ -257,20 +260,17 @@ public class ReceptionistJPanel extends javax.swing.JPanel {
              hospitalWorkRequest.setHeight(Double.parseDouble(txtHeight.getText()));
              hospitalWorkRequest.setWeight(Double.parseDouble(txtWeight.getText()));
          }
-     }    
-        
-       request.setHeight(Double.parseDouble(txtHeight.getText()));
-       request.setWeight(Double.parseDouble(txtWeight.getText()));
+     }
         populateTable();
+        jPanel2.setVisible(true);
         JOptionPane.showMessageDialog(null, "Parameters registered successfully");
+        dB4OUtil.storeSystem(ecosystem);
       
     }//GEN-LAST:event_btnRegisterDetailsActionPerformed
 
     private void jRegisterTableMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jRegisterTableMouseClicked
 
        try{
-           jPanel2.setVisible(true);
-           jPanel3.setVisible(true);
            int rowNumber=jRegisterTable.getSelectedRow();
            EntryHospitalWorkRequest request=(EntryHospitalWorkRequest) jRegisterTable.getModel().getValueAt(rowNumber, 0);
             if(request.getEntryChildWorkRequest()==null||request.getEntryChildWorkRequest().getPerson()==null){
@@ -280,7 +280,13 @@ public class ReceptionistJPanel extends javax.swing.JPanel {
             }
         else{
             jPanel2.setVisible(true);
+            if(numberOfdoctorsAvailable>0)
+            {
             jPanel3.setVisible(true);
+            }
+            else{
+                JOptionPane.showMessageDialog(null, "Doctors not available to take appointment.Please try after some time");
+            }
            txtHeight.setText(jRegisterTable.getModel().getValueAt(rowNumber, 5).toString());
            txtWeight.setText(jRegisterTable.getModel().getValueAt(rowNumber, 6).toString());
            }
@@ -300,6 +306,13 @@ public class ReceptionistJPanel extends javax.swing.JPanel {
                     JOptionPane.showMessageDialog(null, "Please select a row");
                     return;
                 }
+                String height=jRegisterTable.getModel().getValueAt(rowNumber, 5).toString();
+                String weight= jRegisterTable.getModel().getValueAt(rowNumber, 6).toString();
+                if(height.equals("0.0") || weight.equals("0.0"))
+                {
+                    JOptionPane.showMessageDialog(null, "Please Record the details before procedding");
+                    return;
+                }
                ArrayList<EntryHospitalWorkRequest> workRequest= ecosystem.getWorkQueue().getWorkRequestHospital();
                 for(EntryHospitalWorkRequest assignToHospitalWorkRequest:workRequest)
                 {
@@ -314,11 +327,14 @@ public class ReceptionistJPanel extends javax.swing.JPanel {
                          updateDoctorInfo(Integer.parseInt(docComboBox.getSelectedItem().toString().split(",")[1]));
                          JOptionPane.showMessageDialog(null, "Doctor Assigned Succesfully");
                          jPanel2.setVisible(false);
+                         jPanel3.setVisible(false);
                          break;
                         
                         }
                         else{
                              JOptionPane.showMessageDialog(null, "Doctor is not available currently");
+                              jPanel2.setVisible(false);
+                         jPanel3.setVisible(false);
                             break;
                         }
 
@@ -373,7 +389,7 @@ public class ReceptionistJPanel extends javax.swing.JPanel {
                                                   
                               {
                                   enterpriseName=enterprise.getName();
-                                  if(hospitalWorkRequest.getEntryChildWorkRequest().isIsAccepted())
+                                  if(hospitalWorkRequest.getEntryChildWorkRequest().isIsAccepted() && !hospitalWorkRequest.getHospital().isAppointmentSentToDoctor())
                                   {
                                        finalWorkRequests.add(hospitalWorkRequest);
                                   }
@@ -420,7 +436,8 @@ public class ReceptionistJPanel extends javax.swing.JPanel {
                            {
                                if(userAccount.getRole().toString().equals("Business.Role.DoctorRole") && userAccount.isIsAvailable() )
                                {
-                               docComboBox.addItem(userAccount.getEmployee().getName()+","+userAccount.getUniqueId());
+                                   numberOfdoctorsAvailable++;
+                                   docComboBox.addItem(userAccount.getEmployee().getName()+","+userAccount.getUniqueId());
                                }
                            }
                     }
