@@ -19,6 +19,17 @@ public class Person {
     private long contact;
      private int loginId;
 
+    public Person(String name, double age, String gender, long income, String education, String address, long contact, int loginId) {
+        this.name = name;
+        this.age = age;
+        this.gender = gender;
+        this.income = income;
+        this.education = education;
+        this.address = address;
+        this.contact = contact;
+        this.loginId = loginId;
+    }
+
     public int getLoginId() {
         return loginId;
     }

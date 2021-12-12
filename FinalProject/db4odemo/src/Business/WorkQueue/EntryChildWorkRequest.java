@@ -57,7 +57,7 @@ public class EntryChildWorkRequest extends WorkRequest {
     }
     private Person person;
     public EntryChildWorkRequest(){
-    this.person = new Person();
+   
     
     }
     

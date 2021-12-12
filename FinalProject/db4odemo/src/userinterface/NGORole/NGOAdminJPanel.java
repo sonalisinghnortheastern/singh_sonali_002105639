@@ -120,9 +120,9 @@ public class NGOAdminJPanel extends javax.swing.JPanel {
                 .addComponent(btnManageMenu2)
                 .addGap(59, 59, 59)
                 .addComponent(btnManageMenu3)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 53, Short.MAX_VALUE)
+                .addGap(18, 18, 18)
                 .addComponent(btnManageMenu1)
-                .addGap(36, 36, 36))
+                .addContainerGap(71, Short.MAX_VALUE))
         );
 
         jSplitPane.setLeftComponent(jPanel1);

@@ -7,10 +7,19 @@ package userinterface.SystemAdminWorkArea;
 
 import Business.DB4OUtil.DB4OUtil;
 import Business.EcoSystem;
+import Business.Enterprise.Enterprise;
+import Business.Enterprise.EnterpriseDirectory;
+import Business.Enterprise.NGOEnterprise;
 import Business.Network.Network;
+import Business.Organization;
+import Business.OrganizationDirectory;
+import Business.WorkQueue.EntryChildWorkRequest;
+import Business.WorkQueue.WorkQueue;
+import com.github.javafaker.Faker;
 import java.awt.Color;
 import javax.swing.BorderFactory;
 import javax.swing.JOptionPane;
+import javax.swing.UIManager;
 import javax.swing.table.DefaultTableModel;
 
 /**
@@ -24,12 +33,30 @@ public class ManageNetworkJPanel extends javax.swing.JPanel {
      */
     private final EcoSystem system; 
     private DB4OUtil dB4OUtil = DB4OUtil.getInstance();
+  
     public ManageNetworkJPanel(EcoSystem system) {
         initComponents();
        this.system = system;
-        populateTable();
+   try{   
+    Faker faker = new Faker();
+    Network n1 = new Network(faker.country().name());
+    Network n2 = new Network(faker.country().name());
+    Network n3 = new Network(faker.country().name());
+    Network n4 = new Network(faker.country().name());
+    Network n5 = new Network(faker.country().name());
+    EnterpriseDirectory ed = new EnterpriseDirectory();
+   
+    system.setNetworks(n1);
+    system.setNetworks(n2);
+    system.setNetworks(n3);
+    system.setNetworks(n4);
+    system.setNetworks(n5);
+    populateTable();
     }
-
+    catch(Exception e){
+        throw e;
+    }
+    }
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -166,13 +193,15 @@ public class ManageNetworkJPanel extends javax.swing.JPanel {
 
     private void btnCreateNetworkActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCreateNetworkActionPerformed
     try {
-        
             String networkName = txtName.getText();
             if(networkName.trim().isEmpty()|| networkName==null){
                 txtName.setBorder(BorderFactory.createLineBorder (Color.BLUE));
                 txtName.setToolTipText("Please Enter A Network");
-               JOptionPane.showMessageDialog(this, "Validation Failed .Please check the red box");    
+               JOptionPane.showMessageDialog(this, "Validation Failed .Please check the blue box");    
                return;
+            }
+            if(!networkName.trim().isEmpty()|| networkName==null){
+              txtName.setBorder(UIManager.getLookAndFeel().getDefaults().getBorder("TextField.border"));
             }
         
         if(networkName.equals(""))
@@ -215,9 +244,13 @@ public class ManageNetworkJPanel extends javax.swing.JPanel {
             if(network1.trim().isEmpty()|| network1==null){
                 txtName.setBorder(BorderFactory.createLineBorder (Color.BLUE));
                 txtName.setToolTipText("Please Enter A Network");
-               JOptionPane.showMessageDialog(this, "Validation Failed .Please check the red box");    
+               JOptionPane.showMessageDialog(this, "Validation Failed .Please check the blue box");    
                return;
             }
+            if(!network1.trim().isEmpty()|| network1==null){
+                txtName.setBorder(UIManager.getLookAndFeel().getDefaults().getBorder("TextField.border"));
+            }
+            
             if(network.getNetworkName().equals(txtName.getText()) && selectedRowIndex != index)
             {
                 JOptionPane.showMessageDialog(null, "Network with this name already exists");
@@ -266,6 +299,7 @@ public class ManageNetworkJPanel extends javax.swing.JPanel {
 
     private void jRegisterTableMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jRegisterTableMouseClicked
        try{
+           txtName.setBorder(UIManager.getLookAndFeel().getDefaults().getBorder("TextField.border"));
            int rowNumber=jRegisterTable.getSelectedRow();
             txtName.setText(jRegisterTable.getModel().getValueAt(rowNumber, 1).toString());
        }

@@ -17,6 +17,8 @@ public class EntryHospitalWorkRequest {
     private double weight;
     private Hospital hospital;
     
+    
+    
     public Hospital getHospital() {
         return hospital;
     }
@@ -48,3 +50,4 @@ public class EntryHospitalWorkRequest {
         this.weight = weight;
     }
 }
+

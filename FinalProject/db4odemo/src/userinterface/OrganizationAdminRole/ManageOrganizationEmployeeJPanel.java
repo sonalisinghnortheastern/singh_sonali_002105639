@@ -29,6 +29,7 @@ import Business.Role.ReceptionistRole;
 import Business.Role.RestaurantAdmin;
 import Business.Role.Role;
 import Business.UserAccount.UserAccount;
+import java.awt.Color;
 import java.util.Iterator;
 import java.util.Properties;
 import java.util.Random;
@@ -40,7 +41,9 @@ import javax.mail.Session;
 import javax.mail.Transport;
 import javax.mail.internet.InternetAddress;
 import javax.mail.internet.MimeMessage;
+import javax.swing.BorderFactory;
 import javax.swing.JOptionPane;
+import javax.swing.UIManager;
 import javax.swing.table.DefaultTableModel;
 
 /**
@@ -172,9 +175,9 @@ public class ManageOrganizationEmployeeJPanel extends javax.swing.JPanel {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(btnAddItem)
-                .addGap(59, 59, 59)
-                .addComponent(btnUpdateItem)
-                .addContainerGap())
+                .addGap(34, 34, 34)
+                .addComponent(btnUpdateItem, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(190, 190, 190))
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(77, 77, 77)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -219,7 +222,7 @@ public class ManageOrganizationEmployeeJPanel extends javax.swing.JPanel {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lblAvailablity3, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(txtPassword, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnAddItem)
                     .addComponent(btnUpdateItem))
@@ -281,12 +284,10 @@ public class ManageOrganizationEmployeeJPanel extends javax.swing.JPanel {
             .addComponent(jScrollPane1)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(105, 105, 105)
                 .addComponent(btnDeleteEmployee, javax.swing.GroupLayout.PREFERRED_SIZE, 142, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
-            .addGroup(layout.createSequentialGroup()
-                .addGap(219, 219, 219)
-                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -295,11 +296,14 @@ public class ManageOrganizationEmployeeJPanel extends javax.swing.JPanel {
                 .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 165, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(btnDeleteEmployee)
-                .addGap(35, 35, 35)
-                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 501, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(58, 58, 58))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(btnDeleteEmployee))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(19, 19, 19)
+                        .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 501, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(112, 112, 112))
         );
     }// </editor-fold>//GEN-END:initComponents
 
@@ -588,7 +592,10 @@ Enterprise loggedInUserEnterprise=null;
         
     }
     private  void addEmployee(boolean update,int deletionIndex) throws Exception //if update flag true and index where it has to be updated
-    {try{
+    {
+        try{
+         if(validateNullOrEmpty()){
+          if(validateFields()){ 
             String organisation = cmbOrganisation. getSelectedItem().toString(); //get selected organization
             String role = cmbRole. getSelectedItem().toString(); //get role from combo box dropdown
             String employeeName = txtEmployeeName.getText(); 
@@ -634,6 +641,19 @@ Enterprise loggedInUserEnterprise=null;
                 sendEmail(username, password);
                 JOptionPane.showMessageDialog(null, "Organisation Employee Updated Successfully"); //if update flag true
             }
+          }
+          else{
+           JOptionPane.showMessageDialog(this, "Validation Failed .Please check the blue boxes");
+           validateNullOrEmpty=true;
+           validateRegex=true; 
+          }
+         }
+         else{
+           JOptionPane.showMessageDialog(this, "Validation Failed .Please check the blue boxes");
+           validateNullOrEmpty=true;
+           validateRegex=true; 
+          }
+         
         }
         catch(Exception ex)
         {
@@ -643,7 +663,7 @@ Enterprise loggedInUserEnterprise=null;
      private  int deleteEmployee(boolean update) throws Exception    //returns index to add method where it has to update
      {                                             
         try{
-            int deletionIndex=0;  //initially set to 0
+        int deletionIndex=0;  //initially set to 0
         int selectedRowIndex=jRegisterTable.getSelectedRow();
         if(selectedRowIndex<0)
         {
@@ -706,8 +726,8 @@ Enterprise loggedInUserEnterprise=null;
        String toEmail=toEmailAddress;
        String fromEmail="huskydevportal@gmail.com";
        String fromEmailPassword="Husky@123";
-       String message= "You have been registered on the xyz portal with "+toEmailAddress +"username and "+password +"password";
-       String subject= "Registartion Successfull";
+       String message= "You have been registered on the Foster Care with "+toEmailAddress +" username and "+password +" password";
+       String subject= "Registration Successful";
        Properties properties=new Properties();
        properties.put("mail.smtp.auth", true);
        properties.put("mail.smtp.starttls.enable", true);
@@ -733,6 +753,69 @@ Enterprise loggedInUserEnterprise=null;
             throw  e;
         }
 
+    }
+
+    private boolean validateNullOrEmpty() {
+        validateNullOrEmpty=true;
+        if(txtEmployeeName.getText().trim().isEmpty() || txtEmployeeName.getText()==null){
+             validateNullOrEmpty=false;
+            txtEmployeeName.setToolTipText("Please Enter Valid Employee Name");
+            txtEmployeeName.setBorder(BorderFactory.createLineBorder(Color.BLUE,1));
+         }
+        if(!txtEmployeeName.getText().trim().isEmpty() && txtEmployeeName.getText()!=null){
+            txtEmployeeName.setBorder(UIManager.getLookAndFeel().getDefaults().getBorder("TextField.border"));
+         }
+        
+        if(txtUsername.getText().trim().isEmpty() || txtUsername.getText()==null){
+             validateNullOrEmpty=false;
+            txtUsername.setToolTipText("Please Enter a Valid Email ID");
+            txtUsername.setBorder(BorderFactory.createLineBorder(Color.BLUE,1));
+         } 
+         if(!txtUsername.getText().trim().isEmpty() && txtUsername.getText()!=null){
+            txtUsername.setBorder(UIManager.getLookAndFeel().getDefaults().getBorder("TextField.border"));
+         }
+         
+         if(txtPassword.getText().trim().isEmpty() || txtPassword.getText()==null){
+            validateNullOrEmpty=false;
+            txtPassword.setToolTipText("Please Enter a Password");
+            txtPassword.setBorder(BorderFactory.createLineBorder(Color.BLUE,1));
+         } 
+         
+         if(!txtPassword.getText().trim().isEmpty() && txtPassword.getText()!=null){
+            txtPassword.setBorder(UIManager.getLookAndFeel().getDefaults().getBorder("TextField.border"));
+         }
+              
+        return validateNullOrEmpty;
+                
+    }
+
+    private boolean validateFields() {
+        
+        validateRegex=true;
+        if(!txtUsername.getText().matches("^(.+)@(.+)$")){
+            validateRegex=false;
+            txtUsername.setToolTipText("Please Enter A Valid Email Address");
+            txtUsername.setBorder(BorderFactory.createLineBorder (Color.BLUE));
+        }
+        
+        if(txtUsername.getText().matches("^(.+)@(.+)$")){
+           txtUsername.setBorder(UIManager.getLookAndFeel().getDefaults().getBorder("TextField.border"));
+        }
+        
+        
+         if(!txtPassword.getText().matches("^(?=.*[A-Za-z])(?=.*\\d)(?=.*[@$!%*#?&])[A-Za-z\\d@$!%*#?&]{8,}$")){
+            validateRegex=false;
+            txtPassword.setToolTipText("Please Enter A Valid Password [minimum 8-digit with one letter, one number, and one special character");
+            txtPassword.setBorder(BorderFactory.createLineBorder (Color.BLUE));
+            txtUsername.setBorder(UIManager.getLookAndFeel().getDefaults().getBorder("TextField.border"));
+        }
+        
+        if(txtPassword.getText().matches("^(?=.*[A-Za-z])(?=.*\\d)(?=.*[@$!%*#?&])[A-Za-z\\d@$!%*#?&]{8,}$")){
+           txtPassword.setBorder(UIManager.getLookAndFeel().getDefaults().getBorder("TextField.border"));
+        }
+        
+        
+        return validateRegex;
     }
 }
 

@@ -10,8 +10,11 @@ import Business.EcoSystem;
 import Business.Enterprise.Enterprise;
 import Business.Network.Network;
 import Business.WorkQueue.EntryChildWorkRequest;
+import java.awt.Color;
 import java.util.Random;
+import javax.swing.BorderFactory;
 import javax.swing.JOptionPane;
+import javax.swing.UIManager;
 import javax.swing.table.DefaultTableModel;
 
 /**
@@ -25,6 +28,8 @@ public class ManagePeopleJPanel extends javax.swing.JPanel {
      */
     private final EcoSystem system; 
     private DB4OUtil dB4OUtil = DB4OUtil.getInstance();
+    boolean validateNullOrEmpty=true;
+    boolean validateRegex=true;
     public ManagePeopleJPanel(EcoSystem system) {
         initComponents();
         this.system = system;
@@ -257,7 +262,7 @@ public class ManagePeopleJPanel extends javax.swing.JPanel {
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnCreateCustomer)
                     .addComponent(btnModify))
-                .addContainerGap(54, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         btnDelete.setFont(new java.awt.Font("Comic Sans MS", 1, 12)); // NOI18N
@@ -290,15 +295,16 @@ public class ManagePeopleJPanel extends javax.swing.JPanel {
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jLabel1)
-                .addGap(33, 33, 33)
+                .addGap(18, 18, 18)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 165, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(btnDelete)
-                        .addGap(0, 0, Short.MAX_VALUE))
-                    .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addContainerGap())
+                        .addGap(21, 21, 21)
+                        .addComponent(btnDelete))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(64, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
@@ -316,7 +322,7 @@ public class ManagePeopleJPanel extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jRegisterTableMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jRegisterTableMouseClicked
-        try{            
+                  
             int rowNumber=jRegisterTable.getSelectedRow();
             if(rowNumber<0)
             {
@@ -332,7 +338,9 @@ public class ManagePeopleJPanel extends javax.swing.JPanel {
                 jLabel12.setVisible(false);
                 jLabel11.setVisible(false);
             }
-            
+             try{ 
+              if(validateNullOrEmpty()){
+               if(validateFields()){  
             txtName.setText(jRegisterTable.getModel().getValueAt(rowNumber, 1).toString());
             txtAge.setText(jRegisterTable.getModel().getValueAt(rowNumber, 2).toString());
             if(jRegisterTable.getModel().getValueAt(rowNumber, 3).toString().equals("Female"))
@@ -348,6 +356,8 @@ public class ManagePeopleJPanel extends javax.swing.JPanel {
             txtAddress.setText(jRegisterTable.getModel().getValueAt(rowNumber, 6).toString());
             txtContact.setText(jRegisterTable.getModel().getValueAt(rowNumber, 7).toString());
             cmbNGO.setSelectedItem(jRegisterTable.getModel().getValueAt(rowNumber, 8).toString());
+               }} 
+           
         }
         catch(Exception e)
         {
@@ -357,6 +367,8 @@ public class ManagePeopleJPanel extends javax.swing.JPanel {
 
     private void btnCreateCustomerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCreateCustomerActionPerformed
             try {
+               if(validateNullOrEmpty()){
+                if(validateFields()){
                 EntryChildWorkRequest entryChildWorkRequest = new EntryChildWorkRequest();
                 entryChildWorkRequest.getPerson().setName(txtName.getText());
                 entryChildWorkRequest.getPerson().setAge(Double.parseDouble(txtAge.getText()));
@@ -381,9 +393,22 @@ public class ManagePeopleJPanel extends javax.swing.JPanel {
                 JOptionPane.showMessageDialog(null, "Person Information Added Succesfully");
                 populateTable();
                 reset();
+                }
+              else{
+                  JOptionPane.showMessageDialog(this, "Validation Failed .Please check the blue boxes");
+                  validateNullOrEmpty=true;
+                  validateRegex=true; 
+              }
+            } 
+             else{
+                  JOptionPane.showMessageDialog(this, "Validation Failed .Please check the blue boxes");
+                  validateNullOrEmpty=true;
+                  validateRegex=true; 
+            }  
                 
             } catch (Exception e) {
-    
+                validateNullOrEmpty=true;
+                validateRegex=true;
                 throw e;
             }
     }//GEN-LAST:event_btnCreateCustomerActionPerformed
@@ -403,6 +428,8 @@ public class ManagePeopleJPanel extends javax.swing.JPanel {
             }
             
             EntryChildWorkRequest entryChildWorkRequest = new EntryChildWorkRequest();
+           if(validateNullOrEmpty()){
+            if(validateFields()){ 
             entryChildWorkRequest.getPerson().setName(txtName.getText());
             entryChildWorkRequest.getPerson().setAge(Double.parseDouble(txtAge.getText()));
             if(radiobtnMale.isSelected())
@@ -412,6 +439,7 @@ public class ManagePeopleJPanel extends javax.swing.JPanel {
             else{
                 entryChildWorkRequest.getPerson().setGender("Female");
             }
+            
             entryChildWorkRequest.getPerson().setIncome(Long.parseLong(txtIncome.getText()));
             entryChildWorkRequest.getPerson().setAddress(txtAddress.getText());
             entryChildWorkRequest.getPerson().setContact(Long.parseLong(txtContact.getText()));
@@ -424,10 +452,25 @@ public class ManagePeopleJPanel extends javax.swing.JPanel {
             dB4OUtil.storeSystem(system);
             JOptionPane.showMessageDialog(null, "Person Information Updated Succesfully");
         }
-        catch(Exception e)
-        {
-            throw e;
+        else{
+           JOptionPane.showMessageDialog(this, "Validation Failed .Please check the blue boxes");
+           validateNullOrEmpty=true;
+           validateRegex=true;       
         }
+       }
+       else{
+          JOptionPane.showMessageDialog(this, "Validation Failed .Please check the blue boxes");
+          validateNullOrEmpty=true;
+          validateRegex=true;       
+      }    
+        
+      }
+      catch(Exception e)
+      {    
+         validateNullOrEmpty=true;
+         validateRegex=true;
+         throw e;
+      }
     }//GEN-LAST:event_btnModifyActionPerformed
 
     private void btnDeleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDeleteActionPerformed
@@ -559,5 +602,111 @@ public class ManagePeopleJPanel extends javax.swing.JPanel {
         }
         
   }
+
+    private boolean validateNullOrEmpty() {
+        validateNullOrEmpty=true;
+        
+         if(txtName.getText().trim().isEmpty() || txtName.getText()==null){
+             validateNullOrEmpty=false;
+            txtName.setToolTipText("Please Enter a Name");
+            txtName.setBorder(BorderFactory.createLineBorder(Color.BLUE,1));
+         }
+          if(!txtName.getText().trim().isEmpty() && txtName.getText()!=null){
+            txtName.setBorder(UIManager.getLookAndFeel().getDefaults().getBorder("TextField.border"));
+         }
+         
+          
+         if(txtAge.getText().trim().isEmpty() || txtAge.getText()==null){
+             validateNullOrEmpty=false;
+            txtAge.setToolTipText("Please Enter Age");
+            txtAge.setBorder(BorderFactory.createLineBorder(Color.BLUE,1));
+         }
+          if(!txtAge.getText().trim().isEmpty() && txtAge.getText()!=null){
+            txtAge.setBorder(UIManager.getLookAndFeel().getDefaults().getBorder("TextField.border"));
+         }
+          
+         if(radiobtnMale.isEnabled()==false && radioButtonFemale.isEnabled()==false){
+             validateNullOrEmpty=false;
+             txtName.setToolTipText("Please select a radio button");
+         }
+         
+          if(txtIncome.getText().trim().isEmpty() || txtIncome.getText()==null){
+             validateNullOrEmpty=false;
+            txtIncome.setToolTipText("Please Enter Income");
+            txtIncome.setBorder(BorderFactory.createLineBorder(Color.BLUE,1));
+         }
+          if(!txtIncome.getText().trim().isEmpty() && txtIncome.getText()!=null){
+            txtIncome.setBorder(UIManager.getLookAndFeel().getDefaults().getBorder("TextField.border"));
+         }
+          
+          if(txtAddress.getText().trim().isEmpty() || txtAddress.getText()==null){
+             validateNullOrEmpty=false;
+            txtAddress.setToolTipText("Please Enter Address");
+            txtAddress.setBorder(BorderFactory.createLineBorder(Color.BLUE,1));
+         }
+          if(!txtAddress.getText().trim().isEmpty() && txtAddress.getText()!=null){
+            txtAddress.setBorder(UIManager.getLookAndFeel().getDefaults().getBorder("TextField.border"));
+         }
+          
+           if(txtContact.getText().trim().isEmpty() || txtContact.getText()==null){
+             validateNullOrEmpty=false;
+            txtContact.setToolTipText("Please Enter Contact");
+            txtContact.setBorder(BorderFactory.createLineBorder(Color.BLUE,1));
+         }
+          if(!txtContact.getText().trim().isEmpty() && txtContact.getText()!=null){
+            txtContact.setBorder(UIManager.getLookAndFeel().getDefaults().getBorder("TextField.border"));
+         } 
+        return  validateNullOrEmpty;
+    }
+
+    private boolean validateFields() {
+        validateRegex=true;
+        //age, income, contact
+          if(!txtAge.getText().matches("^[0-9]{2}$")){
+            validateRegex=false;
+            txtAge.setToolTipText("Please Enter Age, max age-99");
+            txtName.setBorder(UIManager.getLookAndFeel().getDefaults().getBorder("TextField.border"));
+            txtIncome.setBorder(UIManager.getLookAndFeel().getDefaults().getBorder("TextField.border"));
+            txtAddress.setBorder(UIManager.getLookAndFeel().getDefaults().getBorder("TextField.border"));
+            txtContact.setBorder(UIManager.getLookAndFeel().getDefaults().getBorder("TextField.border"));        
+            txtAge.setBorder(BorderFactory.createLineBorder (Color.BLUE));
+            
+        }
+        
+        if(txtAge.getText().matches("^[0-9]{2}$")){
+           txtAge.setBorder(UIManager.getLookAndFeel().getDefaults().getBorder("TextField.border"));
+        }
+        
+        if(!txtIncome.getText().matches("^[0-9]+")){
+            validateRegex=false;
+            txtIncome.setToolTipText("Please Enter Income in digits");
+            txtName.setBorder(UIManager.getLookAndFeel().getDefaults().getBorder("TextField.border"));
+            txtAge.setBorder(UIManager.getLookAndFeel().getDefaults().getBorder("TextField.border"));
+            txtAddress.setBorder(UIManager.getLookAndFeel().getDefaults().getBorder("TextField.border"));
+            txtContact.setBorder(UIManager.getLookAndFeel().getDefaults().getBorder("TextField.border"));        
+            txtIncome.setBorder(BorderFactory.createLineBorder (Color.BLUE));
+            
+        }
+        
+        if(txtIncome.getText().matches("^[0-9]+")){
+           txtIncome.setBorder(UIManager.getLookAndFeel().getDefaults().getBorder("TextField.border"));
+        }
+        
+         if(!txtContact.getText().matches("[0-9]{10}")){
+            validateRegex=false;
+            txtContact.setToolTipText("Please Enter 10 Digit Contact Number");
+            txtName.setBorder(UIManager.getLookAndFeel().getDefaults().getBorder("TextField.border"));
+            txtAge.setBorder(UIManager.getLookAndFeel().getDefaults().getBorder("TextField.border"));
+            txtAddress.setBorder(UIManager.getLookAndFeel().getDefaults().getBorder("TextField.border"));
+            txtIncome.setBorder(UIManager.getLookAndFeel().getDefaults().getBorder("TextField.border"));        
+            txtContact.setBorder(BorderFactory.createLineBorder (Color.BLUE));
+            
+        }
+        
+        if(txtContact.getText().matches("[0-9]{10}")){
+           txtContact.setBorder(UIManager.getLookAndFeel().getDefaults().getBorder("TextField.border"));
+        }  
+        return validateRegex;
+    }
     
 }

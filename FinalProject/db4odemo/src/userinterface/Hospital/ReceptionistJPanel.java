@@ -17,6 +17,8 @@ import Business.UserAccount.UserAccount;
 import Business.WorkQueue.AssignToCounsellorWorkRequest;
 import Business.WorkQueue.EntryHospitalWorkRequest;
 import Business.Hospital.Doctor;
+import Business.Person.Person;
+import com.github.javafaker.Faker;
 import java.util.ArrayList;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
@@ -33,12 +35,19 @@ public class ReceptionistJPanel extends javax.swing.JPanel {
      */
      private final EcoSystem ecosystem;
      private String enterpriseName;private DB4OUtil dB4OUtil = DB4OUtil.getInstance();
+     Faker faker = new Faker();
     public ReceptionistJPanel(EcoSystem ecosystem) {
         initComponents();
         this.ecosystem=ecosystem;
         jPanel2.setVisible(false);
+//          public Person(String name, double age, String gender, long income, String education, String address, long contact, int loginId)
+//        Person person = new Person(faker.name().fullName(), faker.random().nextInt(15,30),"Male",faker.educator().secondarySchool(),faker.address().fullAddress(),faker.phoneNumber(),faker
+        
+//        );
         populateTable();
         populateDocCombobox();
+        
+        
     }
 
     /**

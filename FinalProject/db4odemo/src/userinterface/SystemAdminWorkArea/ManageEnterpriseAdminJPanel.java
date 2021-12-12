@@ -295,13 +295,13 @@ public class ManageEnterpriseAdminJPanel extends javax.swing.JPanel {
       }
      }
      else{
-         JOptionPane.showMessageDialog(this, "Validation Failed .Please check the red boxes");
+         JOptionPane.showMessageDialog(this, "Validation Failed .Please check the blue boxes");
          validateNullOrEmpty=true;
          validateRegex=true;
      }  
      }  
      else{
-          JOptionPane.showMessageDialog(this, "Validation Failed .Please check the red boxes");
+          JOptionPane.showMessageDialog(this, "Validation Failed .Please check the blue boxes");
           validateNullOrEmpty=true;
           validateRegex=true;
      }
@@ -364,13 +364,13 @@ public class ManageEnterpriseAdminJPanel extends javax.swing.JPanel {
          JOptionPane.showMessageDialog(null, "User modifed succesfully");
           }
           else{
-           JOptionPane.showMessageDialog(this, "Validation Failed .Please check the red boxes");
+           JOptionPane.showMessageDialog(this, "Validation Failed .Please check the blue boxes");
            validateNullOrEmpty=true;
            validateRegex=true; 
           }
         }
         else{           
-          JOptionPane.showMessageDialog(this, "Validation Failed .Please check the red boxes");
+          JOptionPane.showMessageDialog(this, "Validation Failed .Please check the blue boxes");
           validateNullOrEmpty=true;
           validateRegex=true;    
         }
@@ -508,9 +508,9 @@ public class ManageEnterpriseAdminJPanel extends javax.swing.JPanel {
     }
     private void addEmployee() throws Exception
     {
-        String name= txtName.getText();
-    String username=txtUsername.getText();
-    String password =txtPassword.getText();
+      String name= txtName.getText();
+      String username=txtUsername.getText();
+      String password =txtPassword.getText();
     Enterprise enterprise = (Enterprise) enterpriseJComboBox.getSelectedItem();
     if(system.getUserAccountDirectory().checkIfUsernameIsUnique(username,system))
     {
@@ -534,8 +534,8 @@ public class ManageEnterpriseAdminJPanel extends javax.swing.JPanel {
        String toEmail=toEmailAddress;
        String fromEmail="huskydevportal@gmail.com";
        String fromEmailPassword="Husky@123";
-       String message= "You have been registered on the xyz portal with "+toEmailAddress +" username and "+password +" password";
-       String subject= "Registartion Successfull";
+       String message= "You have been registered on Foster Care with "+toEmailAddress +" username and "+password +" password";
+       String subject= "Registartion Successful";
        Properties properties=new Properties();
        properties.put("mail.smtp.auth", true);
        properties.put("mail.smtp.starttls.enable", true);
@@ -567,7 +567,7 @@ public class ManageEnterpriseAdminJPanel extends javax.swing.JPanel {
          if(txtName.getText().trim().isEmpty() || txtName.getText()==null){
              validateNullOrEmpty=false;
             txtName.setToolTipText("Please Enter a Name");
-            txtName.setBorder(BorderFactory.createLineBorder(Color.red,1));
+            txtName.setBorder(BorderFactory.createLineBorder(Color.BLUE,1));
          }
           if(!txtName.getText().trim().isEmpty() && txtName.getText()!=null){
             txtName.setBorder(UIManager.getLookAndFeel().getDefaults().getBorder("TextField.border"));
@@ -575,17 +575,17 @@ public class ManageEnterpriseAdminJPanel extends javax.swing.JPanel {
           
           if(txtUsername.getText().trim().isEmpty() || txtUsername.getText()==null){
              validateNullOrEmpty=false;
-            txtUsername.setToolTipText("Please Enter a Username");
-            txtUsername.setBorder(BorderFactory.createLineBorder(Color.red,1));
+            txtUsername.setToolTipText("Please Enter a Valid Email ID");
+            txtUsername.setBorder(BorderFactory.createLineBorder(Color.BLUE,1));
          } 
            if(!txtUsername.getText().trim().isEmpty() && txtUsername.getText()!=null){
             txtUsername.setBorder(UIManager.getLookAndFeel().getDefaults().getBorder("TextField.border"));
          }
          
-            if(txtPassword.getText().trim().isEmpty() || txtPassword.getText()==null){
+         if(txtPassword.getText().trim().isEmpty() || txtPassword.getText()==null){
              validateNullOrEmpty=false;
             txtPassword.setToolTipText("Please Enter a Password");
-            txtPassword.setBorder(BorderFactory.createLineBorder(Color.red,1));
+            txtPassword.setBorder(BorderFactory.createLineBorder(Color.BLUE,1));
          } 
           if(!txtPassword.getText().trim().isEmpty() && txtPassword.getText()!=null){
             txtPassword.setBorder(UIManager.getLookAndFeel().getDefaults().getBorder("TextField.border"));
@@ -598,16 +598,27 @@ public class ManageEnterpriseAdminJPanel extends javax.swing.JPanel {
     {
         validateRegex=true;
         
-        if(!txtUsername.getText().matches("[\\w-]+@([\\w-]+\\.)+[\\w-]+")){
+        if(!txtUsername.getText().matches("^(.+)@(.+)$")){
             validateRegex=false;
             txtUsername.setToolTipText("Please Enter A Valid Email Address");
             txtName.setBorder(UIManager.getLookAndFeel().getDefaults().getBorder("TextField.border"));
-            txtUsername.setBorder(BorderFactory.createLineBorder (Color.red));
+            txtUsername.setBorder(BorderFactory.createLineBorder (Color.BLUE));
         }
         
-        if(txtUsername.getText().matches("[\\w-]+@([\\w-]+\\.)+[\\w-]+")){
+        if(txtUsername.getText().matches("^(.+)@(.+)$")){
            txtUsername.setBorder(UIManager.getLookAndFeel().getDefaults().getBorder("TextField.border"));
         }
+        
+       if(!txtPassword.getText().matches("^(?=.*[A-Za-z])(?=.*\\d)(?=.*[@$!%*#?&])[A-Za-z\\d@$!%*#?&]{8,}$")){
+            validateRegex=false;
+            txtPassword.setToolTipText("Please Enter A Valid Password [minimum 8-digit with one letter, one number, and one special character");
+            txtPassword.setBorder(BorderFactory.createLineBorder (Color.BLUE));
+        }
+        
+        if(txtPassword.getText().matches("^(?=.*[A-Za-z])(?=.*\\d)(?=.*[@$!%*#?&])[A-Za-z\\d@$!%*#?&]{8,}$")){
+           txtPassword.setBorder(UIManager.getLookAndFeel().getDefaults().getBorder("TextField.border"));
+        }
+        
         return validateRegex;
     }
     // Variables declaration - do not modify//GEN-BEGIN:variables

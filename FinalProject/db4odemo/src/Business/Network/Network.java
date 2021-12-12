@@ -16,6 +16,11 @@ public class Network {
     private EnterpriseDirectory enterpriseDirectory;
     public Network() {
         enterpriseDirectory=new EnterpriseDirectory();
+        
+    }
+
+    public Network(String networkName) {
+        this.networkName = networkName;
     }
     
 

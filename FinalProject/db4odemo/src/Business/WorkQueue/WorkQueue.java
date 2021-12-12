@@ -11,6 +11,14 @@ import java.util.ArrayList;
  * @author raunak
  */
 public class WorkQueue {
+
+    public WorkQueue(ArrayList<PlaceOrderWorkRequest> workRequestList, ArrayList<EntryChildWorkRequest> workRequestListNew, ArrayList<AssignToCounsellorWorkRequest> assignToCounsellorWorkRequests, ArrayList<AssignToCollegeWorkRequest> assignToCollegeWorkRequests, ArrayList<EntryHospitalWorkRequest> workRequestHospital) {
+        this.workRequestList = workRequestList;
+        this.workRequestListNew = workRequestListNew;
+        this.assignToCounsellorWorkRequests = assignToCounsellorWorkRequests;
+        this.assignToCollegeWorkRequests = assignToCollegeWorkRequests;
+        this.workRequestHospital = workRequestHospital;
+    }
     
     private ArrayList<PlaceOrderWorkRequest> workRequestList;
     private ArrayList<EntryChildWorkRequest> workRequestListNew;
