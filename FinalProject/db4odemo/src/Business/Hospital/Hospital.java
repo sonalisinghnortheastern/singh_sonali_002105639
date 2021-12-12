@@ -14,9 +14,18 @@ public class Hospital {
     private double temperature;
     private double bloodPressure;
     private double pulse;
-   private boolean isHospitalAvailable;
-   private int hospitalId;
-   private Doctor doctor;
+    private boolean isHospitalAvailable;
+    private int hospitalId;
+    private Doctor doctor;
+    private boolean appointmentSentToDoctor;
+
+    public boolean isAppointmentSentToDoctor() {
+        return appointmentSentToDoctor;
+    }
+
+    public void setAppointmentSentToDoctor(boolean appointmentSentToDoctor) {
+        this.appointmentSentToDoctor = appointmentSentToDoctor;
+    }
 
     public Doctor getDoctor() {
         if(doctor==null)

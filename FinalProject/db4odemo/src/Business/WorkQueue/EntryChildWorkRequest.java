@@ -16,6 +16,15 @@ public class EntryChildWorkRequest extends WorkRequest {
     private String ngoName;
     private NGOEnterprise nGOEnterprise;
     private boolean isAccepted;
+    private boolean hospitalAppointmentBooked;
+
+    public boolean isHospitalAppointmentBooked() {
+        return hospitalAppointmentBooked;
+    }
+
+    public void setHospitalAppointmentBooked(boolean hospitalAppointmentBooked) {
+        this.hospitalAppointmentBooked = hospitalAppointmentBooked;
+    }
 
     public boolean isIsAccepted() {
         return isAccepted;

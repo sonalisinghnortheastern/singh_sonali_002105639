@@ -208,6 +208,7 @@ public class AdmitPersonToNGOJPanel extends javax.swing.JPanel {
         int comboIndex = jComboBox1.getSelectedIndex();
         if(comboIndex==0){
             entryChildWorkRequest.setIsAccepted(true);
+            entryChildWorkRequest.setHospitalAppointmentBooked(false);
             AssignToCounsellorWorkRequest assignToCounsellorWorkRequest=new  AssignToCounsellorWorkRequest();
             assignToCounsellorWorkRequest.setEntryChildWorkRequest(entryChildWorkRequest);
             ecosystem.getWorkQueue().getAssignToCounsellorWorkRequests().add(assignToCounsellorWorkRequest);

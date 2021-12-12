@@ -12,14 +12,14 @@ import javax.swing.JPanel;
  *
  * @author Vijay
  */
-public class HospitalAdminJPanel1 extends javax.swing.JPanel {
+public class HospitalAdminJPanel extends javax.swing.JPanel {
 
     /**
-     * Creates new form HospitalAdminJPanel1
+     * Creates new form HospitalAdminJPanel
      */
     JPanel userProcessContainer;
     EcoSystem ecosystem;
-    public HospitalAdminJPanel1(JPanel userProcessContainer,EcoSystem ecosystem) {
+    public HospitalAdminJPanel(JPanel userProcessContainer,EcoSystem ecosystem) {
         initComponents();
         this.userProcessContainer=userProcessContainer;
         this.ecosystem=ecosystem;
@@ -36,7 +36,6 @@ public class HospitalAdminJPanel1 extends javax.swing.JPanel {
 
         jSplitPane = new javax.swing.JSplitPane();
         jPanel2 = new javax.swing.JPanel();
-        btnReceptionist = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
         btnChildReport = new javax.swing.JButton();
         btnVisitDoctor = new javax.swing.JButton();
@@ -47,19 +46,11 @@ public class HospitalAdminJPanel1 extends javax.swing.JPanel {
 
         jPanel2.setBackground(new java.awt.Color(240, 178, 62));
 
-        btnReceptionist.setFont(new java.awt.Font("Comic Sans MS", 1, 14)); // NOI18N
-        btnReceptionist.setText("RECEPTIONIST");
-        btnReceptionist.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnReceptionistActionPerformed(evt);
-            }
-        });
-
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Icons/LogoutIcon.png"))); // NOI18N
 
         btnChildReport.setFont(new java.awt.Font("Comic Sans MS", 1, 14)); // NOI18N
-        btnChildReport.setText("CHILD'S REPORT");
+        btnChildReport.setText("APPOINTMENT HISTORY");
         btnChildReport.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnChildReportActionPerformed(evt);
@@ -67,7 +58,7 @@ public class HospitalAdminJPanel1 extends javax.swing.JPanel {
         });
 
         btnVisitDoctor.setFont(new java.awt.Font("Comic Sans MS", 1, 14)); // NOI18N
-        btnVisitDoctor.setText("VISIT THE DOCTOR");
+        btnVisitDoctor.setText("SCHEDULED APPOINTMENT");
         btnVisitDoctor.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnVisitDoctorActionPerformed(evt);
@@ -83,17 +74,14 @@ public class HospitalAdminJPanel1 extends javax.swing.JPanel {
                 .addGap(0, 0, Short.MAX_VALUE))
             .addComponent(btnChildReport, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addComponent(btnVisitDoctor, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addComponent(btnReceptionist, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addComponent(jLabel1)
-                .addGap(101, 101, 101)
-                .addComponent(btnReceptionist)
-                .addGap(58, 58, 58)
+                .addGap(134, 134, 134)
                 .addComponent(btnVisitDoctor)
-                .addGap(43, 43, 43)
+                .addGap(97, 97, 97)
                 .addComponent(btnChildReport)
                 .addContainerGap(154, Short.MAX_VALUE))
         );
@@ -120,13 +108,8 @@ public class HospitalAdminJPanel1 extends javax.swing.JPanel {
         add(jSplitPane, "card2");
     }// </editor-fold>//GEN-END:initComponents
 
-    private void btnReceptionistActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnReceptionistActionPerformed
-        ReceptionistJPanel receptionJPanel =new ReceptionistJPanel(ecosystem);
-        jSplitPane.setRightComponent(receptionJPanel);
-    }//GEN-LAST:event_btnReceptionistActionPerformed
-
     private void btnChildReportActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnChildReportActionPerformed
-        // TODO add ybtnDoctorAssignedour handling code here:
+
         ChildReportJpanel childReportJPanel=new ChildReportJpanel(ecosystem);
         jSplitPane.setRightComponent(childReportJPanel);
     }//GEN-LAST:event_btnChildReportActionPerformed
@@ -140,7 +123,6 @@ public class HospitalAdminJPanel1 extends javax.swing.JPanel {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnChildReport;
-    private javax.swing.JButton btnReceptionist;
     private javax.swing.JButton btnVisitDoctor;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;

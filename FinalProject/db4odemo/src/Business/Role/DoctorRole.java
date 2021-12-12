@@ -8,7 +8,7 @@ package Business.Role;
 import Business.EcoSystem;
 import Business.UserAccount.UserAccount;
 import javax.swing.JPanel;
-import userinterface.Hospital.HospitalAdminJPanel1;
+import userinterface.Hospital.HospitalAdminJPanel;
 
 /**
  *
@@ -18,7 +18,7 @@ public class DoctorRole extends Role{
 
     @Override
     public JPanel createWorkArea(JPanel userProcessContainer, UserAccount account, EcoSystem business) {
-        return new HospitalAdminJPanel1( userProcessContainer, business ); //To change body of generated methods, choose Tools | Templates.
+        return new HospitalAdminJPanel( userProcessContainer, business ); //To change body of generated methods, choose Tools | Templates.
     }
     
 }
