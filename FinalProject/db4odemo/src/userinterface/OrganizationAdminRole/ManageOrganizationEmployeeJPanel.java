@@ -90,16 +90,16 @@ public class ManageOrganizationEmployeeJPanel extends javax.swing.JPanel {
         jRegisterTable = new javax.swing.JTable();
         btnDeleteEmployee = new javax.swing.JButton();
 
-        setBackground(new java.awt.Color(0, 102, 102));
+        setBackground(new java.awt.Color(153, 0, 0));
 
-        jLabel1.setBackground(new java.awt.Color(240, 178, 62));
+        jLabel1.setBackground(new java.awt.Color(153, 0, 0));
         jLabel1.setFont(new java.awt.Font("Comic Sans MS", 1, 18)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(255, 255, 255));
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel1.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         jLabel1.setOpaque(true);
 
-        jPanel1.setBackground(new java.awt.Color(0, 102, 102));
+        jPanel1.setBackground(new java.awt.Color(153, 0, 0));
 
         lblAvailablity.setFont(new java.awt.Font("Comic Sans MS", 1, 14)); // NOI18N
         lblAvailablity.setForeground(new java.awt.Color(255, 255, 255));
@@ -114,10 +114,9 @@ public class ManageOrganizationEmployeeJPanel extends javax.swing.JPanel {
         lblPrice.setText("Role    :");
         lblPrice.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
 
-        btnAddItem.setBackground(new java.awt.Color(240, 178, 62));
+        btnAddItem.setBackground(new java.awt.Color(204, 204, 204));
         btnAddItem.setFont(new java.awt.Font("Arial Black", 1, 12)); // NOI18N
-        btnAddItem.setForeground(new java.awt.Color(255, 255, 255));
-        btnAddItem.setText("ADD ORGANISATION EMPLOYEE");
+        btnAddItem.setText("ADD");
         btnAddItem.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         btnAddItem.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -125,10 +124,9 @@ public class ManageOrganizationEmployeeJPanel extends javax.swing.JPanel {
             }
         });
 
-        btnUpdateItem.setBackground(new java.awt.Color(240, 178, 62));
+        btnUpdateItem.setBackground(new java.awt.Color(204, 204, 204));
         btnUpdateItem.setFont(new java.awt.Font("Arial Black", 1, 12)); // NOI18N
-        btnUpdateItem.setForeground(new java.awt.Color(255, 255, 255));
-        btnUpdateItem.setText("UPDATE ORGANISATION EMPLOYEE");
+        btnUpdateItem.setText("UPDATE");
         btnUpdateItem.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         btnUpdateItem.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -172,9 +170,7 @@ public class ManageOrganizationEmployeeJPanel extends javax.swing.JPanel {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(btnAddItem)
-                .addGap(59, 59, 59)
-                .addComponent(btnUpdateItem)
-                .addContainerGap())
+                .addGap(203, 203, 203))
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(77, 77, 77)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -186,12 +182,14 @@ public class ManageOrganizationEmployeeJPanel extends javax.swing.JPanel {
                     .addComponent(lblItem))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                        .addComponent(txtUsername)
-                        .addComponent(cmbRole, 0, 142, Short.MAX_VALUE)
-                        .addComponent(txtEmployeeName)
-                        .addComponent(txtPassword, javax.swing.GroupLayout.Alignment.TRAILING))
-                    .addComponent(cmbOrganisation, javax.swing.GroupLayout.PREFERRED_SIZE, 147, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(cmbOrganisation, javax.swing.GroupLayout.PREFERRED_SIZE, 147, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                        .addComponent(btnUpdateItem)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(txtUsername)
+                            .addComponent(cmbRole, 0, 142, Short.MAX_VALUE)
+                            .addComponent(txtEmployeeName)
+                            .addComponent(txtPassword, javax.swing.GroupLayout.Alignment.TRAILING))))
                 .addGap(26, 26, 26))
         );
         jPanel1Layout.setVerticalGroup(
@@ -219,16 +217,16 @@ public class ManageOrganizationEmployeeJPanel extends javax.swing.JPanel {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lblAvailablity3, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(txtPassword, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
+                .addGap(27, 27, 27)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnAddItem)
                     .addComponent(btnUpdateItem))
-                .addGap(110, 110, 110))
+                .addGap(101, 101, 101))
         );
 
+        jRegisterTable.setBackground(new java.awt.Color(204, 204, 204));
         jRegisterTable.setBorder(javax.swing.BorderFactory.createEtchedBorder());
-        jRegisterTable.setFont(new java.awt.Font("Arial Black", 1, 14)); // NOI18N
-        jRegisterTable.setForeground(new java.awt.Color(56, 90, 174));
+        jRegisterTable.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
         jRegisterTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
@@ -262,9 +260,8 @@ public class ManageOrganizationEmployeeJPanel extends javax.swing.JPanel {
         });
         jScrollPane1.setViewportView(jRegisterTable);
 
-        btnDeleteEmployee.setBackground(new java.awt.Color(240, 178, 62));
+        btnDeleteEmployee.setBackground(new java.awt.Color(204, 204, 204));
         btnDeleteEmployee.setFont(new java.awt.Font("Arial Black", 1, 12)); // NOI18N
-        btnDeleteEmployee.setForeground(new java.awt.Color(255, 255, 255));
         btnDeleteEmployee.setText("DELETE");
         btnDeleteEmployee.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         btnDeleteEmployee.addActionListener(new java.awt.event.ActionListener() {

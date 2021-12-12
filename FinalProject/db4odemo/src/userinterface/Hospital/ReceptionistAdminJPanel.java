@@ -44,7 +44,7 @@ public class ReceptionistAdminJPanel extends javax.swing.JPanel {
 
         setLayout(new java.awt.CardLayout());
 
-        jPanel2.setBackground(new java.awt.Color(240, 178, 62));
+        jPanel2.setBackground(new java.awt.Color(153, 0, 0));
 
         btnReceptionist.setFont(new java.awt.Font("Comic Sans MS", 1, 14)); // NOI18N
         btnReceptionist.setText("SCHEDULE APPOINTMENT");
@@ -55,7 +55,7 @@ public class ReceptionistAdminJPanel extends javax.swing.JPanel {
         });
 
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Icons/LogoutIcon.png"))); // NOI18N
+        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Icons/logout.png"))); // NOI18N
 
         btnGraphRepresentation.setFont(new java.awt.Font("Comic Sans MS", 1, 14)); // NOI18N
         btnGraphRepresentation.setText("GRAPH REPRESENTATION");
@@ -83,13 +83,13 @@ public class ReceptionistAdminJPanel extends javax.swing.JPanel {
                 .addComponent(btnReceptionist)
                 .addGap(74, 74, 74)
                 .addComponent(btnGraphRepresentation)
-                .addContainerGap(210, Short.MAX_VALUE))
+                .addContainerGap(916, Short.MAX_VALUE))
         );
 
         jSplitPane.setLeftComponent(jPanel2);
 
         jLabel2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Icons/RestaurantPlaceOrder.jpg"))); // NOI18N
+        jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Icons/reception.png"))); // NOI18N
         jLabel2.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
 
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
@@ -100,7 +100,7 @@ public class ReceptionistAdminJPanel extends javax.swing.JPanel {
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, 490, Short.MAX_VALUE)
+            .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, 1200, Short.MAX_VALUE)
         );
 
         jSplitPane.setRightComponent(jPanel3);
