@@ -51,7 +51,7 @@ public class SystemAdminWorkAreaJPanel extends javax.swing.JPanel {
         jPanel2 = new javax.swing.JPanel();
         jLabel2 = new javax.swing.JLabel();
 
-        setPreferredSize(new java.awt.Dimension(1200, 802));
+        setPreferredSize(new java.awt.Dimension(2193, 1202));
         setLayout(new java.awt.CardLayout());
 
         jPanel1.setBackground(new java.awt.Color(153, 0, 0));
