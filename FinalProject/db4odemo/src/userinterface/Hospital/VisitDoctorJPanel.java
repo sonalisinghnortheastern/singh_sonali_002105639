@@ -60,7 +60,10 @@ public class VisitDoctorJPanel extends javax.swing.JPanel {
         jTextAreaPrescription = new javax.swing.JTextArea();
         btnRegisterDetails1 = new javax.swing.JButton();
 
+        setPreferredSize(new java.awt.Dimension(2193, 1202));
+
         jPanel1.setBackground(new java.awt.Color(153, 0, 0));
+        jPanel1.setPreferredSize(new java.awt.Dimension(2193, 1202));
 
         jLabel1.setBackground(new java.awt.Color(153, 0, 0));
         jLabel1.setFont(new java.awt.Font("Comic Sans MS", 1, 18)); // NOI18N
@@ -202,25 +205,24 @@ public class VisitDoctorJPanel extends javax.swing.JPanel {
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(173, 173, 173)
-                        .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(67, 67, 67)
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 760, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(700, Short.MAX_VALUE))
+                .addContainerGap()
+                .addComponent(jScrollPane1)
+                .addContainerGap())
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                .addContainerGap(833, Short.MAX_VALUE)
+                .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(727, 727, 727))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(11, 11, 11)
                 .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(34, 34, 34)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 81, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(28, 28, 28)
+                .addGap(63, 63, 63)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 99, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(26, 26, 26)
                 .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(700, Short.MAX_VALUE))
+                .addContainerGap(655, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
@@ -271,6 +273,11 @@ public class VisitDoctorJPanel extends javax.swing.JPanel {
             JOptionPane.showMessageDialog(null, "Please select a row");
             return;
         }
+        if(system.getWorkQueue()==null)
+        {
+            JOptionPane.showMessageDialog(null, "WorkQueue is empty");
+                return;
+        }
         EntryHospitalWorkRequest request=(EntryHospitalWorkRequest) jRegisterTable.getModel().getValueAt(rowNumber, 0);
         for(EntryHospitalWorkRequest hospitalWorkRequest: system.getWorkQueue().getWorkRequestHospital() ){
             if(hospitalWorkRequest.equals(request)){
@@ -297,6 +304,11 @@ try{
         {
             JOptionPane.showMessageDialog(null, "Please select a row");
             return;
+        }
+        if(system.getWorkQueue()==null)
+        {
+            JOptionPane.showMessageDialog(null, "WorkQueue is empty");
+                return;
         }
         EntryHospitalWorkRequest request=(EntryHospitalWorkRequest) jRegisterTable.getModel().getValueAt(rowNumber, 0);
         for(EntryHospitalWorkRequest hospitalWorkRequest: system.getWorkQueue().getWorkRequestHospital() ){
@@ -340,7 +352,11 @@ catch(Exception ex)
         try{
         ArrayList<EntryHospitalWorkRequest> finalWorkRequests=new ArrayList<>();
         int loggedinID = system.getLogInUser().getLogInId();
-        
+        if(system.getWorkQueue()==null)
+        {
+            JOptionPane.showMessageDialog(null, "WorkQueue is empty");
+                return;
+        }
         for(EntryHospitalWorkRequest hospitalWorkRequest: system.getWorkQueue().getWorkRequestHospital())   
         {   
             for(Network network:system.getNetworks())

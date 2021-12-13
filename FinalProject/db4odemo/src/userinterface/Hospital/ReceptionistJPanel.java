@@ -12,7 +12,9 @@ import Business.Network.Network;
 import Business.Organization;
 import Business.UserAccount.UserAccount;
 import Business.WorkQueue.EntryHospitalWorkRequest;
+import java.awt.Color;
 import java.util.ArrayList;
+import javax.swing.BorderFactory;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
@@ -29,6 +31,9 @@ public class ReceptionistJPanel extends javax.swing.JPanel {
      private final EcoSystem ecosystem;
      private String enterpriseName;private DB4OUtil dB4OUtil = DB4OUtil.getInstance();
      int numberOfdoctorsAvailable=0;
+     Boolean validationStatus=true;
+
+     
     public ReceptionistJPanel(EcoSystem ecosystem) {
         initComponents();
         this.ecosystem=ecosystem;
@@ -61,6 +66,8 @@ public class ReceptionistJPanel extends javax.swing.JPanel {
         btnRegisterDetails1 = new javax.swing.JButton();
         docComboBox = new javax.swing.JComboBox<>();
 
+        setBackground(new java.awt.Color(153, 0, 0));
+
         jPanel1.setBackground(new java.awt.Color(153, 0, 0));
 
         jLabel1.setBackground(new java.awt.Color(153, 0, 0));
@@ -86,6 +93,7 @@ public class ReceptionistJPanel extends javax.swing.JPanel {
         btnRegisterDetails.setBackground(new java.awt.Color(204, 204, 204));
         btnRegisterDetails.setFont(new java.awt.Font("Arial Black", 1, 12)); // NOI18N
         btnRegisterDetails.setText("RECORD DETAILS");
+        btnRegisterDetails.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
         btnRegisterDetails.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         btnRegisterDetails.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -109,9 +117,9 @@ public class ReceptionistJPanel extends javax.swing.JPanel {
                             .addComponent(txtWeight, javax.swing.GroupLayout.DEFAULT_SIZE, 259, Short.MAX_VALUE)
                             .addComponent(txtHeight)))
                     .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addGap(214, 214, 214)
-                        .addComponent(btnRegisterDetails, javax.swing.GroupLayout.PREFERRED_SIZE, 181, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(115, Short.MAX_VALUE))
+                        .addGap(237, 237, 237)
+                        .addComponent(btnRegisterDetails, javax.swing.GroupLayout.PREFERRED_SIZE, 179, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(84, Short.MAX_VALUE))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -124,9 +132,9 @@ public class ReceptionistJPanel extends javax.swing.JPanel {
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(txtWeight, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel5))
-                .addGap(18, 18, 18)
-                .addComponent(btnRegisterDetails)
-                .addContainerGap(24, Short.MAX_VALUE))
+                .addGap(31, 31, 31)
+                .addComponent(btnRegisterDetails, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(90, Short.MAX_VALUE))
         );
 
         jRegisterTable.setBackground(new java.awt.Color(204, 204, 204));
@@ -165,9 +173,10 @@ public class ReceptionistJPanel extends javax.swing.JPanel {
         });
         jScrollPane1.setViewportView(jRegisterTable);
 
-        btnRegisterDetails1.setBackground(new java.awt.Color(240, 178, 62));
+        jPanel3.setBackground(new java.awt.Color(153, 0, 0));
+
+        btnRegisterDetails1.setBackground(new java.awt.Color(204, 204, 204));
         btnRegisterDetails1.setFont(new java.awt.Font("Arial Black", 1, 12)); // NOI18N
-        btnRegisterDetails1.setForeground(new java.awt.Color(255, 255, 255));
         btnRegisterDetails1.setText("ASSIGN DOCTOR");
         btnRegisterDetails1.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         btnRegisterDetails1.addActionListener(new java.awt.event.ActionListener() {
@@ -184,19 +193,19 @@ public class ReceptionistJPanel extends javax.swing.JPanel {
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel3Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(docComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, 156, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(docComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, 178, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
-                .addComponent(btnRegisterDetails1, javax.swing.GroupLayout.PREFERRED_SIZE, 172, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap())
+                .addComponent(btnRegisterDetails1)
+                .addContainerGap(18, Short.MAX_VALUE))
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel3Layout.createSequentialGroup()
-                .addContainerGap()
+                .addGap(19, 19, 19)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(docComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnRegisterDetails1))
-                .addContainerGap(22, Short.MAX_VALUE))
+                    .addComponent(btnRegisterDetails1, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(docComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(0, 12, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
@@ -208,14 +217,15 @@ public class ReceptionistJPanel extends javax.swing.JPanel {
                 .addGap(0, 627, Short.MAX_VALUE)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 968, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(598, 598, 598))
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(843, 843, 843)
-                .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(828, 828, 828))
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                        .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(798, 798, 798))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                        .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(896, 896, 896))))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -224,11 +234,11 @@ public class ReceptionistJPanel extends javax.swing.JPanel {
                 .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(50, 50, 50)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 165, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(64, 64, 64)
+                .addGap(47, 47, 47)
                 .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(83, 83, 83)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(552, Short.MAX_VALUE))
+                .addContainerGap(536, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
@@ -239,7 +249,7 @@ public class ReceptionistJPanel extends javax.swing.JPanel {
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
     }// </editor-fold>//GEN-END:initComponents
 
@@ -249,8 +259,33 @@ public class ReceptionistJPanel extends javax.swing.JPanel {
         jPanel3.setVisible(true);
         int rowNumber=jRegisterTable.getSelectedRow();
         EntryHospitalWorkRequest request=(EntryHospitalWorkRequest) jRegisterTable.getModel().getValueAt(rowNumber, 0);
+        if(ecosystem.getWorkQueue()==null)
+        {
+            JOptionPane.showMessageDialog(null, "WorkQueue is empty");
+                return;
+        }
      for(EntryHospitalWorkRequest hospitalWorkRequest: ecosystem.getWorkQueue().getWorkRequestHospital() ){
          if(hospitalWorkRequest.equals(request)){
+             if(!txtHeight.getText().matches("([0-9]*[.]*[0-9])"))
+            {
+            txtHeight.setBorder(BorderFactory.createLineBorder(Color.RED, 1));
+            txtHeight.setToolTipText("Pleae enter only numbers/floating digits");
+            validationStatus=false;
+            }
+            if(txtHeight.getText().matches("([0-9]*[.]*[0-9])"))
+            {
+            txtHeight.setBorder(BorderFactory.createLineBorder(Color.GRAY, 1));
+            }
+            if(!txtWeight.getText().matches("([0-9]*[.]*[0-9])"))
+            {
+            txtWeight.setBorder(BorderFactory.createLineBorder(Color.RED, 1));
+            txtWeight.setToolTipText("Pleae enter only numbers/floating digits");
+            validationStatus=false;
+            }
+            if(txtWeight.getText().matches("([0-9]*[.]*[0-9])"))
+            {
+            txtWeight.setBorder(BorderFactory.createLineBorder(Color.GRAY, 1));
+            }
              hospitalWorkRequest.setHeight(Double.parseDouble(txtHeight.getText()));
              hospitalWorkRequest.setWeight(Double.parseDouble(txtWeight.getText()));
          }
@@ -310,6 +345,11 @@ public class ReceptionistJPanel extends javax.swing.JPanel {
                 {
                     JOptionPane.showMessageDialog(null, "Please Record the details before procedding");
                     return;
+                }
+                if(ecosystem.getWorkQueue()==null)
+                {
+                    JOptionPane.showMessageDialog(null, "WorkQueue is empty");
+                        return;
                 }
                ArrayList<EntryHospitalWorkRequest> workRequest= ecosystem.getWorkQueue().getWorkRequestHospital();
                 for(EntryHospitalWorkRequest assignToHospitalWorkRequest:workRequest)
