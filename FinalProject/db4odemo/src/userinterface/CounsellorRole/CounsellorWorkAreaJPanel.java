@@ -762,6 +762,11 @@ public class CounsellorWorkAreaJPanel extends javax.swing.JPanel {
                 JOptionPane.showMessageDialog(null, "WorkQueue is empty");
                     return;
             }
+            if(system.getWorkQueue()==null)
+            {
+                JOptionPane.showMessageDialog(null, "WorkQueue is empty");
+                    return;
+            }
             for(AssignToCounsellorWorkRequest assignToCounsellorWorkRequest:system.getWorkQueue().getAssignToCounsellorWorkRequests())
             {
                 if(assignToCounsellorWorkRequest.equals(assignoldToCounsellorWorkRequest))

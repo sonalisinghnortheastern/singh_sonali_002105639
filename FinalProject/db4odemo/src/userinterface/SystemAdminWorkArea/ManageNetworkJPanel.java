@@ -8,11 +8,13 @@ package userinterface.SystemAdminWorkArea;
 import Business.DB4OUtil.DB4OUtil;
 import Business.EcoSystem;
 import Business.Network.Network;
+import com.github.javafaker.Faker;
 import java.awt.Color;
 import javax.swing.BorderFactory;
 import javax.swing.JOptionPane;
 import javax.swing.UIManager;
 import javax.swing.table.DefaultTableModel;
+
 
 /**
  *
@@ -28,6 +30,7 @@ public class ManageNetworkJPanel extends javax.swing.JPanel {
     public ManageNetworkJPanel(EcoSystem system) {
         initComponents();
        this.system = system;
+       fakerImplement();
         populateTable();
     }
 
@@ -197,12 +200,14 @@ public class ManageNetworkJPanel extends javax.swing.JPanel {
       }
         if(networkName.equals(""))
         {
+            System.out.println("Network "+networkName+" added");
             JOptionPane.showMessageDialog(null, "Please enter network name");
             return;
         }
         for (Network network : system.getNetworks()) {
             if(network.getNetworkName().equals(networkName))
             {
+                System.out.println("Network with this name already exist");
                 JOptionPane.showMessageDialog(null, "Network with this name already exists");
                 return;
             }
@@ -245,6 +250,7 @@ public class ManageNetworkJPanel extends javax.swing.JPanel {
 			
             if(network.getNetworkName().equals(txtName.getText()) && selectedRowIndex != index)
             {
+                System.out.println("Network with this name already exist");
                 JOptionPane.showMessageDialog(null, "Network with this name already exists");
                 return;
             }
@@ -259,6 +265,7 @@ public class ManageNetworkJPanel extends javax.swing.JPanel {
         populateTable();
         reset();
         dB4OUtil.storeSystem(system);
+        System.out.println("Network with"+ network.getNetworkName()+"updated succesfully");
         JOptionPane.showMessageDialog(null, "Network Updated Succesfully");
     }
     catch(Exception e)
@@ -280,6 +287,7 @@ public class ManageNetworkJPanel extends javax.swing.JPanel {
             system.getNetworks().remove(network);
             populateTable();
             dB4OUtil.storeSystem(system);
+            System.out.println("Network with"+ network.getNetworkName()+"deleted succesfully");
             JOptionPane.showMessageDialog(null, "Network Deleted Succesfully");
             reset();
         }
@@ -321,6 +329,21 @@ public class ManageNetworkJPanel extends javax.swing.JPanel {
     private void reset() {
             txtName.setText("");
         }
+    private void fakerImplement()
+    {
+        try{
+             Faker faker = new Faker();
+             Network network = new Network();
+             network.setNetworkName(faker.country().name());
+             system.getNetworks().add(network);
+             System.out.println("Faker implemented");
+             reset();
+        }
+        catch(Exception ex)
+        {
+            throw ex;
+        }
+    }
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnCreateNetwork;
     private javax.swing.JButton btnDeleteNetwork;

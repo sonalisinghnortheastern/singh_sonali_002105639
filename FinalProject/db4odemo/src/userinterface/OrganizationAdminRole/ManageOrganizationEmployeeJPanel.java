@@ -20,7 +20,6 @@ import Business.ReceptionistOrganisation;
 import Business.RestaurantOrganisation;
 import Business.Role.College;
 import Business.Role.CounsellorRole;
-import Business.Role.CustomerRole;
 import Business.Role.DeliverManRole;
 import Business.Role.DoctorRole;
 import Business.Role.NGOEmployee;
@@ -494,22 +493,18 @@ Enterprise loggedInUserEnterprise=null;
                            cmbRole.removeAllItems();
                            cmbOrganisation.addItem(Organization.Type.Restaurant.getValue());
                            cmbOrganisation.addItem(Organization.Type.DeliveryMan.getValue());
-                           cmbRole.addItem(Role.RoleType.RestaurantAdmin.toString());
-                           cmbRole.addItem(Role.RoleType.DeliveryMan.toString());
                        }
                        else if(enterprise.getEnterpriseType().equals("College"))
                        {
                            cmbOrganisation.removeAllItems();
                            cmbRole.removeAllItems();
                            cmbOrganisation.addItem(Organization.Type.College.getValue());
-                           cmbRole.addItem(Role.RoleType.College.getValue());
                        }
                        else if(enterprise.getEnterpriseType().equals("CollegeCounsellor"))
                        {
                            cmbOrganisation.removeAllItems();
                            cmbRole.removeAllItems();
                            cmbOrganisation.addItem(Organization.Type.Counsellor.getValue());
-                           cmbRole.addItem(Role.RoleType.Counsellor.getValue());
                        }
                        else if(enterprise.getEnterpriseType().equals("Hospital"))
                        {
@@ -517,8 +512,6 @@ Enterprise loggedInUserEnterprise=null;
                            cmbRole.removeAllItems();
                            cmbOrganisation.addItem(Organization.Type.Doctor.getValue());
                            cmbOrganisation.addItem(Organization.Type.Receptionist.getValue());
-                           cmbRole.addItem(Role.RoleType.Doctor.getValue());
-                           cmbRole.addItem(Role.RoleType.Receptionist.getValue());
                        }
                    }
                }
@@ -531,10 +524,6 @@ Enterprise loggedInUserEnterprise=null;
        if(role.equals("NGOEmployee"))
        {
            newRole=new NGOEmployee();
-       }
-        if(role.equals("Customer"))
-       {
-           newRole=new CustomerRole();
        }
          if(role.equals("DeliveryMan"))
        {
@@ -560,9 +549,13 @@ Enterprise loggedInUserEnterprise=null;
        {
            newRole=new College();
        }
-         if(role.equals("RestaurantAdmin"))
+         if(role.equals("Restaurant Role"))
        {
            newRole=new RestaurantAdmin();
+       }
+       if(role.equals("Delivery Role"))
+       {
+           newRole=new DeliverManRole();
        }
         return newRole;
         
@@ -590,11 +583,11 @@ Enterprise loggedInUserEnterprise=null;
        {
            organization=new CollegeOrganisation();
        }
-        if(organisation.equals("Restaurant"))
+        if(organisation.equals("Restaurant Organization"))
        {
            organization=new RestaurantOrganisation();
        }
-        if(organisation.equals("DeliveryMan"))
+        if(organisation.equals("Delivery Man Organization"))
        {
            organization=new DeliveryManOrganisation();
        }
@@ -715,10 +708,10 @@ Enterprise loggedInUserEnterprise=null;
                 addEmployee(update, deletionIndex);
             }
             dB4OUtil.storeSystem(system);
-            populateTable();
-            reset();
             if(!update)
             {
+                populateTable();
+                reset();
                 JOptionPane.showMessageDialog(null, "Organisation Employee Deleted Successfully");
             }
             return deletionIndex;
@@ -735,8 +728,8 @@ Enterprise loggedInUserEnterprise=null;
        String toEmail=toEmailAddress;
        String fromEmail="huskydevportal@gmail.com";
        String fromEmailPassword="Husky@123";
-       String message= "You have been registered on the xyz portal with "+toEmailAddress +"username and "+password +"password";
-       String subject= "Registartion Successful";
+       String message= "You have been registered on the Foster Care  portal with "+toEmailAddress +"username and "+password +"password";
+       String subject= "Registration Successful";
        Properties properties=new Properties();
        properties.put("mail.smtp.auth", true);
        properties.put("mail.smtp.starttls.enable", true);

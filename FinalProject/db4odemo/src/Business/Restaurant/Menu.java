@@ -17,11 +17,12 @@ public class Menu {
     {
         this.items=new ArrayList<>();
     }
-    public ArrayList<FoodItem> getMenu() {
+    public ArrayList<FoodItem> getItems() {
         return items;
     }
 
-    public void setMenu(FoodItem item) {
-        this.items.add(item);
+    public void setItems(ArrayList<FoodItem> items) {
+        this.items=items;
     }
+
 }

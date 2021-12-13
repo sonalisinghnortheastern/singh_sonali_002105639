@@ -334,6 +334,7 @@ public class ManageEnterpriseJPanel extends javax.swing.JPanel {
             network1.getEnterpriseDirectory().createEnterprise(enterpriseName, enterpriseType,"");
         }
         dB4OUtil.storeSystem(system);
+        System.out.println("Enterprise added succesfully");
         JOptionPane.showMessageDialog(null, "Enterprise Added Succesfully");
         reset();
         populateTable();
@@ -404,6 +405,7 @@ public class ManageEnterpriseJPanel extends javax.swing.JPanel {
             populateTable();
             reset();
             dB4OUtil.storeSystem(system);
+            System.out.println("Enterprise updated succesfully");
             JOptionPane.showMessageDialog(null, "Enterprise Updated Succesfully");
             }
        }

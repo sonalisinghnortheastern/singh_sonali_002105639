@@ -3,13 +3,22 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package userinterface.CustomerRole;
+package userinterface.NGORole;
 
+import Business.Customer.Customer;
 import Business.DB4OUtil.DB4OUtil;
 import Business.EcoSystem;
+import Business.Enterprise.Enterprise;
+import Business.Network.Network;
+import Business.Organization;
+import Business.Restaurant.FoodItem;
+import Business.UserAccount.UserAccount;
 import Business.WorkQueue.Cart;
+import Business.WorkQueue.PlaceOrderWorkRequest;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
+import javax.swing.DefaultComboBoxModel;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
@@ -29,7 +38,6 @@ public class PlaceOrdeJPanel extends javax.swing.JPanel {
        orderItems = new ArrayList<Cart>();
         initComponents();
         this.system=system;
-        //jOrderPanel.setVisible(false);
         populateComboBox();
         populateTable();
     }
@@ -78,17 +86,17 @@ public class PlaceOrdeJPanel extends javax.swing.JPanel {
         JMenu.setFont(new java.awt.Font("Arial Black", 1, 12)); // NOI18N
         JMenu.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null}
+                {null, null},
+                {null, null},
+                {null, null},
+                {null, null}
             },
             new String [] {
-                "ITEM NAME", "PRICE", "AVAILABLITY"
+                "ITEM NAME", "AVAILABLITY"
             }
         ) {
             boolean[] canEdit = new boolean [] {
-                false, false, false
+                false, false
             };
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
@@ -233,14 +241,13 @@ public class PlaceOrdeJPanel extends javax.swing.JPanel {
     private void JMenuMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_JMenuMouseClicked
          try{
             int rowNumber=JMenu.getSelectedRow();
-           if(JMenu.getModel().getValueAt(rowNumber, 2).equals("Out Of Stock"))
+           if(JMenu.getModel().getValueAt(rowNumber, 1).equals("Out Of Stock"))
            {
                JOptionPane.showMessageDialog(null, "Item Out of Stock .Please wait until next in stock");
            }
            else{
                Cart cart =new Cart();
                cart.setItemName((String) JMenu.getModel().getValueAt(rowNumber, 0));
-               cart.setPrice(Integer.parseInt(JMenu.getModel().getValueAt(rowNumber, 1).toString()));
                cart.setQuantity(1);
                orderItems.add(cart);
                populateTableCart();
@@ -283,7 +290,7 @@ public class PlaceOrdeJPanel extends javax.swing.JPanel {
     }//GEN-LAST:event_btnRemoveItemActionPerformed
 
     private void btnPlaceOrderActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPlaceOrderActionPerformed
-        try{/*
+        try{
             int total=0;
         if(orderItems.size()<=0)
         {
@@ -297,25 +304,42 @@ public class PlaceOrdeJPanel extends javax.swing.JPanel {
                 {
                     orderItems.get(i).setQuantity(Integer.parseInt(JCart.getValueAt(i, 2).toString()));
                 }
-                 total=total+(orderItems.get(i).getPrice() * orderItems.get(i).getQuantity());
+                 total=(orderItems.size());
                  txtTotal.setText(String.valueOf(total));
                  placeOrderWorkRequest.setItemsWithQuatityList(orderItems.get(i));
              }
          
             placeOrderWorkRequest.setMessage(txtMessage.getText());
             int uniqueId=system.getLogInUser().getLogInId();
-            for(Customer customer:system.getCustomerDirectory().getCustomers())
+            for (Network network : system.getNetworks())
             {
-                if(customer.getUniqueId()==uniqueId)
+                for(Enterprise enterprise:network.getEnterpriseDirectory().getEnterprises())
                 {
-                    placeOrderWorkRequest.setCustomer(customer);
+                    for(Organization organization:enterprise.getOrganizationDirectory().getOrganisationList())
+                    {
+                        for(UserAccount userAccount : organization.getUserAccountDirectory().getUserAccountList())
+                        {
+                            if(userAccount.getUniqueId()==uniqueId)
+                            {
+                                Customer customer=new Customer();
+                                customer.setName(userAccount.getEmployee().getName());
+                                customer.setCustomerId(uniqueId);
+                                placeOrderWorkRequest.setCustomer(customer);
+                            }
+                        }
+                    }
                 }
             }
-            for (Restaurant restaurant : system.getRestaurantDirectory().getRestaurants()) {
-            if(restaurant.getName() == jComboBox1.getSelectedItem())
+
+            for (Network network : system.getNetworks())
             {
-                placeOrderWorkRequest.setRestaurant(restaurant);
-            }
+                for(Enterprise enterprise:network.getEnterpriseDirectory().getEnterprises())
+                {
+                    if(enterprise.getName()==jComboBox1.getSelectedItem())
+                    {
+                        placeOrderWorkRequest.setRestaurant(enterprise.getRestaurant());
+                    }
+                }
             }
             placeOrderWorkRequest.setRequestDate(new Date());
             placeOrderWorkRequest.setStatus("Ordered");
@@ -326,7 +350,7 @@ public class PlaceOrdeJPanel extends javax.swing.JPanel {
             txtTotal.setText("");
             orderItems.removeAll(orderItems);
             populateTableCart();
-        }*/
+        }
         }
         catch(Exception ex)
         {
@@ -334,35 +358,46 @@ public class PlaceOrdeJPanel extends javax.swing.JPanel {
         }
     }//GEN-LAST:event_btnPlaceOrderActionPerformed
     private  void populateComboBox(){
-        try {/*
+        try {
             DefaultComboBoxModel model = (DefaultComboBoxModel) jComboBox1.getModel();
          model.removeAllElements();
-         for (Restaurant restaurant : system.getRestaurantDirectory().getRestaurants()) {
-            model.addElement(restaurant.getName());
-        }
+         for(Network network :system.getNetworks())
+         {
+             for(Enterprise enterprise:network.getEnterpriseDirectory().getEnterprises())
+             {
+                 if(enterprise.getEnterpriseType().equals("Restaurant"))
+                 {
+                      model.addElement(enterprise.getName());
+                 }
+             }
+         }
         jComboBox1.setModel(model);
-        this.add(jComboBox1);  */
+        this.add(jComboBox1);  
         } catch (Exception e) {
         }
         
     }
      private  void populateTable(){
-         try {/*
+         try {
              DefaultTableModel model = (DefaultTableModel) JMenu.getModel();
-            model.setRowCount(0);
-            for (Restaurant restaurant : system.getRestaurantDirectory().getRestaurants()) {
-            if(restaurant.getName() == jComboBox1.getSelectedItem())
+             model.setRowCount(0);
+             for(Network network :system.getNetworks())
             {
-                for (FoodItem foodItem : restaurant.getMenu().getMenu())
+                for(Enterprise enterprise:network.getEnterpriseDirectory().getEnterprises())
                 {
-                    Object[] row = new Object[3];
-                    row[0] = foodItem.getName();
-                    row[1] = foodItem.getPrice();
-                    row[2] = foodItem.isInStock();
-                    model.addRow(row);
+                    if(enterprise.getEnterpriseType().equals("Restaurant") && enterprise.getName().equals(jComboBox1.getSelectedItem()) )
+                    {
+                          for (FoodItem foodItem : enterprise.getRestaurant().getMenu().getItems()) {
+                                      Object[] row = new Object[3];
+                                      row[0] = foodItem.getName();
+                                      row[1] = foodItem.isInStock();
+                                      model.addRow(row);
+                                    }
+                              return;
+                    }
+
                 }
             }
-                }*/
          } catch (Exception e) {
              throw e;
          }
@@ -377,8 +412,7 @@ public class PlaceOrdeJPanel extends javax.swing.JPanel {
          {
             Object[] row = new Object[3];
             row[0] = item.getItemName();
-            row[1] = item.getPrice();
-            row[2] = item.getQuantity();
+            row[1] = item.getQuantity();
             
             model.addRow(row);
          }

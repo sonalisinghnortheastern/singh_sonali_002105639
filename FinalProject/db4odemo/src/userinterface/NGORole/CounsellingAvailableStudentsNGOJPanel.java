@@ -249,7 +249,12 @@ public class CounsellingAvailableStudentsNGOJPanel extends javax.swing.JPanel {
                 {
                     if(assignToCounsellorWorkRequest.equals(jRegisterTable.getModel().getValueAt(rowNumber, 0)))
                     {
-                        if(!cmbCounsellor.getSelectedItem().toString().isEmpty())
+                        if(cmbCounsellor.getSelectedItem() == null)
+                        {
+                            JOptionPane.showMessageDialog(null, "Counsellor not Available Please Select a diffrent counsellor");
+                            break;
+                        }
+                        if(!cmbCounsellor.getSelectedItem().toString().isEmpty() || cmbCounsellor.getSelectedItem()!=null)
                         {
                             CollegeCounsellor collegeCounsellor=new CollegeCounsellor();
                             collegeCounsellor.setCounsellorName(cmbCounsellor.getSelectedItem().toString().split(",")[0]);

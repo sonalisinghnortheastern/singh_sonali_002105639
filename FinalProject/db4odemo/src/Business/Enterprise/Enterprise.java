@@ -7,6 +7,7 @@ package Business.Enterprise;
 
 import Business.Organization;
 import Business.OrganizationDirectory;
+import Business.Restaurant.Restaurant;
 import Business.Role.Role;
 import java.util.ArrayList;
 
@@ -41,6 +42,19 @@ public class Enterprise extends Organization {
     
     private  String enterpriseType; 
     private  String  collegeType;
+    private  Restaurant restaurant;
+
+    public Restaurant getRestaurant() {
+        if(restaurant==null)
+        {
+            restaurant=new  Restaurant();
+        }
+        return restaurant;
+    }
+
+    public void setRestaurant(Restaurant restaurant) {
+        this.restaurant = restaurant;
+    }
 
     public String getCollegeType() {
         return collegeType;

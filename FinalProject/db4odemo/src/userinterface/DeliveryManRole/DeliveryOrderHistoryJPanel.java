@@ -90,22 +90,22 @@ public class DeliveryOrderHistoryJPanel extends javax.swing.JPanel {
             int uniqueId=123;
             for(PlaceOrderWorkRequest workRequest:system.getWorkQueue().getWorkRequestList())
             {
-                if(workRequest.getDeliverMan().getUniqueId()==uniqueId)
-                {
-                     Object[] row = new Object[5];
-                    row[0] = workRequest.getId();
-                    row[1] = workRequest.getRestaurant().getName();
-                    row[2] = workRequest.getRequestDate();
-                    row[3] = workRequest.getStatus();
-                    if(workRequest.getResolveDate()==null)
-                    {
-                        row[4]="Not yet Delivered";
-                    }
-                    else{
-                        row[4] = workRequest.getResolveDate();
-                    }
-                    model.addRow(row);
-                }
+                // if(workRequest.getDeliverMan().getUniqueId()==uniqueId)
+                // {
+                //      Object[] row = new Object[5];
+                //     row[0] = workRequest.getId();
+                //     row[1] = workRequest.getRestaurant().getName();
+                //     row[2] = workRequest.getRequestDate();
+                //     row[3] = workRequest.getStatus();
+                //     if(workRequest.getResolveDate()==null)
+                //     {
+                //         row[4]="Not yet Delivered";
+                //     }
+                //     else{
+                //         row[4] = workRequest.getResolveDate();
+                //     }
+                //     model.addRow(row);
+                // }
                    
             }
 

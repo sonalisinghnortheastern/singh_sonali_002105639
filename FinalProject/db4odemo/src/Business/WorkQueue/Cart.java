@@ -19,15 +19,6 @@ public class Cart {
     public void setItemName(String itemName) {
         this.itemName = itemName;
     }
-
-    public int getPrice() {
-        return price;
-    }
-
-    public void setPrice(int price) {
-        this.price = price;
-    }
-
     public int getQuantity() {
         return quantity;
     }
@@ -35,6 +26,5 @@ public class Cart {
     public void setQuantity(int quantity) {
         this.quantity = quantity;
     }
-    private int price;
     private int quantity;
 }

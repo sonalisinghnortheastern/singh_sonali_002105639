@@ -7,8 +7,13 @@ package userinterface.RestaurantAdminRole;
 
 import Business.DB4OUtil.DB4OUtil;
 import Business.EcoSystem;
+import Business.Enterprise.Enterprise;
+import Business.Network.Network;
+import Business.Organization;
+import Business.UserAccount.UserAccount;
 import Business.WorkQueue.Cart;
 import Business.WorkQueue.PlaceOrderWorkRequest;
+import java.util.Date;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
@@ -24,6 +29,7 @@ public class ManageOrdeJPanel extends javax.swing.JPanel {
      */
     private final EcoSystem system;
     private DB4OUtil dB4OUtil = DB4OUtil.getInstance();
+    private  String name;
     public ManageOrdeJPanel(EcoSystem system) {
         initComponents();
         this.system=system;
@@ -31,7 +37,6 @@ public class ManageOrdeJPanel extends javax.swing.JPanel {
         JManageIncomingOrder.getColumnModel().getColumn(0).setMaxWidth(0);
         populateManageIncomingOrderTable();
         orderDetailsJPanel.setVisible(false);
-        cmbDeliveryPerson.setVisible(false);
     }
 
     /**
@@ -55,7 +60,6 @@ public class ManageOrdeJPanel extends javax.swing.JPanel {
         btnSave = new javax.swing.JButton();
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
-        cmbDeliveryPerson = new javax.swing.JComboBox<>();
 
         setBackground(new java.awt.Color(0, 102, 102));
 
@@ -156,8 +160,6 @@ public class ManageOrdeJPanel extends javax.swing.JPanel {
                 .addContainerGap())
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, orderDetailsJPanelLayout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(cmbDeliveryPerson, javax.swing.GroupLayout.PREFERRED_SIZE, 138, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(52, 52, 52)
                 .addComponent(cmbStatus, javax.swing.GroupLayout.PREFERRED_SIZE, 159, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(btnSave, javax.swing.GroupLayout.PREFERRED_SIZE, 128, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -174,12 +176,10 @@ public class ManageOrdeJPanel extends javax.swing.JPanel {
                 .addGroup(orderDetailsJPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(orderDetailsJPanelLayout.createSequentialGroup()
                         .addComponent(btnSave, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addGap(1, 1, 1))
+                        .addGap(79, 79, 79))
                     .addGroup(orderDetailsJPanelLayout.createSequentialGroup()
                         .addComponent(cmbStatus, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 0, Short.MAX_VALUE))
-                    .addComponent(cmbDeliveryPerson, javax.swing.GroupLayout.Alignment.TRAILING))
-                .addGap(78, 78, 78))
+                        .addGap(0, 78, Short.MAX_VALUE))))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
@@ -228,7 +228,7 @@ public class ManageOrdeJPanel extends javax.swing.JPanel {
                         {
                             Object[] row = new Object[3];
                             row[0]=cart.getItemName();
-                            row[1] = cart.getPrice();
+                            //row[1] = cart.getPrice();
                             row[2]= cart.getQuantity();
                             model.addRow(row);
                         }
@@ -248,7 +248,7 @@ public class ManageOrdeJPanel extends javax.swing.JPanel {
     }//GEN-LAST:event_JManageIncomingOrderMouseClicked
 
     private void btnSaveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSaveActionPerformed
-        try{/*
+        try{
             int rowNumber=JManageIncomingOrder.getSelectedRow();
             String orderId= (String) JManageIncomingOrder.getModel().getValueAt(rowNumber, 0);
             String status=(String) cmbStatus.getSelectedItem();
@@ -262,16 +262,8 @@ public class ManageOrdeJPanel extends javax.swing.JPanel {
                     orderDetailsJPanel.setVisible(false);
                     if(status.equals("ASSIGNED"))
                     {
-                        int deliveryPersonNumber=Integer.parseInt(cmbDeliveryPerson.getSelectedItem().toString().split(",")[1].trim());
-                        for(DeliveryMan deliveryMan:system.getDeliveryManDirectory().getDeliveryMens())
-                        {
-                            if(deliveryMan.getUniqueId()==deliveryPersonNumber)
-                            {
-                                deliveryMan.setIsDeliveryPersonAvailable(false);
-                                workRequest.setDeliverMan(deliveryMan);
-                            }
-                        }
-                        
+                        workRequest.setStatus("Delivered");
+                        workRequest.setResolveDate(new Date());
                     }
                     if(status.equals("DECLINE"))
                     {
@@ -279,7 +271,7 @@ public class ManageOrdeJPanel extends javax.swing.JPanel {
                     }
                 }
             }
-            dB4OUtil.storeSystem(system);*/
+            dB4OUtil.storeSystem(system);
         }
         catch(Exception ex)
         {
@@ -288,37 +280,9 @@ public class ManageOrdeJPanel extends javax.swing.JPanel {
     }//GEN-LAST:event_btnSaveActionPerformed
 
     private void cmbStatusItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_cmbStatusItemStateChanged
-        try{
-        if(cmbStatus.getSelectedItem().equals("ASSIGNED"))
-        {
-            cmbDeliveryPerson.setVisible(true);
-            populateDeliveryPersonComboBox();
-        }
-        else{
-            
-            cmbDeliveryPerson.setVisible(false);
-        }
-        }
-        catch(Exception e)
-        {
-            throw e;
-        }
+
     }//GEN-LAST:event_cmbStatusItemStateChanged
-    private void populateDeliveryPersonComboBox()
-    {
-        try {/*
-         DefaultComboBoxModel model = (DefaultComboBoxModel) cmbDeliveryPerson.getModel();
-         model.removeAllElements();
-        for(DeliveryMan deliveryMan:system.getDeliveryManDirectory().getDeliveryMens())
-        {
-            if(deliveryMan.isIsDeliveryPersonAvailable())
-            {
-                model.addElement(deliveryMan.getName()+","+deliveryMan.getUniqueId());
-            }
-        }*/
-        } catch (Exception e) {
-        }
-    }
+
      private void populateStatusComboBox()
     {
         try {
@@ -341,45 +305,64 @@ public class ManageOrdeJPanel extends javax.swing.JPanel {
     }
     private void populateManageIncomingOrderTable()
     {
-        try{/*
+        try{
         DefaultTableModel model = (DefaultTableModel) JManageIncomingOrder.getModel();
         model.setRowCount(0);
         int uniqueId=system.getLogInUser().getLogInId();
-        for(Restaurant restaurant : system.getRestaurantDirectory().getRestaurants())
+        getUsername();
+        for(PlaceOrderWorkRequest workRequest:system.getWorkQueue().getWorkRequestList())
         {
-            if(restaurant.getUniqueId()== uniqueId)
+            if(workRequest.getRestaurant().getName().equals(name))
             {
-                for(PlaceOrderWorkRequest workRequest:system.getWorkQueue().getWorkRequestList())
+                if(!workRequest.getStatus().equals("Delivered")&& !workRequest.getStatus().equals("DECLINE") &&!workRequest.getStatus().equals("ASSIGNED") )
                 {
-                    if(workRequest.getRestaurant().getUniqueId() == uniqueId)
-                    {
-                        if(!workRequest.getStatus().equals("Delivered")&& !workRequest.getStatus().equals("DECLINE") &&!workRequest.getStatus().equals("ASSIGNED") )
-                        {
-                            Object[] row = new Object[5];
-                            row[0]=workRequest.getId();
-                            row[1] = workRequest.getCustomer().getName();
-                            row[2] = workRequest.getStatus();
-                            row[3] = workRequest.getRequestDate();
-                            row[4] = workRequest.getMessage();
-                            model.addRow(row);
-                        }
-                       
-                    }
+                    Object[] row = new Object[5];
+                    row[0]=workRequest.getId();
+                    row[1] = workRequest.getCustomer().getName();
+                    row[2] = workRequest.getStatus();
+                    row[3] = workRequest.getRequestDate();
+                    row[4] = workRequest.getMessage();
+                    model.addRow(row);
                 }
             }
-        }*/
+        }
         }
         catch(Exception ex)
         {
             throw ex;
         }
     }
+    private String getUsername()
+    {
+               for(Network network :system.getNetworks())
+                      {
+                          for(Enterprise enterprise:network.getEnterpriseDirectory().getEnterprises())
+                          {
+                              if(enterprise.getEnterpriseType().equals("Restaurant"))
+                              {
+                                  for(Organization organization:enterprise.getOrganizationDirectory().getOrganisationList())
+                                  {
+                                      for(UserAccount userAccount :organization.getUserAccountDirectory().getUserAccountList())
+                                      {
+                                          if(userAccount.getUniqueId()== system.getLogInUser().getLogInId())
+                                          {
+                                             name=enterprise.getName();
+                                             return name;
+                                          }
+
+                                      }
+                                  }
+                              }
+                          }
+                      }
+               return name;
+    }
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JTable JDetailOrder;
     private javax.swing.JTable JDetailOrder1;
     private javax.swing.JTable JManageIncomingOrder;
     private javax.swing.JButton btnSave;
-    private javax.swing.JComboBox<String> cmbDeliveryPerson;
     private javax.swing.JComboBox<String> cmbStatus;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;

@@ -378,7 +378,10 @@ catch(Exception ex)
                                   enterpriseName=enterprise.getName();
                                   if(hospitalWorkRequest.getEntryChildWorkRequest().isIsAccepted() && !hospitalWorkRequest.isMedicalCheckupCompleted())
                                   {
+                                      if(hospitalWorkRequest.getHeight()!=0.0 && hospitalWorkRequest.getWeight()!=0.0)
+                                      {
                                        finalWorkRequests.add(hospitalWorkRequest);
+                                      }
                                   }
                               }
                            }

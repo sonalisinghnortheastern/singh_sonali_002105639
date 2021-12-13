@@ -231,15 +231,15 @@ public class ManageDeliveryOrderJPanel extends javax.swing.JPanel {
                
            }
            else{
-           if(workRequest.getDeliverMan().getUniqueId()==uniqueId)
-           {
-               txtRestaurantName.setText(workRequest.getRestaurant().getName());
-               txtRestaurantAddress.setText(workRequest.getRestaurant().getAddress());
-               txtCustomerName.setText(workRequest.getCustomer().getName());
-               txtCustomerAddress.setText(workRequest.getCustomer().getAddress());
-               cmbStatus.setSelectedItem(workRequest.getStatus());
-               txtCustomerMessage.setText(workRequest.getMessage());
-           }
+        //    if(workRequest.getDeliverMan().getUniqueId()==uniqueId)
+        //    {
+        //        txtRestaurantName.setText(workRequest.getRestaurant().getName());
+        //        txtRestaurantAddress.setText(workRequest.getRestaurant().getAddress());
+        //        txtCustomerName.setText(workRequest.getCustomer().getName());
+        //        txtCustomerAddress.setText(workRequest.getCustomer().getAddress());
+        //        cmbStatus.setSelectedItem(workRequest.getStatus());
+        //        txtCustomerMessage.setText(workRequest.getMessage());
+        //    }
            }
        }
        }
@@ -261,14 +261,14 @@ public class ManageDeliveryOrderJPanel extends javax.swing.JPanel {
                    {
                        return;
                    }
-                   if(workRequest.getDeliverMan().getUniqueId()==uniqueId)
-                   {
-                       workRequest.setStatus("Delivered");
-                       workRequest.setResolveDate(new Date());
-                       DeliveryMan deliveryMan=workRequest.getDeliverMan();
-                       deliveryMan.setIsDeliveryPersonAvailable(true);
-                       workRequest.setDeliverMan(deliveryMan);
-                   }
+                //    if(workRequest.getDeliverMan().getUniqueId()==uniqueId)
+                //    {
+                //        workRequest.setStatus("Delivered");
+                //        workRequest.setResolveDate(new Date());
+                //        DeliveryMan deliveryMan=workRequest.getDeliverMan();
+                //        deliveryMan.setIsDeliveryPersonAvailable(true);
+                //        workRequest.setDeliverMan(deliveryMan);
+                //    }
                 }
                 dB4OUtil.storeSystem(system);
                 JOptionPane.showMessageDialog(null, "Order Status Updated");

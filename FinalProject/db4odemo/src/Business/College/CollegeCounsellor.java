@@ -14,6 +14,10 @@ public class CollegeCounsellor {
     private String counsellingCompanyName;
 
     public String getCounsellingCompanyName() {
+        if(counsellingCompanyName==null)
+        {
+            counsellingCompanyName="";
+        }
         return counsellingCompanyName;
     }
 

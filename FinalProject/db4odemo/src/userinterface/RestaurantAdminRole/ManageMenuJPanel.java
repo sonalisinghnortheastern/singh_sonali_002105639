@@ -7,11 +7,16 @@ package userinterface.RestaurantAdminRole;
 
 import Business.DB4OUtil.DB4OUtil;
 import Business.EcoSystem;
+import Business.Enterprise.Enterprise;
+import Business.Network.Network;
+import Business.Organization;
 import Business.Restaurant.FoodItem;
+import Business.UserAccount.UserAccount;
 import java.awt.Color;
 import javax.swing.BorderFactory;
 import javax.swing.JOptionPane;
 import javax.swing.UIManager;
+import javax.swing.table.DefaultTableModel;
 
 /**
  
@@ -210,23 +215,37 @@ public class ManageMenuJPanel extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnAddItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAddItemActionPerformed
-       /*if(validateNullOrEmpty())
+       if(validateNullOrEmpty())
        {
            if(validateFields()){
                FoodItem foodItem=new FoodItem();
                foodItem.setName(txtItemName.getText());
-               foodItem.setPrice(Integer.parseInt(txtPrice.getText()));
                foodItem.setInStock((String) cmbAvailablity.getSelectedItem());
                 try {
                       int uniqueId=system.getLogInUser().getLogInId();
-                        for (Restaurant restaurant : system.getRestaurantDirectory().getRestaurants()) {
-                           if(restaurant.getUniqueId()==uniqueId)
-                           {
-                               restaurant.getMenu().setMenu(foodItem);
-                               populateTable();
-                               reset();
-                           }
-                        }
+                      for(Network network :system.getNetworks())
+                      {
+                          for(Enterprise enterprise:network.getEnterpriseDirectory().getEnterprises())
+                          {
+                              if(enterprise.getEnterpriseType().equals("Restaurant"))
+                              {
+                                  for(Organization organization:enterprise.getOrganizationDirectory().getOrganisationList())
+                                  {
+                                      for(UserAccount userAccount :organization.getUserAccountDirectory().getUserAccountList())
+                                      {
+                                          if(userAccount.getUniqueId()== system.getLogInUser().getLogInId())
+                                          {
+                                              enterprise.getRestaurant().getMenu().getItems().add(foodItem);
+                                              populateTable();
+                                              reset();
+                                          }
+
+                                      }
+                                  }
+                              }
+                              
+                          }
+                      }
                         dB4OUtil.storeSystem(system);
                         JOptionPane.showMessageDialog(null, "Item Added to the menu successfully");
                 } catch (Exception e) {
@@ -243,7 +262,7 @@ public class ManageMenuJPanel extends javax.swing.JPanel {
            JOptionPane.showMessageDialog(this, "Validation Failed .Please check the red boxes");
             validateNullOrEmpty=true;
             validateRegex=true;
-       }*/
+       }
     }//GEN-LAST:event_btnAddItemActionPerformed
 
     private void JMenuMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_JMenuMouseClicked
@@ -269,7 +288,7 @@ public class ManageMenuJPanel extends javax.swing.JPanel {
         }
         FoodItem foodItem=new FoodItem();
        foodItem.setName(txtItemName.getText());
-       foodItem.setPrice(Integer.parseInt(txtPrice.getText()));
+       //foodItem.setPrice(Integer.parseInt(txtPrice.getText()));
        foodItem.setInStock((String) cmbAvailablity.getSelectedItem());
         try {/*
               int uniqueId=system.getLogInUser().getLogInId();
@@ -288,22 +307,35 @@ public class ManageMenuJPanel extends javax.swing.JPanel {
         }
     }//GEN-LAST:event_btnUpdateItemActionPerformed
 private void populateTable() {
-    try {/*
+    try {
         DefaultTableModel model = (DefaultTableModel) JMenu.getModel();
         model.setRowCount(0);
-       int uniqueId=system.getLogInUser().getLogInId();
-       for (Restaurant restaurant : system.getRestaurantDirectory().getRestaurants()) {
-          if(restaurant.getUniqueId()==uniqueId)
-          {
-              for (FoodItem foodItem : restaurant.getMenu().getMenu()) {
-                   Object[] row = new Object[3];
-                   row[0] = foodItem.getName();
-                   row[1] = foodItem.getPrice();
-                   row[2] = foodItem.isInStock();
-                   model.addRow(row);
-              }
-          }
-       }*/
+       for(Network network :system.getNetworks())
+                      {
+                          for(Enterprise enterprise:network.getEnterpriseDirectory().getEnterprises())
+                          {
+                              if(enterprise.getEnterpriseType().equals("Restaurant"))
+                              {
+                                  for(Organization organization:enterprise.getOrganizationDirectory().getOrganisationList())
+                                  {
+                                      for(UserAccount userAccount :organization.getUserAccountDirectory().getUserAccountList())
+                                      {
+                                          if(userAccount.getUniqueId()== system.getLogInUser().getLogInId())
+                                          {
+                                            for (FoodItem foodItem : enterprise.getRestaurant().getMenu().getItems()) {
+                                              Object[] row = new Object[3];
+                                                        row[0] = foodItem.getName();
+                                                        row[2] = foodItem.isInStock();
+                                                        model.addRow(row);
+                                            }
+                                          }
+
+                                      }
+                                  }
+                              }
+                              
+                          }
+                      }
     } catch (Exception e) {
     }
        

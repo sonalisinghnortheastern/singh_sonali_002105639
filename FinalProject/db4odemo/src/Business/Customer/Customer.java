@@ -5,48 +5,28 @@
  */
 package Business.Customer;
 
-import Business.Role.CustomerRole;
-import Business.UserAccount.UserAccount;
-
 /**
  *
  * @author harold
  */
-public class Customer extends UserAccount {
+public class Customer {
     private String name;
+    private int customerId;
+    public int getCustomerId(){
+        return customerId;
+    }
+    public void setCustomerId(int customerId) {
+        this.customerId = customerId;
+    }
     private String address;
     private long mobileNumber;
-    public Customer(String name, String address, long mobileNumber,String userName, String password,int uniqueId) {
-        setUsername(userName);
-        setPassword(password);
-        setUniqueId(uniqueId);
-        setRole(new CustomerRole());
-        this.name = name;
-        this.address = address;
-        this.mobileNumber = mobileNumber;
-    }
+    
     public String getName() {
         return name;
     }
 
     public void setName(String name) {
         this.name = name;
-    }
-
-    public String getAddress() {
-        return address;
-    }
-
-    public void setAddress(String address) {
-        this.address = address;
-    }
-
-    public long getMobileNumber() {
-        return mobileNumber;
-    }
-
-    public void setMobileNumber(long mobileNumber) {
-        this.mobileNumber = mobileNumber;
     }
     
 }

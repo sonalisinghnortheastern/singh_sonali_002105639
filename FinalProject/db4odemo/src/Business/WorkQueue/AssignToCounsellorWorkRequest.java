@@ -19,6 +19,10 @@ public class AssignToCounsellorWorkRequest {
     private GeneralInformation generalInformation;
 
     public GeneralInformation getGeneralInformation() {
+        if(generalInformation==null)
+        {
+            generalInformation=new GeneralInformation();
+        }
         return generalInformation;
     }
 
@@ -43,6 +47,9 @@ public class AssignToCounsellorWorkRequest {
     }
 
     public CollegeCounsellor getCounsellor() {
+        if(counsellor==null){
+            counsellor=new CollegeCounsellor();
+        }
         return counsellor;
     }
 

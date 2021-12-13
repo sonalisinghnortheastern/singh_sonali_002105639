@@ -17,8 +17,6 @@ public class Network {
     public Network() {
         enterpriseDirectory=new EnterpriseDirectory();
     }
-    
-
     public EnterpriseDirectory getEnterpriseDirectory() {
         return enterpriseDirectory;
     }

@@ -12,11 +12,10 @@ import Business.UserAccount.UserAccount;
  *
  * @author harold
  */
-public class DeliveryMan extends UserAccount{
+public class DeliveryMan {
     private String name;
-    private long mobileNumber;
-    private String address;
-    private boolean isDeliveryPersonAvailable;
+    private int deliveryManId;
+    private boolean isDeliveryPersonAvailable=true;
 
     public boolean isIsDeliveryPersonAvailable() {
         return isDeliveryPersonAvailable;
@@ -25,23 +24,6 @@ public class DeliveryMan extends UserAccount{
     public void setIsDeliveryPersonAvailable(boolean isDeliveryPersonAvailable) {
         this.isDeliveryPersonAvailable = isDeliveryPersonAvailable;
     }
-
-    public String getAddress() {
-        return address;
-    }
-
-    public void setAddress(String address) {
-        this.address = address;
-    }
- public DeliveryMan(String name,  long mobileNumber,String address,String userName, String password,int uniqueId) {
-        setUsername(userName);
-        setPassword(password);
-        setUniqueId(uniqueId);
-        setRole(new DeliverManRole());
-        this.name = name;
-        this.mobileNumber = mobileNumber;
-        this.address=address;
-    }
     public String getName() {
         return name;
     }
@@ -49,15 +31,6 @@ public class DeliveryMan extends UserAccount{
     public void setName(String name) {
         this.name = name;
     }
-
-    public long getMobileNumber() {
-        return mobileNumber;
-    }
-
-    public void setMobileNumber(long mobileNumber) {
-        this.mobileNumber = mobileNumber;
-    }
-    
     @Override
     public String toString() {
         if(name == null){

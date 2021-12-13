@@ -119,8 +119,8 @@ public class DeliveryManWorkAreaJPanel extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnManageCustomersActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnManageCustomersActionPerformed
-    ProfileUpdateJPanel profileUpdateJPanel =new ProfileUpdateJPanel(ecosystem);
-    jSplitPane.setRightComponent(profileUpdateJPanel); 
+    // ProfileUpdateJPanel profileUpdateJPanel =new ProfileUpdateJPanel(ecosystem);
+    // jSplitPane.setRightComponent(profileUpdateJPanel); 
     }//GEN-LAST:event_btnManageCustomersActionPerformed
 
     private void btnOrderHistoryActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnOrderHistoryActionPerformed

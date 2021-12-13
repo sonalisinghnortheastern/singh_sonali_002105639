@@ -6,6 +6,12 @@
 package userinterface.RestaurantAdminRole;
 
 import Business.EcoSystem;
+import Business.Enterprise.Enterprise;
+import Business.Network.Network;
+import Business.Organization;
+import Business.UserAccount.UserAccount;
+import Business.WorkQueue.PlaceOrderWorkRequest;
+import javax.swing.table.DefaultTableModel;
 
 /**
  *
@@ -17,6 +23,7 @@ public class RestaurantOrderHistoryJPanel extends javax.swing.JPanel {
      * Creates new form CustomerOrderHistoryJPanel
      */
     private final EcoSystem system;
+    private String name;
     public RestaurantOrderHistoryJPanel(EcoSystem system) {
         initComponents();
         this.system=system;
@@ -52,7 +59,7 @@ public class RestaurantOrderHistoryJPanel extends javax.swing.JPanel {
             new Object [][] {
             },
             new String [] {
-                "ORDER ID", "ORDER DATE", "STATUS", "DELIVERY DATE","DELIVERY PERSON"
+                "ORDER ID", "ORDER DATE", "STATUS"
             }
         ) {
             boolean[] canEdit = new boolean [] {
@@ -82,12 +89,12 @@ public class RestaurantOrderHistoryJPanel extends javax.swing.JPanel {
         );
     }// </editor-fold>//GEN-END:initComponents
         private void populateOrderHistory()
-        {   /*DefaultTableModel model = (DefaultTableModel) JOrderHistory.getModel();
+        {   DefaultTableModel model = (DefaultTableModel) JOrderHistory.getModel();
             model.setRowCount(0);
-            int uniqueId=system.getLogInUser().getLogInId();
+            getUsername();
             for(PlaceOrderWorkRequest workRequest:system.getWorkQueue().getWorkRequestList())
             {
-                if(workRequest.getRestaurant().getUniqueId()==uniqueId)
+                if(workRequest.getRestaurant().getName().equals(name))
                 {
                      Object[] row = new Object[5];
                     row[0] = workRequest.getId();
@@ -100,19 +107,37 @@ public class RestaurantOrderHistoryJPanel extends javax.swing.JPanel {
                     else{
                         row[3] = workRequest.getResolveDate();
                     }
-                    if(workRequest.getDeliverMan()==null)
-                    {
-                        row[4]="Delivery Person Not  Assigned Yet";
-                    }
-                    else{
-                        row[4] = workRequest.getDeliverMan().getName();
-                    }
                     model.addRow(row);
                 }
                    
-            }*/
+            }
 
         }
+         private String getUsername()
+    {
+               for(Network network :system.getNetworks())
+                      {
+                          for(Enterprise enterprise:network.getEnterpriseDirectory().getEnterprises())
+                          {
+                              if(enterprise.getEnterpriseType().equals("Restaurant"))
+                              {
+                                  for(Organization organization:enterprise.getOrganizationDirectory().getOrganisationList())
+                                  {
+                                      for(UserAccount userAccount :organization.getUserAccountDirectory().getUserAccountList())
+                                      {
+                                          if(userAccount.getUniqueId()== system.getLogInUser().getLogInId())
+                                          {
+                                             name=enterprise.getName();
+                                             return name;
+                                          }
+
+                                      }
+                                  }
+                              }
+                          }
+                      }
+               return name;
+    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JTable JOrderHistory;

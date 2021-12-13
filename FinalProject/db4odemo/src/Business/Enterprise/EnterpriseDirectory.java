@@ -43,6 +43,7 @@ public class EnterpriseDirectory {
         }
         if(type.equals("Restaurant")){
         enterprise=new RestaurantEnterprise(name);
+        enterprise.getRestaurant().setName(name);
         enterprises.add(enterprise);
         }
         if(type.equals("College")){

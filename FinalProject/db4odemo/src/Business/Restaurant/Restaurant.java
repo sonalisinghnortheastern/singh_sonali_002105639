@@ -5,42 +5,25 @@
  */
 package Business.Restaurant;
 
-import Business.Role.RestaurantAdmin;
-import Business.UserAccount.UserAccount;
-
 /**
  *
  * @author harold
  */
-public class Restaurant extends UserAccount{
+public class Restaurant {
     private String name;
-    private String address;
-    private long  mobileNumber;
+    private int restaurantId;
     private Menu menu;
 
-    public Restaurant(String name, String address, long mobileNumber,String userName, String password,int uniqueId) {
-        setUsername(userName);
-        setPassword(password);
-        setRole(new RestaurantAdmin());
-        setUniqueId(uniqueId);
-        this.name = name;
-        this.address = address;
-        this.mobileNumber = mobileNumber;
-        this.menu = new Menu();
+    public int getRestaurantId()
+    {
+        return restaurantId;
     }
-
+    public void setRestaurantId(int restaurantId) {
+            this.restaurantId = restaurantId;
+        }
     public Restaurant(){
     
     }
-
-    public long getMobileNumber() {
-        return mobileNumber;
-    }
-
-    public void setMobileNumber(long mobileNumber) {
-        this.mobileNumber = mobileNumber;
-    }
-    
     public String getName() {
         return name;
     }
@@ -48,16 +31,11 @@ public class Restaurant extends UserAccount{
     public void setName(String name) {
         this.name = name;
     }
-
-    public String getAddress() {
-        return address;
-    }
-
-    public void setAddress(String address) {
-        this.address = address;
-    }
-
     public Menu getMenu() {
+        if(menu==null)
+        {
+            menu=new Menu();
+        }
         return menu;
     }
 

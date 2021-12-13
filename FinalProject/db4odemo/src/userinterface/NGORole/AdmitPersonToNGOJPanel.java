@@ -214,8 +214,7 @@ public class AdmitPersonToNGOJPanel extends javax.swing.JPanel {
             entryChildWorkRequest.setIsAccepted(false);
             String response = JOptionPane.showInputDialog("Kindly enter a reason");
             if(response.isEmpty()||response==null){
-                JOptionPane.showInputDialog("Kindly enter the reason for rejection");
-                return;
+               response = JOptionPane.showInputDialog("Kindly enter the reason for rejection");
             }
             entryChildWorkRequest.setRejectionMessage(response);
         }

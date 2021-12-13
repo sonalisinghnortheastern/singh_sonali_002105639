@@ -409,7 +409,11 @@ public class ReceptionistJPanel extends javax.swing.JPanel {
         try{
         ArrayList<EntryHospitalWorkRequest> finalWorkRequests=new ArrayList<>();
         int loggedinID = ecosystem.getLogInUser().getLogInId();
-        
+         if(ecosystem.getWorkQueue()==null)
+        {
+            JOptionPane.showMessageDialog(null, "WorkQueue is empty");
+                return;
+        }
         for(EntryHospitalWorkRequest hospitalWorkRequest: ecosystem.getWorkQueue().getWorkRequestHospital())   
         {   
             for(Network network:ecosystem.getNetworks())

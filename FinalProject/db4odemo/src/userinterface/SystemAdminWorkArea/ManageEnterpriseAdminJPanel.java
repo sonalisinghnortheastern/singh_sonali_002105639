@@ -362,6 +362,7 @@ public class ManageEnterpriseAdminJPanel extends javax.swing.JPanel {
                     {
                         if(uniqueId != userAccount.getUniqueId())
                         {
+                            System.out.println("Username already taken.Please take a diffrent username");
                             JOptionPane.showMessageDialog(this, "Username already taken.Please take a diffrent username");
                             return;
                         }
@@ -385,6 +386,7 @@ public class ManageEnterpriseAdminJPanel extends javax.swing.JPanel {
          dB4OUtil.storeSystem(system);
          populateTable();
          reset();
+         System.out.println("User modifed succesfully");
          JOptionPane.showMessageDialog(null, "User modifed succesfully");
     }
         else{
