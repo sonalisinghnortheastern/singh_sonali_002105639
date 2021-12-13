@@ -43,9 +43,9 @@ public class RestaurantOrderHistoryJPanel extends javax.swing.JPanel {
         jScrollPane1 = new javax.swing.JScrollPane();
         JOrderHistory = new javax.swing.JTable();
 
-        setBackground(new java.awt.Color(0, 102, 102));
+        setBackground(new java.awt.Color(153, 0, 0));
 
-        jLabel1.setBackground(new java.awt.Color(240, 178, 62));
+        jLabel1.setBackground(new java.awt.Color(153, 0, 0));
         jLabel1.setFont(new java.awt.Font("Comic Sans MS", 1, 18)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(255, 255, 255));
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
@@ -53,8 +53,9 @@ public class RestaurantOrderHistoryJPanel extends javax.swing.JPanel {
         jLabel1.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         jLabel1.setOpaque(true);
 
+        JOrderHistory.setBackground(new java.awt.Color(204, 204, 204));
         JOrderHistory.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
-        JOrderHistory.setFont(new java.awt.Font("Arial Black", 1, 12)); // NOI18N
+        JOrderHistory.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
         JOrderHistory.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
             },

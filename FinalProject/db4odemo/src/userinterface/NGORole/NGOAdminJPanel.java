@@ -45,6 +45,7 @@ public class NGOAdminJPanel extends javax.swing.JPanel {
         btnManageMenu2 = new javax.swing.JButton();
         btnManageMenu3 = new javax.swing.JButton();
         btnManageMenu4 = new javax.swing.JButton();
+        btnManageMenu5 = new javax.swing.JButton();
         jPanel2 = new javax.swing.JPanel();
         jLabel2 = new javax.swing.JLabel();
 
@@ -95,19 +96,31 @@ public class NGOAdminJPanel extends javax.swing.JPanel {
             }
         });
 
+        btnManageMenu5.setFont(new java.awt.Font("Comic Sans MS", 1, 14)); // NOI18N
+        btnManageMenu5.setText("PLACE ORDER");
+        btnManageMenu5.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnManageMenu5ActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(btnManageMenu, javax.swing.GroupLayout.PREFERRED_SIZE, 319, javax.swing.GroupLayout.PREFERRED_SIZE)
-            .addComponent(btnManageMenu2, javax.swing.GroupLayout.PREFERRED_SIZE, 319, javax.swing.GroupLayout.PREFERRED_SIZE)
-            .addComponent(btnManageMenu3, javax.swing.GroupLayout.PREFERRED_SIZE, 319, javax.swing.GroupLayout.PREFERRED_SIZE)
-            .addComponent(btnManageMenu4, javax.swing.GroupLayout.PREFERRED_SIZE, 319, javax.swing.GroupLayout.PREFERRED_SIZE)
-            .addComponent(btnManageMenu1, javax.swing.GroupLayout.PREFERRED_SIZE, 319, javax.swing.GroupLayout.PREFERRED_SIZE)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jLabel1)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(278, Short.MAX_VALUE))
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                    .addComponent(btnManageMenu5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(btnManageMenu, javax.swing.GroupLayout.DEFAULT_SIZE, 319, Short.MAX_VALUE)
+                    .addComponent(btnManageMenu2, javax.swing.GroupLayout.DEFAULT_SIZE, 319, Short.MAX_VALUE)
+                    .addComponent(btnManageMenu3, javax.swing.GroupLayout.DEFAULT_SIZE, 319, Short.MAX_VALUE)
+                    .addComponent(btnManageMenu4, javax.swing.GroupLayout.DEFAULT_SIZE, 319, Short.MAX_VALUE)
+                    .addComponent(btnManageMenu1, javax.swing.GroupLayout.DEFAULT_SIZE, 319, Short.MAX_VALUE))
+                .addGap(0, 0, Short.MAX_VALUE))
         );
 
         jPanel1Layout.linkSize(javax.swing.SwingConstants.HORIZONTAL, new java.awt.Component[] {btnManageMenu, btnManageMenu1, btnManageMenu2, btnManageMenu3, btnManageMenu4});
@@ -127,7 +140,9 @@ public class NGOAdminJPanel extends javax.swing.JPanel {
                 .addComponent(btnManageMenu3)
                 .addGap(73, 73, 73)
                 .addComponent(btnManageMenu1)
-                .addContainerGap(171, Short.MAX_VALUE))
+                .addGap(73, 73, 73)
+                .addComponent(btnManageMenu5, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(53, Short.MAX_VALUE))
         );
 
         jPanel1Layout.linkSize(javax.swing.SwingConstants.VERTICAL, new java.awt.Component[] {btnManageMenu, btnManageMenu1, btnManageMenu2, btnManageMenu3, btnManageMenu4});
@@ -181,6 +196,12 @@ public class NGOAdminJPanel extends javax.swing.JPanel {
         jSplitPane.setRightComponent(visualizeNGOJPanel);
     }//GEN-LAST:event_btnManageMenu4ActionPerformed
 
+    private void btnManageMenu5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnManageMenu5ActionPerformed
+        // TODO add your handling code here:
+        PlaceOrdeJPanel visualizeNGOJPanel =new PlaceOrdeJPanel(ecosystem);
+        jSplitPane.setRightComponent(visualizeNGOJPanel);
+    }//GEN-LAST:event_btnManageMenu5ActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnManageMenu;
@@ -188,6 +209,7 @@ public class NGOAdminJPanel extends javax.swing.JPanel {
     private javax.swing.JButton btnManageMenu2;
     private javax.swing.JButton btnManageMenu3;
     private javax.swing.JButton btnManageMenu4;
+    private javax.swing.JButton btnManageMenu5;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JPanel jPanel1;
