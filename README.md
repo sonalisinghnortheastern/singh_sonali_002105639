@@ -19,3 +19,4 @@
 16.  Vehicle Identifier: Not Null,Empty,17 digit identifier
 17.  Device Identifier:Not Null,Empty,numbers.
 18.  IPAddress: Three digit max in each box.
+19.  check
